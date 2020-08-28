@@ -1,32 +1,58 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div>
+        <router-view v-if="ready"></router-view>
+        <q-ajax-bar
+                ref="bar"
+                position="bottom"
+                color="accent"
+                size="10px"
+                skip-hijack
+        />
     </div>
-    <router-view/>
-  </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts">
+    import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
+    import * as firebase from "firebase";
 
-#nav {
-  padding: 30px;
+    @Component({
+        components: {
+        }
+    })
+    export default class App extends Vue {
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+      private ready: boolean = false;
 
-    &.router-link-exact-active {
-      color: #42b983;
+      async mounted() {
+        const isLogin = await this.$store.dispatch('isLogin');
+        if (isLogin) {
+          this.$router.push('/studio').catch(() => {
+          });
+        } else {
+          const isLoginNoAuth = this.$store.getters.isLoginNoAuth;
+          if (isLoginNoAuth) {
+            this.$router.push('/auth').catch(() => {
+            });
+          } else {
+            this.$router.push('/login').catch(() => {
+            });
+          }
+        }
+        this.ready = true;
+      }
+
+      @Watch('$store.getters.ajaxBar')
+      onChangeAjaxBar() {
+        if (this.$store.getters.ajaxBar) {
+          //@ts-ignore
+          this.$refs.bar.start();
+        } else {
+          //@ts-ignore
+          this.$refs.bar.stop();
+        }
+      }
     }
-  }
-}
+</script>
+
+<style>
 </style>
