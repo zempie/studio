@@ -39,7 +39,7 @@
             <q-list>
                 <q-item-label header>Zempie Studio Console</q-item-label>
                 <q-separator />
-                <q-item clickable tag="a" href="/#/studio">
+                <q-item clickable tag="router-link" to="/studio">
                     <q-item-section avatar>
                         <q-icon name="keyboard_backspace" />
                     </q-item-section>
@@ -49,7 +49,7 @@
                     </q-item-section>
                 </q-item>
                 <q-separator />
-                <q-item :active="$route.name==='ProjectDashboard'" clickable tag="a" :href="'/#/project/' + projectId">
+                <q-item :active="$route.name==='ProjectDashboard'" clickable tag="router-link" :to="'/project/' + projectId">
                     <q-item-section avatar>
                         <q-icon name="dashboard" />
                     </q-item-section>
@@ -58,7 +58,7 @@
                         <!--                        <q-item-label caption>quasar.dev</q-item-label>-->
                     </q-item-section>
                 </q-item>
-                <q-item :active="$route.name==='ProjectSetting'" clickable tag="a" :href="'/#/project/setting/' + projectId">
+                <q-item :active="$route.name==='ProjectSetting'" clickable tag="router-link" :to="'/project/setting/' + projectId">
                     <q-item-section avatar>
                         <q-icon name="settings_ethernet" />
                     </q-item-section>
@@ -67,7 +67,7 @@
                         <!--                        <q-item-label caption>quasar.dev</q-item-label>-->
                     </q-item-section>
                 </q-item>
-                <q-item :active="$route.name==='ProjectVersion'" clickable tag="a" :href="'/#/project/version/' + projectId">
+                <q-item :active="$route.name==='ProjectVersion'" clickable tag="router-link" :to="'/project/version/' + projectId">
                     <q-item-section avatar>
                         <q-icon name="launch" />
                     </q-item-section>
@@ -76,7 +76,7 @@
                         <!--                        <q-item-label caption>github.com/quasarframework</q-item-label>-->
                     </q-item-section>
                 </q-item>
-                <q-item :active="$route.name ==='ProjectDeploy'" clickable tag="a" :href="'/#/project/deploy/' + projectId">
+                <q-item :active="$route.name ==='ProjectDeploy'" clickable tag="router-link" :to="'/project/deploy/' + projectId">
                     <q-item-section avatar>
                         <q-icon name="language" />
                     </q-item-section>

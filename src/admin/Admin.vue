@@ -45,7 +45,7 @@
             <q-list>
                 <q-item-label header>Zempie Studio Console</q-item-label>
                 <q-separator />
-                <q-item clickable tag="a" href="/#/studio">
+                <q-item clickable tag="router-link" to="/studio">
                     <q-item-section avatar>
                         <q-icon name="keyboard_backspace" />
                     </q-item-section>
@@ -55,7 +55,7 @@
                     </q-item-section>
                 </q-item>
                 <q-separator />
-                <q-item :active="$route.name==='Games'" clickable tag="a" href="/#/admin/processingVersion">
+                <q-item :active="$route.name==='Games'" clickable tag="router-link" to="/admin/processingVersion">
                     <q-item-section avatar>
                         <q-icon name="hourglass_top" />
                     </q-item-section>

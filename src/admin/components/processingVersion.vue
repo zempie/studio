@@ -48,7 +48,7 @@
 
                                 <!--                                <div> 심사 미통과시 사유 </div>-->
                                 <div>
-                                    <a @click.stop :href="'/#/admin/testGame/' + version.id">테스트 이동</a>
+                                    <router-link :to="'/admin/testGame/' + version.id" >테스트 이동</router-link>
                                 </div>
                             </q-card-section>
                         </q-card>
@@ -87,6 +87,10 @@
 
             this.versionList = result;
             console.log( result );
+        }
+
+        async onClickTestGame( id ) {
+            this.$router.push(`/admin/testGame/${id}` );
         }
     }
 </script>

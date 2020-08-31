@@ -44,16 +44,17 @@
         >
             <q-list>
                 <q-item-label header>Zempie Studio Console</q-item-label>
-                <q-item :active="$route.name==='Games'" clickable tag="a" href="/#/studio">
+                <q-item :active="$route.name==='Games'" clickable tag="router-link" to="/studio">
                     <q-item-section avatar>
                         <q-icon name="sports_esports" />
                     </q-item-section>
                     <q-item-section>
                         <q-item-label>모든 게임</q-item-label>
-                        <!--                        <q-item-label caption>quasar.dev</q-item-label>-->
+                            <!--                        <q-item-label caption>quasar.dev</q-item-label>-->
                     </q-item-section>
                 </q-item>
-                <q-item :active="$route.name==='AddGame'" clickable tag="a" href="/#/addGame">
+
+                <q-item :active="$route.name==='AddGame'" clickable tag="router-link" to="/addGame">
                     <q-item-section avatar>
                         <q-icon name="games" />
                     </q-item-section>
@@ -62,7 +63,7 @@
                         <!--                        <q-item-label caption>github.com/quasarframework</q-item-label>-->
                     </q-item-section>
                 </q-item>
-                <q-item :active="$route.name==='Setting'" clickable tag="a" href="/#/setting">
+                <q-item :active="$route.name==='Setting'" clickable tag="router-link" to="/setting">
                     <q-item-section avatar>
                         <q-icon name="settings" />
                     </q-item-section>
@@ -72,7 +73,7 @@
                     </q-item-section>
                 </q-item>
 
-                <q-item :active="$route.name==='Admin'" clickable tag="a" href="/#/admin">
+                <q-item :active="$route.name==='Admin'" clickable tag="router-link" to="/admin">
                     <q-item-section avatar>
                         <q-icon name="admin_panel_settings" />
                     </q-item-section>
