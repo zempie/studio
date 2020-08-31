@@ -82,13 +82,31 @@ export default class Rpc {
         }
     }
 
+    //회원가입
+    async getUserInfo() {
+        try {
+            const response = await this.requestRpc( 'get-user-info', {
+
+            } );
+            return response;
+        }
+        catch (e) {
+            console.log(e.response);
+            return e.response.data;
+        }
+    }
 
     async getDev() {
-        const response = await this.requestRpc( 'get-developer', {
+        try {
+            const response = await this.requestRpc( 'get-developer', {
 
-        } );
-        console.log(response);
-        return response;
+            } );
+            return response;
+        }
+        catch (e) {
+            console.log(e.response);
+            return e.response.data;
+        }
     }
 
     async createDev() {

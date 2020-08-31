@@ -32,7 +32,7 @@ _axios.interceptors.response.use(
 
       // Do something with response data
 
-      if ( res.data.result ) {
+      if ( res.data.jsonrpc ) {
         res.data = res.data.result;
       }
       else if ( res.data.data ) {

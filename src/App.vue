@@ -14,6 +14,8 @@
 <script lang="ts">
     import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
     import * as firebase from "firebase";
+    import {LoginState} from "@/store/modules/user";
+    import {onAuthStateChanged} from "@/plugins/firebase";
 
     @Component({
         components: {
@@ -24,20 +26,7 @@
       private ready: boolean = false;
 
       async mounted() {
-        const isLogin = await this.$store.dispatch('isLogin');
-        if (isLogin) {
-          this.$router.push('/studio').catch(() => {
-          });
-        } else {
-          const isLoginNoAuth = this.$store.getters.isLoginNoAuth;
-          if (isLoginNoAuth) {
-            this.$router.push('/auth').catch(() => {
-            });
-          } else {
-            this.$router.push('/login').catch(() => {
-            });
-          }
-        }
+        await this.waitLogin();
         this.ready = true;
       }
 
@@ -51,6 +40,33 @@
           this.$refs.bar.stop();
         }
       }
+
+        async waitLogin() {
+            const loginState = await this.$store.dispatch('loginState');
+            switch ( loginState ) {
+                case LoginState.login : {
+                    this.$router.push('/studio').catch(() => {
+                    });
+                    break;
+                }
+                case LoginState.logout : {
+                    this.$router.push('/login').catch(() => {
+                    });
+                    break;
+                }
+                case LoginState.no_user : {
+                    const result = await this.$rpc.getUserInfo();
+                    await onAuthStateChanged(null);
+                    await this.waitLogin();
+                    break;
+                }
+                case LoginState.login_noAuth : {
+                    this.$router.push('/auth').catch(() => {
+                    });
+                    break;
+                }
+            }
+        }
     }
 </script>
 

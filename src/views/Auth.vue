@@ -19,11 +19,15 @@
 
 <script lang="ts">
     import { Component, Prop, Vue } from 'vue-property-decorator';
+    import store from "@/store";
 
     @Component({components: {}})
     export default class Auth extends Vue {
         async agree() {
             const result = await this.$rpc.createDev();
+            store.commit( 'developer', result );
+
+            console.log( result );
             this.$router.push('/studio');
             console.log(result);
         }

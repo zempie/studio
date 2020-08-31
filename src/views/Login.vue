@@ -27,6 +27,8 @@
 <script lang="ts">
     import { Component, Prop, Vue } from 'vue-property-decorator';
     import firebase from "firebase";
+    import {LoginState} from "@/store/modules/user";
+    import {onAuthStateChanged} from "@/plugins/firebase";
 
     @Component({
         components: {}
@@ -69,13 +71,14 @@
         }
 
         async email() {
+            this.$store.commit('loginState', LoginState.none);
             const id = this.$refs.id as HTMLInputElement;
             const pass = this.$refs.pass as HTMLInputElement;
 
             try {
                 const obj = await firebase.auth().signInWithEmailAndPassword(id.value, pass.value);
                 if( obj && obj.user ) {
-
+                    await this.waitLogin();
                 }
                 else {
                     alert('실패!!');
@@ -101,6 +104,8 @@
 
         async google() {
             try {
+                this.$store.commit('loginState', LoginState.none);
+
                 const provider = new firebase.auth.GoogleAuthProvider();
                 const result: any = await firebase.auth().signInWithPopup(provider);
 
@@ -108,6 +113,9 @@
                 const token = result.credential.accessToken;
                 // The signed-in user info.
                 const user = result.user;
+
+                await this.waitLogin();
+
             }
             catch (error) {
                 // Handle Errors here.
@@ -142,6 +150,34 @@
                 const credential = error.credential;
 
                 alert( error );
+            }
+        }
+
+        async waitLogin() {
+            const loginState = await this.$store.dispatch('loginState');
+            console.log( loginState );
+            switch ( loginState ) {
+                case LoginState.login : {
+                    this.$router.push('/studio').catch(() => {
+                    });
+                    break;
+                }
+                case LoginState.logout : {
+                    this.$router.push('/login').catch(() => {
+                    });
+                    break;
+                }
+                case LoginState.no_user : {
+                    const result = await this.$rpc.getUserInfo();
+                    await onAuthStateChanged(null);
+                    await this.waitLogin();
+                    break;
+                }
+                case LoginState.login_noAuth : {
+                    this.$router.push('/auth').catch(() => {
+                    });
+                    break;
+                }
             }
         }
     }

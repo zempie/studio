@@ -22,11 +22,11 @@
                     <q-td width="10%" >
                         {{props.row.deploy_version_id && '배포 중' || '배포 안됨'}}
                     </q-td>
-                    <q-td width="15%">
+                    <q-td width="15%" style="text-align: center">
                         {{props.row.game && props.row.game.count_start || 0}}
                     </q-td>
                     <q-td>
-                        <q-icon name="delete" style="font-size: 26px" />
+<!--                        <q-icon name="delete" style="font-size: 26px" />-->
                     </q-td>
                 </q-tr>
             </template>
@@ -56,7 +56,7 @@
             },
             { name: 'updated_at', align: 'left', label: '최종 업데이트', field: 'updated_at', sortable: true },
             { name: 'state', label: '상태', field: 'state',align: 'left', sortable: true },
-            { name: 'count', label: '조회수', field: 'count',align: 'left', sortable: true },
+            { name: 'count', label: '조회수', field: 'count',align: 'center', sortable: true },
             { name: 'remove', icon:'settings', align: 'left', label: '' },
         ];
 

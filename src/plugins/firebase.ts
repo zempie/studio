@@ -24,18 +24,21 @@ function initAuth() {
 
 async function onAuthStateChanged( user : any ) {
     const currentUser = firebase.auth().currentUser;
+    console.log( currentUser );
+
     if ( currentUser ) {
         const idToken = await currentUser.getIdToken(true);
         store.commit('idToken', idToken );
 
         const dev = await Vue.$rpc.getDev();
-
-        if( dev ) {
+        if( dev && dev.error && dev.error.message === '유저 정보 찾을 수 없음.' ) {
+            store.commit('loginState', LoginState.no_user);
+        }
+        else if( dev ) {
             store.commit('loginState', LoginState.login);
             store.commit( 'developer', dev );
         }
         else {
-
             store.commit('loginState', LoginState.login_noAuth);
         }
     }
@@ -43,4 +46,8 @@ async function onAuthStateChanged( user : any ) {
         store.commit('loginState', LoginState.logout);
         store.commit('idToken', undefined);
     }
+}
+
+export {
+    onAuthStateChanged
 }

@@ -3,6 +3,7 @@ enum LoginState {
     logout,
     login_noAuth,
     login,
+    no_user
 }
 
 export default {
@@ -18,6 +19,10 @@ export default {
 
         isLoginNoAuth( state ) {
             return state.loginState === LoginState.login_noAuth;
+        },
+
+        isNoUser( state ) {
+            return state.loginState === LoginState.no_user;
         },
 
         isLogin( state ) {
@@ -52,14 +57,14 @@ export default {
     },
 
     actions : {
-        async isLogin( context : any ) {
+        async loginState( context : any ) {
             return new Promise( ( resolve, reject ) => {
                 function wait() {
                     if( context.state.loginState === LoginState.none ) {
                         setTimeout( wait, 500 );
                     }
                     else {
-                        return resolve( context.getters.isLogin );
+                        return resolve( context.getters.loginState );
                     }
                 }
                 wait();
