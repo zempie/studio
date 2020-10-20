@@ -24,12 +24,12 @@
     @Component({components: {}})
     export default class Auth extends Vue {
         async agree() {
-            const result = await this.$rpc.createDev();
-            store.commit( 'developer', result );
+            // const result = await this.$rpc.createDev();
+            // store.commit( 'developer', result );
 
-            console.log( result );
-            this.$router.push('/studio');
-            console.log(result);
+            // console.log( result );
+            this.$router.push('/signup');
+            // console.log(result);
         }
     }
 </script>

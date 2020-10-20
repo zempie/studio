@@ -116,7 +116,7 @@
 
 
             this.$store.commit('ajaxBar', true);
-            const result = await this.$rpc.updateProject( option, this.file );
+            const result = await this.$http.updateProject( option, this.file );
             console.log(result);
             this.$store.commit('ajaxBar', false);
         }

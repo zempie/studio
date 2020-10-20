@@ -108,7 +108,7 @@
             const deploy_version_id = version.id;
 
             this.$store.commit('ajaxBar', true);
-            const result = await this.$rpc.updateProject( {
+            const result = await this.$http.updateProject( {
                 id : this.projectId,
                 deploy_version_id,
                 pathname : this.path,

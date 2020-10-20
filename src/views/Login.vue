@@ -1,11 +1,16 @@
 <template>
     <div>
+        <h2 style="text-align: center; color: #00b4ff; font-weight: bold">
+            ZEMPIE STUDIO
+        </h2>
+
+
         <div class="inputBox">
             <div class="icon">
                 <i class="ri-mail-fill"></i>
             </div>
             <div class="input">
-                <input ref="id" placeholder="Email or nickname">
+                <input ref="id" placeholder="Email">
             </div>
         </div>
         <div class="inputBox">
@@ -17,8 +22,8 @@
             </div>
         </div>
         <button class="button loginButton" :disabled="!isLogin" @click="email">Log in</button>
-        <div class="forgot"><router-link to="/resetps">Forgot your password?</router-link></div>
-        <button class="button loginButton" style="margin-top: 40px" @click="signup">Sign up with email</button>
+<!--        <div class="forgot"><router-link to="/resetps">Forgot your password?</router-link></div>-->
+<!--        <button class="button loginButton" style="margin-top: 40px" @click="signup">Sign up with email</button>-->
         <button class="button facebookButton" style="margin-top: 40px" @click="facebook"><i class="ri-facebook-circle-fill"></i><span>Continue with Facebook</span></button>
         <button class="button googleButton" style="margin-top: 20px" @click="google"><i class="ri-google-fill"></i><span>Continue with Google+</span></button>
     </div>
@@ -37,7 +42,6 @@
         private isLogin : boolean = false;
 
         mounted() {
-
             this.$store.state.pathName = 'login';
 
             const id = this.$refs.id as HTMLInputElement;
@@ -53,22 +57,8 @@
             if( this.$store.getters.user ) {
                 this.$router.replace( '/' );
             }
-
-            // EventBus.$on('onLogin', this.onLogin);
-
         }
 
-        beforeDestroy() {
-            // EventBus.$off('onLogin', this.onLogin);
-        }
-
-        // onLogin() {
-        //     this.$router.replace( '/' );
-        // }
-
-        signup() {
-            // this.$router.push( '/signup' );
-        }
 
         async email() {
             this.$store.commit('loginState', LoginState.none);

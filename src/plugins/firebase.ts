@@ -17,7 +17,6 @@ let firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 initAuth();
 
-
 function initAuth() {
     firebase.auth().onAuthStateChanged( onAuthStateChanged );
 }
@@ -31,7 +30,8 @@ async function onAuthStateChanged( user : any ) {
         store.commit('idToken', idToken );
 
         const dev = await Vue.$rpc.getDev();
-        if( dev && dev.error && dev.error.message === '유저 정보 찾을 수 없음.' ) {
+        console.log(dev);
+        if( dev && dev.error && dev.error.message === "유저 정보를 찾을 수 없습니다." ) {
             store.commit('loginState', LoginState.no_user);
         }
         else if( dev ) {

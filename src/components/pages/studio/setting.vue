@@ -92,7 +92,7 @@
             }
 
             this.$store.commit('ajaxBar', true);
-            const result = await this.$rpc.updateDev( this.devName, this.file )
+            const result = await this.$http.updateDev( this.devName, this.file )
             this.$store.commit('ajaxBar', false);
             console.log(result);
         }

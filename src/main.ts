@@ -2,6 +2,7 @@ import Vue from 'vue'
 import './plugins/axios'
 import './plugins/firebase'
 import './api/rpc';
+import './api/http';
 import App from './App.vue'
 import router from './router'
 import store from './store'

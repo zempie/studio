@@ -5,20 +5,18 @@
 </template>
 
 <script lang="ts">
-    import { Component, Prop, Vue } from 'vue-property-decorator';
+import {Component, Prop, Vue} from 'vue-property-decorator';
 
-    @Component({
-        components: {
+@Component({
+    components: {}
+})
+export default class ProjectDashboard extends Vue {
+    @Prop() private projectId!: number;
 
-        }
-    })
-    export default class ProjectDashboard extends Vue {
-        @Prop() private projectId! : number;
-
-        mounted() {
-            this.$store.commit('pageName', '대시 보드');
-        }
+    mounted() {
+        this.$store.commit('pageName', '대시 보드');
     }
+}
 </script>
 
 <style scoped lang="scss">
