@@ -1,14 +1,22 @@
 <template>
-  <q-page class="flex flex-center">
-    <img alt="Quasar logo" src="../assets/logo.png">
-  </q-page>
+
 </template>
 
-<style>
-</style>
+<script lang="ts">
+import {Component, Prop, Vue} from 'vue-property-decorator';
 
-<script>
-export default {
-  name: 'HelloWorld'
+@Component({
+    components: {}
+})
+export default class HelloWorld extends Vue {
+    mounted() {
+    }
 }
 </script>
+
+<style scoped lang="scss">
+
+
+
+
+</style>

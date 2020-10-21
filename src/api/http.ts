@@ -42,9 +42,10 @@ export default class Http {
         }
     }
 
-    async createDev(name? : string, file? : File) {
+    async createDev(name? : string, picture? : string, file? : File) {
         const formData = new FormData();
         if( name ) { formData.append( 'name', name ); }
+        if( picture ) { formData.append( 'picture', picture ); }
         if( file ) { formData.append( 'file', file ); }
 
         const response = await this.request( Vue.$axios.post( '/studio/developer', formData ) );

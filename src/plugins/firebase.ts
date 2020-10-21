@@ -29,8 +29,11 @@ async function onAuthStateChanged( user : any ) {
         const idToken = await currentUser.getIdToken(true);
         store.commit('idToken', idToken );
 
-        const dev = await Vue.$rpc.getDev();
-        console.log(dev);
+        const result = await Vue.$rpc.getDev();
+        const dev = result.developer;
+        const user = result.user;
+        store.commit( 'user', user );
+
         if( dev && dev.error && dev.error.message === "유저 정보를 찾을 수 없습니다." ) {
             store.commit('loginState', LoginState.no_user);
         }

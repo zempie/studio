@@ -41,6 +41,7 @@
                 show-if-above
                 bordered
                 content-class=""
+                class="bg-color-3"
         >
             <q-list>
                 <q-item-label header>Zempie Studio Console</q-item-label>
@@ -85,7 +86,7 @@
             </q-list>
         </q-drawer>
 
-        <q-page-container class="page">
+        <q-page-container class="bg-color-1">
             <router-view></router-view>
         </q-page-container>
 
@@ -101,6 +102,9 @@
         private searchText : string = '';
 
         mounted() {
+
+            console.log( this.$store.getters.developer )
+
             console.log( this.$route )
         }
 
@@ -109,6 +113,6 @@
 
 <style scoped lang="scss">
     .q-page-container {
-        background-color: #f1f1f1;
+        //background-color: #f1f1f1;
     }
 </style>

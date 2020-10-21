@@ -41,11 +41,15 @@ export default class App extends Vue {
     }
 
     async waitLogin() {
+
+        console.log(this.$q.dark)
+
         const loginState = await this.$store.dispatch('loginState');
+
         switch (loginState) {
             case LoginState.login : {
-                // this.$router.push('/studio').catch(() => {
-                // });
+                this.$router.push('/studio').catch(() => {
+                });
                 break;
             }
             case LoginState.logout : {
@@ -60,7 +64,7 @@ export default class App extends Vue {
                 break;
             }
             case LoginState.login_noAuth : {
-                this.$router.push('/auth').catch(() => {
+                this.$router.push('/signup').catch(() => {
                 });
                 break;
             }
@@ -69,5 +73,39 @@ export default class App extends Vue {
 }
 </script>
 
-<style>
+<style lang="scss">
+
+.MAB40 { margin-bottom: 40px; }
+.MAB20 { margin-bottom: 20px; }
+.MAB10 { margin-bottom: 10px; }
+.MAT0 { margin-top: 0 !important; }
+
+.MAL10 { margin-left: 10px;}
+.MAL5 { margin-left: 5px; }
+
+.MAR30 { margin-right: 30px;}
+.MAR20 { margin-right: 20px; }
+.MAR10 { margin-right: 10px;}
+.MAR5 { margin-right: 5px; }
+
+.BLINE { border-bottom: 1px solid rgb(218, 220, 224); }
+
+
+.body--light {
+    /* ... */
+    .bg-color-0 { background-color: #000000; }
+    .bg-color-1 { background-color: #181818; }
+    .bg-color-2 { background-color: #202020; }
+    .bg-color-3 { background-color: #212121; }
+}
+
+.body--dark {
+    .bg-color-0 { background-color: #000000; }
+    .bg-color-1 { background-color: #181818; }
+    .bg-color-2 { background-color: #202020; }
+    .bg-color-3 { background-color: #212121; }
+}
+
+
+
 </style>
