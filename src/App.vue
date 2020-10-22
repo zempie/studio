@@ -42,8 +42,6 @@ export default class App extends Vue {
 
     async waitLogin() {
 
-        console.log(this.$q.dark)
-
         const loginState = await this.$store.dispatch('loginState');
 
         switch (loginState) {
@@ -100,12 +98,32 @@ export default class App extends Vue {
 }
 
 .body--dark {
+    background-color: #181818;
     .bg-color-0 { background-color: #000000; }
     .bg-color-1 { background-color: #181818; }
     .bg-color-2 { background-color: #202020; }
     .bg-color-3 { background-color: #212121; }
+    .bg-color-10 { background-color: #3b3b3b; }
+    .no-border { border: none }
 }
 
+.center-container {
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto;
+}
 
+.collapsible {
+    transition: 1s height ease-in;
+    &.hidden {
+        height: 0;
+    }
+}
+
+.hintText {
+    padding: 16px 0 16px 0;
+    color: #777;
+    font-size: 13px;
+}
 
 </style>

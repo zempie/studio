@@ -1,7 +1,7 @@
 <template>
-    <q-page class="q-pa-md games">
-        <div class="top">
-            <q-btn class="addButton" color="primary" @click="$router.push('/addGame')">게임 추가하기</q-btn>
+    <q-page class="q-pa-md center-container">
+        <div class="text-right">
+            <q-btn class="q-my-sm" color="primary" @click="$router.push('/addGame')">게임 추가하기</q-btn>
         </div>
 
         <q-table
@@ -10,9 +10,14 @@
                 row-key="name"
                 separator="vertical"
                 class="table"
+                :pagination="pagination"
+                :filter="filter"
         >
             <template v-slot:body="props">
                 <q-tr :props="props" @click="onClick(props)">
+                    <q-td width="10%">
+                        <q-img :src="props.row.picture"></q-img>
+                    </q-td>
                     <q-td width="30%" :props="props" key="name">
                         {{props.row.name}}
                     </q-td>
@@ -22,13 +27,17 @@
                     <q-td width="10%" >
                         {{props.row.deploy_version_id && '배포 중' || '배포 안됨'}}
                     </q-td>
-                    <q-td width="15%" style="text-align: center">
+                    <q-td style="text-align: center">
                         {{props.row.game && props.row.game.count_start || 0}}
                     </q-td>
-                    <q-td>
-<!--                        <q-icon name="delete" style="font-size: 26px" />-->
-                    </q-td>
                 </q-tr>
+            </template>
+            <template v-slot:top-right>
+                <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
+                    <template v-slot:append>
+                        <q-icon name="search" />
+                    </template>
+                </q-input>
             </template>
         </q-table>
     </q-page>
@@ -44,7 +53,18 @@
     })
     export default class Games extends Vue {
 
+        private pagination = {
+            rowsPerPage: 15
+            // rowsNumber: xx if getting data from a server
+        };
+
         private columns =  [
+            {
+                name: 'picture',
+                required: false,
+                label: '썸네일',
+                align: 'left'
+            },
             {
                 name: 'name',
                 required: true,
@@ -57,9 +77,8 @@
             { name: 'updated_at', align: 'left', label: '최종 업데이트', field: 'updated_at', sortable: true },
             { name: 'state', label: '상태', field: 'state',align: 'left', sortable: true },
             { name: 'count', label: '조회수', field: 'count',align: 'center', sortable: true },
-            { name: 'remove', icon:'settings', align: 'left', label: '' },
         ];
-
+        private filter : string = '';
         private projects = [];
 
         mounted() {
@@ -70,6 +89,23 @@
         async loadProjects() {
             const res = await this.$rpc.getProjects();
             this.projects = res;
+
+            // this.projects = [
+            //     {
+            //         name : '2048',
+            //         picture : 'http://gtest.fromthered.com/Deploy_images/zeminiplay/2048.png',
+            //         update_at : '0',
+            //         state: 'passed',
+            //         count : 100,
+            //     },
+            //     {
+            //         name : 'knightrush',
+            //         picture : 'http://gtest.fromthered.com/Deploy_images/zeminiplay/2048.png',
+            //         update_at : Date.now(),
+            //         state: 'passed',
+            //         count : 100,
+            //     }
+            // ]
             this.$store.commit('projects', res);
 
             console.log(res);
@@ -84,21 +120,4 @@
 </script>
 
 <style scoped lang="scss">
-    .games {
-        max-width: 960px;
-        margin: 0 auto;
-
-        .top {
-
-            text-align: right;
-
-            .addButton {
-                margin: 10px 0;
-            }
-        }
-
-
-    }
-
-
 </style>

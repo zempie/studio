@@ -15,7 +15,7 @@ _axios.interceptors.request.use(
 
       // Do something before request is sent
       if (store.getters.idToken) {
-        cfg.headers.authorization = `Bearer ${store.getters.idToken}`;
+            cfg.headers.authorization = `Bearer ${store.getters.idToken}`;
       }
 
       return cfg;

@@ -10,9 +10,6 @@ export default class Http {
 
     async request( promise : Promise<any>, errorCallback : Function | null = null, retryCount : number = 1 ) : Promise<any> {
         try {
-            // const result = await p
-            // romise;
-
             const res = await promise;
             return res.data;
         }
@@ -41,6 +38,33 @@ export default class Http {
             throw error;
         }
     }
+
+    //new//
+    async createProject( options : { name? : string, description? : string, pathname? : string, project_picture? : File },
+                         updateVersion : { version? : string, autoDeploy? : boolean, startFile? : string }, files : File[] ) {
+        const formData = new FormData();
+        for( let k in options ) {
+            formData.append( k, options[k] );
+        }
+
+        for( let k in updateVersion ) {
+            formData.append( k, updateVersion[k] );
+        }
+
+        for( let i = 0; i < files.length; i++ ) {
+            const file = files[i] as File;
+            formData.append( `file_${i + 1}`, file );
+        }
+
+
+        const response = await this.request( Vue.$axios.post( '/studio/project', formData ) );
+        return response;
+    }
+
+
+
+    //old
+
 
     async createDev(name? : string, picture? : string, file? : File) {
         const formData = new FormData();

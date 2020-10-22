@@ -187,9 +187,8 @@
         async pass() {
             this.$store.commit('ajaxBar', true);
             const result = await this.$rpc.requestRpc( 'admin-set-version', {
-                value : {
-                    state : 'passed',
-                }, version_id : this.versionId
+                state : 'passed',
+                id : this.versionId,
             } );
             console.log(result);
             this.$store.commit('ajaxBar', false);
@@ -203,10 +202,9 @@
             }
             this.$store.commit('ajaxBar', true);
             const result = await this.$rpc.requestRpc( 'admin-set-version', {
-                value : {
-                    state : 'fail',
-                    reason : this.reason.text
-                }, version_id : this.versionId
+                state : 'fail',
+                reason : this.reason.text,
+                id : this.versionId
             } );
             console.log(result);
             this.$store.commit('ajaxBar', false);

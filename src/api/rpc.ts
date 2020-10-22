@@ -50,29 +50,24 @@ export default class Rpc {
 
     //회원가입
     async getUserInfo() {
-        try {
-            const response = await this.requestRpc( 'get-user-info', {
+        const response = await this.requestRpc( 'get-user-info', {
 
-            } );
-            return response;
-        }
-        catch (e) {
-            console.log(e.response);
-            return e.response.data;
-        }
+        } );
+        return response;
     }
 
     async getDev() {
-        try {
-            const response = await this.requestRpc( 'get-developer', {
+        const response = await this.requestRpc( 'get-developer', {
 
-            } );
-            return response;
-        }
-        catch (e) {
-            console.log(e.response);
-            return e.response.data;
-        }
+        } );
+        return response;
+    }
+
+    async confirmGamePath( pathname : string ) {
+       const response = await this.requestRpc( 'verify-pathname', {
+           pathname,
+       } );
+       return response;
     }
 
     // async createDev() {
@@ -96,16 +91,6 @@ export default class Rpc {
         return response;
     }
 
-    async createProject( name, description, control_type ) {
-        const response = await this.requestRpc( 'create-project', {
-            name,
-            description,
-            control_type
-        } );
-        return response;
-    }
-
-
     async deleteProject() {
 
     }
@@ -121,12 +106,6 @@ export default class Rpc {
         const response = await this.requestRpc( 'get-version', {
             id
         } );
-        return response;
-    }
-
-    async updateVersion( options : { id : number, state? : string, url? : string, description? : string }) {
-        //id, state, url, description
-        const response = await this.requestRpc( 'set-version', options );
         return response;
     }
 }

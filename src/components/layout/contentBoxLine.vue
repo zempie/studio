@@ -17,7 +17,7 @@ export default class ContentBoxLine extends Vue {
 <style scoped lang="scss">
 .contentBoxLine {
     margin: 20px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(95, 81, 81, 1);
     line-height: 1px;
 }
 

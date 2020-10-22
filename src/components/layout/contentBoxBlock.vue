@@ -32,11 +32,7 @@ export default class ContentBoxBlock extends Vue {
             padding-top: 15px;
         }
         .body {
-            .hintText {
-                padding: 16px 0 16px 0;
-                color: #777;
-                font-size: 13px;
-            }
+
         }
     }
 

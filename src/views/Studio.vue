@@ -1,6 +1,6 @@
 <template>
     <q-layout view="lHh Lpr lFf">
-        <q-header elevated class="">
+        <q-header elevated class="bg-color-3">
             <q-toolbar>
                 <q-btn
                         flat
@@ -39,13 +39,11 @@
         <q-drawer
                 v-model="leftDrawerOpen"
                 show-if-above
-                bordered
-                content-class=""
-                class="bg-color-3"
+                content-class="bg-color-2 no-border"
         >
             <q-list>
                 <q-item-label header>Zempie Studio Console</q-item-label>
-                <q-item :active="$route.name==='Games'" clickable tag="router-link" to="/studio">
+                <q-item :active="$route.name==='Games'" active-class="activeItem" clickable tag="router-link" to="/studio">
                     <q-item-section avatar>
                         <q-icon name="sports_esports" />
                     </q-item-section>
@@ -55,7 +53,7 @@
                     </q-item-section>
                 </q-item>
 
-                <q-item :active="$route.name==='AddGame'" clickable tag="router-link" to="/addGame">
+                <q-item :active="$route.name==='AddGame'" active-class="activeItem" clickable tag="router-link" to="/addGame">
                     <q-item-section avatar>
                         <q-icon name="games" />
                     </q-item-section>
@@ -64,17 +62,17 @@
                         <!--                        <q-item-label caption>github.com/quasarframework</q-item-label>-->
                     </q-item-section>
                 </q-item>
-                <q-item :active="$route.name==='Setting'" clickable tag="router-link" to="/setting">
-                    <q-item-section avatar>
-                        <q-icon name="settings" />
-                    </q-item-section>
-                    <q-item-section>
-                        <q-item-label>설정</q-item-label>
-                        <!--                        <q-item-label caption>chat.quasar.dev</q-item-label>-->
-                    </q-item-section>
-                </q-item>
+<!--                <q-item :active="$route.name==='Setting'" active-class="activeItem" clickable tag="router-link" to="/setting">-->
+<!--                    <q-item-section avatar>-->
+<!--                        <q-icon name="settings" />-->
+<!--                    </q-item-section>-->
+<!--                    <q-item-section>-->
+<!--                        <q-item-label>설정</q-item-label>-->
+<!--                        &lt;!&ndash;                        <q-item-label caption>chat.quasar.dev</q-item-label>&ndash;&gt;-->
+<!--                    </q-item-section>-->
+<!--                </q-item>-->
 
-                <q-item :active="$route.name==='Admin'" clickable tag="router-link" to="/admin">
+                <q-item :active="$route.name==='Admin'" active-class="activeItem" clickable tag="router-link" to="/admin">
                     <q-item-section avatar>
                         <q-icon name="admin_panel_settings" />
                     </q-item-section>
@@ -114,5 +112,10 @@
 <style scoped lang="scss">
     .q-page-container {
         //background-color: #f1f1f1;
+    }
+
+    .activeItem {
+        color: inherit;
+        background-color: #60676b;
     }
 </style>
