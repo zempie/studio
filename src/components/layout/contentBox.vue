@@ -19,13 +19,14 @@ export default class ContentBox extends Vue {
 </script>
 
 <style scoped lang="scss">
+@import "src/styles/quasar";
 
 .contentBox {
     max-width: 960px;
     width: 100%;
     padding: 16px;
     margin: 0 auto;
-    background-color: black;
+    background-color: $dark;
 
     &.shadowBox {
         box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .14), 0 2px 2px 0 rgba(0, 0, 0, .098), 0 1px 5px 0 rgba(0, 0, 0, .084);

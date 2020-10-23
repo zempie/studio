@@ -88,23 +88,19 @@ export default class Http {
         return response;
     }
 
-    async updateProject( options : { id : number, name? : string, control_type? : number, description? : string, deploy_version_id? : string, pathname? : string  }, file? : File ) {
+    async updateProject( options : { id : number, name? : string, description? : string, deploy_version_id? : string  }, file? : File ) {
         //파일 업로드
 
         const formData = new FormData();
         formData.append( 'id', options.id.toString() );
 
         if( options.name ) { formData.append( 'name', options.name ); }
-        if( options.control_type ) { formData.append( 'control_type', options.control_type.toString() ); }
         if( options.description ) { formData.append( 'description', options.description ); }
         if( options.deploy_version_id ) { formData.append( 'deploy_version_id', options.deploy_version_id ); }
-        if( options.pathname ) { formData.append( 'pathname', options.pathname ); }
         if( file ) {
             formData.append( 'file', file );
         }
 
-        //{id, name, picture, control_type, description, game_id, version_id}
-        // const response = await this.requestRpc( 'set-project', options );
         try {
             const res = await this.request( Vue.$axios.post( '/studio/project', formData ) );
             return res;
@@ -116,14 +112,14 @@ export default class Http {
     }
 
 
-    async createVersion( project_id : number, version : string, description : string, files : File[], startFile : string ) {
+    async createVersion( project_id : number, version : string, files : File[], startFile : string , autoDeploy : boolean) {
         //파일 업로드
 
         const formData = new FormData();
         formData.append( 'project_id', project_id.toString() );
         formData.append( 'version', version );
         formData.append( 'startFile', startFile );
-        formData.append( 'description', description );
+        formData.append( 'autoDeploy', String(autoDeploy) );
 
         for( let i = 0; i < files.length; i++ ) {
             const file = files[i] as File;
@@ -133,6 +129,10 @@ export default class Http {
         const response = await this.request( Vue.$axios.post( '/studio/version', formData ) );
         return response;
     }
+
+    // async getVersions( project_id ) {
+    //
+    // }
 
 }
 

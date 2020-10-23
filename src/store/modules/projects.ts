@@ -16,9 +16,29 @@ export default {
         versions : ( state : any ) => ( project_id : number ) => {
             return state.projects[ project_id ] && state.projects[ project_id ].versions || {};
         },
-        version : ( state : any ) => ( project_id : number, number : number ) => {
-            const versions = state.projects[project_id] && state.projects[project_id].versions || {};
-            return versions[number] || null;
+        versionList : ( state : any ) => ( project_id : number ) => {
+            return state.projects[ project_id ] && state.projects[ project_id ].projectVersions || [];
+        },
+        // version : ( state : any ) => ( project_id : number, number : number ) => {
+        //     const versions = state.projects[project_id] && state.projects[project_id].versions || {};
+        //     return versions[number] || null;
+        // },
+        updateVersion : ( state : any ) => ( project_id : number ) => {
+
+            const versions = state.projects[project_id] && state.projects[project_id].projectVersions;
+            const updateVersionId = state.projects[project_id].update_version_id;
+            let updateVersion = null;
+
+            if( versions && updateVersionId ) {
+                for( let i = 0; i < versions.length; i++ ) {
+                    if( versions[i].id === updateVersionId ) {
+                        updateVersion = versions[i];
+                        break;
+                    }
+                }
+            }
+
+            return updateVersion
         },
         lastVersion: ( state : any ) => ( project_id : number ) => {
             const versions = state.projects[project_id] && state.projects[project_id].versions;
@@ -40,11 +60,18 @@ export default {
     mutations : {
         project( state, payload ) {
             state.projects[payload.id] = payload;
+            if( payload.projectVersions ) {
+                // this.versions( state, payload.projectVersions  );
+                // this.commit('project', prj);
+                this.commit('versions', payload.projectVersions);
+            }
         },
         projects( state, payload ) {
             for( let i = 0; i < payload.length; i++ ) {
                 const prj = payload[i];
-                state.projects[ prj.id ] = prj;
+                // state.projects[ prj.id ] = prj;
+                // this.project( state, prj );
+                this.commit('project', prj);
             }
         },
         version( state, payload ) {
@@ -54,9 +81,12 @@ export default {
             for( let i = 0; i < payload.length; i++ ) {
                 const version = payload[i];
                 const project = state.projects[ version.project_id ];
-                const versions = project.versions || {};
-                project.versions = versions;
-                versions[ version.number ] = version;
+                project.versions = project.versions || {};
+
+                // this.version( state, payload[i] );
+                this.commit('version', payload[i] );
+                // project.projectVersions = versions;
+                // versions[ version.number ] = version;
             }
         },
     },
@@ -64,6 +94,7 @@ export default {
     actions : {
         async project( context : any, id : number ) {
             let project = context.getters.project( id );
+            // let project = null;
             if( !project ) {
                 const result = await Vue.$rpc.getProject( id );
                 context.commit('project', result);

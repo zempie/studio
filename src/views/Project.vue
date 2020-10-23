@@ -1,6 +1,6 @@
 <template>
     <q-layout view="lHh Lpr lFf">
-        <q-header elevated class="">
+        <q-header elevated class="bg-color-3">
             <q-toolbar>
                 <q-btn
                         flat
@@ -14,8 +14,6 @@
                     {{title + ' - ' + $store.getters.pageName}}
                 </q-toolbar-title>
                 <!--                <div>Quasar v{{ $q.version }}</div>-->
-
-
                 <q-btn flat round>
                     <q-icon name="notifications" />
                 </q-btn>
@@ -49,7 +47,7 @@
                     </q-item-section>
                 </q-item>
                 <q-separator />
-                <q-item :active="$route.name==='ProjectDashboard'" clickable tag="router-link" :to="'/project/' + projectId">
+                <q-item :active="$route.name==='ProjectDashboard'" active-class="activeItem"  clickable tag="router-link" :to="'/project/' + projectId">
                     <q-item-section avatar>
                         <q-icon name="dashboard" />
                     </q-item-section>
@@ -58,7 +56,7 @@
                         <!--                        <q-item-label caption>quasar.dev</q-item-label>-->
                     </q-item-section>
                 </q-item>
-                <q-item :active="$route.name==='ProjectSetting'" clickable tag="router-link" :to="'/project/setting/' + projectId">
+                <q-item :active="$route.name==='ProjectSetting'" active-class="activeItem"  clickable tag="router-link" :to="'/project/setting/' + projectId">
                     <q-item-section avatar>
                         <q-icon name="settings_ethernet" />
                     </q-item-section>
@@ -67,16 +65,25 @@
                         <!--                        <q-item-label caption>quasar.dev</q-item-label>-->
                     </q-item-section>
                 </q-item>
-                <q-item :active="$route.name==='ProjectVersion'" clickable tag="router-link" :to="'/project/version/' + projectId">
+                <q-item :active="$route.name==='ProjectAddVersion'" active-class="activeItem"  clickable tag="router-link" :to="'/project/addVersion/' + projectId">
                     <q-item-section avatar>
                         <q-icon name="launch" />
                     </q-item-section>
                     <q-item-section>
-                        <q-item-label>버전</q-item-label>
+                        <q-item-label>새 버전</q-item-label>
                         <!--                        <q-item-label caption>github.com/quasarframework</q-item-label>-->
                     </q-item-section>
                 </q-item>
-                <q-item :active="$route.name ==='ProjectDeploy'" clickable tag="router-link" :to="'/project/deploy/' + projectId">
+                <q-item :active="$route.name==='ProjectVersion'" active-class="activeItem"  clickable tag="router-link" :to="'/project/version/' + projectId">
+                    <q-item-section avatar>
+                        <q-icon name="launch" />
+                    </q-item-section>
+                    <q-item-section>
+                        <q-item-label>버전 목록</q-item-label>
+                        <!--                        <q-item-label caption>github.com/quasarframework</q-item-label>-->
+                    </q-item-section>
+                </q-item>
+                <q-item :active="$route.name ==='ProjectDeploy'" active-class="activeItem"  clickable tag="router-link" :to="'/project/deploy/' + projectId">
                     <q-item-section avatar>
                         <q-icon name="language" />
                     </q-item-section>
@@ -108,19 +115,20 @@
 
 
         async mounted() {
-
-
             let project = await this.$store.dispatch( 'project', this.projectId );
             this.title = project.name;
             this.isLoad = true;
         }
-
-
     }
 </script>
 
 <style scope lang="scss" d>
     .q-page-container {
         //background-color: #f1f1f1;
+    }
+
+    .activeItem {
+        color: inherit;
+        background-color: #60676b;
     }
 </style>

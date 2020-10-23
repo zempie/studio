@@ -107,6 +107,10 @@ export default class App extends Vue {
     .no-border { border: none }
 }
 
+.bg-fade-70 {
+    background-color: rgba(1, 1, 1, 0.7);
+}
+
 .center-container {
     max-width: 960px;
     width: 100%;

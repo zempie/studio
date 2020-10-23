@@ -1,77 +1,133 @@
 <template>
-    <q-page class="projectVersion">
-        <div class="top">
-            <q-btn class="addButton" color="primary" @click="$router.push(`/project/addVersion/${projectId}`)">버전 추가하기</q-btn>
+    <q-page class="q-pa-md center-container">
+        <div class="text-right">
+            <q-btn class="q-my-sm" color="primary" @click="$router.push(`/project/addVersion/${projectId}`)">버전 추가하기</q-btn>
         </div>
-        <div class="box">
-            <div> 버전 리스트 </div>
-            <q-list bordered class="rounded-borders versionList">
-                <div v-for="(version, index) in versionList">
-                    <q-expansion-item>
-                        <template v-slot:header>
-                            <q-item-section avatar>
-                                {{version.number}}
-                            </q-item-section>
+        <q-table
+            :data="versions"
+            :columns="columns"
+            row-key="number"
+            :pagination="pagination"
+            :filter="filter"
+            ref="table"
+        >
+            <template v-slot:body="props">
+                <q-tr :props="props">
+                    <q-td auto-width>
+                        <q-btn size="sm" color="primary" round dense @click="props.expand = !props.expand" :icon="props.expand ? 'remove' : 'add'" />
+                    </q-td>
+                    <q-td :props="props" key="number">
+                        {{props.row.number}}
+                    </q-td>
+                    <q-td>
+                        {{ props.row.version }}
+                    </q-td>
+                    <q-td>
+                        <span style="color: #F2C037; font-weight: bold" v-if="props.row.state === 'process'">{{`심사 중 ( ${props.row.state} )`}}</span>
+                        <span style="color: #027BE3; font-weight: bold" v-else-if="props.row.state === 'passed'">{{`심사 완료 ( ${props.row.state} )`}}</span>
+                        <span style="color: #C10015; font-weight: bold" v-else-if="props.row.state === 'fail'">{{`심사 미통과 ( ${props.row.state} )`}}</span>
+                        <span style="color: #2AC940; font-weight: bold" v-else-if="props.row.state === 'deploy'">{{`배포 중 ( ${props.row.state} )`}}</span>
+                    </q-td>
+                    <q-td>
+                        {{ new Date(props.row.created_at).toLocaleString()}}
 
-                            <q-item-section avatar>
-                                {{version.version}}
-                            </q-item-section>
-
-                            <q-item-section>
-                                <span style="color: #F2C037; font-weight: bold" v-if="version.state === 'process'">심사중</span>
-                                <span style="color: #027BE3; font-weight: bold" v-if="version.state === 'passed'">심사 완료</span>
-                                <span style="color: #C10015; font-weight: bold" v-if="version.state === 'fail'">심사 미통과</span>
-                                <span style="color: #2AC940; font-weight: bold" v-if="version.state === 'deploy'">배포 중</span>
-
-                                <!--심사중, 심사 통과, 심사 미통과, 배포중-->
-                            </q-item-section>
-
-                            <q-item-section side>
-
-                            </q-item-section>
-                        </template>
-
-                        <q-card>
-                            <q-card-section>
-
-                                <q-field outlined label="자세한 설명" stack-label style="margin-bottom: 5px">
-                                    <template v-slot:control>
-                                        <div class="self-center full-width no-outline" tabindex="0">{{version.description}}</div>
-                                    </template>
-                                </q-field>
-
-                                <q-field v-if="version.reason" outlined label="심사 미통과 사유" stack-label  style="margin-bottom: 5px">
-                                    <template v-slot:control>
-                                        <div class="self-center full-width no-outline" tabindex="0">{{version.reason}}</div>
-                                    </template>
-                                </q-field>
-
-<!--                                <div> 심사 미통과시 사유 </div>-->
-                                <div>
-                                    <a @click.stop target="_blank" :href="version.url">업로드 주소 보기</a>
+                    </q-td>
+                </q-tr>
+                <q-tr :props="props" v-if="props.expand">
+                    <q-td colspan="100%">
+                        <content-box>
+                            <content-box-block class="q-mb-lg" title="호환성">
+                                <div class="support">
+                                    <q-img class="icon" contain src="/icon/chrome.svg"><q-tooltip> Chrome </q-tooltip></q-img>
+                                    <q-img class="icon" contain src="/icon/edge.svg"><q-tooltip> Edge </q-tooltip></q-img>
+                                    <q-img class="icon" contain src="/icon/firefox.svg"><q-tooltip> Firefox </q-tooltip></q-img>
+                                    <q-img class="icon not" contain src="/icon/internet-explorer.svg"><q-tooltip> Internet Explore </q-tooltip></q-img>
+                                    <q-img class="icon" contain src="/icon/opera.svg"><q-tooltip> Opera </q-tooltip></q-img>
+                                    <q-img class="icon not" contain src="/icon/safari.svg"><q-tooltip> Safari </q-tooltip></q-img>
+                                    <q-img class="icon" contain src="/icon/android.svg"><q-tooltip> Android Webview </q-tooltip></q-img>
+                                    <q-img class="icon" contain src="/icon/chrome.svg"><q-tooltip> Chrome for Android </q-tooltip></q-img>
+                                    <q-img class="icon" contain src="/icon/firefox.svg"><q-tooltip> Firefox for Android </q-tooltip></q-img>
+                                    <q-img class="icon" contain src="/icon/opera.svg"><q-tooltip> Opera for Android </q-tooltip></q-img>
+                                    <q-img class="icon not" contain src="/icon/safari.svg"><q-tooltip> Safari for iOS </q-tooltip></q-img>
+                                    <q-img class="icon" contain src="/icon/samsung-internet.svg"><q-tooltip> Samsung Internet </q-tooltip></q-img>
+                                    <q-img class="icon not" contain src="/icon/ruler-horizontal-solid.svg"><q-tooltip> Horizontal Mode </q-tooltip></q-img>
+                                    <q-img class="icon" contain src="/icon/ruler-vertical-solid.svg"><q-tooltip> Vertical Mode </q-tooltip></q-img>
+                                    <q-img class="icon" contain src="/icon/volume-up-solid.svg"><q-tooltip> Sound Effect </q-tooltip></q-img>
+                                    <q-img class="icon not" contain src="/icon/music-solid.svg"><q-tooltip> Background Sound </q-tooltip></q-img>
+                                    <q-img class="icon not" contain src="/icon/group-24px.svg"><q-tooltip> Multiplayer </q-tooltip></q-img>
+                                    <span class="text-green-8">(90점)</span>
                                 </div>
-                            </q-card-section>
-                        </q-card>
-                    </q-expansion-item>
-                    <q-separator v-if="index < versionList.length - 1" />
-                </div>
-            </q-list>
-        </div>
+                            </content-box-block>
+                            <content-box-block class="q-mb-lg"  v-if="props.row.reason" title="실패사유">
+                                <q-input type="textarea" v-model="props.row.reason" readonly></q-input>
+                            </content-box-block>
+                            <content-box-block class="q-mb-lg" title="업로드 파일 정보">
+                                <div class="q-my-md">
+                                    <div>
+                                        파일 크기 : 3.12 MB
+                                    </div>
+                                    <div class="text-right">
+                                        <q-btn>
+                                            다운로드
+                                        </q-btn>
+                                    </div>
+                                </div>
+                            </content-box-block>
+                        </content-box>
+                    </q-td>
+                </q-tr>
+            </template>
+            <template v-slot:top-right>
+                <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
+                    <template v-slot:append>
+                        <q-icon name="search" />
+                    </template>
+                </q-input>
+            </template>
+        </q-table>
     </q-page>
 </template>
 
 <script lang="ts">
     import { Component, Prop, Vue } from 'vue-property-decorator';
+    import ContentBox from "@/components/layout/contentBox.vue";
+    import ContentBoxBlock from "@/components/layout/contentBoxBlock.vue";
 
     @Component({
         components: {
+            ContentBoxBlock,
+            ContentBox
 
         }
     })
     export default class ProjectVersion extends Vue {
         @Prop() private projectId! : number;
 
-        private versionList : any[] = [
+        private pagination = {
+            rowsPerPage: 15
+            // rowsNumber: xx if getting data from a server
+        };
+
+        private columns =  [
+            {
+            },
+            {
+                name: 'number',
+                required: true,
+                label: '번호',
+                align: 'left',
+                field: (row : any) => row.number,
+                format: (val : any) => `${val}`,
+                sortable: true
+            },
+            { name: 'version', align: 'left', label: '세부 버전', field: 'number', format: (val : any) => `v${val}`, sortable: true },
+            { name: 'state', label: '상태', field: 'state',align: 'left', sortable: true },
+            { name: 'created_at', align: 'left', label: '생성 일시', field: 'created_at', sortable: true },
+            // { name: 'support', align: 'left', label: '호환성', field: '' },
+            // { name: 'count', label: '조회수', field: 'count',align: 'center', sortable: true },
+        ];
+        private filter : string = '';
+        private versions : any[] = [
             // {
             //     number : 1,
             //     version : '0.0.2',
@@ -90,50 +146,35 @@
             // }
         ];
 
-        mounted() {
-            this.$store.commit('pageName', '버전');
-
-            this.loadVersions();
+        async mounted() {
+            this.$store.commit('pageName', '버전 목록');
+            await this.loadVersions();
         }
 
         async loadVersions() {
-            const result = await this.$rpc.getVersions( this.projectId );
-            this.versionList = result;
-            this.$store.commit('versions', result);
-
-            console.log( result );
+            this.versions = this.$store.getters.versionList( this.projectId );
+            console.log( this.versions );
         }
     }
 </script>
 
 <style scoped lang="scss">
-    .projectVersion {
+    .support {
+        padding-top: 14px;
 
-        position: relative;
-        padding: 16px;
-
-        .box {
-            max-width: 960px;
-            width: 100%;
-            padding:16px;
-            margin: 0 auto 180px auto;
-            background-color: white;
-            box-shadow: 0 3px 1px -2px rgba(0,0,0,.14), 0 2px 2px 0 rgba(0,0,0,.098), 0 1px 5px 0 rgba(0,0,0,.084);
+        .icon {
+            margin-right: 4px;
+            filter: invert(100%);
+            height: 16px;
+            width: 16px;
+            background-size: contain;
 
 
-            .versionList {
-                margin: 16px;
+            &.not {
+                filter: invert(30%);
             }
         }
 
-        .top {
-            margin: 0 auto;
-            max-width: 960px;
-            text-align: right;
 
-            .addButton {
-                margin: 10px 0;
-            }
-        }
     }
 </style>

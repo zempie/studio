@@ -75,7 +75,7 @@
                 </div>
             </q-slide-transition>
 
-            <q-btn class="full-width" @click="uploadMore = !uploadMore">
+            <q-btn flat class="full-width" @click="uploadMore = !uploadMore">
                 고급
                 <q-icon v-if="!uploadMore" name="arrow_drop_down" />
                 <q-icon v-else name="arrow_drop_up" />
@@ -193,7 +193,7 @@
             if (this.startFileOptions.length) {
                 this.uploadGameFileError = '';
             } else {
-                this.uploadGameFileError = '.html 파일을 찾을 수 없습니다.';
+                this.uploadGameFileError = ErrorMessage.NOT_FOUND_HTML;
             }
 
             this.$store.commit('ajaxBar', false);
