@@ -32,10 +32,18 @@ async function onAuthStateChanged( user : any ) {
         const result = await Vue.$rpc.getDev();
         const dev = result.developer;
         const user = result.user;
-        store.commit( 'user', user );
 
-        if( dev && dev.error && dev.error.message === "유저 정보를 찾을 수 없습니다." ) {
-            store.commit('loginState', LoginState.no_user);
+        if( user ) {
+            store.commit( 'user', user );
+        }
+
+        if( result && result.error ) {
+            if( result.error.message === "유저 정보를 찾을 수 없습니다." ) {
+                store.commit('loginState', LoginState.no_user);
+            }
+            else {
+                alert( result.error.message );
+            }
         }
         else if( dev ) {
             store.commit('loginState', LoginState.login);

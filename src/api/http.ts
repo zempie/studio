@@ -34,8 +34,9 @@ export default class Http {
                     // return error;
                 }
             }
-            // return error;
-            throw error;
+            console.error( error.response.data.error );
+            return error;
+            //throw error;
         }
     }
 

@@ -44,7 +44,8 @@ export default class Rpc {
                 }
             }
             // return error;
-            throw error;
+            console.error( error.response.data.error.message );
+            return error.response.data;
         }
     }
 
