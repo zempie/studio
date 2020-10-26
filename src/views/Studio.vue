@@ -28,7 +28,7 @@
                 <q-btn flat round class="q-mx-sm">
                     <q-icon name="help" />
                 </q-btn>
-                <q-btn round class="q-ml-lg">
+                <q-btn round class="q-ml-lg" @click="$router.push( '/logout' )">
                     <q-avatar>
                         <img :src="$store.getters.developer.picture || $store.getters.user.picture || ''">
                     </q-avatar>

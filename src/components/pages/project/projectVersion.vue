@@ -38,23 +38,23 @@
                         <content-box>
                             <content-box-block class="q-mb-lg" title="호환성">
                                 <div class="support">
-                                    <q-img class="icon" contain src="/icon/chrome.svg"><q-tooltip> Chrome </q-tooltip></q-img>
-                                    <q-img class="icon" contain src="/icon/edge.svg"><q-tooltip> Edge </q-tooltip></q-img>
-                                    <q-img class="icon" contain src="/icon/firefox.svg"><q-tooltip> Firefox </q-tooltip></q-img>
-                                    <q-img class="icon not" contain src="/icon/internet-explorer.svg"><q-tooltip> Internet Explore </q-tooltip></q-img>
-                                    <q-img class="icon" contain src="/icon/opera.svg"><q-tooltip> Opera </q-tooltip></q-img>
-                                    <q-img class="icon not" contain src="/icon/safari.svg"><q-tooltip> Safari </q-tooltip></q-img>
-                                    <q-img class="icon" contain src="/icon/android.svg"><q-tooltip> Android Webview </q-tooltip></q-img>
-                                    <q-img class="icon" contain src="/icon/chrome.svg"><q-tooltip> Chrome for Android </q-tooltip></q-img>
-                                    <q-img class="icon" contain src="/icon/firefox.svg"><q-tooltip> Firefox for Android </q-tooltip></q-img>
-                                    <q-img class="icon" contain src="/icon/opera.svg"><q-tooltip> Opera for Android </q-tooltip></q-img>
-                                    <q-img class="icon not" contain src="/icon/safari.svg"><q-tooltip> Safari for iOS </q-tooltip></q-img>
-                                    <q-img class="icon" contain src="/icon/samsung-internet.svg"><q-tooltip> Samsung Internet </q-tooltip></q-img>
-                                    <q-img class="icon not" contain src="/icon/ruler-horizontal-solid.svg"><q-tooltip> Horizontal Mode </q-tooltip></q-img>
-                                    <q-img class="icon" contain src="/icon/ruler-vertical-solid.svg"><q-tooltip> Vertical Mode </q-tooltip></q-img>
-                                    <q-img class="icon" contain src="/icon/volume-up-solid.svg"><q-tooltip> Sound Effect </q-tooltip></q-img>
-                                    <q-img class="icon not" contain src="/icon/music-solid.svg"><q-tooltip> Background Sound </q-tooltip></q-img>
-                                    <q-img class="icon not" contain src="/icon/group-24px.svg"><q-tooltip> Multiplayer </q-tooltip></q-img>
+                                    <q-img class="icon" contain src="./icon/chrome.svg"><q-tooltip> Chrome </q-tooltip></q-img>
+                                    <q-img class="icon" contain src="./icon/edge.svg"><q-tooltip> Edge </q-tooltip></q-img>
+                                    <q-img class="icon" contain src="./icon/firefox.svg"><q-tooltip> Firefox </q-tooltip></q-img>
+                                    <q-img class="icon not" contain src="./icon/internet-explorer.svg"><q-tooltip> Internet Explore </q-tooltip></q-img>
+                                    <q-img class="icon" contain src="./icon/opera.svg"><q-tooltip> Opera </q-tooltip></q-img>
+                                    <q-img class="icon not" contain src="./icon/safari.svg"><q-tooltip> Safari </q-tooltip></q-img>
+                                    <q-img class="icon" contain src="./icon/android.svg"><q-tooltip> Android Webview </q-tooltip></q-img>
+                                    <q-img class="icon" contain src="./icon/chrome.svg"><q-tooltip> Chrome for Android </q-tooltip></q-img>
+                                    <q-img class="icon" contain src="./icon/firefox.svg"><q-tooltip> Firefox for Android </q-tooltip></q-img>
+                                    <q-img class="icon" contain src="./icon/opera.svg"><q-tooltip> Opera for Android </q-tooltip></q-img>
+                                    <q-img class="icon not" contain src="./icon/safari.svg"><q-tooltip> Safari for iOS </q-tooltip></q-img>
+                                    <q-img class="icon" contain src="./icon/samsung-internet.svg"><q-tooltip> Samsung Internet </q-tooltip></q-img>
+                                    <q-img class="icon not" contain src="./icon/ruler-horizontal-solid.svg"><q-tooltip> Horizontal Mode </q-tooltip></q-img>
+                                    <q-img class="icon" contain src="./icon/ruler-vertical-solid.svg"><q-tooltip> Vertical Mode </q-tooltip></q-img>
+                                    <q-img class="icon" contain src="./icon/volume-up-solid.svg"><q-tooltip> Sound Effect </q-tooltip></q-img>
+                                    <q-img class="icon not" contain src="./icon/music-solid.svg"><q-tooltip> Background Sound </q-tooltip></q-img>
+                                    <q-img class="icon not" contain src="./icon/group-24px.svg"><q-tooltip> Multiplayer </q-tooltip></q-img>
                                     <span class="text-green-8">(90점)</span>
                                 </div>
                             </content-box-block>

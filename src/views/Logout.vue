@@ -10,17 +10,17 @@
 
     @Component
     export default class Logout extends Vue {
-        async created() {
+        async mounted() {
             this.$store.state.pathName = 'logout';
             // await this.$http.signOut()
             await firebase.auth().signOut();
 
-            // this.$store.commit('setToken', undefined);
-            // this.$store.commit( 'setUserInfo', null );
+            this.$store.commit('idToken', null);
+            this.$store.commit( 'user', null );
+            this.$store.commit( 'developer', null );
+            this.$store.commit( 'clear', null );
 
-            if( this.$route.path !== '/' ) {
-                await this.$router.replace('/');
-            }
+            await this.$router.replace('/login');
         }
     }
 </script>

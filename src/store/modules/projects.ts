@@ -19,10 +19,23 @@ export default {
         versionList : ( state : any ) => ( project_id : number ) => {
             return state.projects[ project_id ] && state.projects[ project_id ].projectVersions || [];
         },
-        // version : ( state : any ) => ( project_id : number, number : number ) => {
-        //     const versions = state.projects[project_id] && state.projects[project_id].versions || {};
-        //     return versions[number] || null;
-        // },
+        deployVersion : ( state : any ) => ( project_id : number ) => {
+            const versions = state.projects[project_id] && state.projects[project_id].projectVersions;
+            const deployVersionId = state.projects[project_id].deploy_version_id;
+            let deployVersion = null;
+
+            if( versions && deployVersionId ) {
+                for( let i = 0; i < versions.length; i++ ) {
+                    if( versions[i].id === deployVersionId ) {
+                        deployVersion = versions[i];
+                        break;
+                    }
+                }
+            }
+
+            return deployVersion
+        },
+
         updateVersion : ( state : any ) => ( project_id : number ) => {
 
             const versions = state.projects[project_id] && state.projects[project_id].projectVersions;
@@ -89,6 +102,9 @@ export default {
                 // versions[ version.number ] = version;
             }
         },
+        clear( state, payload ) {
+            state.projects = {};
+        }
     },
 
     actions : {
