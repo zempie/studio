@@ -87,7 +87,8 @@
         }
 
         async loadProjects() {
-            const res = await this.$rpc.getProjects();
+            const res = await this.$http.getProjects();
+            console.log(res);
             this.projects = res;
 
             // this.projects = [

@@ -96,7 +96,7 @@ export default {
             let project = context.getters.project( id );
             // let project = null;
             if( !project ) {
-                const result = await Vue.$rpc.getProject( id );
+                const result = await Vue.$http.getProject( id );
                 context.commit('project', result);
                 project = result;
             }

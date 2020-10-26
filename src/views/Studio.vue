@@ -30,7 +30,7 @@
                 </q-btn>
                 <q-btn round class="q-ml-lg">
                     <q-avatar>
-                        <img :src="$store.getters.developer.picture || $store.getters.developer.user.picture || ''">
+                        <img :src="$store.getters.developer.picture || $store.getters.user.picture || ''">
                     </q-avatar>
                 </q-btn>
             </q-toolbar>

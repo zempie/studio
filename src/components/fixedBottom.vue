@@ -19,5 +19,6 @@ export default class FixedBottom extends Vue {
 <style scoped lang="scss">
     .fixedBottom {
         background-color: #000000;
+        z-index: 1000;
     }
 </style>

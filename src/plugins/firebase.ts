@@ -29,7 +29,7 @@ async function onAuthStateChanged( user : any ) {
         const idToken = await currentUser.getIdToken(true);
         store.commit('idToken', idToken );
 
-        const result = await Vue.$rpc.getDev();
+        const result = await Vue.$http.getDev();
         const dev = result.developer;
         const user = result.user;
 

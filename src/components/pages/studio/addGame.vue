@@ -201,7 +201,7 @@
 
         async checkGamePath() {
             this.waitGamePath = true;
-            const result = await this.$rpc.confirmGamePath( this.gamePath );
+            const result = await this.$http.confirmGamePath( this.gamePath );
             if( result && result.success ) {
                 this.confirmedGamePath = true;
                 this.gamePathError = '';
@@ -239,7 +239,7 @@
                     while ( !this.confirmedGamePath && count < 10 ) {
                         count++;
                         this.gamePath = randomString( 11 );
-                        const result = await this.$rpc.confirmGamePath( this.gamePath );
+                        const result = await this.$http.confirmGamePath( this.gamePath );
                         if( result && result.success ) {
                             this.confirmedGamePath = true;
                         }

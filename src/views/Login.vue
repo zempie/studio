@@ -158,7 +158,7 @@
                     break;
                 }
                 case LoginState.no_user : {
-                    const result = await this.$rpc.getUserInfo();
+                    const result = await this.$http.getUserInfo();
                     await onAuthStateChanged(null);
                     await this.waitLogin();
                     break;

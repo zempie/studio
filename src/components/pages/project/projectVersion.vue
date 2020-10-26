@@ -14,7 +14,7 @@
             <template v-slot:body="props">
                 <q-tr :props="props">
                     <q-td auto-width>
-                        <q-btn size="sm" color="primary" round dense @click="props.expand = !props.expand" :icon="props.expand ? 'remove' : 'add'" />
+                        <q-btn size="sm" color="primary" round dense @click="expand( props )" :icon="props.expand ? 'remove' : 'add'" />
                     </q-td>
                     <q-td :props="props" key="number">
                         {{props.row.number}}
@@ -73,6 +73,21 @@
                                     </div>
                                 </div>
                             </content-box-block>
+                            <content-box-block class="q-mb-lg" title="버전 삭제">
+                                <div class="q-my-md">
+                                    <div>
+                                        삭제된 버전은 복구 할 수 없습니다.
+                                    </div>
+                                    <div>
+                                        배포 중인 버전은 삭제 할 수 없습니다.
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <q-btn :loading="wait[ props.row.id ]" @click="deleteVersion( props.row.id )">
+                                        삭제
+                                    </q-btn>
+                                </div>
+                            </content-box-block>
                         </content-box>
                     </q-td>
                 </q-tr>
@@ -92,6 +107,7 @@
     import { Component, Prop, Vue } from 'vue-property-decorator';
     import ContentBox from "@/components/layout/contentBox.vue";
     import ContentBoxBlock from "@/components/layout/contentBoxBlock.vue";
+    import _ from 'lodash';
 
     @Component({
         components: {
@@ -102,6 +118,10 @@
     })
     export default class ProjectVersion extends Vue {
         @Prop() private projectId! : number;
+
+        private preExpandProps : any = null;
+
+        private wait : { [id:number] : boolean } = {};
 
         private pagination = {
             rowsPerPage: 15
@@ -154,6 +174,42 @@
         async loadVersions() {
             this.versions = this.$store.getters.versionList( this.projectId );
             console.log( this.versions );
+        }
+
+        async expand( props ) {
+            props.expand = !props.expand;
+            if( props.expand ) {
+                if( this.preExpandProps ) {
+                    this.preExpandProps.expand = false;
+                }
+                this.preExpandProps = props;
+            }
+            else {
+                this.preExpandProps = null;
+            }
+        }
+
+        async deleteVersion( id ) {
+            this.wait[id] = true;
+
+            const response = await this.$http.deleteVersion( id );
+
+            if( response.error ) {
+                alert( response.error );
+            }
+            else {
+                const versionList = this.$store.getters.versionList( this.projectId );
+                const versions = this.$store.getters.versions( this.projectId );
+                const idx = _.findIndex<any>( versionList, v => v.id === id);
+                if( idx > -1 ) {
+                    versionList.splice( idx, 1 );
+                }
+
+                delete versions[id];
+                this.versions = this.$store.getters.versionList( this.projectId );
+            }
+
+            this.wait[id] = false;
         }
     }
 </script>

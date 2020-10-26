@@ -71,31 +71,6 @@ export default class Rpc {
        return response;
     }
 
-    // async createDev() {
-    //     const response = await this.requestRpc( 'create-developer', {
-    //
-    //     } );
-    //     return response;
-    // }
-
-    async getProjects() {
-        const response = await this.requestRpc( 'get-projects', {
-
-        } );
-        return response;
-    }
-
-    async getProject( id ) {
-        const response = await this.requestRpc( 'get-project', {
-            id
-        } );
-        return response;
-    }
-
-    async deleteProject() {
-
-    }
-
     async getVersions(project_id) {
         const response = await this.requestRpc( 'get-versions', {
             project_id

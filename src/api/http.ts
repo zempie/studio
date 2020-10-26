@@ -11,7 +11,7 @@ export default class Http {
     async request( promise : Promise<any>, errorCallback : Function | null = null, retryCount : number = 1 ) : Promise<any> {
         try {
             const res = await promise;
-            return res.data;
+            return res.data.result;
         }
         catch (error) {
             if ( error.response.data === 'Unauthorized' ) {
@@ -34,13 +34,43 @@ export default class Http {
                     // return error;
                 }
             }
-            console.error( error.response.data.error );
-            return error;
+            console.error( error.response.data );
+            return error.response.data;
             //throw error;
         }
     }
 
-    //new//
+    async getUserInfo() {
+        const response = await this.request( Vue.$axios.get( '/users/info' ) );
+        return response;
+    }
+
+    async createDev(name? : string, picture? : string, file? : File) {
+        const formData = new FormData();
+        if( name ) { formData.append( 'name', name ); }
+        if( picture ) { formData.append( 'picture', picture ); }
+        if( file ) { formData.append( 'file', file ); }
+
+        const response = await this.request( Vue.$axios.post( '/studio/developer', formData ) );
+        return response;
+    }
+
+    async getDev() {
+        const response = await this.request( Vue.$axios.get( '/studio/developer' ) );
+        return response;
+    }
+
+    async updateDev( name? : string, file? : File ) {
+        //파일 업로드
+
+        const formData = new FormData();
+        if( name ) { formData.append( 'name', name ); }
+        if( file ) { formData.append( 'file', file ); }
+
+        const response = await this.request( Vue.$axios.patch( '/studio/developer', formData ) );
+        return response;
+    }
+
     async createProject( options : { name? : string, description? : string, pathname? : string, project_picture? : File },
                          updateVersion : { version? : string, autoDeploy? : boolean, startFile? : string }, files : File[] ) {
         const formData = new FormData();
@@ -62,39 +92,11 @@ export default class Http {
         return response;
     }
 
-
-
-    //old
-
-
-    async createDev(name? : string, picture? : string, file? : File) {
-        const formData = new FormData();
-        if( name ) { formData.append( 'name', name ); }
-        if( picture ) { formData.append( 'picture', picture ); }
-        if( file ) { formData.append( 'file', file ); }
-
-        const response = await this.request( Vue.$axios.post( '/studio/developer', formData ) );
-        return response;
-    }
-
-
-    async updateDev( name? : string, file? : File ) {
-        //파일 업로드
-
-        const formData = new FormData();
-        if( name ) { formData.append( 'name', name ); }
-        if( file ) { formData.append( 'file', file ); }
-
-        const response = await this.request( Vue.$axios.put( '/studio/developer', formData ) );
-        return response;
-    }
-
     async updateProject( options : { id : number, name? : string, description? : string, deploy_version_id? : string  }, file? : File ) {
         //파일 업로드
 
         const formData = new FormData();
-        formData.append( 'id', options.id.toString() );
-
+        if( options.id ) { formData.append( 'id', options.id.toString() ); }
         if( options.name ) { formData.append( 'name', options.name ); }
         if( options.description ) { formData.append( 'description', options.description ); }
         if( options.deploy_version_id ) { formData.append( 'deploy_version_id', options.deploy_version_id ); }
@@ -102,14 +104,23 @@ export default class Http {
             formData.append( 'file', file );
         }
 
-        try {
-            const res = await this.request( Vue.$axios.post( '/studio/project', formData ) );
-            return res;
-        }
-        catch (e) {
-            console.log(e.response);
-            return e.response.data;
-        }
+        const response = await this.request( Vue.$axios.patch( `/studio/project/${options.id}`, formData ) );
+        return response;
+    }
+
+    async getProjects() {
+        const response = await this.request( Vue.$axios.get('/studio/project') );
+        return response;
+    }
+
+    async getProject( id ) {
+        const response = await this.request( Vue.$axios.get(`/studio/project/${id}`) );
+        return response;
+    }
+
+    async deleteProject( id ) {
+        const response = await this.request( Vue.$axios.delete(`/studio/project/${id}`) );
+        return response;
     }
 
 
@@ -131,9 +142,15 @@ export default class Http {
         return response;
     }
 
-    // async getVersions( project_id ) {
-    //
-    // }
+    async deleteVersion( id ) {
+        const response = await this.request( Vue.$axios.delete(`/studio/version/${id}`) );
+        return response;
+    }
+
+    async confirmGamePath( pathname : string ) {
+        const response = await this.request( Vue.$axios.get(`/studio/verify-pathname/${pathname}`) );
+        return response;
+    }
 
 }
 

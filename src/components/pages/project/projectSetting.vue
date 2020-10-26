@@ -19,6 +19,16 @@
             <content-box-block class="q-mb-xl" title="게임 아이디">
                 <q-input v-model="gameId" readonly />
             </content-box-block>
+            <content-box-line></content-box-line>
+            <content-box-block title="게임 삭제" class="q-mb-xl">
+                <div class="hintText">
+                    한번 삭제한 게임은 북구 할 수 없습니다.
+                </div>
+                <div class="text-right">
+                    <q-btn @click="deleteProject">삭제</q-btn>
+                </div>
+
+            </content-box-block>
         </content-box>
         <fixed-bottom>
             <q-btn class="q-mr-md" color="primary" :loading="wait" @click="save">저장</q-btn>
@@ -33,9 +43,11 @@
     import ContentBoxBlock from "@/components/layout/contentBoxBlock.vue";
     import ContentBoxBlockImageUploader from "@/components/layout/contentBoxBlockImageUploader.vue";
     import FixedBottom from "@/components/fixedBottom.vue";
+    import ContentBoxLine from "@/components/layout/contentBoxLine.vue";
 
     @Component({
         components: {
+            ContentBoxLine,
             FixedBottom,
             ContentBoxBlockImageUploader,
             ContentBoxBlock,
@@ -97,6 +109,24 @@
             const result = await this.$http.updateProject( option, this.thumbFile );
             this.$store.commit('ajaxBar', false);
             this.wait = false;
+        }
+
+        async deleteProject() {
+            if( this.wait ) {
+                return;
+            }
+
+            this.wait = true;
+            const result = await this.$http.deleteProject( this.projectId );
+            this.wait = false;
+
+            if( result.error ) {
+
+            }
+            else {
+                this.$store.getters.projects[ this.projectId ] = null;
+                await this.$router.replace( '/studio' );
+            }
         }
     }
 </script>
