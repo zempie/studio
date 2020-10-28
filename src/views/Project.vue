@@ -42,7 +42,7 @@
                         <q-icon name="keyboard_backspace" />
                     </q-item-section>
                     <q-item-section>
-                        <q-item-label>뒤로가기</q-item-label>
+                        <q-item-label>모든 게임</q-item-label>
                         <!--                        <q-item-label caption>quasar.dev</q-item-label>-->
                     </q-item-section>
                 </q-item>

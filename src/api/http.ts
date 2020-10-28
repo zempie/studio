@@ -41,7 +41,7 @@ export default class Http {
     }
 
     async getUserInfo() {
-        const response = await this.request( Vue.$axios.get( '/users/info' ) );
+        const response = await this.request( Vue.$axios.get( '/user/info' ) );
         return response;
     }
 

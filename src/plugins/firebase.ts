@@ -38,7 +38,7 @@ async function onAuthStateChanged( user : any ) {
         }
 
         if( result && result.error ) {
-            if( result.error.message === "유저 정보를 찾을 수 없습니다." ) {
+            if( result.error === "유저 정보를 찾을 수 없습니다." ) {
                 store.commit('loginState', LoginState.no_user);
             }
             else {

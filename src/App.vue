@@ -40,7 +40,7 @@ export default class App extends Vue {
         }
     }
 
-    async waitLogin() {
+    async waitLogin( retryCount : number = 0 ) {
 
         const loginState = await this.$store.dispatch('loginState');
 
@@ -57,8 +57,12 @@ export default class App extends Vue {
             }
             case LoginState.no_user : {
                 const result = await this.$http.getUserInfo();
-                await onAuthStateChanged(null);
-                await this.waitLogin();
+
+                if( retryCount < 3 ) {
+                    await onAuthStateChanged(null );
+                    await this.waitLogin( ++retryCount );
+                }
+
                 break;
             }
             case LoginState.login_noAuth : {

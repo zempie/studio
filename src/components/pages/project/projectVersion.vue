@@ -73,6 +73,25 @@
                                     </div>
                                 </div>
                             </content-box-block>
+<!--                            <content-box-block class="q-mb-lg" title="자동 배포">-->
+<!--                                <div class="q-my-md">-->
+<!--                                    <q-toggle value="autoPlay" v-model="autoPlay">-->
+<!--                                    </q-toggle>-->
+<!--                                    <div class="hintText">-->
+<!--                                        자동 배포를 활성화면 하면 심의통과시 자동으로 배포가 진행됩니다.-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </content-box-block>-->
+                            <content-box-block class="q-mb-xl" title="배포" v-if="props.row.state === 'passed'">
+                                <div class="q-my-md">
+                                    현재 진행중인 버전을 대신하여 이 버전을 배포 합니다.
+                                </div>
+                                <div class="text-right">
+                                    <q-btn>
+                                        배포
+                                    </q-btn>
+                                </div>
+                            </content-box-block>
                             <content-box-block class="q-mb-lg" title="버전 삭제">
                                 <div class="q-my-md">
                                     <div>
@@ -122,6 +141,7 @@
         private preExpandProps : any = null;
 
         private wait : { [id:number] : boolean } = {};
+        private autoPlay : boolean = false;
 
         private pagination = {
             rowsPerPage: 15

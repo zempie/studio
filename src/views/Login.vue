@@ -143,9 +143,10 @@
             }
         }
 
-        async waitLogin() {
+        async waitLogin(retryCount : number = 0 ) {
+
             const loginState = await this.$store.dispatch('loginState');
-            console.log( loginState );
+
             switch ( loginState ) {
                 case LoginState.login : {
                     this.$router.push('/studio').catch(() => {
@@ -159,12 +160,16 @@
                 }
                 case LoginState.no_user : {
                     const result = await this.$http.getUserInfo();
-                    await onAuthStateChanged(null);
-                    await this.waitLogin();
+
+                    if( retryCount < 3 ) {
+                        await onAuthStateChanged(null );
+                        await this.waitLogin( ++retryCount );
+                    }
+
                     break;
                 }
                 case LoginState.login_noAuth : {
-                    this.$router.push('/auth').catch(() => {
+                    this.$router.push('/signup').catch(() => {
                     });
                     break;
                 }
