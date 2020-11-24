@@ -1,5 +1,5 @@
 <template>
-    <div class="fixedBottom fixed-bottom text-right q-py-md q-color-picker--dark q-mb-xl">
+    <div class="fixedBottom fixed-bottom text-right q-py-md q-color-picker--dark">
         <slot></slot>
     </div>
 </template>
