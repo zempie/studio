@@ -8,7 +8,7 @@
                 <tr>
                     <td style="width: 20%"><span>개발자 이름</span></td>
                     <td style="width: 80%">
-                        <q-input counter maxlength="50" v-model="devName" />
+                        <q-input counter maxlength="50" v-model="userName" />
                         <div class="hintText">개발자 이름은 애플리케이션 이름 아래에 공개적으로 표시됩니다. 개발자 이름 변경은 Google의 검토를 거쳐야 하며 최대 7일이 소요됩니다.</div>
                     </td>
                 </tr>
@@ -63,7 +63,7 @@
     })
     export default class Setting extends Vue {
 
-        private devName : string = '';
+        private userName : string = '';
         private address : string = '';
         private email : string = '';
         private phoneNumber : string = '';
@@ -76,8 +76,8 @@
         mounted() {
             this.$store.commit('pageName', '설정');
             this.fileLoader.on( 'onLoadFile', this.onLoadFile );
-            this.devName = this.$store.getters.developer.name;
-            this.imgUrl = this.$store.getters.developer.picture || this.$store.getters.developer.user.picture;
+            this.userName = this.$store.getters.user.name;
+            this.imgUrl = this.$store.getters.user.picture;
         }
 
         onLoadFile( data, file ) {
@@ -87,14 +87,14 @@
 
         async save() {
 
-            if( !this.devName && !this.file ) {
+            if( !this.userName && !this.file ) {
                 return;
             }
 
             this.$store.commit('ajaxBar', true);
-            const result = await this.$http.updateDev( this.devName, this.file )
+            // const result = await this.$http.updateDev( this.userName, this.file )
             this.$store.commit('ajaxBar', false);
-            console.log(result);
+            // console.log(result);
         }
     }
 </script>

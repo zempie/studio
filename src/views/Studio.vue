@@ -30,7 +30,7 @@
                 </q-btn>
                 <q-btn round class="q-ml-lg" @click="$router.push( '/logout' )">
                     <q-avatar>
-                        <img :src="$store.getters.developer.picture || $store.getters.user.picture || ''">
+                        <img :src="$store.getters.user.picture || ''">
                     </q-avatar>
                 </q-btn>
             </q-toolbar>
@@ -101,7 +101,7 @@
 
         mounted() {
 
-            console.log( this.$store.getters.developer )
+            console.log( this.$store.getters.user )
 
             console.log( this.$route )
         }

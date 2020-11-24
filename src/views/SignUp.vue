@@ -123,6 +123,8 @@ export default class SignUp extends Vue {
         // const {user} = await this.$rpc.requestRpc('get-user-info', params);
         // console.log( user );
 
+
+        console.log(this.$store.getters.user);
         this.email = this.$store.getters.user.email;
     }
 
@@ -137,9 +139,13 @@ export default class SignUp extends Vue {
         }
 
         this.requestSignup = true;
-        const picture = this.$store.getters.user.picture;
-        const result = await this.$http.createDev( undefined, picture );
-        this.step = 3;
+        // const picture = this.$store.getters.user.picture;
+        const result = await this.$http.signupDev();
+
+        if( !result.error ) {
+            this.$store.getters.user.is_developer = true;
+            this.step = 3;
+        }
     }
 
     async save() {

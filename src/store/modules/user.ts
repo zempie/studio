@@ -10,7 +10,7 @@ export default {
     state : {
         loginState : LoginState.none,
         idToken : undefined,
-        developer : null,
+        // developer : null,
         user : null,
     },
     getters : {
@@ -34,9 +34,9 @@ export default {
             return state.idToken;
         },
 
-        developer( state ) {
-            return state.developer;
-        },
+        // developer( state ) {
+        //     return state.developer;
+        // },
 
         user( state ) {
             return state.user;
@@ -56,9 +56,9 @@ export default {
             state.idToken = payload;
         },
 
-        developer( state, payload ) {
-            state.developer = payload;
-        },
+        // developer( state, payload ) {
+        //     state.developer = payload;
+        // },
         user( state, payload ) {
             state.user = payload;
         },

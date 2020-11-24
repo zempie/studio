@@ -17,7 +17,6 @@
 
             this.$store.commit('idToken', null);
             this.$store.commit( 'user', null );
-            this.$store.commit( 'developer', null );
             this.$store.commit( 'clear', null );
 
             await this.$router.replace('/login');

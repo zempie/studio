@@ -45,31 +45,36 @@ export default class Http {
         return response;
     }
 
-    async createDev(name? : string, picture? : string, file? : File) {
-        const formData = new FormData();
-        if( name ) { formData.append( 'name', name ); }
-        if( picture ) { formData.append( 'picture', picture ); }
-        if( file ) { formData.append( 'file', file ); }
+    // async createDev(name? : string, picture? : string, file? : File) {
+    //     const formData = new FormData();
+    //     if( name ) { formData.append( 'name', name ); }
+    //     if( picture ) { formData.append( 'picture', picture ); }
+    //     if( file ) { formData.append( 'file', file ); }
+    //
+    //     const response = await this.request( Vue.$axios.post( '/studio/developer', formData ) );
+    //     return response;
+    // }
 
-        const response = await this.request( Vue.$axios.post( '/studio/developer', formData ) );
+    async signupDev() {
+        const response = await this.request( Vue.$axios.post( '/studio/developer' ) );
         return response;
     }
 
-    async getDev() {
-        const response = await this.request( Vue.$axios.get( '/studio/developer' ) );
-        return response;
-    }
+    // async getDev() {
+    //     const response = await this.request( Vue.$axios.get( '/studio/developer' ) );
+    //     return response;
+    // }
 
-    async updateDev( name? : string, file? : File ) {
-        //파일 업로드
-
-        const formData = new FormData();
-        if( name ) { formData.append( 'name', name ); }
-        if( file ) { formData.append( 'file', file ); }
-
-        const response = await this.request( Vue.$axios.patch( '/studio/developer', formData ) );
-        return response;
-    }
+    // async updateDev( name? : string, file? : File ) {
+    //     //파일 업로드
+    //
+    //     const formData = new FormData();
+    //     if( name ) { formData.append( 'name', name ); }
+    //     if( file ) { formData.append( 'file', file ); }
+    //
+    //     const response = await this.request( Vue.$axios.patch( '/studio/developer', formData ) );
+    //     return response;
+    // }
 
     async createProject( options : { name? : string, description? : string, pathname? : string, project_picture? : File },
                          updateVersion : { version? : string, autoDeploy? : boolean, startFile? : string }, files : File[] ) {

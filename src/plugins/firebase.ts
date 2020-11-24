@@ -5,14 +5,15 @@ import store from './../store';
 import Vue from 'vue';
 import {LoginState} from "@/store/modules/user";
 
-let firebaseConfig = {
-    apiKey: 'AIzaSyB1CgghEsLYQpzuNxhSbPldQ2H-uN2z7AM',
-    authDomain: 'zemini.firebaseapp.com',
-    databaseURL: 'https://zemini.firebaseio.com',
-    projectId: 'zemini',
-    storageBucket: 'zemini.appspot.com',
-    messagingSenderId: '382409597816',
-    appId: '1:382409597816:web:8e5682e47f05d169221e8d'
+const firebaseConfig = {
+    apiKey: "AIzaSyAXt32ipLLoSlyijdCKAMSpapooo7wbTTE",
+    authDomain: "zempie.firebaseapp.com",
+    databaseURL: "https://zempie.firebaseio.com",
+    projectId: "zempie",
+    storageBucket: "zempie.appspot.com",
+    messagingSenderId: "235654438895",
+    appId: "1:235654438895:web:03bb6a5b89826f37c9601a",
+    measurementId: "G-Z3JMFZBKM3"
 };
 firebase.initializeApp(firebaseConfig);
 initAuth();
@@ -29,25 +30,23 @@ async function onAuthStateChanged( user : any ) {
         const idToken = await currentUser.getIdToken(true);
         store.commit('idToken', idToken );
 
-        const result = await Vue.$http.getDev();
-        const dev = result.developer;
-        const user = result.user;
+        const result = await Vue.$http.getUserInfo();
 
-        if( user ) {
-            store.commit( 'user', user );
-        }
-
-        if( result && result.error ) {
+        if( result.error ) {
             if( result.error === "유저 정보를 찾을 수 없습니다." ) {
                 store.commit('loginState', LoginState.no_user);
             }
             else {
                 alert( result.error.message );
             }
+            return;
         }
-        else if( dev ) {
+
+        const { user } = result;
+        store.commit('user', user);
+
+        if( user.is_developer ) {
             store.commit('loginState', LoginState.login);
-            store.commit( 'developer', dev );
         }
         else {
             store.commit('loginState', LoginState.login_noAuth);
