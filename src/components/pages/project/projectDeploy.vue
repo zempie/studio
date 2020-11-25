@@ -46,6 +46,7 @@
     import ContentBoxLine from "@/components/layout/contentBoxLine.vue";
     import FixedBottom from "@/components/fixedBottom.vue";
     import {roundFace} from "@quasar/extras/material-icons-round";
+    import {Notify} from "quasar";
 
     @Component({
         components: {
@@ -130,7 +131,7 @@
                     }
                 }
 
-                this.$q.notify({
+                Notify.create({
                     message : '배포 되었습니다.',
                     position : 'top',
                     color : 'primary',

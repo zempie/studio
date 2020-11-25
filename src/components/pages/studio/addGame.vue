@@ -98,6 +98,7 @@
     import ZipUtil from "@/common/zipUtil";
     import {randomString} from "@/common/util";
     import {ErrorMessage} from "@/scripts/errorMessge";
+    import {Notify} from "quasar";
 
     @Component({
         components: {
@@ -277,7 +278,7 @@
 
             console.log(result);
             this.$store.commit('ajaxBar', false);
-            this.$q.notify({
+            Notify.create({
                 message : '추가 되었습니다.',
                 position : 'top',
                 color : 'primary',

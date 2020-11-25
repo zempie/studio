@@ -20,6 +20,7 @@
 <script lang="ts">
 import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
 import FixedBottom from "@/components/fixedBottom.vue";
+import { Notify } from 'quasar';
 
 @Component({
     components: {FixedBottom}

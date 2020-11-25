@@ -44,6 +44,7 @@
     import ContentBoxBlockImageUploader from "@/components/layout/contentBoxBlockImageUploader.vue";
     import FixedBottom from "@/components/fixedBottom.vue";
     import ContentBoxLine from "@/components/layout/contentBoxLine.vue";
+    import {Notify} from "quasar";
 
     @Component({
         components: {
@@ -109,7 +110,7 @@
             const result = await this.$http.updateProject( option, this.thumbFile );
             this.$store.commit('ajaxBar', false);
 
-            this.$q.notify({
+            Notify.create({
                 message : '저장 되었습니다.',
                 position : 'top',
                 color : 'primary',

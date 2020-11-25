@@ -118,6 +118,7 @@ import ContentBox from "@/components/layout/contentBox.vue";
 import ContentBoxBlock from "@/components/layout/contentBoxBlock.vue";
 import FixedBottom from "@/components/fixedBottom.vue";
 import {ErrorMessage} from "@/scripts/errorMessge";
+import {Notify} from "quasar";
 
 
 @Component({
@@ -216,7 +217,7 @@ export default class ProjectAddVersion extends Vue {
         }
 
         this.$store.commit('ajaxBar', false);
-        this.$q.notify({
+        Notify.create({
             message : '저장 되었습니다.',
             position : 'top',
             color : 'primary',
@@ -275,7 +276,7 @@ export default class ProjectAddVersion extends Vue {
         project.update_version_id = version.id;
         this.$store.commit('version', version);
         this.$store.commit('ajaxBar', false);
-        this.$q.notify({
+        Notify.create({
             message : '저장 되었습니다.',
             position : 'top',
             color : 'primary',
