@@ -16,11 +16,11 @@
             >
                 <q-step
                     :name="1"
-                    title="개발자 이용 약관 동의"
+                    title="개발자 이용약관 동의"
                     prefix="1"
                 >
                     <div class="stepTitle">
-                        개발자 이용 약관
+                        개발자 이용약관
                     </div>
                     <div class="MAB20">
                         Zempie studio 가입을 위해서는 아래 '이용약관' 및 '개인정보 수집 및 이용'을 읽고, 동의해 주시기 바랍니다.
