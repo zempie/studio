@@ -216,6 +216,12 @@ export default class ProjectAddVersion extends Vue {
         }
 
         this.$store.commit('ajaxBar', false);
+        this.$q.notify({
+            message : '저장 되었습니다.',
+            position : 'top',
+            color : 'primary',
+            timeout: 2000
+        });
     }
 
     async save() {
@@ -269,6 +275,12 @@ export default class ProjectAddVersion extends Vue {
         project.update_version_id = version.id;
         this.$store.commit('version', version);
         this.$store.commit('ajaxBar', false);
+        this.$q.notify({
+            message : '저장 되었습니다.',
+            position : 'top',
+            color : 'primary',
+            timeout: 2000
+        });
         this.wait = false;
         this.$router.replace( `/project/${this.projectId}` );
     }

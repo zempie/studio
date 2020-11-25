@@ -108,6 +108,14 @@
             this.$store.commit('ajaxBar', true);
             const result = await this.$http.updateProject( option, this.thumbFile );
             this.$store.commit('ajaxBar', false);
+
+            this.$q.notify({
+                message : '저장 되었습니다.',
+                position : 'top',
+                color : 'primary',
+                timeout: 2000
+            });
+
             this.wait = false;
         }
 

@@ -130,6 +130,13 @@
                     }
                 }
 
+                this.$q.notify({
+                    message : '배포 되었습니다.',
+                    position : 'top',
+                    color : 'primary',
+                    timeout: 2000
+                });
+
                 await this.$router.replace( `/project/${this.projectId}` );
             }
         }

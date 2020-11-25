@@ -277,6 +277,12 @@
 
             console.log(result);
             this.$store.commit('ajaxBar', false);
+            this.$q.notify({
+                message : '추가 되었습니다.',
+                position : 'top',
+                color : 'primary',
+                timeout: 2000
+            });
 
             this.waitSave = false;
             this.$router.push('/studio').catch(() => {
