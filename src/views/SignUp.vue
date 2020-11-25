@@ -40,18 +40,41 @@
                         개발자 정보 입력
                     </div>
                     <div class="MAB20">
-                        연락처 정보를 알려 주세요. 이 정보는 사용자와 공유되지 않습니다.
+                        연락처 정보를 알려 주세요.
                     </div>
                     <div class="BLINE MAB40"></div>
                     <content-box-block title="이메일 주소" class="MAB40">
-                        <q-input hint="이 정보는 Zempie에서 연락을 드리는 데 사용됩니다."></q-input>
+                        <q-input hint="이 정보는 Zempie에서 연락을 드리는 데 사용됩니다." :readonly="verifyEmail" v-model="email">
+                            <template v-slot:append>
+                                <div v-if="verifyEmail" class="q-ml-md bg-grey-9 q-px-md appendBox text-no-wrap">
+                                    인증 완료
+                                </div>
+                                <div v-else>
+                                    <div v-if="!loadingEmail">
+                                        <q-btn color="grey-9"  @click="requestEmail">
+                                            인증 요청
+                                        </q-btn>
+                                    </div>
+                                    <div v-else>
+                                        <q-btn color="grey-9" class="q-mr-sm"  @click="requestEmail">
+                                            다시 요청
+                                        </q-btn>
+                                        <q-btn color="grey-9"  @click="confirmEmail">
+                                            인증 확인
+                                        </q-btn>
+                                    </div>
+
+
+                                </div>
+                            </template>
+                        </q-input>
                     </content-box-block>
-                    <content-box-block title="전화번호" class="MAB40">
-                        <q-input hint="더하기 기호, 국가 코드, 지역 번호를 포함하세요. 이 정보는 Zempie에서 연락하는 데 사용됩니다. "></q-input>
-                    </content-box-block>
+<!--                    <content-box-block title="전화번호" class="MAB40">-->
+<!--                        <q-input hint="더하기 기호, 국가 코드, 지역 번호를 포함하세요. 이 정보는 Zempie에서 연락하는 데 사용됩니다. "></q-input>-->
+<!--                    </content-box-block>-->
                     <div class="BLINE"></div>
                     <fixed-bottom>
-                        <q-btn class="MAR10" color="light-blue" label="등록" @click="signup" />
+                        <q-btn :loading="loading" :disable="!verifyEmail" class="MAR10" color="light-blue" label="등록" @click="signup" />
                     </fixed-bottom>
                 </q-step>
 
@@ -109,9 +132,13 @@ import FixedBottom from "@/components/fixedBottom.vue";
 export default class SignUp extends Vue {
 
     private email : string = ''
+    private verifyEmail : boolean = false;
     private phoneNumber : string = '';
     private step : number = 1;
     private requestSignup : boolean = false;
+
+    private loading : boolean = false;
+    private loadingEmail : boolean = false;
 
     async mounted() {
         // const currentUser = firebase.auth().currentUser;
@@ -123,9 +150,12 @@ export default class SignUp extends Vue {
         // const {user} = await this.$rpc.requestRpc('get-user-info', params);
         // console.log( user );
 
+        const loginState = await this.$store.dispatch('loginState');
+
 
         console.log(this.$store.getters.user);
         this.email = this.$store.getters.user.email;
+        this.verifyEmail = this.$store.getters.user.email_verified;
     }
 
     onAgree(marktPrAgreAtChk) {
@@ -134,11 +164,8 @@ export default class SignUp extends Vue {
 
     async signup() {
 
-        if( this.requestSignup ) {
-            return;
-        }
-
-        this.requestSignup = true;
+        this.loading = true;
+        // this.requestSignup = true;
         // const picture = this.$store.getters.user.picture;
         const result = await this.$http.signupDev();
 
@@ -146,6 +173,8 @@ export default class SignUp extends Vue {
             this.$store.getters.user.is_developer = true;
             this.step = 3;
         }
+
+        this.loading = false;
     }
 
     async save() {
@@ -153,7 +182,33 @@ export default class SignUp extends Vue {
     }
 
     async goToAddGame() {
-        this.$router.replace( '/addGame' )
+        await this.$router.replace( '/addGame' )
+    }
+
+    async requestEmail() {
+        this.loadingEmail = true;
+
+        try {
+            await firebase.auth().currentUser.sendEmailVerification();
+            alert('인증 메일을 보냈습니다. 등록된 메일함을 확인해 주세요.');
+        }
+        catch (e) {
+            alert('메일을 보낼 수 없습니다. 잠시 후 다시 시도해주세요.');
+        }
+
+
+    }
+
+    async confirmEmail() {
+        await firebase.auth().currentUser.reload();
+        console.log(firebase.auth().currentUser.emailVerified);
+        if(firebase.auth().currentUser.emailVerified) {
+            const result = await this.$http.verifyEmail();
+            this.verifyEmail = true;
+        }
+        else {
+            alert( '이메일이 인증되지 않았습니다. 메일을 확인해주세요.' );
+        }
     }
 
 }

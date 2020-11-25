@@ -45,6 +45,7 @@
 
 <script lang="ts">
     import { Component, Prop, Vue } from 'vue-property-decorator';
+    import {LoginState} from "@/store/modules/user";
 
     @Component({
         components: {
@@ -86,12 +87,21 @@
             this.loading = true;
             const loginState = await this.$store.dispatch('loginState');
 
-            this.$store.commit('pageName', '모든 게임');
-            await this.loadProjects();
+            if( loginState === LoginState.login ) {
+                this.$store.commit('pageName', '모든 게임');
+                await this.loadProjects();
+            }
+            else {
+                await this.$router.replace('/login');
+            }
+
+
             this.loading = false;
         }
 
         async loadProjects() {
+
+
             const res = await this.$http.getProjects();
             console.log(res);
             this.projects = res;

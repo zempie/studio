@@ -23,6 +23,15 @@ import {LoginState} from "@/store/modules/user";
 export default class App extends Vue {
 
     async mounted() {
+        const state = await this.$store.dispatch('loginState');
+        if( state === LoginState.login ) {
+            if( !this.$store.getters.user.is_developer ) {
+                await this.$router.replace('/signup').catch(()=>{});
+            }
+        }
+        else {
+            await this.$router.replace('/login');
+        }
     }
 
     @Watch('$store.getters.ajaxBar')

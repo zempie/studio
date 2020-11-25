@@ -35,6 +35,10 @@ export default {
             return state.loginState === LoginState.login;
         },
 
+        isLoginComplete(state: any) {
+            return state.loginState !== LoginState.none && state.loginState !== LoginState.customToken;
+        },
+
         idToken(state: any) {
             return state.idToken;
         },

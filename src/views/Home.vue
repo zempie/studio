@@ -14,12 +14,6 @@
                 if( this.$store.getters.user.is_developer ) {
                     await this.$router.replace('/studio');
                 }
-                else {
-                    console.log( this.$store.getters.user.is_developer );
-                }
-            }
-            else {
-                await this.$router.replace('/login');
             }
         }
     }

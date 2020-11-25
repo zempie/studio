@@ -28,7 +28,7 @@
             // store.commit( 'developer', result );
 
             // console.log( result );
-            this.$router.push('/signup');
+            // this.$router.push('/signup');
             // console.log(result);
         }
     }
