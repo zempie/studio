@@ -118,6 +118,7 @@ import * as firebase from "firebase";
 import {ErrorMessage} from "@/scripts/errorMessge";
 import Tos from "@/components/tos.vue";
 import FixedBottom from "@/components/fixedBottom.vue";
+import {LoginState} from "@/store/modules/user";
 
 @Component({
     components: {
@@ -151,11 +152,16 @@ export default class SignUp extends Vue {
         // console.log( user );
 
         const loginState = await this.$store.dispatch('loginState');
+        if( loginState === LoginState.logout ) {
+
+        }
+        else {
+            console.log(this.$store.getters.user);
+            this.email = this.$store.getters.user.email;
+            this.verifyEmail = this.$store.getters.user.email_verified;
+        }
 
 
-        console.log(this.$store.getters.user);
-        this.email = this.$store.getters.user.email;
-        this.verifyEmail = this.$store.getters.user.email_verified;
     }
 
     onAgree(marktPrAgreAtChk) {

@@ -13,7 +13,7 @@ class Cookie {
             date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
             expiresStr = "; expires=" + date.toUTCString();
         }
-        document.cookie = `${key}=${value}${expiresStr}${domainStr}`;
+        document.cookie = `${key}=${value}${expiresStr}${domainStr};path=/`;
     }
 
     static read( key : string ) {
@@ -27,8 +27,8 @@ class Cookie {
         return null;
     }
 
-    static delete( key : string ) {
-        Cookie.write( key, '', -1 );
+    static delete( key : string, domain : string ) {
+        Cookie.write( key, '', -1, domain );
     }
 }
 

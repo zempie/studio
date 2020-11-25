@@ -76,7 +76,7 @@ class Login {
     static async logout() {
         await firebase.auth().signOut();
         await _store.dispatch('logout');
-        Cookie.delete( cookieName );
+        Cookie.delete( cookieName, process.env.VUE_APP_COOKIE_DOMAIN );
     }
 
 }
