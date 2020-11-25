@@ -30,7 +30,7 @@
 <!--                </q-btn>-->
                 <q-btn round class="q-ml-lg" @click="$router.push( '/logout' )">
                     <q-avatar>
-                        <img :src="$store.getters.user.picture || ''">
+                        <img :src="$store.getters.user && $store.getters.user.picture || ''">
                     </q-avatar>
                 </q-btn>
             </q-toolbar>
@@ -108,11 +108,16 @@
         private leftDrawerOpen : boolean = false;
         private searchText : string = '';
 
-        mounted() {
+        private isLoad : boolean = false;
 
-            console.log( this.$store.getters.user )
+        async mounted() {
 
-            console.log( this.$route )
+            this.isLoad = false;
+
+            const loginState = await this.$store.dispatch('loginState');
+            console.log( this.$store.getters.user );
+            console.log( this.$route );
+            this.isLoad = true;
         }
 
     }

@@ -22,7 +22,7 @@
                 </q-btn>
                 <q-btn round class="q-ml-lg" @click="$router.push( '/logout' )">
                     <q-avatar>
-                        <img :src="$store.getters.user.picture || ''">
+                        <img :src="$store.getters.user && $store.getters.user.picture || ''">
                     </q-avatar>
                 </q-btn>
             </q-toolbar>
@@ -104,6 +104,7 @@
 
 <script lang="ts">
     import { Component, Prop, Vue } from 'vue-property-decorator';
+    import {LoginState} from "@/store/modules/user";
 
     @Component({components: {}})
     export default class Project extends Vue {
@@ -115,9 +116,24 @@
 
 
         async mounted() {
+
+            this.isLoad = false;
+
+            const loginState = await this.$store.dispatch('loginState');
+            console.log( loginState );
+
             let project = await this.$store.dispatch( 'project', this.projectId );
             this.title = project.name;
             this.isLoad = true;
+
+
+            // const state = await this.$store.dispatch('loginState');
+            // if( state === LoginState.logout ) {
+            //     await this.$router.replace('/login').catch(()=>{});
+            // }
+            // else if( state === LoginState.login ) {
+            //     await this.$router.replace('/studio').catch(()=>{});
+            // }
         }
     }
 </script>

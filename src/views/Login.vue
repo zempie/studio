@@ -58,8 +58,8 @@
             //     this.$router.replace( '/' );
             // }
 
-            const baseUrl = encodeURI( process.env.VUE_APP_BASE_URL );
-            window.location.href = `${process.env.VUE_APP_LOGIN_URL}${baseUrl}`;
+
+            window.location.href = `${process.env.VUE_APP_LOGIN_URL}${encodeURIComponent( process.env.VUE_APP_BASE_URL )}`;
         }
 
 

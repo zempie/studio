@@ -80,10 +80,15 @@
         ];
         private filter : string = '';
         private projects = [];
+        private loading : boolean = false;
 
-        mounted() {
+        async mounted() {
+            this.loading = true;
+            const loginState = await this.$store.dispatch('loginState');
+
             this.$store.commit('pageName', '모든 게임');
-            this.loadProjects();
+            await this.loadProjects();
+            this.loading = false;
         }
 
         async loadProjects() {

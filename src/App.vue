@@ -1,6 +1,6 @@
 <template>
     <div>
-        <router-view v-if="ready"></router-view>
+        <router-view></router-view>
         <q-ajax-bar
             ref="bar"
             position="bottom"
@@ -22,12 +22,7 @@ import {LoginState} from "@/store/modules/user";
 })
 export default class App extends Vue {
 
-    private ready: boolean = false;
-
     async mounted() {
-        // await this.waitLogin();
-        const state = await this.$store.dispatch('loginState');
-        this.ready = true;
     }
 
     @Watch('$store.getters.ajaxBar')

@@ -4,7 +4,7 @@ import 'firebase/auth'
 import store from './../store';
 import Vue from 'vue';
 import {LoginState} from "@/store/modules/user";
-import Login from "@/scripts/login";
+import Login from "./../scripts/login";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAXt32ipLLoSlyijdCKAMSpapooo7wbTTE",

@@ -1,6 +1,6 @@
 import firebase from 'firebase/app';
-import {LoginState} from "src/store/modules/user";
-import Cookie from "src/scripts/cookie";
+import {LoginState} from "@/store/modules/user";
+import Cookie from "./cookie";
 import Vue from "vue";
 import _store from './../store';
 

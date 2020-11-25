@@ -41,11 +41,15 @@ export default class Http {
     }
     //USER
     async session() {
-        const response = await this.request( Vue.$axios.get(`/user/verify-session`) );
+        const response = await this.request( Vue.$axios.get(`/user/verify-session`, {
+            withCredentials : true,
+        }) );
         return response.result || response;
     }
     async getUserInfo() {
-        const response = await this.request( Vue.$axios.get( '/user/info' ) );
+        const response = await this.request( Vue.$axios.get( '/user/info', {
+            withCredentials : true,
+        } ) );
         return response.result || response;
     }
     async verifyEmail() {
