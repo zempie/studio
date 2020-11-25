@@ -11,7 +11,7 @@ export default class Http {
     async request( promise : Promise<any>, errorCallback : Function | null = null, retryCount : number = 1 ) : Promise<any> {
         try {
             const res = await promise;
-            return res.data.result;
+            return res.data;
         }
         catch (error) {
             if ( error.response.data === 'Unauthorized' ) {
@@ -39,42 +39,26 @@ export default class Http {
             //throw error;
         }
     }
-
+    //USER
+    async session() {
+        const response = await this.request( Vue.$axios.get(`/user/verify-session`) );
+        return response.result || response;
+    }
     async getUserInfo() {
         const response = await this.request( Vue.$axios.get( '/user/info' ) );
-        return response;
+        return response.result || response;
+    }
+    async verifyEmail() {
+        const response = await this.request( Vue.$axios.post(`/user/verify-email`) );
+        return response.result || response;
     }
 
-    // async createDev(name? : string, picture? : string, file? : File) {
-    //     const formData = new FormData();
-    //     if( name ) { formData.append( 'name', name ); }
-    //     if( picture ) { formData.append( 'picture', picture ); }
-    //     if( file ) { formData.append( 'file', file ); }
-    //
-    //     const response = await this.request( Vue.$axios.post( '/studio/developer', formData ) );
-    //     return response;
-    // }
+
 
     async signupDev() {
         const response = await this.request( Vue.$axios.post( '/studio/developer' ) );
-        return response;
+        return response.result || response;
     }
-
-    // async getDev() {
-    //     const response = await this.request( Vue.$axios.get( '/studio/developer' ) );
-    //     return response;
-    // }
-
-    // async updateDev( name? : string, file? : File ) {
-    //     //파일 업로드
-    //
-    //     const formData = new FormData();
-    //     if( name ) { formData.append( 'name', name ); }
-    //     if( file ) { formData.append( 'file', file ); }
-    //
-    //     const response = await this.request( Vue.$axios.patch( '/studio/developer', formData ) );
-    //     return response;
-    // }
 
     async createProject( options : { name? : string, description? : string, pathname? : string, project_picture? : File },
                          updateVersion : { version? : string, autoDeploy? : boolean, startFile? : string }, files : File[] ) {
@@ -94,7 +78,7 @@ export default class Http {
 
 
         const response = await this.request( Vue.$axios.post( '/studio/project', formData ) );
-        return response;
+        return response.result || response;
     }
 
     async updateProject( options : { id : number, name? : string, description? : string, deploy_version_id? : string  }, file? : File ) {
@@ -110,22 +94,22 @@ export default class Http {
         }
 
         const response = await this.request( Vue.$axios.patch( `/studio/project/${options.id}`, formData ) );
-        return response;
+        return response.result || response;
     }
 
     async getProjects() {
         const response = await this.request( Vue.$axios.get('/studio/project') );
-        return response;
+        return response.result || response;
     }
 
     async getProject( id ) {
         const response = await this.request( Vue.$axios.get(`/studio/project/${id}`) );
-        return response;
+        return response.result || response;
     }
 
     async deleteProject( id ) {
         const response = await this.request( Vue.$axios.delete(`/studio/project/${id}`) );
-        return response;
+        return response.result || response;
     }
 
 
@@ -144,18 +128,20 @@ export default class Http {
         }
 
         const response = await this.request( Vue.$axios.post( '/studio/version', formData ) );
-        return response;
+        return response.result || response;
     }
 
     async deleteVersion( id ) {
         const response = await this.request( Vue.$axios.delete(`/studio/version/${id}`) );
-        return response;
+        return response.result || response;
     }
 
     async confirmGamePath( pathname : string ) {
         const response = await this.request( Vue.$axios.get(`/studio/verify-pathname/${pathname}`) );
-        return response;
+        return response.result || response;
     }
+
+
 
 }
 

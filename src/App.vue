@@ -15,7 +15,7 @@
 import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
 import * as firebase from "firebase";
 import {LoginState} from "@/store/modules/user";
-import {onAuthStateChanged} from "@/plugins/firebase";
+// import {onAuthStateChanged} from "@/plugins/firebase";
 
 @Component({
     components: {}
@@ -25,7 +25,8 @@ export default class App extends Vue {
     private ready: boolean = false;
 
     async mounted() {
-        await this.waitLogin();
+        // await this.waitLogin();
+        const state = await this.$store.dispatch('loginState');
         this.ready = true;
     }
 
@@ -40,38 +41,38 @@ export default class App extends Vue {
         }
     }
 
-    async waitLogin( retryCount : number = 0 ) {
-
-        const loginState = await this.$store.dispatch('loginState');
-
-        switch (loginState) {
-            case LoginState.login : {
-                this.$router.push('/studio').catch(() => {
-                });
-                break;
-            }
-            case LoginState.logout : {
-                this.$router.push('/login').catch(() => {
-                });
-                break;
-            }
-            case LoginState.no_user : {
-                const result = await this.$http.getUserInfo();
-
-                if( retryCount < 3 ) {
-                    await onAuthStateChanged(null );
-                    await this.waitLogin( ++retryCount );
-                }
-
-                break;
-            }
-            case LoginState.login_noAuth : {
-                this.$router.push('/signup').catch(() => {
-                });
-                break;
-            }
-        }
-    }
+    // async waitLogin( retryCount : number = 0 ) {
+    //
+    //     const loginState = await this.$store.dispatch('loginState');
+    //
+    //     switch (loginState) {
+    //         case LoginState.login : {
+    //             this.$router.push('/studio').catch(() => {
+    //             });
+    //             break;
+    //         }
+    //         case LoginState.logout : {
+    //             this.$router.push('/login').catch(() => {
+    //             });
+    //             break;
+    //         }
+    //         case LoginState.no_user : {
+    //             const result = await this.$http.getUserInfo();
+    //
+    //             if( retryCount < 3 ) {
+    //                 await onAuthStateChanged(null );
+    //                 await this.waitLogin( ++retryCount );
+    //             }
+    //
+    //             break;
+    //         }
+    //         case LoginState.login_noAuth : {
+    //             this.$router.push('/signup').catch(() => {
+    //             });
+    //             break;
+    //         }
+    //     }
+    // }
 }
 </script>
 

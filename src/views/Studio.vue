@@ -15,19 +15,19 @@
                 </q-toolbar-title>
                 <!--                <div>Quasar v{{ $q.version }}</div>-->
 
-                <q-input v-model="searchText" dark dense class="q-mr-xl" placeholder="앱 검색">
-                    <template v-slot:append>
-                        <q-icon v-if="!searchText" name="search" />
-                        <q-icon v-else name="clear" class="cursor-pointer" @click="searchText = ''"></q-icon>
-                    </template>
-                </q-input>
+<!--                <q-input v-model="searchText" dark dense class="q-mr-xl" placeholder="앱 검색">-->
+<!--                    <template v-slot:append>-->
+<!--                        <q-icon v-if="!searchText" name="search" />-->
+<!--                        <q-icon v-else name="clear" class="cursor-pointer" @click="searchText = ''"></q-icon>-->
+<!--                    </template>-->
+<!--                </q-input>-->
 
-                <q-btn flat round>
-                    <q-icon name="notifications" />
-                </q-btn>
-                <q-btn flat round class="q-mx-sm">
-                    <q-icon name="help" />
-                </q-btn>
+<!--                <q-btn flat round>-->
+<!--                    <q-icon name="notifications" />-->
+<!--                </q-btn>-->
+<!--                <q-btn flat round class="q-mx-sm">-->
+<!--                    <q-icon name="help" />-->
+<!--                </q-btn>-->
                 <q-btn round class="q-ml-lg" @click="$router.push( '/logout' )">
                     <q-avatar>
                         <img :src="$store.getters.user.picture || ''">
@@ -42,7 +42,16 @@
                 content-class="bg-color-2 no-border"
         >
             <q-list>
-                <q-item-label header>Zempie Studio Console</q-item-label>
+                <q-toolbar>
+                    <q-avatar>
+                        <img src="favicon.ico" style="width: 34px; height: 34px;">
+                    </q-avatar>
+                    <q-toolbar-title class="self-center">
+
+                        Zempie Studio
+                    </q-toolbar-title>
+                </q-toolbar>
+
                 <q-item :active="$route.name==='Games'" active-class="activeItem" clickable tag="router-link" to="/studio">
                     <q-item-section avatar>
                         <q-icon name="sports_esports" />
