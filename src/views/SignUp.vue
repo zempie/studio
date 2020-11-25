@@ -44,7 +44,7 @@
                     </div>
                     <div class="BLINE MAB40"></div>
                     <content-box-block title="이메일 주소" class="MAB40">
-                        <q-input hint="이 정보는 Zempie에서 연락을 드리는 데 사용됩니다." :readonly="verifyEmail" v-model="email">
+                        <q-input hint="이 정보는 Zempie에서 연락을 드리는 데 사용됩니다." readonly v-model="email">
                             <template v-slot:append>
                                 <div v-if="verifyEmail" class="q-ml-md bg-grey-9 q-px-md appendBox text-no-wrap">
                                     인증 완료
@@ -109,7 +109,7 @@
 </template>
 
 <script lang="ts">
-import {Component, Prop, Vue} from 'vue-property-decorator';
+import {Component, Vue} from 'vue-property-decorator';
 import ContentBox from "@/components/layout/contentBox.vue";
 import ContentBoxBlock from "@/components/layout/contentBoxBlock.vue";
 import ContentBoxLine from "@/components/layout/contentBoxLine.vue";
