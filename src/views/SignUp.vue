@@ -86,7 +86,7 @@
                 >
                     <div class="text-center">
                         <div style="margin: 0 auto; width: 50%">
-                            <q-img src="img/product_signifier.svg"></q-img>
+                            <q-img src="img/img-zempie-screen.png"></q-img>
                         </div>
 
 

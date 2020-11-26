@@ -43,7 +43,13 @@
                 content-class=""
         >
             <q-list>
-                <q-item-label header>Zempie Studio Console</q-item-label>
+<!--                <q-item-label header>Zempie Studio Console</q-item-label>-->
+                <q-toolbar>
+                    <!--                    <q-avatar>-->
+                    <!--                        <img src="favicon.ico" style="width: 34px; height: 34px;">-->
+                    <!--                    </q-avatar>-->
+                    <q-img src="img/zempie-logo.png" width="130px" class="cursor-pointer" @click="goZempie"></q-img>
+                </q-toolbar>
                 <q-separator />
                 <q-item clickable tag="router-link" to="/studio">
                     <q-item-section avatar>
@@ -83,6 +89,10 @@
         private searchText : string = '';
 
         mounted() {
+        }
+
+        async goZempie() {
+            location.href = process.env.VUE_APP_ZEMPIE_URL;
         }
 
     }

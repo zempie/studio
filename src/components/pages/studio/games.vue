@@ -1,5 +1,7 @@
 <template>
     <q-page class="q-pa-md center-container">
+
+
         <div class="text-right">
             <q-btn class="q-my-sm" color="primary" @click="$router.push('/addGame')">게임 추가하기</q-btn>
         </div>
@@ -16,7 +18,7 @@
             <template v-slot:body="props">
                 <q-tr :props="props" @click="onClick(props)">
                     <q-td width="10%">
-                        <q-img :src="props.row.picture"></q-img>
+                        <q-img :src="props.row.picture || 'img/default.png'"></q-img>
                     </q-td>
                     <q-td width="30%" :props="props" key="name">
                         {{props.row.name}}

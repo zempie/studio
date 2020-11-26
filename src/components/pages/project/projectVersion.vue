@@ -36,41 +36,41 @@
                 <q-tr :props="props" v-if="props.expand">
                     <q-td colspan="100%">
                         <content-box>
-                            <content-box-block class="q-mb-lg" title="호환성">
-                                <div class="support">
-                                    <q-img class="icon" contain src="./icon/chrome.svg"><q-tooltip> Chrome </q-tooltip></q-img>
-                                    <q-img class="icon" contain src="./icon/edge.svg"><q-tooltip> Edge </q-tooltip></q-img>
-                                    <q-img class="icon" contain src="./icon/firefox.svg"><q-tooltip> Firefox </q-tooltip></q-img>
-                                    <q-img class="icon not" contain src="./icon/internet-explorer.svg"><q-tooltip> Internet Explore </q-tooltip></q-img>
-                                    <q-img class="icon" contain src="./icon/opera.svg"><q-tooltip> Opera </q-tooltip></q-img>
-                                    <q-img class="icon not" contain src="./icon/safari.svg"><q-tooltip> Safari </q-tooltip></q-img>
-                                    <q-img class="icon" contain src="./icon/android.svg"><q-tooltip> Android Webview </q-tooltip></q-img>
-                                    <q-img class="icon" contain src="./icon/chrome.svg"><q-tooltip> Chrome for Android </q-tooltip></q-img>
-                                    <q-img class="icon" contain src="./icon/firefox.svg"><q-tooltip> Firefox for Android </q-tooltip></q-img>
-                                    <q-img class="icon" contain src="./icon/opera.svg"><q-tooltip> Opera for Android </q-tooltip></q-img>
-                                    <q-img class="icon not" contain src="./icon/safari.svg"><q-tooltip> Safari for iOS </q-tooltip></q-img>
-                                    <q-img class="icon" contain src="./icon/samsung-internet.svg"><q-tooltip> Samsung Internet </q-tooltip></q-img>
-                                    <q-img class="icon not" contain src="./icon/ruler-horizontal-solid.svg"><q-tooltip> Horizontal Mode </q-tooltip></q-img>
-                                    <q-img class="icon" contain src="./icon/ruler-vertical-solid.svg"><q-tooltip> Vertical Mode </q-tooltip></q-img>
-                                    <q-img class="icon" contain src="./icon/volume-up-solid.svg"><q-tooltip> Sound Effect </q-tooltip></q-img>
-                                    <q-img class="icon not" contain src="./icon/music-solid.svg"><q-tooltip> Background Sound </q-tooltip></q-img>
-                                    <q-img class="icon not" contain src="./icon/group-24px.svg"><q-tooltip> Multiplayer </q-tooltip></q-img>
-                                    <span class="text-green-8">(90점)</span>
-                                </div>
-                            </content-box-block>
+<!--                            <content-box-block class="q-mb-lg" title="호환성">-->
+<!--                                <div class="support">-->
+<!--                                    <q-img class="icon" contain src="./icon/chrome.svg"><q-tooltip> Chrome </q-tooltip></q-img>-->
+<!--                                    <q-img class="icon" contain src="./icon/edge.svg"><q-tooltip> Edge </q-tooltip></q-img>-->
+<!--                                    <q-img class="icon" contain src="./icon/firefox.svg"><q-tooltip> Firefox </q-tooltip></q-img>-->
+<!--                                    <q-img class="icon not" contain src="./icon/internet-explorer.svg"><q-tooltip> Internet Explore </q-tooltip></q-img>-->
+<!--                                    <q-img class="icon" contain src="./icon/opera.svg"><q-tooltip> Opera </q-tooltip></q-img>-->
+<!--                                    <q-img class="icon not" contain src="./icon/safari.svg"><q-tooltip> Safari </q-tooltip></q-img>-->
+<!--                                    <q-img class="icon" contain src="./icon/android.svg"><q-tooltip> Android Webview </q-tooltip></q-img>-->
+<!--                                    <q-img class="icon" contain src="./icon/chrome.svg"><q-tooltip> Chrome for Android </q-tooltip></q-img>-->
+<!--                                    <q-img class="icon" contain src="./icon/firefox.svg"><q-tooltip> Firefox for Android </q-tooltip></q-img>-->
+<!--                                    <q-img class="icon" contain src="./icon/opera.svg"><q-tooltip> Opera for Android </q-tooltip></q-img>-->
+<!--                                    <q-img class="icon not" contain src="./icon/safari.svg"><q-tooltip> Safari for iOS </q-tooltip></q-img>-->
+<!--                                    <q-img class="icon" contain src="./icon/samsung-internet.svg"><q-tooltip> Samsung Internet </q-tooltip></q-img>-->
+<!--                                    <q-img class="icon not" contain src="./icon/ruler-horizontal-solid.svg"><q-tooltip> Horizontal Mode </q-tooltip></q-img>-->
+<!--                                    <q-img class="icon" contain src="./icon/ruler-vertical-solid.svg"><q-tooltip> Vertical Mode </q-tooltip></q-img>-->
+<!--                                    <q-img class="icon" contain src="./icon/volume-up-solid.svg"><q-tooltip> Sound Effect </q-tooltip></q-img>-->
+<!--                                    <q-img class="icon not" contain src="./icon/music-solid.svg"><q-tooltip> Background Sound </q-tooltip></q-img>-->
+<!--                                    <q-img class="icon not" contain src="./icon/group-24px.svg"><q-tooltip> Multiplayer </q-tooltip></q-img>-->
+<!--                                    <span class="text-green-8">(90점)</span>-->
+<!--                                </div>-->
+<!--                            </content-box-block>-->
                             <content-box-block class="q-mb-lg"  v-if="props.row.reason" title="실패사유">
                                 <q-input type="textarea" v-model="props.row.reason" readonly></q-input>
                             </content-box-block>
                             <content-box-block class="q-mb-lg" title="업로드 파일 정보">
                                 <div class="q-my-md">
-                                    <div>
-                                        파일 크기 : 3.12 MB
-                                    </div>
-                                    <div class="text-right">
-                                        <q-btn>
-                                            다운로드
-                                        </q-btn>
-                                    </div>
+<!--                                    <div>-->
+<!--                                        파일 크기 : 3.12 MB-->
+<!--                                    </div>-->
+<!--                                    <div class="text-right">-->
+<!--                                        <q-btn>-->
+<!--                                            다운로드-->
+<!--                                        </q-btn>-->
+<!--                                    </div>-->
                                 </div>
                             </content-box-block>
 <!--                            <content-box-block class="q-mb-lg" title="자동 배포">-->
@@ -210,26 +210,30 @@
         }
 
         async deleteVersion( id ) {
-            this.wait[id] = true;
 
-            const response = await this.$http.deleteVersion( id );
+            const ok = confirm('한번 삭제한 버전은 다시 복구 할수 없습니다. 정말 삭제 하시겠습니까?');
+            if( ok ) {
+                this.wait[id] = true;
 
-            if( response.error ) {
-                alert( response.error );
-            }
-            else {
-                const versionList = this.$store.getters.versionList( this.projectId );
-                const versions = this.$store.getters.versions( this.projectId );
-                const idx = _.findIndex<any>( versionList, v => v.id === id);
-                if( idx > -1 ) {
-                    versionList.splice( idx, 1 );
+                const response = await this.$http.deleteVersion( id );
+
+                if( response.error ) {
+                    alert( response.error );
+                }
+                else {
+                    const versionList = this.$store.getters.versionList( this.projectId );
+                    const versions = this.$store.getters.versions( this.projectId );
+                    const idx = _.findIndex<any>( versionList, v => v.id === id);
+                    if( idx > -1 ) {
+                        versionList.splice( idx, 1 );
+                    }
+
+                    delete versions[id];
+                    this.versions = this.$store.getters.versionList( this.projectId );
                 }
 
-                delete versions[id];
-                this.versions = this.$store.getters.versionList( this.projectId );
+                this.wait[id] = false;
             }
-
-            this.wait[id] = false;
         }
     }
 </script>

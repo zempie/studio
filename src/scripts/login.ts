@@ -4,7 +4,7 @@ import Cookie from "./cookie";
 import Vue from "vue";
 import _store from './../store';
 
-const cookieName = 'ZempieCookie';
+const cookieName = process.env.VUE_APP_COOKIE_NAME;
 
 class Login {
 

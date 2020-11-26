@@ -20,7 +20,7 @@
                 <q-btn flat round class="q-mx-sm">
                     <q-icon name="help" />
                 </q-btn>
-                <q-btn round class="q-ml-lg" @click="$router.push( '/logout' )">
+                <q-btn round class="q-ml-lg" @click="">
                     <q-avatar>
                         <img :src="$store.getters.user && $store.getters.user.picture || 'img/icon_pic_empty_01.png'">
                     </q-avatar>
@@ -35,7 +35,12 @@
                 content-class=""
         >
             <q-list>
-                <q-item-label header>Zempie Studio Console</q-item-label>
+                <q-toolbar>
+                    <!--                    <q-avatar>-->
+                    <!--                        <img src="favicon.ico" style="width: 34px; height: 34px;">-->
+                    <!--                    </q-avatar>-->
+                    <q-img src="img/zempie-logo.png" width="130px" class="cursor-pointer" @click="goZempie"></q-img>
+                </q-toolbar>
                 <q-separator />
                 <q-item clickable tag="router-link" to="/studio">
                     <q-item-section avatar>
@@ -134,6 +139,10 @@
             // else if( state === LoginState.login ) {
             //     await this.$router.replace('/studio').catch(()=>{});
             // }
+        }
+
+        async goZempie() {
+            location.href = process.env.VUE_APP_ZEMPIE_URL;
         }
     }
 </script>
