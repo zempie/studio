@@ -42,7 +42,7 @@ export default class Tos extends Vue {
     }
 
     onDisagree() {
-
+        location.href = process.env.VUE_APP_ZEMPIE_URL;
     }
 
 }
