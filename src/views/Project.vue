@@ -14,12 +14,12 @@
                     {{title + ' - ' + $store.getters.pageName}}
                 </q-toolbar-title>
                 <!--                <div>Quasar v{{ $q.version }}</div>-->
-                <q-btn flat round>
-                    <q-icon name="notifications" />
-                </q-btn>
-                <q-btn flat round class="q-mx-sm">
-                    <q-icon name="help" />
-                </q-btn>
+<!--                <q-btn flat round>-->
+<!--                    <q-icon name="notifications" />-->
+<!--                </q-btn>-->
+<!--                <q-btn flat round class="q-mx-sm">-->
+<!--                    <q-icon name="help" />-->
+<!--                </q-btn>-->
                 <q-btn round class="q-ml-lg">
                     <q-avatar>
                         <img :src="$store.getters.user && $store.getters.user.picture || 'img/icon_pic_empty_01.png'">

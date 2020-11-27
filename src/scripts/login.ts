@@ -17,7 +17,7 @@ class Login {
                 console.log(idToken);
 
                 const cookie = Cookie.read( cookieName );
-                if( cookie ) {
+                if( cookie && cookie === currentUser.uid ) {
                     const result = await Vue.$http.getUserInfo();
                     if( !result || result.error ) {
                         await Login.logout();
@@ -27,6 +27,10 @@ class Login {
                         _store.commit('user', user);
                         await Login.login();
                     }
+                }
+                else if( cookie ) {
+                    //쿠키는 있지만 기존 사용자랑 다른 상태
+                    await firebase.auth().signOut();
                 }
                 else {
                     await Login.logout();

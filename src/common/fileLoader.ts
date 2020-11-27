@@ -4,7 +4,7 @@ class FileLoader extends EventEmitter {
 
     private readonly loader! : HTMLInputElement;
 
-    constructor( filter : string = 'image/*' ) {
+    constructor( filter : string = '.jpg, .png' ) {
 
         super();
         this.loader = document.createElement('input');
