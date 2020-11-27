@@ -20,10 +20,11 @@
                 <q-btn flat round class="q-mx-sm">
                     <q-icon name="help" />
                 </q-btn>
-                <q-btn round class="q-ml-lg" @click="">
+                <q-btn round class="q-ml-lg">
                     <q-avatar>
                         <img :src="$store.getters.user && $store.getters.user.picture || 'img/icon_pic_empty_01.png'">
                     </q-avatar>
+                    <account-popup-desktop></account-popup-desktop>
                 </q-btn>
             </q-toolbar>
         </q-header>
@@ -110,8 +111,9 @@
 <script lang="ts">
     import { Component, Prop, Vue } from 'vue-property-decorator';
     import {LoginState} from "@/store/modules/user";
+    import AccountPopupDesktop from "@/components/accountPopupDesktop.vue";
 
-    @Component({components: {}})
+    @Component({components: {AccountPopupDesktop}})
     export default class Project extends Vue {
         private leftDrawerOpen : boolean = false;
         @Prop() private projectId! : number;
@@ -143,6 +145,10 @@
 
         async goZempie() {
             location.href = process.env.VUE_APP_ZEMPIE_URL;
+        }
+
+        async goProfile() {
+            location.href = `${process.env.VUE_APP_ZEMPIE_URL}profile`;
         }
     }
 </script>

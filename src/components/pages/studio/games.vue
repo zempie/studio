@@ -14,6 +14,9 @@
                 class="table"
                 :pagination="pagination"
                 :filter="filter"
+                no-data-label="등록된 게임이 없습니다."
+                no-results-label="검색된 게임이 없습니다."
+                rows-per-page-label="한 페이지에 표시할 게임수"
         >
             <template v-slot:body="props">
                 <q-tr :props="props" @click="onClick(props)">
@@ -35,7 +38,7 @@
                 </q-tr>
             </template>
             <template v-slot:top-right>
-                <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
+                <q-input borderless dense debounce="300" v-model="filter" placeholder="검색">
                     <template v-slot:append>
                         <q-icon name="search" />
                     </template>

@@ -14,28 +14,28 @@ Vue.use(VueRouter)
           // which is lazy-loaded when the route is visited.
           component: Home,
       },
-      {
-          path: '/admin',
-          name: 'Admin',
-          // route level code-splitting
-          // this generates a separate chunk (about.[hash].js) for this route
-          // which is lazy-loaded when the route is visited.
-          component: () => import(/* webpackChunkName: "about" */ "@/admin/Admin.vue"),
-          children : [
-              {
-                  path: '/admin/processingVersion',
-                  name: 'ProcessingVersion',
-                  component: () => import(/* webpackChunkName: "about" */ "@/admin/components/processingVersion.vue"),
-                  alias: '/admin'
-              },
-              {
-                  path: '/admin/testGame/:versionId',
-                  name: 'TestGame',
-                  component: () => import(/* webpackChunkName: "about" */ "@/admin/components/testGame.vue"),
-                  props: true,
-              }
-          ]
-      },
+      // {
+      //     path: '/admin',
+      //     name: 'Admin',
+      //     // route level code-splitting
+      //     // this generates a separate chunk (about.[hash].js) for this route
+      //     // which is lazy-loaded when the route is visited.
+      //     component: () => import(/* webpackChunkName: "about" */ "@/admin/Admin.vue"),
+      //     children : [
+      //         {
+      //             path: '/admin/processingVersion',
+      //             name: 'ProcessingVersion',
+      //             component: () => import(/* webpackChunkName: "about" */ "@/admin/components/processingVersion.vue"),
+      //             alias: '/admin'
+      //         },
+      //         {
+      //             path: '/admin/testGame/:versionId',
+      //             name: 'TestGame',
+      //             component: () => import(/* webpackChunkName: "about" */ "@/admin/components/testGame.vue"),
+      //             props: true,
+      //         }
+      //     ]
+      // },
       {
           path: '/studio',
           name: 'Studio',

@@ -10,6 +10,9 @@
             :pagination="pagination"
             :filter="filter"
             ref="table"
+            no-data-label="등록된 버전이 없습니다."
+            no-results-label="검색된 버전이 없습니다."
+            rows-per-page-label="한 페이지에 표시할 버전수"
         >
             <template v-slot:body="props">
                 <q-tr :props="props">
@@ -112,7 +115,7 @@
                 </q-tr>
             </template>
             <template v-slot:top-right>
-                <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
+                <q-input borderless dense debounce="300" v-model="filter" placeholder="검색">
                     <template v-slot:append>
                         <q-icon name="search" />
                     </template>

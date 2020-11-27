@@ -42,6 +42,16 @@ class FileLoader extends EventEmitter {
     }
 }
 
+function mbToByte( mb = 1 ) {
+    return mb * 1024 * 1024;
+}
+
+function kbToByte( kb = 1 ) {
+    return kb * 1024;
+}
+
 export {
-    FileLoader
+    FileLoader,
+    mbToByte,
+    kbToByte,
 }

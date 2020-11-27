@@ -28,10 +28,11 @@
 <!--                <q-btn flat round class="q-mx-sm">-->
 <!--                    <q-icon name="help" />-->
 <!--                </q-btn>-->
-                <q-btn round class="q-ml-lg" @click="">
+                <q-btn round class="q-ml-lg">
                     <q-avatar>
                         <img :src="$store.getters.user && $store.getters.user.picture || 'img/icon_pic_empty_01.png'">
                     </q-avatar>
+                    <account-popup-desktop></account-popup-desktop>
                 </q-btn>
             </q-toolbar>
         </q-header>
@@ -78,15 +79,15 @@
 <!--                    </q-item-section>-->
 <!--                </q-item>-->
 
-                <q-item :active="$route.name==='Admin'" active-class="activeItem" clickable tag="router-link" to="/admin">
-                    <q-item-section avatar>
-                        <q-icon name="admin_panel_settings" />
-                    </q-item-section>
-                    <q-item-section>
-                        <q-item-label>관라자 페이지</q-item-label>
-                        <!--                        <q-item-label caption>chat.quasar.dev</q-item-label>-->
-                    </q-item-section>
-                </q-item>
+<!--                <q-item :active="$route.name==='Admin'" active-class="activeItem" clickable tag="router-link" to="/admin">-->
+<!--                    <q-item-section avatar>-->
+<!--                        <q-icon name="admin_panel_settings" />-->
+<!--                    </q-item-section>-->
+<!--                    <q-item-section>-->
+<!--                        <q-item-label>관라자 페이지</q-item-label>-->
+<!--                        &lt;!&ndash;                        <q-item-label caption>chat.quasar.dev</q-item-label>&ndash;&gt;-->
+<!--                    </q-item-section>-->
+<!--                </q-item>-->
             </q-list>
         </q-drawer>
 
@@ -99,8 +100,9 @@
 
 <script lang="ts">
     import { Component, Prop, Vue } from 'vue-property-decorator';
+    import AccountPopupDesktop from "@/components/accountPopupDesktop.vue";
 
-    @Component({components: {}})
+    @Component({components: {AccountPopupDesktop}})
     export default class Studio extends Vue {
         private leftDrawerOpen : boolean = false;
         private searchText : string = '';
@@ -119,6 +121,10 @@
 
         async goZempie() {
             location.href = process.env.VUE_APP_ZEMPIE_URL;
+        }
+
+        async goProfile() {
+            location.href = `${process.env.VUE_APP_ZEMPIE_URL}profile`;
         }
     }
 </script>

@@ -11,7 +11,10 @@
                 <q-input type="textarea" counter maxlength="2000" v-model="description"/>
             </content-box-block>
             <content-box-block class="q-mb-xl" title="썸네일 이미지">
-                <content-box-block-image-uploader v-on:@file="(file)=>{thumbFile = file;}" text="이미지 업로드"></content-box-block-image-uploader>
+                <content-box-block-image-uploader v-on:@file="(file)=>{thumbFile = file;}" text="이미지 업로드" limit-size="4"></content-box-block-image-uploader>
+                <div class="hintText">
+                    정사각형 모양의 JPEG, PNG 파일을 업로드 해주세요. ( 최대 4MB )
+                </div>
             </content-box-block>
             <content-box-block class="q-mb-xl" title="영문 게임 아이디 설정">
                 <q-toggle v-model="autoGamePath">{{ autoGamePath ? '자동 입력':'수동 입력' }}</q-toggle>
@@ -99,6 +102,7 @@
     import {randomString} from "@/common/util";
     import {ErrorMessage} from "@/scripts/errorMessge";
     import {Notify} from "quasar";
+    import {mbToByte} from "@/common/fileLoader";
 
     @Component({
         components: {
@@ -145,6 +149,8 @@
             this.$store.commit('pageName', '게임 추가');
             // this.gamePath = randomString( 100 );
         }
+
+
 
         @Watch('uploadGameFile')
         private async onChangedFile() {

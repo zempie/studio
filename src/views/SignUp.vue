@@ -33,14 +33,14 @@
 
                 <q-step
                     :name="2"
-                    title="개발자 정보 입력"
+                    title="개발자 정보 확인"
                     prefix="2"
                 >
                     <div class="stepTitle">
-                        개발자 정보 입력
+                        개발자 정보 확인
                     </div>
                     <div class="MAB20">
-                        연락처 정보를 알려 주세요.
+                        연락처 정보를 확인해 주세요.
                     </div>
                     <div class="BLINE MAB40"></div>
                     <content-box-block title="이메일 주소" class="MAB40">
@@ -124,7 +124,6 @@ import {LoginState} from "@/store/modules/user";
     components: {
         FixedBottom,
         Tos,
-        ContentBoxBlockImageUploader,
         ContentBoxLine,
         ContentBoxBlock,
         ContentBox

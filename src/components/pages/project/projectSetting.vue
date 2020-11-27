@@ -11,7 +11,11 @@
                 <q-input type="textarea" counter maxlength="2000" v-model="description"/>
             </content-box-block>
             <content-box-block class="q-mb-xl" title="썸네일 이미지">
-                <content-box-block-image-uploader :default-src="imgUrl" v-on:@file="(file)=>{thumbFile = file;}" text="이미지 업로드"></content-box-block-image-uploader>
+                <content-box-block-image-uploader :default-src="imgUrl" v-on:@file="(file)=>{thumbFile = file;}" text="이미지 업로드" limit-size="4">
+                </content-box-block-image-uploader>
+                <div class="hintText">
+                    정사각형 모양의 JPEG, PNG 파일을 업로드 해주세요. ( 최대 4MB )
+                </div>
             </content-box-block>
             <content-box-block class="q-mb-xl" title="접속 아이디">
                 <q-input v-model="gamePath" readonly />
@@ -27,7 +31,6 @@
                 <div class="text-right">
                     <q-btn @click="deleteProject">삭제</q-btn>
                 </div>
-
             </content-box-block>
         </content-box>
         <fixed-bottom>
