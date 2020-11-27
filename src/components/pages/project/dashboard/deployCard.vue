@@ -55,7 +55,7 @@ export default class DeployCard extends Vue {
 
     async mounted() {
         this.version = this.$store.getters.deployVersion( this.projectId );
-        console.log( this.version );
+        // console.log( this.version );
     }
 }
 </script>

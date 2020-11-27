@@ -196,7 +196,7 @@
 
         async loadVersions() {
             this.versions = this.$store.getters.versionList( this.projectId );
-            console.log( this.versions );
+            // console.log( this.versions );
         }
 
         async expand( props ) {

@@ -14,7 +14,7 @@ class Login {
             if ( currentUser ) {
                 const idToken = await currentUser.getIdToken(true);
                 _store.commit('idToken', idToken);
-                console.log(idToken);
+                // console.log(idToken);
 
                 const cookie = Cookie.read( cookieName );
                 if( cookie && cookie === currentUser.uid ) {
@@ -40,7 +40,7 @@ class Login {
                 const cookie = Cookie.read(cookieName);
                 if( cookie ) {
                     const result = await Vue.$http.session();
-                    console.log(result);
+                    // console.log(result);
                     if( !result || result.error ) {
                         await Login.logout();
                     }
@@ -59,7 +59,7 @@ class Login {
             const currentUser = firebase.auth().currentUser;
             const idToken = await currentUser.getIdToken(true);
             _store.commit('idToken', idToken);
-            console.log(idToken);
+            // console.log(idToken);
             const result = await Vue.$http.getUserInfo();
             if( !result || result.error ) {
                 await Login.logout();

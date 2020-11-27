@@ -86,7 +86,6 @@
             } );
 
             this.versionList = result;
-            console.log( result );
         }
 
         async onClickTestGame( id ) {

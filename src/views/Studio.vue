@@ -114,8 +114,8 @@
             this.isLoad = false;
 
             const loginState = await this.$store.dispatch('loginState');
-            console.log( this.$store.getters.user );
-            console.log( this.$route );
+            // console.log( this.$store.getters.user );
+            // console.log( this.$route );
             this.isLoad = true;
         }
 

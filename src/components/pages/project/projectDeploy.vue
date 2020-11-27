@@ -81,7 +81,7 @@
                 this.version = deployVersion.version;
                 this.number = deployVersion.number;
                 this.deployVersion = deployVersion;
-                console.log( this.deployVersion );
+                // console.log( this.deployVersion );
             }
 
             const passedList = versions.filter( ( version )=>{

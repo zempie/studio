@@ -161,7 +161,7 @@ export default class ProjectAddVersion extends Vue {
         }
 
         const updateVersion = this.$store.getters.updateVersion( this.projectId );
-        console.log( updateVersion );
+        // console.log( updateVersion );
         this.isUpdate = updateVersion && updateVersion.state === 'process';
     }
 
@@ -175,7 +175,7 @@ export default class ProjectAddVersion extends Vue {
         this.$store.commit('ajaxBar', true);
 
         const zip = await ZipUtil.zipFileToZip(this.uploadGameFile);
-        console.log( zip );
+        // console.log( zip );
 
         const files = await ZipUtil.zipToFiles(zip);
         let size = 0;
@@ -190,7 +190,7 @@ export default class ProjectAddVersion extends Vue {
 
         this.totalSize = Number((size / (1024 * 1000)).toFixed( 2 ));
         this.uploadGameFiles = files;
-        console.log(this.uploadGameFiles);
+        // console.log(this.uploadGameFiles);
 
         const htmls = this.uploadGameFiles.filter((file) => {
             return file.name.indexOf('.html') > -1;

@@ -155,7 +155,7 @@ export default class SignUp extends Vue {
 
         }
         else {
-            console.log(this.$store.getters.user);
+            // console.log(this.$store.getters.user);
             this.email = this.$store.getters.user.email;
             this.verifyEmail = this.$store.getters.user.email_verified;
         }
@@ -206,7 +206,7 @@ export default class SignUp extends Vue {
 
     async confirmEmail() {
         await firebase.auth().currentUser.reload();
-        console.log(firebase.auth().currentUser.emailVerified);
+        // console.log(firebase.auth().currentUser.emailVerified);
         if(firebase.auth().currentUser.emailVerified) {
             const result = await this.$http.verifyEmail();
             this.verifyEmail = true;

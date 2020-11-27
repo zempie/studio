@@ -108,7 +108,7 @@
 
 
             const res = await this.$http.getProjects();
-            console.log(res);
+            // console.log(res);
             this.projects = res;
 
             // this.projects = [
@@ -129,12 +129,12 @@
             // ]
             this.$store.commit('projects', res);
 
-            console.log(res);
+            // console.log(res);
 
         }
 
         onClick(data) {
-            console.log(data);
+            // console.log(data);
             this.$router.push( `/project/${data.row.id}` );
         }
     }

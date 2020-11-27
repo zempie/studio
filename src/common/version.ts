@@ -9,7 +9,6 @@ class Version {
     static validity( ver : string ) {
         if( ver as String) {
             const split = ver.split('.');
-            console.log( split );
             if( split.length === 3 ) {
                 const mj = Number(split[0]);
                 const mn = Number(split[1]);

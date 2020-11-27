@@ -127,7 +127,7 @@
             this.isLoad = false;
 
             const loginState = await this.$store.dispatch('loginState');
-            console.log( loginState );
+            // console.log( loginState );
 
             let project = await this.$store.dispatch( 'project', this.projectId );
             this.title = project.name;

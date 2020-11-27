@@ -162,7 +162,7 @@
             this.$store.commit('ajaxBar', true);
 
             const zip = await ZipUtil.zipFileToZip(this.uploadGameFile);
-            console.log( zip );
+            // console.log( zip );
 
             const files = await ZipUtil.zipToFiles(zip);
             let size = 0;
@@ -177,7 +177,7 @@
 
             this.totalSize = Number((size / (1024 * 1000)).toFixed( 2 ));
             this.uploadGameFiles = files;
-            console.log(this.uploadGameFiles);
+            // console.log(this.uploadGameFiles);
 
             const htmls = this.uploadGameFiles.filter((file) => {
                 return file.name.indexOf('.html') > -1;
@@ -282,7 +282,7 @@
                 startFile : this.startFile
             }, this.uploadGameFiles  );
 
-            console.log(result);
+            // console.log(result);
 
             if( !result || result.error ) {
                 Notify.create({

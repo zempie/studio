@@ -81,7 +81,7 @@
             this.$store.commit('pageName', '설정');
 
             let project = await this.$store.dispatch( 'project', this.projectId );
-            console.log( project );
+            // console.log( project );
             this.title = project.name;
             this.description = project.description;
             this.imgUrl = project.picture;

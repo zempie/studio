@@ -28,7 +28,6 @@ export default class Rpc {
                 if (currentUser) {
                     const idToken = await currentUser.getIdToken(true);
                     store.commit('idToken', idToken);
-                    console.log( idToken );
                     if ( retryCount < 3 ) {
                         return await this.requestRpc(method, params, errorCallback, ++retryCount);
                     }

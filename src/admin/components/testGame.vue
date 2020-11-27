@@ -115,7 +115,6 @@
 
                 case '@updateScore':
                 {
-                    console.log( JSON.stringify(message.data) );
                     // scoreDiv.textContent = score;
                     (this.$refs.score as HTMLSpanElement).textContent = score;
                     break;
@@ -177,7 +176,6 @@
             const result = await this.$rpc.requestRpc( 'admin-get-version', {
                 version_id : this.versionId
             } );
-            console.log(result);
             this.version = result.version;
             this.project = result.project;
             this.developer = result.developer;
@@ -190,7 +188,6 @@
                 state : 'passed',
                 id : this.versionId,
             } );
-            console.log(result);
             this.$store.commit('ajaxBar', false);
         }
 
@@ -206,7 +203,6 @@
                 reason : this.reason.text,
                 id : this.versionId
             } );
-            console.log(result);
             this.$store.commit('ajaxBar', false);
         }
 
