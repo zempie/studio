@@ -8,64 +8,65 @@ export default class Http {
 
     }
 
-    async request( promise : Promise<any>, errorCallback : Function | null = null, retryCount : number = 1 ) : Promise<any> {
+    async request( method : string, url : string, data : any, withCredentials : boolean = false, errorCallback : Function | null = null, retryCount : number = 0 ): Promise<any> {
         try {
-            const res = await promise;
-            return res.data;
+            const result = await Vue.$axios({
+                method : method,
+                url,
+                data,
+                withCredentials
+            }  );
+            return result.data;
         }
         catch (error) {
-            if ( error.response.data === 'Unauthorized' ) {
+            if ( error.response.data && error.response.data.error === 'Unauthorized' ) {
                 const currentUser = firebase.auth().currentUser;
                 if (currentUser) {
                     const idToken = await currentUser.getIdToken(true);
                     store.commit('idToken', idToken);
-                    console.log( idToken );
                     if ( retryCount < 3 ) {
-                        return await this.request(promise, errorCallback, ++retryCount);
+                        return await this.request(method, url, data, withCredentials, errorCallback, ++retryCount );
                     }
                     else {
+                        //3번 초과
                         errorCallback && errorCallback(error);
-                        throw new Error('읭?')
+                        throw new Error(error);
                     }
                 }
                 else {
+                    //로그인 안됨.
                     errorCallback && errorCallback(error);
-                    throw new Error('읭?')
+                    throw new Error(error)
                     // return error;
                 }
             }
-            console.error( error.response.data );
+            // throw error;
             return error.response.data;
-            //throw error;
         }
     }
     //USER
     async session() {
-        const response = await this.request( Vue.$axios.get(`/user/verify-session`, {
-            withCredentials : true,
-        }) );
+        const response = await this.request( 'get', '/user/verify-session', undefined, true );
         return response.result || response;
     }
     async getUserInfo() {
-        const response = await this.request( Vue.$axios.get( '/user/info', {
-            withCredentials : true,
-        } ) );
+        const response = await this.request( 'get', '/user/info', undefined, true );
         return response.result || response;
     }
     async verifyEmail() {
-        const response = await this.request( Vue.$axios.post(`/user/verify-email`) );
+        const response = await this.request( 'post', '/user/verify-email', undefined, false );
         return response.result || response;
     }
 
-
-
     async signupDev() {
-        const response = await this.request( Vue.$axios.post( '/studio/developer' ) );
+        const response = await this.request( 'post', '/studio/developer', undefined, false );
         return response.result || response;
     }
 
     async createProject( options : { name? : string, description? : string, pathname? : string, project_picture? : File },
                          updateVersion : { version? : string, autoDeploy? : boolean, startFile? : string }, files : File[] ) {
+
+
         const formData = new FormData();
         for( let k in options ) {
             formData.append( k, options[k] );
@@ -81,7 +82,7 @@ export default class Http {
         }
 
 
-        const response = await this.request( Vue.$axios.post( '/studio/project', formData ) );
+        const response = await this.request( 'post', '/studio/project', formData, false );
         return response.result || response;
     }
 
@@ -97,22 +98,22 @@ export default class Http {
             formData.append( 'file', file );
         }
 
-        const response = await this.request( Vue.$axios.patch( `/studio/project/${options.id}`, formData ) );
+        const response = await this.request( 'post', `/studio/project/${options.id}`, formData, false );
         return response.result || response;
     }
 
     async getProjects() {
-        const response = await this.request( Vue.$axios.get('/studio/project') );
+        const response = await this.request( 'get', '/studio/project', undefined, false );
         return response.result || response;
     }
 
     async getProject( id ) {
-        const response = await this.request( Vue.$axios.get(`/studio/project/${id}`) );
+        const response = await this.request( 'get', `/studio/project/${id}`, undefined, false );
         return response.result || response;
     }
 
     async deleteProject( id ) {
-        const response = await this.request( Vue.$axios.delete(`/studio/project/${id}`) );
+        const response = await this.request( 'delete', `/studio/project/${id}`, undefined, false );
         return response.result || response;
     }
 
@@ -131,17 +132,17 @@ export default class Http {
             formData.append( `file_${i + 1}`, file );
         }
 
-        const response = await this.request( Vue.$axios.post( '/studio/version', formData ) );
+        const response = await this.request( 'post', `/studio/version`, formData, false );
         return response.result || response;
     }
 
     async deleteVersion( id ) {
-        const response = await this.request( Vue.$axios.delete(`/studio/version/${id}`) );
+        const response = await this.request( 'delete', `/studio/version/${id}`, undefined, false );
         return response.result || response;
     }
 
     async confirmGamePath( pathname : string ) {
-        const response = await this.request( Vue.$axios.get(`/studio/verify-pathname/${pathname}`) );
+        const response = await this.request( 'get', `/studio/verify-pathname/${pathname}`, undefined, false );
         return response.result || response;
     }
 

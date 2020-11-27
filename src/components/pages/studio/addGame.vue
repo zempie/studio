@@ -283,17 +283,29 @@
             }, this.uploadGameFiles  );
 
             console.log(result);
-            this.$store.commit('ajaxBar', false);
-            Notify.create({
-                message : '추가 되었습니다.',
-                position : 'top',
-                color : 'primary',
-                timeout: 2000
-            });
 
+            if( !result || result.error ) {
+                Notify.create({
+                    message : '실패하였습니다. 파일을 확인 후 다시 시도해 주세요.',
+                    position : 'top',
+                    color : 'negative',
+                    timeout: 2000
+                });
+            }
+            else {
+                Notify.create({
+                    message : '추가 되었습니다.',
+                    position : 'top',
+                    color : 'primary',
+                    timeout: 2000
+                });
+                this.$router.push('/studio').catch(() => {
+                });
+            }
+
+            this.$store.commit('ajaxBar', false);
             this.waitSave = false;
-            this.$router.push('/studio').catch(() => {
-            });
+
         }
     }
 </script>
