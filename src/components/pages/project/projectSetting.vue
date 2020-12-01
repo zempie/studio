@@ -26,7 +26,7 @@
             <content-box-line></content-box-line>
             <content-box-block title="게임 삭제" class="q-mb-xl">
                 <div class="hintText">
-                    한번 삭제한 게임은 북구 할 수 없습니다.
+                    한번 삭제한 게임은 복구 할 수 없습니다.
                 </div>
                 <div class="text-right">
                     <q-btn @click="deleteProject">삭제</q-btn>
@@ -102,7 +102,7 @@
                 id : this.projectId,
             }
             if( this.title ) {
-                option.title = this.title;
+                option.name = this.title;
             }
             if( this.description ) {
                 option.description = this.description;
