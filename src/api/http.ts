@@ -98,7 +98,7 @@ export default class Http {
             formData.append( 'file', file );
         }
 
-        const response = await this.request( 'patch', `/studio/project/${options.id}`, formData, false );
+        const response = await this.request( 'post', `/studio/project/${options.id}`, formData, false );
         return response.result || response;
     }
 
