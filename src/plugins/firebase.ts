@@ -16,7 +16,17 @@ const firebaseConfig = {
     appId: "1:235654438895:web:03bb6a5b89826f37c9601a",
     measurementId: "G-Z3JMFZBKM3"
 };
-firebase.initializeApp(firebaseConfig);
+const dev_firebaseConfig = {
+    apiKey: "AIzaSyAE2WeLg2L9n2niQMysGbXzACLNIXd5msE",
+    authDomain: "zempie-dev.firebaseapp.com",
+    projectId: "zempie-dev",
+    storageBucket: "zempie-dev.appspot.com",
+    messagingSenderId: "797641160577",
+    appId: "1:797641160577:web:3c10f8e96f7827d2645a80",
+    measurementId: "G-NFY628EX60"
+};
+
+firebase.initializeApp(process.env.VUE_APP_FIRESTORE_CONFIG === 'development' ? dev_firebaseConfig : firebaseConfig);
 initAuth();
 
 function initAuth() {
