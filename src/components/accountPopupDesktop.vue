@@ -23,27 +23,36 @@
                 </q-item-section>
             </q-item>
             <q-separator />
-            <q-item clickable  @click="goToProfile">
-                <q-item-section>
-                    <div class="row">
-                        <q-icon name="fas fa-user" class="q-mr-md self-center"></q-icon><div class="self-center">내 프로필</div>
-                    </div>
-                </q-item-section>
-            </q-item>
-            <q-item clickable @click="goToChannel">
-                <q-item-section>
-                    <div class="row">
-                        <q-icon name="far fa-id-card" class="q-mr-md self-center"></q-icon><div class="self-center">내 채널</div>
-                    </div>
-                </q-item-section>
-            </q-item>
-            <q-item clickable @click="serviceCenter">
-                <q-item-section>
-                    <div class="row">
-                        <q-icon name="far fa-question-circle" class="q-mr-md self-center"></q-icon><div class="self-center">고객센터</div>
-                    </div>
-                </q-item-section>
-            </q-item>
+            <a :href="`${$store.getters.zempieUrl}profile`">
+                <q-item clickable>
+                    <q-item-section>
+                        <div class="row">
+                            <q-icon name="fas fa-user" class="q-mr-md self-center"></q-icon><div class="self-center">내 프로필</div>
+                        </div>
+                    </q-item-section>
+                </q-item>
+            </a>
+
+            <a :href="`${$store.getters.zempieUrl}channel/${$store.getters.user.channel_id}`">
+                <q-item clickable>
+                    <q-item-section>
+                        <div class="row">
+                            <q-icon name="far fa-id-card" class="q-mr-md self-center"></q-icon><div class="self-center">내 채널</div>
+                        </div>
+                    </q-item-section>
+                </q-item>
+            </a>
+
+            <a :href="$store.getters.supportUrl">
+                <q-item clickable>
+                    <q-item-section>
+                        <div class="row">
+                            <q-icon name="far fa-question-circle" class="q-mr-md self-center"></q-icon><div class="self-center">고객센터</div>
+                        </div>
+                    </q-item-section>
+                </q-item>
+            </a>
+
 <!--            <q-item clickable>-->
 <!--                <q-item-section>-->
 <!--                    <div class="row">-->
@@ -73,23 +82,11 @@ export default class AccountPopupDesktop extends Vue {
     mounted() {
         // console.log( this.$q.platform.is.mobile )
     }
-
-    async serviceCenter() {
-        location.href = (process.env.VUE_APP_SERVICE_CENTER_URL);
-    }
-
-    async goToChannel() {
-
-        location.href = `${process.env.VUE_APP_ZEMPIE_URL}channel/${this.$store.getters.user.channel_id}`;
-
-        // await this.$router.push(`/channel/${this.$store.getters.user.channel_id}`);
-    }
-
-    async goToProfile() {
-        location.href = `${process.env.VUE_APP_ZEMPIE_URL}profile`;
-        // await this.$router.push('/profile');
-    }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
 </style>

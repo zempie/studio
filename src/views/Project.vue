@@ -40,7 +40,9 @@
                     <!--                    <q-avatar>-->
                     <!--                        <img src="favicon.ico" style="width: 34px; height: 34px;">-->
                     <!--                    </q-avatar>-->
-                    <q-img src="img/zempie-logo.png" width="130px" class="cursor-pointer" @click="goZempie"></q-img>
+                    <a :href="$store.getters.zempieUrl">
+                        <q-img src="img/zempie-logo.png" width="130px" class="cursor-pointer"></q-img>
+                    </a>
                 </q-toolbar>
                 <q-separator />
                 <q-item clickable tag="router-link" to="/studio">
@@ -141,14 +143,6 @@
             // else if( state === LoginState.login ) {
             //     await this.$router.replace('/studio').catch(()=>{});
             // }
-        }
-
-        async goZempie() {
-            location.href = process.env.VUE_APP_ZEMPIE_URL;
-        }
-
-        async goProfile() {
-            location.href = `${process.env.VUE_APP_ZEMPIE_URL}profile`;
         }
     }
 </script>

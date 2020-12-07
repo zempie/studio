@@ -11,7 +11,10 @@
 
         <fixed-bottom>
             <q-btn class="MAR10" color="light-blue" label="동의함" @click="onAgree" />
-            <q-btn class="MAR30" outline color="light-blue" label="동의안함" @click="onDisagree" />
+            <a :href="$store.getters.zempieUrl">
+                <q-btn class="MAR30" outline color="light-blue" label="동의안함"/>
+            </a>
+
         </fixed-bottom>
 
     </div>
@@ -40,15 +43,14 @@ export default class Tos extends Vue {
 
         this.$emit( '@agree', this.marktPrAgreAtChk );
     }
-
-    onDisagree() {
-        location.href = process.env.VUE_APP_ZEMPIE_URL;
-    }
-
 }
 </script>
 
 <style scoped lang="scss">
+
+a {
+    text-decoration: none;
+}
 
 p, ol, ul, dl, li {
     padding: 0;

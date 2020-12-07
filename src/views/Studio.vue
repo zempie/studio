@@ -47,7 +47,9 @@
 <!--                    <q-avatar>-->
 <!--                        <img src="favicon.ico" style="width: 34px; height: 34px;">-->
 <!--                    </q-avatar>-->
-                    <q-img src="img/zempie-logo.png" width="130px" class="cursor-pointer" @click="goZempie"></q-img>
+                    <a :href="$store.getters.zempieUrl">
+                        <q-img src="img/zempie-logo.png" width="130px" class="cursor-pointer"></q-img>
+                    </a>
                 </q-toolbar>
 
                 <q-item :active="$route.name==='Games'" active-class="activeItem" clickable tag="router-link" to="/studio">
@@ -117,14 +119,6 @@
             // console.log( this.$store.getters.user );
             // console.log( this.$route );
             this.isLoad = true;
-        }
-
-        async goZempie() {
-            location.href = process.env.VUE_APP_ZEMPIE_URL;
-        }
-
-        async goProfile() {
-            location.href = `${process.env.VUE_APP_ZEMPIE_URL}profile`;
         }
     }
 </script>
