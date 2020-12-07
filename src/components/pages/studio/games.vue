@@ -51,6 +51,7 @@
 <script lang="ts">
     import { Component, Prop, Vue } from 'vue-property-decorator';
     import {LoginState} from "@/store/modules/user";
+    import {Notify} from "quasar";
 
     @Component({
         components: {
@@ -105,11 +106,25 @@
         }
 
         async loadProjects() {
+            const result = await this.$http.getProjects();
+            if( !result || result.error ) {
+                Notify.create({
+                    message : result && result.error || '프로젝트 목록을 불러오는데 실패하였습니다.',
+                    position : 'top',
+                    color : 'negative',
+                    timeout: 2000
+                });
+                console.error( result && result.error || 'error' );
+                this.projects = [];
+                this.$store.commit('projects', []);
+            }
+            else {
+                this.projects = result;
+                this.$store.commit('projects', result);
+            }
 
-
-            const res = await this.$http.getProjects();
             // console.log(res);
-            this.projects = res;
+
 
             // this.projects = [
             //     {
@@ -127,7 +142,7 @@
             //         count : 100,
             //     }
             // ]
-            this.$store.commit('projects', res);
+
 
             // console.log(res);
 

@@ -113,8 +113,17 @@ export default {
             // let project = null;
             if( !project ) {
                 const result = await Vue.$http.getProject( id );
-                context.commit('project', result);
-                project = result;
+
+                if( !result || result.error ) {
+                    console.error( result && result.error || 'error' );
+                    alert( '프로젝트를 불러오는데 실패하였습니다.' );
+                }
+                else {
+                    context.commit('project', result);
+                    project = result;
+                }
+
+
             }
             return project;
         }

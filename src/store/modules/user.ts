@@ -80,8 +80,10 @@ export default {
             state.user = payload;
 
             if( state.user && !state.user.email_verified && firebase.auth().currentUser.emailVerified ) {
-                await Vue.$http.verifyEmail();
-                state.user.email_verified = true;
+                const result = await Vue.$http.verifyEmail();
+                if( result && !result.error  ) {
+                    state.user.email_verified = true;
+                }
             }
         },
         userInfoUpdate(state: any, payload : any) {

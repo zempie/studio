@@ -173,8 +173,11 @@ export default class SignUp extends Vue {
         // this.requestSignup = true;
         // const picture = this.$store.getters.user.picture;
         const result = await this.$http.signupDev();
-
-        if(!result || !result.error ) {
+        if( !result || result.error ) {
+            result && result.error && alert( result.error );
+            console.error( result && result.error || 'error' );
+        }
+        else {
             this.$store.getters.user.is_developer = true;
             this.step = 3;
         }

@@ -251,6 +251,18 @@
                             this.confirmedGamePath = true;
                         }
                     }
+
+                    if( !this.confirmedGamePath ) {
+                        Notify.create({
+                            message : '실패하였습니다. 잠시 후 다시 시도해 주세요.',
+                            position : 'top',
+                            color : 'negative',
+                            timeout: 2000
+                        });
+                        this.$store.commit('ajaxBar', false);
+                        this.waitSave = false;
+                        return;
+                    }
                 }
             }
 
@@ -286,11 +298,12 @@
 
             if( !result || result.error ) {
                 Notify.create({
-                    message : '실패하였습니다. 파일을 확인 후 다시 시도해 주세요.',
+                    message : result && result.error || '실패하였습니다. 파일을 확인 후 다시 시도해 주세요.',
                     position : 'top',
                     color : 'negative',
                     timeout: 2000
                 });
+                console.error( result && result.error || 'error' );
             }
             else {
                 Notify.create({

@@ -275,7 +275,7 @@ export default class ProjectAddVersion extends Vue {
 
         if( !version || version.error ) {
             Notify.create({
-                message : '실패하였습니다. 파일을 확인 후 다시 시도해 주세요.',
+                message : version && version.error || '실패하였습니다. 파일을 확인 후 다시 시도해 주세요.',
                 position : 'top',
                 color : 'negative',
                 timeout: 2000

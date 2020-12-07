@@ -114,8 +114,14 @@
             this.wait = false;
 
 
-            if( result.error ) {
-
+            if( !result || result.error ) {
+                Notify.create({
+                    message : result && result.error || '배포에 실패하였습니다.',
+                    position : 'top',
+                    color : 'negative',
+                    timeout: 2000
+                });
+                console.error( result && result.error || 'error' );
             }
             else {
 

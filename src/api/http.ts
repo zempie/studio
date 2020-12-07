@@ -19,7 +19,7 @@ export default class Http {
             return result.data;
         }
         catch (error) {
-            if ( error.response.data && error.response.data.error === 'Unauthorized' ) {
+            if ( error && error.response && error.response.data && error.response.data.error === 'Unauthorized' ) {
                 const currentUser = firebase.auth().currentUser;
                 if (currentUser) {
                     const idToken = await currentUser.getIdToken(true);
@@ -41,7 +41,10 @@ export default class Http {
                 }
             }
             // throw error;
-            return error.response.data;
+            const result = error && error.response && error.response.data || {
+                error : error.message || error,
+            };
+            return result;
         }
     }
     //USER

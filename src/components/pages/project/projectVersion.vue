@@ -130,6 +130,7 @@
     import ContentBox from "@/components/layout/contentBox.vue";
     import ContentBoxBlock from "@/components/layout/contentBoxBlock.vue";
     import _ from 'lodash';
+    import {Notify} from "quasar";
 
     @Component({
         components: {
@@ -218,10 +219,16 @@
             if( ok ) {
                 this.wait[id] = true;
 
-                const response = await this.$http.deleteVersion( id );
+                const result = await this.$http.deleteVersion( id );
 
-                if( response.error ) {
-                    alert( response.error );
+                if( !result || result.error ) {
+                    Notify.create({
+                        message : result && result.error || '프로젝트를 삭제하는데 실패 하였습니다.',
+                        position : 'top',
+                        color : 'negative',
+                        timeout: 2000
+                    });
+                    console.error( result && result.error || 'error' );
                 }
                 else {
                     const versionList = this.$store.getters.versionList( this.projectId );

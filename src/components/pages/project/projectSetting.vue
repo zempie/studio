@@ -113,13 +113,23 @@
             const result = await this.$http.updateProject( option, this.thumbFile );
             this.$store.commit('ajaxBar', false);
 
-            Notify.create({
-                message : '저장 되었습니다.',
-                position : 'top',
-                color : 'primary',
-                timeout: 2000
-            });
-
+            if( !result || result.error ) {
+                Notify.create({
+                    message : result && result.error || '실패 하였습니다.',
+                    position : 'top',
+                    color : 'negative',
+                    timeout: 2000
+                });
+                console.error( result && result.error );
+            }
+            else {
+                Notify.create({
+                    message : '저장 되었습니다.',
+                    position : 'top',
+                    color : 'primary',
+                    timeout: 2000
+                });
+            }
             this.wait = false;
         }
 
@@ -128,16 +138,28 @@
                 return;
             }
 
-            this.wait = true;
-            const result = await this.$http.deleteProject( this.projectId );
-            this.wait = false;
+            const ok = confirm( '한번 삭제한 프로젝트은 다시 복구 할수 없습니다. 정말 삭제 하시겠습니까?' );
+            if( ok ) {
+                this.wait = true;
+                const result = await this.$http.deleteProject( this.projectId );
+                this.wait = false;
 
-            if( result.error ) {
-
+                if( !result || result.error ) {
+                    Notify.create({
+                        message : result && result.error || '프로젝트를 삭제하는데 실패 하였습니다.',
+                        position : 'top',
+                        color : 'negative',
+                        timeout: 2000
+                    });
+                    console.error( result && result.error );
+                }
+                else {
+                    this.$store.getters.projects[ this.projectId ] = null;
+                    await this.$router.replace( '/studio' );
+                }
             }
             else {
-                this.$store.getters.projects[ this.projectId ] = null;
-                await this.$router.replace( '/studio' );
+
             }
         }
     }
