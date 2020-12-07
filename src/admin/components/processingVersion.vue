@@ -87,10 +87,10 @@
 
             this.versionList = result;
         }
-
-        async onClickTestGame( id ) {
-            this.$router.push(`/admin/testGame/${id}` );
-        }
+        //
+        // async onClickTestGame( id ) {
+        //     this.$router.push(`/admin/testGame/${id}` );
+        // }
     }
 </script>
 

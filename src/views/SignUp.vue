@@ -94,7 +94,10 @@
                             축하합니다! 이제 Zempie에 게임 업로드를 신청할 수 있습니다.
                         </div>
 
-                        <q-btn class="q-mb-xl" color="primary" @click="goToAddGame">게임 업로드 하러 가기</q-btn>
+                        <router-link to="/addGame">
+                            <q-btn class="q-mb-xl" color="primary">게임 업로드 하러 가기</q-btn>
+                        </router-link>
+
                     </div>
 
                 </q-step>
@@ -189,10 +192,6 @@ export default class SignUp extends Vue {
         this.step++;
     }
 
-    async goToAddGame() {
-        await this.$router.replace( '/addGame' )
-    }
-
     async requestEmail() {
         this.loadingEmail = true;
 
@@ -223,6 +222,11 @@ export default class SignUp extends Vue {
 </script>
 
 <style scoped lang="scss">
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
     .signup {
         margin-top: 20px;
 

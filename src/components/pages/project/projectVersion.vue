@@ -1,7 +1,9 @@
 <template>
     <q-page class="q-pa-md center-container">
         <div class="text-right">
-            <q-btn class="q-my-sm" color="primary" @click="$router.push(`/project/addVersion/${projectId}`)">버전 추가하기</q-btn>
+            <router-link :to="`/project/addVersion/${projectId}`">
+                <q-btn class="q-my-sm" color="primary">버전 추가하기</q-btn>
+            </router-link>
         </div>
         <q-table
             :data="versions"
@@ -249,6 +251,11 @@
 </script>
 
 <style scoped lang="scss">
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
     .support {
         padding-top: 14px;
 

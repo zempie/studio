@@ -14,7 +14,9 @@
                     업데이트 중인 버전이 없습니다.
                 </div>
                 <div class="full-width text-right">
-                    <q-btn @click="$router.push( `/project/addVersion/${projectId}` )">새 버전 등록하기</q-btn>
+                    <router-link :to="`/project/addVersion/${projectId}`">
+                        <q-btn>새 버전 등록하기</q-btn>
+                    </router-link>
                 </div>
             </div>
 
@@ -37,7 +39,9 @@
                     심의를 통과하였습니다.
                 </div>
                 <div class="full-width text-right">
-                    <q-btn @click="$router.push( `/project/deploy/${projectId}` )">배포하러 가기</q-btn>
+                    <router-link :to="`/project/deploy/${projectId}`">
+                        <q-btn>배포하러 가기</q-btn>
+                    </router-link>
                 </div>
             </div>
 
@@ -51,7 +55,9 @@
                     심의를 실패하였습니다.
                 </div>
                 <div class="full-width text-right">
-                    <q-btn @click="$router.push( `/project/version/${projectId}` )">확인하러 가기</q-btn>
+                    <router-link :to="`/project/version/${projectId}`">
+                        <q-btn>확인하러 가기</q-btn>
+                    </router-link>
                 </div>
             </div>
 
@@ -80,6 +86,11 @@ export default class UpdateCard extends Vue {
 </script>
 
 <style scoped lang="scss">
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
 .versionCard {
     width: 300px;
     height: 240px;

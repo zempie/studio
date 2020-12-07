@@ -3,7 +3,9 @@
 
 
         <div class="text-right">
-            <q-btn class="q-my-sm" color="primary" @click="$router.push('/addGame')">게임 추가하기</q-btn>
+            <router-link to="/addGame">
+                <q-btn class="q-my-sm" color="primary">게임 추가하기</q-btn>
+            </router-link>
         </div>
 
         <q-table
@@ -19,7 +21,7 @@
                 rows-per-page-label="한 페이지에 표시할 게임수"
         >
             <template v-slot:body="props">
-                <q-tr :props="props" @click="onClick(props)">
+                <q-tr :props="props" @click="$router.push(`/project/${props.row.id}`)">
                     <q-td width="10%">
                         <q-img :src="props.row.picture || 'img/default.png'"></q-img>
                     </q-td>
@@ -147,13 +149,12 @@
             // console.log(res);
 
         }
-
-        onClick(data) {
-            // console.log(data);
-            this.$router.push( `/project/${data.row.id}` );
-        }
     }
 </script>
 
 <style scoped lang="scss">
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
 </style>
