@@ -66,7 +66,7 @@ export default class Http {
         return response.result || response;
     }
 
-    async createProject( options : { name? : string, description? : string, pathname? : string, project_picture? : File },
+    async createProject( options : { name? : string, description? : string, hashtags? : string, pathname? : string, project_picture? : File },
                          updateVersion : { version? : string, autoDeploy? : boolean, startFile? : string }, files : File[] ) {
 
 
@@ -89,13 +89,14 @@ export default class Http {
         return response.result || response;
     }
 
-    async updateProject( options : { id : number, name? : string, description? : string, deploy_version_id? : string  }, file? : File ) {
+    async updateProject( options : { id : number, name? : string, description? : string, hashtags? : string, deploy_version_id? : string  }, file? : File ) {
         //파일 업로드
 
         const formData = new FormData();
         if( options.id ) { formData.append( 'id', options.id.toString() ); }
         if( options.name ) { formData.append( 'name', options.name ); }
         if( options.description ) { formData.append( 'description', options.description ); }
+        if( options.hashtags ) { formData.append( 'hashtags', options.hashtags ); }
         if( options.deploy_version_id ) { formData.append( 'deploy_version_id', options.deploy_version_id ); }
         if( file ) {
             formData.append( 'file', file );

@@ -10,6 +10,12 @@
             <content-box-block class="q-mb-xl" title="자세한 설명">
                 <q-input type="textarea" counter maxlength="2000" v-model="description"/>
             </content-box-block>
+            <content-box-block class="q-mb-xl" title="태그">
+                <q-input counter maxlength="255" :error="hashtagsError !== ''" :error-message="hashtagsError" v-model="hashtags" @change="onChangeHashtags"/>
+                <div class="hintText">
+                    게임을 나태날수 있는 단어를 태그로 설정하세요. 여러개를 사용하는경우 , 로 구분해 주세요.
+                </div>
+            </content-box-block>
             <content-box-block class="q-mb-xl" title="썸네일 이미지">
                 <content-box-block-image-uploader :default-src="imgUrl" v-on:@file="(file)=>{thumbFile = file;}" text="이미지 업로드" limit-size="4">
                 </content-box-block-image-uploader>
@@ -48,6 +54,7 @@
     import FixedBottom from "@/components/fixedBottom.vue";
     import ContentBoxLine from "@/components/layout/contentBoxLine.vue";
     import {Notify} from "quasar";
+    import {verifyHashtags} from "@/scripts/verifyHashtag";
 
     @Component({
         components: {
@@ -68,6 +75,9 @@
 
         private description : string = '';
 
+        private hashtags : string = '';
+        private hashtagsError : string = '';
+
         private thumbFile : File = null;
         private imgUrl : string = '';
 
@@ -87,14 +97,25 @@
             this.imgUrl = project.picture;
             this.gameId = project.id;
             this.gamePath = project && project.game && project.game.pathname || '';
+            this.hashtags = project.hashtags;
+        }
+
+        private onChangeHashtags() {
+            if( this.hashtags === '' ) {
+                this.hashtagsError = '';
+            }
+            else {
+                this.hashtagsError = verifyHashtags( this.hashtags );
+            }
         }
 
 
         async save() {
 
-            if( this.wait ) {
+            if( this.wait || this.hashtagsError ) {
                 return;
             }
+
 
             this.wait = true;
 
@@ -106,6 +127,9 @@
             }
             if( this.description ) {
                 option.description = this.description;
+            }
+            if( this.hashtags ) {
+                option.hashtags = this.hashtags;
             }
 
 

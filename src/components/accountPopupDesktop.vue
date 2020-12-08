@@ -1,5 +1,5 @@
 <template>
-    <q-menu>
+    <q-menu v-if="$store.getters.user">
         <q-list style="border-radius: 4px; border: 1px solid rgba(255, 255, 255, 0.28)">
             <q-item class="">
                 <q-item-section class="q-my-md">

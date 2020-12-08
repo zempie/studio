@@ -10,6 +10,12 @@
             <content-box-block class="q-mb-xl" title="자세한 설명">
                 <q-input type="textarea" counter maxlength="2000" v-model="description"/>
             </content-box-block>
+            <content-box-block class="q-mb-xl" title="태그">
+                <q-input counter maxlength="255" :error="hashtagsError !== ''" :error-message="hashtagsError" v-model="hashtags" @change="onChangeHashtags"/>
+                <div class="hintText">
+                    게임을 나태날수 있는 단어를 태그로 설정하세요. 여러개를 사용하는경우 , 로 구분해 주세요.
+                </div>
+            </content-box-block>
             <content-box-block class="q-mb-xl" title="썸네일 이미지">
                 <content-box-block-image-uploader v-on:@file="(file)=>{thumbFile = file;}" text="이미지 업로드" limit-size="4"></content-box-block-image-uploader>
                 <div class="hintText">
@@ -103,6 +109,7 @@
     import {ErrorMessage} from "@/scripts/errorMessge";
     import {Notify} from "quasar";
     import {mbToByte} from "@/common/fileLoader";
+    import {verifyHashtags} from "@/scripts/verifyHashtag";
 
     @Component({
         components: {
@@ -119,6 +126,7 @@
         private title : string = '';
         private titleError : string = '';
         private description : string = '';
+        private hashtags : string = '';
         private thumbFile : File = null;
 
         private autoGamePath : boolean = true;
@@ -126,6 +134,7 @@
         private confirmedGamePath : boolean = false;
         private gamePathError : string = '';
         private waitGamePath : boolean = false;
+        private hashtagsError : string = '';
 
         private uploadMore : boolean = false;
 
@@ -206,6 +215,15 @@
             this.$store.commit('ajaxBar', false);
         }
 
+        private onChangeHashtags() {
+            if( this.hashtags === '' ) {
+                this.hashtagsError = '';
+            }
+            else {
+                this.hashtagsError = verifyHashtags( this.hashtags );
+            }
+        }
+
         async checkGamePath() {
             this.waitGamePath = true;
             const result = await this.$http.confirmGamePath( this.gamePath );
@@ -232,6 +250,10 @@
 
             if( !this.title ) {
                 this.titleError = ErrorMessage.BLANK_GAME_TITLE;
+                isError = true;
+            }
+
+            if( this.hashtagsError ) {
                 isError = true;
             }
 
@@ -288,7 +310,8 @@
                 name : this.title,
                 description : this.description,
                 pathname : this.gamePath,
-                project_picture : this.thumbFile
+                project_picture : this.thumbFile,
+                hashtags : this.hashtags,
             }, {
                 autoDeploy : this.autoDeploy,
                 startFile : this.startFile

@@ -15,15 +15,33 @@
 import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
 import * as firebase from "firebase";
 import {LoginState} from "@/store/modules/user";
+import {QSpinnerGears} from "quasar";
 // import {onAuthStateChanged} from "@/plugins/firebase";
 
 @Component({
-    components: {}
+    components: {
+        QSpinnerGears
+    }
 })
 export default class App extends Vue {
 
     async mounted() {
+
+        const spinner : any = QSpinnerGears;
+
+        this.$q.loading.show({
+            spinner,
+            spinnerColor: 'grey',
+            messageColor: 'white',
+            backgroundColor: 'dark',
+            message: 'Loading...'
+        })
+
         const state = await this.$store.dispatch('loginState');
+
+        this.$q.loading.hide();
+
+
         if( state === LoginState.login ) {
             if( !this.$store.getters.user.is_developer ) {
                 await this.$router.replace('/signup').catch(()=>{});
