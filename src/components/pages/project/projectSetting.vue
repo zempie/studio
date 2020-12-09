@@ -134,8 +134,12 @@
 
 
             this.$store.commit('ajaxBar', true);
+            this.$q.loading.show({
+                message: '잠시만 기다려 주세요.'
+            });
             const result = await this.$http.updateProject( option, this.thumbFile );
             this.$store.commit('ajaxBar', false);
+            this.$q.loading.hide();
 
             if( !result || result.error ) {
                 Notify.create({

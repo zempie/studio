@@ -169,6 +169,9 @@
             }
 
             this.$store.commit('ajaxBar', true);
+            this.$q.loading.show({
+                message: '파일을 확인하고 있습니다. 잠시만 기다려 주세요.'
+            });
 
             const zip = await ZipUtil.zipFileToZip(this.uploadGameFile);
             // console.log( zip );
@@ -213,6 +216,7 @@
             }
 
             this.$store.commit('ajaxBar', false);
+            this.$q.loading.hide();
         }
 
         private onChangeHashtags() {
@@ -281,7 +285,6 @@
                             color : 'negative',
                             timeout: 2000
                         });
-                        this.$store.commit('ajaxBar', false);
                         this.waitSave = false;
                         return;
                     }
@@ -305,6 +308,9 @@
             }
 
             this.$store.commit('ajaxBar', true);
+            this.$q.loading.show({
+                message: '잠시만 기다려 주세요.'
+            });
 
             const result = await this.$http.createProject( {
                 name : this.title,
@@ -340,6 +346,7 @@
             }
 
             this.$store.commit('ajaxBar', false);
+            this.$q.loading.hide();
             this.waitSave = false;
 
         }

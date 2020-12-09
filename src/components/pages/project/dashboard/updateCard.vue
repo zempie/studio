@@ -6,9 +6,6 @@
         <q-separator />
         <q-card-actions class="body">
 
-
-
-
             <div class="full-width" v-if="!version">
                 <div class="text-body1 text-center q-mb-lg">
                     업데이트 중인 버전이 없습니다.
@@ -20,20 +17,18 @@
                 </div>
             </div>
 
-
             <div class="full-width" v-else-if="version && version.state === 'process'">
                 <div class="text-body1 text-center q-mb-lg">
-                    1.0.0 (1)
+                    {{ `${version.version} (${version.number})` }}
                 </div>
                 <div class="text-body1 text-center">
                     심의가 진행중 입니다.
                 </div>
             </div>
 
-
             <div class="full-width" v-else-if="version && version.state === 'passed'">
                 <div class="text-body1 text-center q-mb-lg">
-                    1.0.0 (1)
+                    {{ `${version.version} (${version.number})` }}
                 </div>
                 <div class="text-body1 text-center q-mb-lg">
                     심의를 통과하였습니다.
@@ -45,11 +40,9 @@
                 </div>
             </div>
 
-
-
             <div class="full-width" v-else-if="version && version.state === 'fail'">
                 <div class="text-body1 text-center q-mb-lg">
-                    1.0.4 (5)
+                    {{ `${version.version} (${version.number})` }}
                 </div>
                 <div class="text-body1 text-center q-mb-lg">
                     심의를 실패하였습니다.

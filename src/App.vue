@@ -34,7 +34,7 @@ export default class App extends Vue {
             spinnerColor: 'grey',
             messageColor: 'white',
             backgroundColor: 'dark',
-            message: 'Loading...'
+            message: '로딩중...'
         })
 
         const state = await this.$store.dispatch('loginState');

@@ -173,6 +173,9 @@ export default class ProjectAddVersion extends Vue {
         }
 
         this.$store.commit('ajaxBar', true);
+        this.$q.loading.show({
+            message: '잠시만 기다려 주세요.'
+        });
 
         const zip = await ZipUtil.zipFileToZip(this.uploadGameFile);
         // console.log( zip );
@@ -217,6 +220,7 @@ export default class ProjectAddVersion extends Vue {
         }
 
         this.$store.commit('ajaxBar', false);
+        this.$q.loading.hide();
         Notify.create({
             message : '저장 되었습니다.',
             position : 'top',
@@ -271,6 +275,9 @@ export default class ProjectAddVersion extends Vue {
 
 
         this.$store.commit('ajaxBar', true);
+        this.$q.loading.show({
+            message: '잠시만 기다려 주세요.'
+        });
         const version = await this.$http.createVersion(this.projectId, this.version, this.uploadGameFiles, this.startFile, this.autoDeploy);
 
         if( !version || version.error ) {
@@ -287,6 +294,7 @@ export default class ProjectAddVersion extends Vue {
             project.update_version_id = version.id;
             this.$store.commit('version', version);
             this.$store.commit('ajaxBar', false);
+            this.$q.loading.hide();
             Notify.create({
                 message : '저장 되었습니다.',
                 position : 'top',
