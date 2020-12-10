@@ -22,6 +22,14 @@
                     정사각형 모양의 JPEG, PNG 파일을 업로드 해주세요. ( 최대 4MB )
                 </div>
             </content-box-block>
+
+            <content-box-block class="q-mb-xl" title="움직이는 이미지">
+                <content-box-block-image-uploader-g-i-f v-on:@file="(file)=>{thumbFile2 = file;}" text="이미지 업로드" limit-size="10"></content-box-block-image-uploader-g-i-f>
+                <div class="hintText">
+                    정사각형 모양의 GIF 파일을 업로드 해주세요. ( 최대 10MB )
+                </div>
+            </content-box-block>
+
             <content-box-block class="q-mb-xl" title="영문 게임 아이디 설정">
                 <q-toggle v-model="autoGamePath">{{ autoGamePath ? '자동 입력':'수동 입력' }}</q-toggle>
                 <q-slide-transition>
@@ -110,9 +118,11 @@
     import {Notify} from "quasar";
     import {mbToByte} from "@/common/fileLoader";
     import {verifyHashtags} from "@/scripts/verifyHashtag";
+    import ContentBoxBlockImageUploaderGIF from "@/components/layout/contentBoxBlockImageUploaderGIF.vue";
 
     @Component({
         components: {
+            ContentBoxBlockImageUploaderGIF,
             ContentBox,
             ContentBoxLine,
             ContentBoxBlockImageUploader,
@@ -127,7 +137,9 @@
         private titleError : string = '';
         private description : string = '';
         private hashtags : string = '';
+
         private thumbFile : File = null;
+        private thumbFile2 : File = null;
 
         private autoGamePath : boolean = true;
         private gamePath : string = '';
@@ -317,6 +329,7 @@
                 description : this.description,
                 pathname : this.gamePath,
                 project_picture : this.thumbFile,
+                project_picture2 : this.thumbFile2,
                 hashtags : this.hashtags,
             }, {
                 autoDeploy : this.autoDeploy,

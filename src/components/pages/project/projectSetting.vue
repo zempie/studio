@@ -23,6 +23,13 @@
                     정사각형 모양의 JPEG, PNG 파일을 업로드 해주세요. ( 최대 4MB )
                 </div>
             </content-box-block>
+            <content-box-block class="q-mb-xl" title="움직이는 이미지">
+                <content-box-block-image-uploader-g-i-f :default-src="imgUrl2" v-on:@file="(file)=>{thumbFile2 = file;}" text="이미지 업로드" limit-size="10">
+                </content-box-block-image-uploader-g-i-f>
+                <div class="hintText">
+                    정사각형 모양의 GIF 파일을 업로드 해주세요. ( 최대 10MB )
+                </div>
+            </content-box-block>
             <content-box-block class="q-mb-xl" title="접속 아이디">
                 <q-input v-model="gamePath" readonly />
             </content-box-block>
@@ -55,9 +62,11 @@
     import ContentBoxLine from "@/components/layout/contentBoxLine.vue";
     import {Notify} from "quasar";
     import {verifyHashtags} from "@/scripts/verifyHashtag";
+    import ContentBoxBlockImageUploaderGIF from "@/components/layout/contentBoxBlockImageUploaderGIF.vue";
 
     @Component({
         components: {
+            ContentBoxBlockImageUploaderGIF,
             ContentBoxLine,
             FixedBottom,
             ContentBoxBlockImageUploader,
@@ -81,6 +90,11 @@
         private thumbFile : File = null;
         private imgUrl : string = '';
 
+
+        private thumbFile2 : File = null;
+        private imgUrl2 : string = '';
+
+
         private gamePath : string = '';
 
         private gameId : string = '';
@@ -95,6 +109,7 @@
             this.title = project.name;
             this.description = project.description;
             this.imgUrl = project.picture;
+            this.imgUrl2 = project.picture2;
             this.gameId = project.id;
             this.gamePath = project && project.game && project.game.pathname || '';
             this.hashtags = project.hashtags;
@@ -137,7 +152,7 @@
             this.$q.loading.show({
                 message: '잠시만 기다려 주세요.'
             });
-            const result = await this.$http.updateProject( option, this.thumbFile );
+            const result = await this.$http.updateProject( option, this.thumbFile, this.thumbFile2 );
             this.$store.commit('ajaxBar', false);
             this.$q.loading.hide();
 
@@ -157,6 +172,23 @@
                     color : 'primary',
                     timeout: 2000
                 });
+
+                if( option.name ) {
+
+                }
+                if( option.description ) {
+
+                }
+                if( option.hashtags ) {
+
+                }
+                if(this.thumbFile) {
+
+                }
+                if(this.thumbFile2) {
+
+                }
+
             }
             this.wait = false;
         }
