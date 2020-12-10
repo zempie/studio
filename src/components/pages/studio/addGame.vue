@@ -338,6 +338,10 @@
 
             // console.log(result);
 
+            this.$store.commit('ajaxBar', false);
+            this.$q.loading.hide();
+            this.waitSave = false;
+
             if( !result || result.error ) {
                 Notify.create({
                     message : result && result.error || '실패하였습니다. 파일을 확인 후 다시 시도해 주세요.',
@@ -358,9 +362,7 @@
                 });
             }
 
-            this.$store.commit('ajaxBar', false);
-            this.$q.loading.hide();
-            this.waitSave = false;
+
 
         }
     }

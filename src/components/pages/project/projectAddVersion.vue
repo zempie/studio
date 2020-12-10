@@ -280,6 +280,12 @@ export default class ProjectAddVersion extends Vue {
         });
         const version = await this.$http.createVersion(this.projectId, this.version, this.uploadGameFiles, this.startFile, this.autoDeploy);
 
+
+
+        this.$store.commit('ajaxBar', false);
+        this.$q.loading.hide();
+        this.wait = false;
+
         if( !version || version.error ) {
             Notify.create({
                 message : version && version.error || '실패하였습니다. 파일을 확인 후 다시 시도해 주세요.',
@@ -287,21 +293,17 @@ export default class ProjectAddVersion extends Vue {
                 color : 'negative',
                 timeout: 2000
             });
-            this.wait = false;
         }
         else {
             const project = this.$store.getters.project( this.projectId );
             project.update_version_id = version.id;
             this.$store.commit('version', version);
-            this.$store.commit('ajaxBar', false);
-            this.$q.loading.hide();
             Notify.create({
                 message : '저장 되었습니다.',
                 position : 'top',
                 color : 'primary',
                 timeout: 2000
             });
-            this.wait = false;
             this.$router.replace( `/project/${this.projectId}` );
         }
 
