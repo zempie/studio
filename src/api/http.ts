@@ -60,6 +60,10 @@ export default class Http {
         const response = await this.request( 'post', '/user/verify-email', undefined, false );
         return response.result || response;
     }
+    async signOut() {
+        const response = await this.request( 'post', `/user/sign-out`, undefined, true );
+        return response.result || response;
+    }
 
     async signupDev() {
         const response = await this.request( 'post', '/studio/developer', undefined, false );

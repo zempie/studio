@@ -60,13 +60,13 @@
 <!--                    </div>-->
 <!--                </q-item-section>-->
 <!--            </q-item>-->
-<!--            <q-item clickable @click="logout">-->
-<!--                <q-item-section>-->
-<!--                    <div class="row">-->
-<!--                        <q-icon name="fas fa-sign-out-alt" class="q-mr-md self-center"></q-icon><div class="self-center">로그아웃</div>-->
-<!--                    </div>-->
-<!--                </q-item-section>-->
-<!--            </q-item>-->
+            <q-item clickable @click="logout">
+                <q-item-section>
+                    <div class="row">
+                        <q-icon name="fas fa-sign-out-alt" class="q-mr-md self-center"></q-icon><div class="self-center">로그아웃</div>
+                    </div>
+                </q-item-section>
+            </q-item>
         </q-list>
     </q-menu>
 </template>
@@ -81,6 +81,20 @@ export default class AccountPopupDesktop extends Vue {
 
     mounted() {
         // console.log( this.$q.platform.is.mobile )
+    }
+
+    async logout() {
+
+        try {
+            if( this.$store.getters.user )
+                await this.$http.signOut();
+        }
+        catch (e) {
+
+        }
+
+        await Login.logout();
+        window.location.href = `${process.env.VUE_APP_LOGIN_URL}${encodeURIComponent( process.env.VUE_APP_BASE_URL )}`;
     }
 }
 </script>
