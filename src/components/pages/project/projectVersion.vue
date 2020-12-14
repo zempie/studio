@@ -68,9 +68,9 @@
                             </content-box-block>
                             <content-box-block class="q-mb-lg" title="업로드 파일 정보">
                                 <div class="q-my-md">
-<!--                                    <div>-->
-<!--                                        파일 크기 : 3.12 MB-->
-<!--                                    </div>-->
+                                    <div>
+                                        파일 크기 : {{ props.row.size ? props.row.size + ' MB' : '알 수 없음' }}
+                                    </div>
 <!--                                    <div class="text-right">-->
 <!--                                        <q-btn>-->
 <!--                                            다운로드-->

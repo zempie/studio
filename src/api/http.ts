@@ -71,7 +71,7 @@ export default class Http {
     }
 
     async createProject( options : { name? : string, description? : string, hashtags? : string, pathname? : string, project_picture? : File, project_picture2? : File },
-                         updateVersion : { version? : string, autoDeploy? : boolean, startFile? : string }, files : File[] ) {
+                         updateVersion : { version? : string, autoDeploy? : boolean, startFile? : string, size? : number }, files : File[] ) {
 
 
         const formData = new FormData();
@@ -93,7 +93,7 @@ export default class Http {
         return response.result || response;
     }
 
-    async updateProject( options : { id : number, name? : string, description? : string, hashtags? : string, deploy_version_id? : string  }, file? : File, file2? : File ) {
+    async updateProject( options : { id : number, name? : string, description? : string, hashtags? : string, deploy_version_id? : string }, file? : File, file2? : File ) {
         //파일 업로드
 
         const formData = new FormData();

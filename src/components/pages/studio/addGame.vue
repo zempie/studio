@@ -333,7 +333,8 @@
                 hashtags : this.hashtags,
             }, {
                 autoDeploy : this.autoDeploy,
-                startFile : this.startFile
+                startFile : this.startFile,
+                size : this.totalSize,
             }, this.uploadGameFiles  );
 
             // console.log(result);
