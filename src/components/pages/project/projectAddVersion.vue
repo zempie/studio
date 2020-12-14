@@ -278,7 +278,7 @@ export default class ProjectAddVersion extends Vue {
         this.$q.loading.show({
             message: '잠시만 기다려 주세요.'
         });
-        const version = await this.$http.createVersion(this.projectId, this.version, this.uploadGameFiles, this.startFile, this.autoDeploy);
+        const version = await this.$http.createVersion(this.projectId, this.version, this.uploadGameFiles, this.startFile, this.autoDeploy, this.totalSize);
 
 
 

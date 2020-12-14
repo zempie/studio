@@ -129,7 +129,7 @@ export default class Http {
     }
 
 
-    async createVersion( project_id : number, version : string, files : File[], startFile : string , autoDeploy : boolean) {
+    async createVersion( project_id : number, version : string, files : File[], startFile : string , autoDeploy : boolean, size : number) {
         //파일 업로드
 
         const formData = new FormData();
@@ -137,6 +137,9 @@ export default class Http {
         formData.append( 'version', version );
         formData.append( 'startFile', startFile );
         formData.append( 'autoDeploy', String(autoDeploy) );
+        if( size ) {
+            formData.append( 'size', size.toFixed( 2 ) );
+        }
 
         for( let i = 0; i < files.length; i++ ) {
             const file = files[i] as File;
