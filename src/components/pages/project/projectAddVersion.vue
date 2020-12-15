@@ -49,6 +49,7 @@
                 <q-icon v-if="!uploadMore" name="arrow_drop_down" />
                 <q-icon v-else name="arrow_drop_up" />
             </q-btn>
+            <div class="q-mb-xl"></div>
             <fixed-bottom v-if="!isUpdate">
                 <q-btn :loading="wait" class="q-mr-md" color="primary" @click="save">저장</q-btn>
             </fixed-bottom>
