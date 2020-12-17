@@ -19,7 +19,7 @@
                 />
                 <div v-if="uploadGameFiles.length" class="text-body2 text-right">총 사이즈 : {{ totalSize < 1 ? `${totalSize * 1000} KB`  : `${totalSize} MB` }} </div>
                 <div class="hintText">
-                    게임이 포함된 웹페이지를 압축 파일로 업로드 해 주세요. .zip 파일만 업로드 가능 하고, 압축하지 않은 파일들의 총 크가가 100MB 이하여야 합니다.
+                    게임이 포함된 웹페이지를 압축 파일로 업로드 해 주세요. zip 파일만 업로드가 가능하고, 압축하지 않은 파일들의 총 크기가 100MB 이하여야 합니다.
                 </div>
             </content-box-block>
             <q-slide-transition>

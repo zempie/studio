@@ -217,7 +217,7 @@
 
         async deleteVersion( id ) {
 
-            const ok = confirm('한번 삭제한 버전은 다시 복구 할수 없습니다. 정말 삭제 하시겠습니까?');
+            const ok = confirm('한 번 삭제한 버전은 다시 복구할 수 없습니다. 정말 삭제하시겠습니까?');
             if( ok ) {
                 this.wait[id] = true;
 
@@ -225,7 +225,7 @@
 
                 if( !result || result.error ) {
                     Notify.create({
-                        message : result && result.error || '프로젝트를 삭제하는데 실패 하였습니다.',
+                        message : result && result.error || '버전을 삭제하는데 실패하였습니다.',
                         position : 'top',
                         color : 'negative',
                         timeout: 2000

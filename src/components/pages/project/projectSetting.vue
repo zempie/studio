@@ -13,7 +13,7 @@
             <content-box-block class="q-mb-xl" title="태그">
                 <q-input counter maxlength="255" :error="hashtagsError !== ''" :error-message="hashtagsError" v-model="hashtags" @change="onChangeHashtags"/>
                 <div class="hintText">
-                    게임을 나태날수 있는 단어를 태그로 설정하세요. 여러개를 사용하는경우 , 로 구분해 주세요.
+                    게임을 나타낼 수 있는 단어를 태그로 설정하세요. 여러 개를 사용하는 경우 쉼표로 구분해 주세요.
                 </div>
             </content-box-block>
             <content-box-block class="q-mb-xl" title="썸네일 이미지">
@@ -23,7 +23,7 @@
                     정사각형 모양의 JPEG, PNG 파일을 업로드 해주세요. ( 최대 4MB )
                 </div>
             </content-box-block>
-            <content-box-block class="q-mb-xl" title="움직이는 이미지">
+            <content-box-block class="q-mb-xl" title="미리보기 이미지">
                 <content-box-block-image-uploader-g-i-f :default-src="imgUrl2" v-on:@file="(file)=>{thumbFile2 = file;}" text="이미지 업로드" limit-size="10">
                 </content-box-block-image-uploader-g-i-f>
                 <div class="hintText">
@@ -39,7 +39,7 @@
             <content-box-line></content-box-line>
             <content-box-block title="게임 삭제" class="q-mb-xl">
                 <div class="hintText">
-                    한번 삭제한 게임은 복구 할 수 없습니다.
+                    한 번 삭제한 게임은 복구할 수 없습니다.
                 </div>
                 <div class="text-right">
                     <q-btn @click="deleteProject">삭제</q-btn>
@@ -158,7 +158,7 @@
 
             if( !result || result.error ) {
                 Notify.create({
-                    message : result && result.error || '실패 하였습니다.',
+                    message : result && result.error || '실패하였습니다.',
                     position : 'top',
                     color : 'negative',
                     timeout: 2000
@@ -167,7 +167,7 @@
             }
             else {
                 Notify.create({
-                    message : '저장 되었습니다.',
+                    message : '저장되었습니다.',
                     position : 'top',
                     color : 'primary',
                     timeout: 2000
@@ -198,7 +198,7 @@
                 return;
             }
 
-            const ok = confirm( '한번 삭제한 프로젝트은 다시 복구 할수 없습니다. 정말 삭제 하시겠습니까?' );
+            const ok = confirm( '한 번 삭제한 게임은 복구할 수 없습니다. 정말 삭제하시겠습니까?' );
             if( ok ) {
                 this.wait = true;
                 const result = await this.$http.deleteProject( this.projectId );
@@ -206,7 +206,7 @@
 
                 if( !result || result.error ) {
                     Notify.create({
-                        message : result && result.error || '프로젝트를 삭제하는데 실패 하였습니다.',
+                        message : result && result.error || '게임을 삭제하는데 실패하였습니다.',
                         position : 'top',
                         color : 'negative',
                         timeout: 2000

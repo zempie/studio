@@ -23,7 +23,7 @@
                 </div>
             </content-box-block>
 
-            <content-box-block class="q-mb-xl" title="움직이는 이미지">
+            <content-box-block class="q-mb-xl" title="미리보기 이미지">
                 <content-box-block-image-uploader-g-i-f v-on:@file="(file)=>{thumbFile2 = file;}" text="이미지 업로드" limit-size="10"></content-box-block-image-uploader-g-i-f>
                 <div class="hintText">
                     정사각형 모양의 GIF 파일을 업로드 해주세요. ( 최대 10MB )
@@ -71,7 +71,7 @@
                 />
                 <div v-if="uploadGameFiles.length" class="text-body2 text-right">총 사이즈 : {{ totalSize < 1 ? `${totalSize * 1000} KB`  : `${totalSize} MB` }} </div>
                 <div class="hintText">
-                    게임이 포함된 웹페이지를 압축 파일로 업로드 해 주세요. .zip 파일만 업로드 가능 하고, 압축하지 않은 파일들의 총 크가가 100MB 이하여야 합니다.
+                    게임이 포함된 웹페이지를 압축 파일로 업로드 해 주세요. zip 파일만 업로드가 가능하고, 압축하지 않은 파일들의 총 크기가 100MB 이하여야 합니다.
                 </div>
             </content-box-block>
             <q-slide-transition>

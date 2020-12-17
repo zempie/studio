@@ -32,6 +32,7 @@ export default class ContentBoxBlockImageUploaderGIF extends Vue {
 
         if( this.limitSize && file.size > mbToByte( this.limitSize ) ) {
             alert(`파일 크기가 허용된 사이즈보다 큽니다. (최대 ${this.limitSize}MB) `);
+            return;
         }
 
         this.url = data;
