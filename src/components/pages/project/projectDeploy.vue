@@ -143,7 +143,7 @@
                 }
 
                 Notify.create({
-                    message : '배포 되었습니다.',
+                    message : '배포되었습니다.',
                     position : 'top',
                     color : 'primary',
                     timeout: 2000

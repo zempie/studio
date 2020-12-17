@@ -223,7 +223,7 @@ export default class ProjectAddVersion extends Vue {
         this.$store.commit('ajaxBar', false);
         this.$q.loading.hide();
         Notify.create({
-            message : '저장 되었습니다.',
+            message : '저장되었습니다.',
             position : 'top',
             color : 'primary',
             timeout: 2000
@@ -300,7 +300,7 @@ export default class ProjectAddVersion extends Vue {
             project.update_version_id = version.id;
             this.$store.commit('version', version);
             Notify.create({
-                message : '저장 되었습니다.',
+                message : '저장되었습니다.',
                 position : 'top',
                 color : 'primary',
                 timeout: 2000

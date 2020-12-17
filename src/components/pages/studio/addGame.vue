@@ -354,7 +354,7 @@
             }
             else {
                 Notify.create({
-                    message : '추가 되었습니다.',
+                    message : '추가되었습니다.',
                     position : 'top',
                     color : 'primary',
                     timeout: 2000
