@@ -71,6 +71,16 @@
                         <!--                        <q-item-label caption>github.com/quasarframework</q-item-label>-->
                     </q-item-section>
                 </q-item>
+
+                <q-item :active="$route.name==='TestGame'" active-class="activeItem" clickable @click="onClickTestGame">
+                    <q-item-section avatar>
+                        <q-icon name="flight_takeoff" />
+                    </q-item-section>
+                    <q-item-section>
+                        <q-item-label>게임 테스트</q-item-label>
+                        <!--                        <q-item-label caption>github.com/quasarframework</q-item-label>-->
+                    </q-item-section>
+                </q-item>
 <!--                <q-item :active="$route.name==='Setting'" active-class="activeItem" clickable tag="router-link" to="/setting">-->
 <!--                    <q-item-section avatar>-->
 <!--                        <q-icon name="settings" />-->
@@ -119,6 +129,10 @@
             // console.log( this.$store.getters.user );
             // console.log( this.$route );
             this.isLoad = true;
+        }
+
+        async onClickTestGame() {
+            window.open( this.$store.getters.gameTestUrl );
         }
     }
 </script>

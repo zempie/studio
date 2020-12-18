@@ -4,6 +4,7 @@ export default {
         ajaxBar : false,
         zempieUrl : process.env.VUE_APP_ZEMPIE_URL,
         supportUrl : process.env.VUE_APP_SERVICE_CENTER_URL,
+        gameTestUrl : process.env.VUE_APP_LAUNCHER_TEST_URL,
     },
     getters : {
         pageName(state) {
@@ -17,6 +18,9 @@ export default {
         },
         supportUrl(state) {
             return state.supportUrl;
+        },
+        gameTestUrl(state) {
+            return state.gameTestUrl;
         },
     },
 
