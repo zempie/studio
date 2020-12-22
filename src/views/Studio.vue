@@ -72,6 +72,16 @@
                     </q-item-section>
                 </q-item>
 
+<!--                <q-item :active="$route.name==='SDK'" active-class="activeItem" clickable tag="router-link" to="/sdk">-->
+<!--                    <q-item-section avatar>-->
+<!--                        <q-icon name="fas fa-file-code"/>-->
+<!--                    </q-item-section>-->
+<!--                    <q-item-section>-->
+<!--                        <q-item-label>SDK</q-item-label>-->
+<!--                        &lt;!&ndash;                        <q-item-label caption>github.com/quasarframework</q-item-label>&ndash;&gt;-->
+<!--                    </q-item-section>-->
+<!--                </q-item>-->
+
                 <q-item :active="$route.name==='TestGame'" active-class="activeItem" clickable @click="onClickTestGame">
                     <q-item-section avatar>
                         <q-icon name="flight_takeoff" />

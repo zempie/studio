@@ -1,5 +1,10 @@
 function verifyHashtags( hashtags : string ) : string {
     const tags = hashtags.split( ',' );
+
+    if( tags.length > 20 ) {
+        return '입력된 태그가 너무 많습니다. 20개 이내로 설정해 주세요.'
+    }
+
     for( let i = 0; i < tags.length; i++ ) {
         const tag = tags[i].trim() as string;
         // const keyword = tag.substr( 1 );

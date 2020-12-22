@@ -57,6 +57,11 @@ Vue.use(VueRouter)
                   name: 'Setting',
                   component: () => import(/* webpackChunkName: "about" */ "@/components/pages/studio/setting.vue"),
               },
+              {
+                  path: '/sdk',
+                  name: 'SDK',
+                  component: () => import(/* webpackChunkName: "about" */ "@/components/pages/studio/sdk.vue"),
+              },
           ]
       },
       // {

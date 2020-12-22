@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
+    "@quasar/quasar-ui-qmarkdown": "^1.4.0",
     "@types/lodash": "^4.14.160",
     "core-js": "^3.6.5",
     "firebase": "^7.14.2",
