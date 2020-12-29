@@ -71,7 +71,7 @@ export default class Http {
     }
 
     async createProject( options : { name? : string, description? : string, hashtags? : string, pathname? : string, project_picture? : File, project_picture2? : File },
-                         updateVersion : { version? : string, autoDeploy? : boolean, startFile? : string, size? : number }, files : File[] ) {
+                         updateVersion : { version? : string, autoDeploy? : boolean, startFile? : string, size? : number, version_description? : string }, files : File[] ) {
 
 
         const formData = new FormData();
@@ -129,7 +129,7 @@ export default class Http {
     }
 
 
-    async createVersion( project_id : number, version : string, files : File[], startFile : string , autoDeploy : boolean, size : number) {
+    async createVersion( project_id : number, version : string, files : File[], startFile : string , autoDeploy : boolean, size : number, description : string) {
         //파일 업로드
 
         const formData = new FormData();
@@ -137,6 +137,7 @@ export default class Http {
         formData.append( 'version', version );
         formData.append( 'startFile', startFile );
         formData.append( 'autoDeploy', String(autoDeploy) );
+        formData.append( 'description', description );
         if( size ) {
             formData.append( 'size', size.toFixed( 2 ) );
         }

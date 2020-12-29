@@ -8,6 +8,13 @@
 <!--                <q-input :error="titleError !== ''" :error-message="titleError" counter maxlength="50" v-model="title" @change="(str)=>{ if( str ){ titleError = '' } }" />-->
 <!--            </content-box-block>-->
 
+            <content-box-block class="q-mb-xl" title="버전 설명">
+                <q-input type="textarea" counter maxlength="2000" v-model="description"/>
+                <div class="hintText">
+                    새로운 버전에 대한 내용을 입력해 주세요.
+                </div>
+            </content-box-block>
+
             <content-box-block class="q-mb-xl" title="게임 업로드">
                 <q-input
                     @input="val => { uploadGameFile = val[0] }"
@@ -127,6 +134,8 @@ import {Notify} from "quasar";
 })
 export default class ProjectAddVersion extends Vue {
     @Prop() private projectId!: number;
+
+    private description : string = '';
 
     private limitSize : number = 1024 * 1000 * 100;
     private totalSize : number = 0;
@@ -279,7 +288,7 @@ export default class ProjectAddVersion extends Vue {
         this.$q.loading.show({
             message: '잠시만 기다려 주세요.'
         });
-        const version = await this.$http.createVersion(this.projectId, this.version, this.uploadGameFiles, this.startFile, this.autoDeploy, this.totalSize);
+        const version = await this.$http.createVersion(this.projectId, this.version, this.uploadGameFiles, this.startFile, this.autoDeploy, this.totalSize, this.description);
 
 
 

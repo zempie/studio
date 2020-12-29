@@ -12,6 +12,9 @@ function verifyHashtags( hashtags : string ) : string {
         if( keyword.indexOf( '#' ) > -1 ) {
             return '#은 사용할 수 없습니다.';
         }
+        else if( keyword.indexOf( ' ' ) > -1 ) {
+            return '띄어쓰기는 사용할 수 없습니다.';
+        }
 
         for( let j = 0; j < tags.length; j++ ) {
             if( i === j ) continue;

@@ -89,6 +89,12 @@
                         <q-toggle v-model="autoDeploy">{{ autoDeploy ? '자동 배포모드' : '자동 배포모드 해제' }}</q-toggle>
                         <div class="hintText">자동배포 모드에서는 심사를 마치면 자동으로 공개됩니다. 자동배포를 원하지 않으시면, 자동배포 모드를 비활성화하고 심사가 끝난후에 수동으로 배포하십시오.</div>
                     </content-box-block>
+                    <content-box-block class="q-mb-xl" title="버전 설명">
+                        <q-input type="textarea" counter maxlength="2000" v-model="versionDescription"/>
+                        <div class="hintText">
+                            새로운 버전에 대한 내용을 입력해 주세요.
+                        </div>
+                    </content-box-block>
                 </div>
             </q-slide-transition>
 
@@ -161,6 +167,8 @@
         private startFileError : string = '';
 
         private autoDeploy : boolean = true;
+
+        private versionDescription : string = '';
 
         private waitSave : boolean = false;
 
@@ -324,6 +332,8 @@
                 message: '잠시만 기다려 주세요.'
             });
 
+            console.log( this.versionDescription );
+
             const result = await this.$http.createProject( {
                 name : this.title,
                 description : this.description,
@@ -335,6 +345,7 @@
                 autoDeploy : this.autoDeploy,
                 startFile : this.startFile,
                 size : this.totalSize,
+                version_description : this.versionDescription
             }, this.uploadGameFiles  );
 
             // console.log(result);
