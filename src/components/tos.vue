@@ -1,7 +1,7 @@
 <template>
     <div style="position: relative">
         <div class="box">
-            <iframe src="https://zempie-rsc.s3.ap-northeast-2.amazonaws.com/static/tos/dark/dev-tos/index.html">
+            <iframe :src="$store.getters.devTosUrl">
 
             </iframe>
             <p class="join_check">

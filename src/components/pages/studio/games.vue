@@ -23,7 +23,7 @@
             <template v-slot:body="props">
                 <q-tr :props="props" @click="$router.push(`/project/${props.row.id}`)">
                     <q-td width="10%">
-                        <q-img :src="props.row.picture || 'img/default.png'"></q-img>
+                        <q-img :src="props.row.picture_webp || props.row.picture || 'img/default.png'"></q-img>
                     </q-td>
                     <q-td width="30%" :props="props" key="name">
                         {{props.row.name}}

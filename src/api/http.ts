@@ -101,7 +101,7 @@ export default class Http {
         if( options.name ) { formData.append( 'name', options.name ); }
         if( options.description ) { formData.append( 'description', options.description ); }
         if( options.hashtags ) { formData.append( 'hashtags', options.hashtags ); }
-        if( options.deploy_version_id ) { formData.append( 'deploy_version_id', options.deploy_version_id ); }
+        if( options.deploy_version_id !== undefined ) { formData.append( 'deploy_version_id', options.deploy_version_id ); }
         if( file ) {
             formData.append( 'file', file );
         }

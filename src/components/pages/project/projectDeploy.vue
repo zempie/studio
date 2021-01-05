@@ -31,10 +31,22 @@
                 <q-select v-model="selectVersion" :options="options"></q-select>
             </content-box-block>
             <div class="q-pb-xl"></div>
+
+            <content-box-block title="배포 취소" class="q-mb-xl" v-if="deployVersion">
+                <div class="hintText">
+                    배포된 버전의 게임을 비공개로 전환합니다.
+                </div>
+                <div class="text-right">
+                    <q-btn @click="cancelDeploy">배포 해제</q-btn>
+                </div>
+            </content-box-block>
+
         </content-box>
         <fixed-bottom>
             <q-btn :loading="wait" color="primary q-mx-md" @click="deploy">배포</q-btn>
         </fixed-bottom>
+
+
     </q-page>
 </template>
 
@@ -70,6 +82,7 @@
 
         private wait : boolean = false;
 
+
         async mounted() {
             this.$store.commit('pageName', '배포');
 
@@ -89,7 +102,56 @@
             } );
 
             this.options = passedList.map( version => version.version );
+        }
 
+        async cancelDeploy() {
+            if( this.wait ) {
+                return;
+            }
+            this.wait = true;
+
+            this.$store.commit('ajaxBar', true);
+            this.$q.loading.show({
+                message: '잠시만 기다려 주세요.'
+            });
+
+            const result = await this.$http.updateProject( {
+                id : this.projectId,
+                deploy_version_id : '0',
+            } );
+
+            this.$store.commit('ajaxBar', false);
+            this.$q.loading.hide();
+            this.wait = false;
+
+            if( !result || result.error ) {
+                Notify.create({
+                    message : result && result.error || '실패하였습니다.',
+                    position : 'top',
+                    color : 'negative',
+                    timeout: 2000
+                });
+                console.error( result && result.error || 'error' );
+            }
+            else {
+
+                if( this.deployVersion ) {
+                    const versions = this.$store.getters.versions( this.projectId );
+                    const preVersion = _.find( versions, v => v.number === this.deployVersion.number );
+                    preVersion.state = 'passed';
+                    const project = this.$store.getters.project( this.projectId );
+                    project.deploy_version_id = null;
+                }
+
+                Notify.create({
+                    message : '게임이 비공개 되었습니다.',
+                    position : 'top',
+                    color : 'primary',
+                    timeout: 2000
+                });
+
+                await this.$router.replace( `/project/${this.projectId}` );
+            }
         }
 
         async deploy() {
