@@ -8,12 +8,12 @@
 <!--                <q-input :error="titleError !== ''" :error-message="titleError" counter maxlength="50" v-model="title" @change="(str)=>{ if( str ){ titleError = '' } }" />-->
 <!--            </content-box-block>-->
 
-            <content-box-block class="q-mb-xl" title="버전 설명">
-                <q-input type="textarea" counter maxlength="2000" v-model="description"/>
-                <div class="hintText">
-                    새로운 버전에 대한 내용을 입력해 주세요.
-                </div>
-            </content-box-block>
+<!--            <content-box-block class="q-mb-xl" title="버전 설명">-->
+<!--                <q-input type="textarea" counter maxlength="2000" v-model="description"/>-->
+<!--                <div class="hintText">-->
+<!--                    새로운 버전에 대한 내용을 입력해 주세요.-->
+<!--                </div>-->
+<!--            </content-box-block>-->
 
             <content-box-block class="q-mb-xl" title="게임 업로드">
                 <q-input

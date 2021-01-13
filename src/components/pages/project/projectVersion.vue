@@ -63,9 +63,9 @@
 <!--                                    <span class="text-green-8">(90점)</span>-->
 <!--                                </div>-->
 <!--                            </content-box-block>-->
-                            <content-box-block class="q-mb-lg"  v-if="props.row.description" title="버전 설명">
-                                <q-input type="textarea" v-model="props.row.description" readonly></q-input>
-                            </content-box-block>
+<!--                            <content-box-block class="q-mb-lg"  v-if="props.row.description" title="버전 설명">-->
+<!--                                <q-input type="textarea" v-model="props.row.description" readonly></q-input>-->
+<!--                            </content-box-block>-->
 
                             <content-box-block class="q-mb-lg"  v-if="props.row.reason" title="실패사유">
                                 <q-input type="textarea" v-model="props.row.reason" readonly></q-input>
