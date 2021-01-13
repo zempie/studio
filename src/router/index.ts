@@ -139,7 +139,8 @@ Vue.use(VueRouter)
 ]
 
 const router = new VueRouter({
-  routes
+    mode : process.env.VUE_APP_ROUTER_MODE as 'hash' | 'history',
+    routes
 })
 
 export default router

@@ -10,6 +10,6 @@ module.exports = {
         'quasar'
     ],
 
-    publicPath: './',
+    publicPath: '/',
     productionSourceMap: false
 }
