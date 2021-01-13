@@ -6,7 +6,7 @@
                     <div class="row no-wrap">
                         <div>
                             <q-avatar size="40px">
-                                <img :src="$store.getters.user && $store.getters.user.picture || 'img/icon_pic_empty_01.png'">
+                                <q-img :src="$store.getters.user && $store.getters.user.picture || 'img/icon_pic_empty_01.png'"></q-img>
                             </q-avatar>
                         </div>
                         <div class="q-ma-sm"></div>

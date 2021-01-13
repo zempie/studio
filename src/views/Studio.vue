@@ -30,7 +30,7 @@
 <!--                </q-btn>-->
                 <q-btn round class="q-ml-lg">
                     <q-avatar>
-                        <img :src="$store.getters.user && $store.getters.user.picture || 'img/icon_pic_empty_01.png'">
+                        <q-img :src="$store.getters.user && $store.getters.user.picture || 'img/icon_pic_empty_01.png'"></q-img>
                     </q-avatar>
                     <account-popup-desktop></account-popup-desktop>
                 </q-btn>
