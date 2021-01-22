@@ -75,6 +75,7 @@
 import {Vue, Component, Prop} from 'vue-property-decorator';
 import firebase from "firebase";
 import Login from "@/scripts/login";
+import {UrlHelper} from "@/scripts/util";
 
 @Component
 export default class AccountPopupDesktop extends Vue {
@@ -94,7 +95,10 @@ export default class AccountPopupDesktop extends Vue {
         }
 
         await Login.logout();
-        window.location.href = `${process.env.VUE_APP_LOGIN_URL}${encodeURIComponent( process.env.VUE_APP_BASE_URL )}`;
+
+        const url = UrlHelper.addParameter( process.env.VUE_APP_LOGIN_URL, 'z_redirect_url', process.env.VUE_APP_BASE_URL );
+
+        window.location.href = url;
     }
 }
 </script>

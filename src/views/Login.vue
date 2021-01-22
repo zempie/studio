@@ -33,6 +33,7 @@
     import { Component, Prop, Vue } from 'vue-property-decorator';
     import firebase from "firebase";
     import {LoginState} from "@/store/modules/user";
+    import {UrlHelper} from "@/scripts/util";
     // import {onAuthStateChanged} from "@/plugins/firebase";
 
     @Component({
@@ -59,7 +60,9 @@
             // }
 
 
-            window.location.href = `${process.env.VUE_APP_LOGIN_URL}${encodeURIComponent( process.env.VUE_APP_BASE_URL )}`;
+            const url = UrlHelper.addParameter( process.env.VUE_APP_LOGIN_URL, 'z_redirect_url', process.env.VUE_APP_BASE_URL );
+
+            window.location.href = url;
         }
 
 
