@@ -5,10 +5,14 @@ export default {
 
         limit : 20,
         mails : [],
+        mailPopupMobile : false,
     },
     getters: {
         mails : ( state : any ) => {
             return state.mails;
+        },
+        mailPopupMobile(state: any) {
+            return state.mailPopupMobile;
         },
     },
 
@@ -23,11 +27,14 @@ export default {
         },
         deleteMail : ( state : any, payload : any ) => {
             state.mails = state.mails.filter( mail => mail.id != payload.id );
-        }
+        },
+        mailPopupMobile(state: any, payload: boolean) {
+            state.mailPopupMobile = payload;
+        },
     },
     actions: {
         loadMails : async (context: any) => {
-            const result = await Vue.$api.mails();
+            const result = await Vue.$http.mails();
             if( !result || result.error ) {
                 result && result.error && console.error( result.error );
                 context.commit('mails', []);

@@ -108,7 +108,7 @@ export default class AccountPopupMobile extends Vue {
         if( mail.content !== null && mail.content !== undefined ) {
             return;
         }
-        const result = await this.$api.readMail(mail_id);
+        const result = await this.$http.readMail(mail_id);
         if( !result || result.error ) {
             console.error(result);
         }
