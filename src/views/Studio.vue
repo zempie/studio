@@ -28,12 +28,22 @@
 <!--                <q-btn flat round class="q-mx-sm">-->
 <!--                    <q-icon name="help" />-->
 <!--                </q-btn>-->
-                <q-btn round class="q-ml-lg">
+                <!-- 알람 -->
+                <q-avatar class="cursorPoint mailIcon" v-if="$store.getters.isLogin" size="30px" @click="openMailPopup">
+                    <q-icon name="fas fa-bullhorn" class=" self-center"></q-icon>
+                    <mail-popup-desktop v-if="$q.platform.is.desktop"></mail-popup-desktop>
+                    <mail-popup-mobile v-if="$q.platform.is.mobile"></mail-popup-mobile>
+                </q-avatar>
+                <q-btn round class="q-ml-md">
                     <q-avatar>
                         <q-img :src="$store.getters.user && $store.getters.user.picture || 'img/icon_pic_empty_01.png'"></q-img>
                     </q-avatar>
                     <account-popup-desktop></account-popup-desktop>
+                
+              
+
                 </q-btn>
+                
             </q-toolbar>
         </q-header>
 
@@ -60,6 +70,7 @@
                         <q-item-label>모든 게임</q-item-label>
                             <!--                        <q-item-label caption>quasar.dev</q-item-label>-->
                     </q-item-section>
+                    
                 </q-item>
 
                 <q-item :active="$route.name==='AddGame'" active-class="activeItem" clickable tag="router-link" to="/addGame">
@@ -123,8 +134,10 @@
 <script lang="ts">
     import { Component, Prop, Vue } from 'vue-property-decorator';
     import AccountPopupDesktop from "@/components/accountPopupDesktop.vue";
+    import MailPopupMobile from "@/components/menu/mailPopupMobile.vue";
+    import MailPopupDesktop from "@/components/menu/mailPopupDesktop.vue";
 
-    @Component({components: {AccountPopupDesktop}})
+    @Component({components: {AccountPopupDesktop, MailPopupDesktop, MailPopupMobile}})
     export default class Studio extends Vue {
         private leftDrawerOpen : boolean = false;
         private searchText : string = '';
@@ -144,6 +157,11 @@
         async onClickTestGame() {
             window.open( this.$store.getters.gameTestUrl );
         }
+
+        async openMailPopup() {
+    await this.$store.dispatch('loadMails');
+    this.$store.commit('mailPopupMobile', true);
+}
     }
 </script>
 
@@ -155,5 +173,26 @@
     .activeItem {
         color: inherit;
         background-color: #60676b;
+    }
+    // 알람
+    .mailIcon {
+        position: relative;
+        text-align: center;
+        width: 30px;
+        height: 30px;
+        i {
+            margin: 0 auto;
+        }
+        &::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid white;
+            left: 0;
+            top: 0;
+            border-radius: 50%;
+            z-index: -1;
+        }
     }
 </style>

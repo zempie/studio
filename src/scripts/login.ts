@@ -80,6 +80,7 @@ class Login {
     static async logout() {
         await firebase.auth().signOut();
         await _store.dispatch('logout');
+        await _store.commit('clearMail');
         Cookie.delete( cookieName, process.env.VUE_APP_COOKIE_DOMAIN );
     }
 
