@@ -7,7 +7,7 @@
     <div class="game-selection row flex-center flex text-center">
       <q-card class="my-card col-3 q-mr-lg">
         <q-card-section >
-        <div class="shooting"></div>
+        <i class="round-icon fas fa-rocket"></i>
         </q-card-section >
         <q-separator />
         <q-card-section class="zemplate-desc">
@@ -19,7 +19,7 @@
       </q-card>
       <q-card class="my-card col-3 q-mr-lg ">
         <q-card-section >
-        <div class="shooting"></div>
+        <i class="round-icon fas fa-running"></i>
         </q-card-section >
         <q-separator />
         <q-card-section class="zemplate-desc">
@@ -33,7 +33,7 @@
       <q-card class="my-card col-3">
         <q-card-section class="dimmed">
           <div class="dimmed-above"> COMING<br> SOON!</div>
-        <div class="shooting"></div>
+        <i class="round-icon fas fa-question"></i>
         </q-card-section>
 <q-separator />
         <q-card-section class="zemplate-desc">
@@ -58,7 +58,7 @@ export default class CreateGame extends Vue {
   border-radius: 20px;
   padding: 10px 40px 10px 40px;
 }
-.shooting {
+.round-icon {
   background-color: #0009;
   width: 100px;
   height: 100px;
@@ -94,5 +94,8 @@ export default class CreateGame extends Vue {
     height: 100%;
     top: 0;
     justify-content: center
+}
+.fa-running:before, .fa-rocket:before, .fa-question::before{
+  font-size: 67px;
 }
 </style>

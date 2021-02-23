@@ -28,22 +28,20 @@
 <!--                <q-btn flat round class="q-mx-sm">-->
 <!--                    <q-icon name="help" />-->
 <!--                </q-btn>-->
+
                 <!-- 알람 -->
                 <q-avatar class="cursorPoint mailIcon" v-if="$store.getters.isLogin" size="30px" @click="openMailPopup">
                     <q-icon name="fas fa-bullhorn" class=" self-center"></q-icon>
                     <mail-popup-desktop v-if="$q.platform.is.desktop"></mail-popup-desktop>
                     <mail-popup-mobile v-if="$q.platform.is.mobile"></mail-popup-mobile>
                 </q-avatar>
+
                 <q-btn round class="q-ml-md">
                     <q-avatar>
                         <q-img :src="$store.getters.user && $store.getters.user.picture || 'img/icon_pic_empty_01.png'"></q-img>
                     </q-avatar>
                     <account-popup-desktop></account-popup-desktop>
-                
-              
-
-                </q-btn>
-                
+                </q-btn>                
             </q-toolbar>
         </q-header>
 
@@ -61,6 +59,9 @@
                         <q-img src="img/zempie-logo.png" width="130px" class="cursor-pointer"></q-img>
                     </a>
                 </q-toolbar>
+                <!-- 홈 -->
+              
+
 
                 <q-item :active="$route.name==='Games'" active-class="activeItem" clickable tag="router-link" to="/studio">
                     <q-item-section avatar>
@@ -80,6 +81,15 @@
                     <q-item-section>
                         <q-item-label>게임 추가</q-item-label>
                         <!--                        <q-item-label caption>github.com/quasarframework</q-item-label>-->
+                    </q-item-section>
+                </q-item>
+                <!-- 게임 만들기 -->
+                <q-item :active="$route.name==='CreateGame'" active-class="activeItem" clickable tag="router-link" to="/createGame">
+                    <q-item-section avatar>
+                        <q-icon name="code" />
+                    </q-item-section>
+                    <q-item-section>
+                        <q-item-label>게임 만들기</q-item-label>
                     </q-item-section>
                 </q-item>
 
@@ -159,9 +169,9 @@
         }
 
         async openMailPopup() {
-    await this.$store.dispatch('loadMails');
-    this.$store.commit('mailPopupMobile', true);
-}
+            await this.$store.dispatch('loadMails');
+            this.$store.commit('mailPopupMobile', true);
+        }
     }
 </script>
 
