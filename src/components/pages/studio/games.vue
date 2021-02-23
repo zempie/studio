@@ -1,8 +1,11 @@
 <template>
     <q-page class="q-pa-md center-container">
-
-
         <div class="text-right">
+            <!-- 설문조사 btn -->
+             <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSdY2EqMzcE671M_hFdknemGyXFTEwIuYuCQYU8OsvOlBR7QVg/viewform">
+                <q-btn class="q-my-sm q-mr-md" color="primary" >설문조사</q-btn>
+            </a>
+
             <router-link to="/addGame">
                 <q-btn class="q-my-sm" color="primary">게임 추가하기</q-btn>
             </router-link>
@@ -20,8 +23,11 @@
                 no-results-label="검색된 게임이 없습니다."
                 rows-per-page-label="한 페이지에 표시할 게임수"
         >
-            <template v-slot:body="props">
-                <q-tr :props="props" @click="$router.push(`/project/${props.row.id}`)">
+            <template v-slot:body="props" >
+                <template v-if="props.row.state === 1 || props.row.state === 2">
+                    <!-- todo:분리 -->
+                <q-tr :props="props" @click="$router.push(`/project/${props.row.id}`)" class="banned">
+                
                     <q-td width="10%">
                         <q-img :src="props.row.picture_webp || props.row.picture || 'img/default.png'"></q-img>
                     </q-td>
@@ -31,13 +37,60 @@
                     <q-td width="20%">
                         {{ new Date(props.row.updated_at).toLocaleString()}}
                     </q-td>
-                    <q-td width="10%" >
-                        {{props.row.deploy_version_id && '배포 중' || '배포 안됨'}}
-                    </q-td>
+                   
+                        <!-- 제재 상태-->
+                        <template v-if="props.row.state === 1">
+                             <q-td width="10%" ref="ban" >
+                            제재</q-td>
+                        </template>
+                        <template v-else-if="props.row.state === 2">
+                            <q-td ref="permanentBan" width="10%" > 영구 제재</q-td>
+                        </template>
+                        <template v-else>
+                            <q-td width="10%" >
+                                {{props.row.deploy_version_id && '배포 중' || '배포 안됨'}}</q-td>
+
+                        </template>
+                        
+                    
                     <q-td style="text-align: center">
                         {{props.row.game && props.row.game.count_start || 0}}
                     </q-td>
-                </q-tr>
+                </q-tr>  
+                <q-tr class="ban-detail" @click="checkBanDetail"> 제재 내용 확인하기</q-tr>      
+                </template>
+                 <template v-else>
+                <q-tr :props="props" @click="$router.push(`/project/${props.row.id}`)" >
+                    <q-td width="10%">
+                        <q-img :src="props.row.picture_webp || props.row.picture || 'img/default.png'"></q-img>
+                    </q-td>
+                    <q-td width="30%" :props="props" key="name">
+                        {{props.row.name}}
+                    </q-td>
+                    <q-td width="20%">
+                        {{ new Date(props.row.updated_at).toLocaleString()}}
+                    </q-td>
+                   
+                        <!-- 제재 상태-->
+                        <template v-if="props.row.state === 1">
+                             <q-td width="10%" ref="ban" >
+                            제재</q-td>
+                        </template>
+                        <template v-else-if="props.row.state === 2">
+                            <q-td ref="permanentBan" width="10%" > 영구 제재</q-td>
+                        </template>
+                        <template v-else>
+                            <q-td width="10%" >
+                                {{props.row.deploy_version_id && '배포 중' || '배포 안됨'}}</q-td>
+
+                        </template>
+                        
+                    
+                    <q-td style="text-align: center">
+                        {{props.row.game && props.row.game.count_start || 0}}
+                    </q-td>
+                </q-tr>        
+                </template>
             </template>
             <template v-slot:top-right>
                 <q-input borderless dense debounce="300" v-model="filter" placeholder="검색">
@@ -90,6 +143,7 @@
         private filter : string = '';
         private projects = [];
         private loading : boolean = false;
+        
 
         async mounted() {
             this.loading = true;
@@ -105,6 +159,12 @@
 
 
             this.loading = false;
+
+            
+            //제재 클래스 추가
+            // console.log((this.$refs.permanentBan));
+            // (this.$refs.ban as Vue).$parent.$el.classList.add("banned");
+            // (this.$refs.permanentBan as Vue).$parent.$el.classList.add("banned");
         }
 
         async loadProjects() {
@@ -123,6 +183,7 @@
             else {
                 this.projects = result;
                 this.$store.commit('projects', result);
+               
             }
 
             // console.log(res);
@@ -149,6 +210,10 @@
             // console.log(res);
 
         }
+
+        checkBanDetail(){
+            console.log("제재내용확인하기")
+        }
     }
 </script>
 
@@ -156,5 +221,25 @@
     a {
         color: inherit;
         text-decoration: none;
+    }
+    .banned{
+        opacity:0.2;
+        pointer-events: none;
+       
+    }
+    .ban-detail{
+        height: 74px;
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        margin-top: -74px;    
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    
+    }
+    .ban-detail:hover{
+        cursor: pointer;
+        text-decoration: underline;
     }
 </style>
