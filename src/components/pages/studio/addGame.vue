@@ -177,6 +177,7 @@
         mounted() {
             this.$store.commit('pageName', '게임 추가');
             // this.gamePath = randomString( 100 );
+            
         }
 
 
@@ -276,7 +277,6 @@
                 this.titleError = ErrorMessage.BLANK_GAME_TITLE;
                 isError = true;
             }
-
             if( this.hashtagsError ) {
                 isError = true;
             }
@@ -355,12 +355,22 @@
             this.waitSave = false;
 
             if( !result || result.error ) {
+                if(result.error.code === 40101){
+                    Notify.create({
+                    message : '사용하실 수 없는 단어가 포함되어 있습니다.',
+                    position : 'top',
+                    color : 'negative',
+                    timeout: 2000
+                }); 
+                }
+                else{
                 Notify.create({
                     message : result && result.error || '실패하였습니다. 파일을 확인 후 다시 시도해 주세요.',
                     position : 'top',
                     color : 'negative',
                     timeout: 2000
-                });
+                });              
+                }
                 console.error( result && result.error || 'error' );
             }
             else {
