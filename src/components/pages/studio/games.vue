@@ -77,6 +77,13 @@
                                 0
                             }}
                         </q-td>
+                        <q-td style="text-align: center">
+                            {{
+                                (props.row.game &&
+                                    props.row.game.count_heart) ||
+                                0
+                            }}
+                        </q-td>
                     </q-tr>
 
                     <q-tr class="ban-detail" @click="checkBanDetail">
@@ -130,6 +137,13 @@
                             {{
                                 (props.row.game &&
                                     props.row.game.count_start) ||
+                                0
+                            }}
+                        </q-td>
+                         <q-td style="text-align: center">
+                            {{
+                                (props.row.game &&
+                                    props.row.game.count_heart) ||
                                 0
                             }}
                         </q-td>
@@ -212,6 +226,13 @@ export default class Games extends Vue {
             align: "center",
             sortable: true,
         },
+          {
+            name: "count_heart",
+            label: "좋아요",
+            field: "count_heart",
+            align: "center",
+            sortable: true,
+        },
     ];
     private filter: string = "";
     private projects = [];
@@ -287,7 +308,6 @@ export default class Games extends Vue {
     //survey
     async surveyStatus() {
         const result = await this.$http.surveyStatus();
-        console.log(result);
         this.survey.url = result.survey_url;
         this.survey.isDone = result.done;
     }
