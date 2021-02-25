@@ -176,6 +176,11 @@ export default class Http {
         return response.result || response;
     }
 
+    //survey
+    async surveyStatus(){
+        const response = await this.request('get', '/studio/survey', undefined)
+        return response.result || response;
+    }
 }
 
 
