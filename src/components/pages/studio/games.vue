@@ -2,7 +2,7 @@
     <q-page class="q-pa-md center-container">
         <div class="text-right">
             <!-- 설문조사 btn -->
-            <template v-if="!survey.isDone && survey.url !== null">
+            <template v-if="!survey.isDone && survey.url !== null && survey.url !== undefined">
                 <a target="_blank" :href="survey.url + uid">
                     <q-btn class="q-my-sm q-mr-md" color="primary"
                         >설문조사</q-btn
