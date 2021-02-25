@@ -4,7 +4,7 @@
         <div class="text-center">
             <span class="zempie-logo">ZEMPLATE</span><br><br>
         </div>
-        <div class="text-center q-my-lg">개발을 모르는 사람도 쉽게 개발해보세요</div>
+        <div class="text-center q-my-lg" style="font-size:20px">개발을 모르는 사람도 쉽게 개발해보세요</div>
         </div>
         <div class="game-selection row flex-center flex text-center">
             <q-card class="my-card col-3 q-mr-lg">
@@ -22,8 +22,12 @@
                 </a>
             </q-card>
             <q-card class="my-card col-3 q-mr-lg">
-                <a href="#">
-                    <q-card-section>
+                <!-- <a href="#"> -->
+                    <q-card-section class="dimmed">
+                         <div class="dimmed-above">
+                        COMING<br />
+                        SOON!
+                             </div>
                         <i class="round-icon fas fa-running"></i>
                     </q-card-section>
                     <q-separator />
@@ -32,11 +36,11 @@
                             플랫포머
                         </div>
                         <div>
-                            점프 앤 런!<br />
+                            점프 앤 런!
                             발판이 등장하는 게임입니다.
                         </div>
                     </q-card-section>
-                </a>
+                <!-- </a> -->
             </q-card>
             <q-card class="my-card col-3">
                 <q-card-section class="dimmed">
