@@ -7,8 +7,8 @@
         <div class="text-center q-my-lg" style="font-size:20px">개발을 모르는 사람도 쉽게 개발해보세요</div>
         </div>
         <div class="game-selection row flex-center flex text-center">
-            <q-card class="my-card col-3 q-mr-lg">
-                <a href="http://shooting.tmpl.zempie.com/" target="_blank">
+            <q-card class="my-card col-3 q-mr-lg" >
+                <a :href="$store.getters.shootingTemplateUrl" target="_blank">
                     <q-card-section>
                         <i class="round-icon fas fa-rocket"></i>
                     </q-card-section>

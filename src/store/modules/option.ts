@@ -6,6 +6,7 @@ export default {
         supportUrl : process.env.VUE_APP_SERVICE_CENTER_URL,
         gameTestUrl : process.env.VUE_APP_LAUNCHER_TEST_URL,
         devTosUrl : process.env.VUE_APP_DEV_TOS_URL,
+        shootingTemplateUrl : process.env.VUE_APP_SHOOTING_GAME_TEMPLATE
     },
     getters : {
         pageName(state) {
@@ -26,6 +27,9 @@ export default {
         devTosUrl(state) {
             return state.devTosUrl;
         },
+        shootingTemplateUrl(state){
+            return state.shootingTemplateUrl;
+        }
     },
 
     mutations : {
