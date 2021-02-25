@@ -1,5 +1,5 @@
 <template>
-    <q-layout view="lHh Lpr lFf">
+    <q-layout view="lHh Lpr lFf" class="no-drag">
         <q-header elevated class="bg-color-3">
             <q-toolbar>
                 <q-btn
@@ -176,6 +176,7 @@
 </script>
 
 <style scoped lang="scss">
+.no-drag {-ms-user-select: none; -moz-user-select: -moz-none; -webkit-user-select: none; -khtml-user-select: none; user-select:none;}
     .q-page-container {
         //background-color: #f1f1f1;
     }

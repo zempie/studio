@@ -1,5 +1,5 @@
 <template>
-    <q-page class="q-pa-md center-container">
+    <q-page class="q-pa-md center-container no-drag">
         <div class="text-right">
             <!-- 설문조사 btn -->
             <template v-if="!survey.isDone && survey.url !== null && survey.url !== undefined">
@@ -80,13 +80,6 @@
                         <q-td style="text-align: center">
                             {{
                                 (props.row.game &&
-                                    props.row.game.count_over) ||
-                                0
-                            }}
-                        </q-td>
-                        <q-td style="text-align: center">
-                            {{
-                                (props.row.game &&
                                     props.row.game.count_heart) ||
                                 0
                             }}
@@ -139,14 +132,6 @@
                                 }}</q-td
                             >
                         </template>
-
-                        <q-td style="text-align: center">
-                            {{
-                                (props.row.game &&
-                                    props.row.game.count_start) ||
-                                0
-                            }}
-                        </q-td>
                           <q-td style="text-align: center">
                             {{
                                 (props.row.game &&
@@ -231,13 +216,6 @@ export default class Games extends Vue {
             label: "상태",
             field: "state",
             align: "left",
-            sortable: true,
-        },
-        {
-            name: "count",
-            label: "조회수",
-            field: "count",
-            align: "center",
             sortable: true,
         },
         {
@@ -336,6 +314,8 @@ export default class Games extends Vue {
 </script>
 
 <style scoped lang="scss">
+.no-drag {-ms-user-select: none; -moz-user-select: -moz-none; -webkit-user-select: none; -khtml-user-select: none; user-select:none;}
+
 a {
     color: inherit;
     text-decoration: none;

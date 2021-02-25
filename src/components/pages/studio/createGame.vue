@@ -1,5 +1,5 @@
 <template>
-    <q-page >
+    <q-page class="no-drag">
         <div class="title-area">
         <div class="text-center">
             <span class="zempie-logo">ZEMPLATE</span><br><br>
@@ -66,6 +66,8 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 export default class CreateGame extends Vue {}
 </script>
 <style scoped>
+.no-drag {-ms-user-select: none; -moz-user-select: -moz-none; -webkit-user-select: none; -khtml-user-select: none; user-select:none;}
+
 .title-area{
     height:330px;
    height: 330px;
