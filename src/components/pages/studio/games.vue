@@ -1,160 +1,323 @@
 <template>
     <q-page class="q-pa-md center-container">
-
-
         <div class="text-right">
+            <!-- 설문조사 btn -->
+            <template v-if="!survey.isDone && survey.url !== null">
+                <a target="_blank" :href="survey.url + uid">
+                    <q-btn class="q-my-sm q-mr-md" color="primary"
+                        >설문조사</q-btn
+                    >
+                </a>
+            </template>
             <router-link to="/addGame">
                 <q-btn class="q-my-sm" color="primary">게임 추가하기</q-btn>
             </router-link>
         </div>
 
         <q-table
-                :data="projects"
-                :columns="columns"
-                row-key="name"
-                separator="vertical"
-                class="table"
-                :pagination="pagination"
-                :filter="filter"
-                no-data-label="등록된 게임이 없습니다."
-                no-results-label="검색된 게임이 없습니다."
-                rows-per-page-label="한 페이지에 표시할 게임수"
+            :data="projects"
+            :columns="columns"
+            row-key="name"
+            separator="vertical"
+            class="table"
+            :pagination="pagination"
+            :filter="filter"
+            no-data-label="등록된 게임이 없습니다."
+            no-results-label="검색된 게임이 없습니다."
+            rows-per-page-label="한 페이지에 표시할 게임수"
         >
             <template v-slot:body="props">
-                <q-tr :props="props" @click="$router.push(`/project/${props.row.id}`)">
-                    <q-td width="10%">
-                        <q-img :src="props.row.picture_webp || props.row.picture || 'img/default.png'"></q-img>
-                    </q-td>
-                    <q-td width="30%" :props="props" key="name">
-                        {{props.row.name}}
-                    </q-td>
-                    <q-td width="20%">
-                        {{ new Date(props.row.updated_at).toLocaleString()}}
-                    </q-td>
-                    <q-td width="10%" >
-                        {{props.row.deploy_version_id && '배포 중' || '배포 안됨'}}
-                    </q-td>
-                    <q-td style="text-align: center">
-                        {{props.row.game && props.row.game.count_start || 0}}
-                    </q-td>
-                </q-tr>
+                <template v-if="props.row.state === 1 || props.row.state === 2">
+                    <q-tr
+                        :props="props"
+                        @click="$router.push(`/project/${props.row.id}`)"
+                        class="banned"
+                    >
+                        <q-td width="10%">
+                            <q-img
+                                :src="
+                                    props.row.picture_webp ||
+                                    props.row.picture ||
+                                    'img/default.png'
+                                "
+                            ></q-img>
+                        </q-td>
+                        <q-td width="30%" :props="props" key="name">
+                            {{ props.row.name }}
+                        </q-td>
+                        <q-td width="20%">
+                            {{
+                                new Date(props.row.updated_at).toLocaleString()
+                            }}
+                        </q-td>
+
+                        <!-- 제재 상태-->
+                        <template v-if="props.row.state === 1">
+                            <q-td width="10%" ref="ban"> 제재</q-td>
+                        </template>
+                        <template v-else-if="props.row.state === 2">
+                            <q-td ref="permanentBan" width="10%">
+                                영구 제재</q-td
+                            >
+                        </template>
+                        <template v-else>
+                            <q-td width="10%">
+                                {{
+                                    (props.row.deploy_version_id &&
+                                        "배포 중") ||
+                                    "배포 안됨"
+                                }}</q-td
+                            >
+                        </template>
+
+                        <q-td style="text-align: center">
+                            {{
+                                (props.row.game &&
+                                    props.row.game.count_start) ||
+                                0
+                            }}
+                        </q-td>
+                    </q-tr>
+
+                    <q-tr class="ban-detail" @click="checkBanDetail">
+                        제재 내용 확인하기
+                    </q-tr>
+                </template>
+
+                <template v-else>
+                    <q-tr
+                        :props="props"
+                        @click="$router.push(`/project/${props.row.id}`)"
+                    >
+                        <q-td width="10%">
+                            <q-img
+                                :src="
+                                    props.row.picture_webp ||
+                                    props.row.picture ||
+                                    'img/default.png'
+                                "
+                            ></q-img>
+                        </q-td>
+                        <q-td width="30%" :props="props" key="name">
+                            {{ props.row.name }}
+                        </q-td>
+                        <q-td width="20%">
+                            {{
+                                new Date(props.row.updated_at).toLocaleString()
+                            }}
+                        </q-td>
+
+                        <!-- 제재 상태-->
+                        <template v-if="props.row.state === 1">
+                            <q-td width="10%" ref="ban"> 제재</q-td>
+                        </template>
+                        <template v-else-if="props.row.state === 2">
+                            <q-td ref="permanentBan" width="10%">
+                                영구 제재</q-td
+                            >
+                        </template>
+                        <template v-else>
+                            <q-td width="10%">
+                                {{
+                                    (props.row.deploy_version_id &&
+                                        "배포 중") ||
+                                    "배포 안됨"
+                                }}</q-td
+                            >
+                        </template>
+
+                        <q-td style="text-align: center">
+                            {{
+                                (props.row.game &&
+                                    props.row.game.count_start) ||
+                                0
+                            }}
+                        </q-td>
+                    </q-tr>
+                </template>
             </template>
+            
             <template v-slot:top-right>
-                <q-input borderless dense debounce="300" v-model="filter" placeholder="검색">
+                <q-input
+                    borderless
+                    dense
+                    debounce="300"
+                    v-model="filter"
+                    placeholder="검색"
+                >
                     <template v-slot:append>
                         <q-icon name="search" />
                     </template>
                 </q-input>
             </template>
         </q-table>
+            
     </q-page>
 </template>
 
 <script lang="ts">
-    import { Component, Prop, Vue } from 'vue-property-decorator';
-    import {LoginState} from "@/store/modules/user";
-    import {Notify} from "quasar";
+import { Component, Prop, Vue } from "vue-property-decorator";
+import { LoginState } from "@/store/modules/user";
+import { Notify } from "quasar";
 
-    @Component({
-        components: {
+interface ISurvey {
+    url: string;
+    isDone: boolean;
+}
+@Component({
+    
+})
+export default class Games extends Vue {
+    
 
+    private pagination = {
+        rowsPerPage: 15,
+        // rowsNumber: xx if getting data from a server
+    };
+
+    private columns = [
+        {
+            name: "picture",
+            required: false,
+            label: "썸네일",
+            align: "left",
+        },
+        {
+            name: "name",
+            required: true,
+            label: "게임 이름",
+            align: "left",
+            field: (row: any) => row.name,
+            format: (val: any) => `${val}`,
+            sortable: true,
+        },
+        {
+            name: "updated_at",
+            align: "left",
+            label: "최종 업데이트",
+            field: "updated_at",
+            sortable: true,
+        },
+        {
+            name: "state",
+            label: "상태",
+            field: "state",
+            align: "left",
+            sortable: true,
+        },
+        {
+            name: "count",
+            label: "조회수",
+            field: "count",
+            align: "center",
+            sortable: true,
+        },
+    ];
+    private filter: string = "";
+    private projects = [];
+    private loading: boolean = false;
+
+    //설문조사
+    private uid: string = "";
+    survey: ISurvey = {
+        url: "",
+        isDone: false,
+    };
+
+    async mounted() {
+        this.loading = true;
+        const loginState = await this.$store.dispatch("loginState");
+
+        if (loginState === LoginState.login) {
+            this.$store.commit("pageName", "모든 게임");
+            this.uid = this.$store.getters.user.uid;
+            await this.loadProjects();
+            await this.surveyStatus();
+        } else {
+            await this.$router.replace("/login");
         }
-    })
-    export default class Games extends Vue {
-
-        private pagination = {
-            rowsPerPage: 15
-            // rowsNumber: xx if getting data from a server
-        };
-
-        private columns =  [
-            {
-                name: 'picture',
-                required: false,
-                label: '썸네일',
-                align: 'left'
-            },
-            {
-                name: 'name',
-                required: true,
-                label: '게임 이름',
-                align: 'left',
-                field: (row : any) => row.name,
-                format: (val : any) => `${val}`,
-                sortable: true
-            },
-            { name: 'updated_at', align: 'left', label: '최종 업데이트', field: 'updated_at', sortable: true },
-            { name: 'state', label: '상태', field: 'state',align: 'left', sortable: true },
-            { name: 'count', label: '조회수', field: 'count',align: 'center', sortable: true },
-        ];
-        private filter : string = '';
-        private projects = [];
-        private loading : boolean = false;
-
-        async mounted() {
-            this.loading = true;
-            const loginState = await this.$store.dispatch('loginState');
-
-            if( loginState === LoginState.login ) {
-                this.$store.commit('pageName', '모든 게임');
-                await this.loadProjects();
-            }
-            else {
-                await this.$router.replace('/login');
-            }
-
-
-            this.loading = false;
-        }
-
-        async loadProjects() {
-            const result = await this.$http.getProjects();
-            if( !result || result.error ) {
-                Notify.create({
-                    message : result && result.error || '프로젝트 목록을 불러오는데 실패하였습니다.',
-                    position : 'top',
-                    color : 'negative',
-                    timeout: 2000
-                });
-                console.error( result && result.error || 'error' );
-                this.projects = [];
-                this.$store.commit('projects', []);
-            }
-            else {
-                this.projects = result;
-                this.$store.commit('projects', result);
-            }
-
-            // console.log(res);
-
-
-            // this.projects = [
-            //     {
-            //         name : '2048',
-            //         picture : 'http://gtest.fromthered.com/Deploy_images/zeminiplay/2048.png',
-            //         update_at : '0',
-            //         state: 'passed',
-            //         count : 100,
-            //     },
-            //     {
-            //         name : 'knightrush',
-            //         picture : 'http://gtest.fromthered.com/Deploy_images/zeminiplay/2048.png',
-            //         update_at : Date.now(),
-            //         state: 'passed',
-            //         count : 100,
-            //     }
-            // ]
-
-
-            // console.log(res);
-
-        }
+        this.loading = false;
     }
+
+    async loadProjects() {
+        const result = await this.$http.getProjects();
+        if (!result || result.error) {
+            Notify.create({
+                message:
+                    (result && result.error) ||
+                    "프로젝트 목록을 불러오는데 실패하였습니다.",
+                position: "top",
+                color: "negative",
+                timeout: 2000,
+            });
+            console.error((result && result.error) || "error");
+            this.projects = [];
+            this.$store.commit("projects", []);
+        } else {
+            this.projects = result;
+            this.$store.commit("projects", result);
+        }
+
+        // console.log(res);
+
+        // this.projects = [
+        //     {
+        //         name : '2048',
+        //         picture : 'http://gtest.fromthered.com/Deploy_images/zeminiplay/2048.png',
+        //         update_at : '0',
+        //         state: 'passed',
+        //         count : 100,
+        //     },
+        //     {
+        //         name : 'knightrush',
+        //         picture : 'http://gtest.fromthered.com/Deploy_images/zeminiplay/2048.png',
+        //         update_at : Date.now(),
+        //         state: 'passed',
+        //         count : 100,
+        //     }
+        // ]
+
+        // console.log(res);
+    }
+
+    checkBanDetail() {
+        console.log("제재내용확인하기");
+    }
+
+    //survey
+    async surveyStatus() {
+        const result = await this.$http.surveyStatus();
+        console.log(result);
+        this.survey.url = result.survey_url;
+        this.survey.isDone = result.done;
+    }
+}
 </script>
 
 <style scoped lang="scss">
-    a {
-        color: inherit;
-        text-decoration: none;
-    }
+a {
+    color: inherit;
+    text-decoration: none;
+}
+.banned {
+    opacity: 0.2;
+    pointer-events: none;
+}
+.ban-detail {
+    height: 74px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    margin-top: -74px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ban-detail:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+.q-table tbody td {
+    height: 74px;
+}
 </style>

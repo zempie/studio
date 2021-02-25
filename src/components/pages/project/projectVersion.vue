@@ -32,6 +32,8 @@
                         <span style="color: #027BE3; font-weight: bold" v-else-if="props.row.state === 'passed'">{{`심사 완료 ( ${props.row.state} )`}}</span>
                         <span style="color: #C10015; font-weight: bold" v-else-if="props.row.state === 'fail'">{{`심사 미통과 ( ${props.row.state} )`}}</span>
                         <span style="color: #2AC940; font-weight: bold" v-else-if="props.row.state === 'deploy'">{{`배포 중 ( ${props.row.state} )`}}</span>
+                        <span style="color: #C10015; font-weight: bold" v-else-if="props.row.state === 'ban'">{{`해당 버전 제재 ( ${props.row.state} )`}}</span>
+                    
                     </q-td>
                     <q-td>
                         {{ new Date(props.row.created_at).toLocaleString()}}

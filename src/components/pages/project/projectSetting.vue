@@ -157,12 +157,22 @@
             this.$q.loading.hide();
 
             if( !result || result.error ) {
+                 if(result.error.code === 40101){
+                    Notify.create({
+                    message : '사용하실 수 없는 단어가 포함되어 있습니다.',
+                    position : 'top',
+                    color : 'negative',
+                    timeout: 2000
+                }); 
+                }
+                else{
                 Notify.create({
                     message : result && result.error || '실패하였습니다.',
                     position : 'top',
                     color : 'negative',
                     timeout: 2000
                 });
+                }
                 console.error( result && result.error );
             }
             else {
