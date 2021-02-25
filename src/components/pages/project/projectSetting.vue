@@ -20,14 +20,14 @@
                 <content-box-block-image-uploader :default-src="imgUrl" v-on:@file="(file)=>{thumbFile = file;}" text="이미지 업로드" limit-size="4">
                 </content-box-block-image-uploader>
                 <div class="hintText">
-                    정사각형 모양의 JPEG, PNG 파일을 업로드 해주세요. ( 최대 4MB )
+                    512*340 사이즈의 JPEG, PNG 파일을 업로드 해주세요. (최대 4MB)
                 </div>
             </content-box-block>
             <content-box-block class="q-mb-xl" title="미리보기 이미지">
                 <content-box-block-image-uploader-g-i-f :default-src="imgUrl2" v-on:@file="(file)=>{thumbFile2 = file;}" text="이미지 업로드" limit-size="10">
                 </content-box-block-image-uploader-g-i-f>
                 <div class="hintText">
-                    정사각형 모양의 GIF 파일을 업로드 해주세요. ( 최대 10MB )
+                    512*340 사이즈의 GIF 파일을 업로드 해주세요. (최대 10MB)
                 </div>
             </content-box-block>
             <content-box-block class="q-mb-xl" title="접속 아이디">

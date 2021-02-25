@@ -13,20 +13,20 @@
             <content-box-block class="q-mb-xl" title="태그">
                 <q-input counter maxlength="255" :error="hashtagsError !== ''" :error-message="hashtagsError" v-model="hashtags" @change="onChangeHashtags"/>
                 <div class="hintText">
-                    게임을 나태날수 있는 단어를 태그로 설정하세요. 여러개를 사용하는경우 , 로 구분해 주세요.
+                    게임을 나타낼 수 있는 단어를 태그로 설정하세요. 여러 개를 사용하는 경우 쉼표로 구분해 주세요.
                 </div>
             </content-box-block>
             <content-box-block class="q-mb-xl" title="썸네일 이미지">
                 <content-box-block-image-uploader v-on:@file="(file)=>{thumbFile = file;}" text="이미지 업로드" limit-size="4"></content-box-block-image-uploader>
                 <div class="hintText">
-                    정사각형 모양의 JPEG, PNG 파일을 업로드 해주세요. ( 최대 4MB )
+                    512*340 사이즈의 JPEG, PNG 파일을 업로드 해주세요. (최대 4MB)
                 </div>
             </content-box-block>
 
             <content-box-block class="q-mb-xl" title="미리보기 이미지">
                 <content-box-block-image-uploader-g-i-f v-on:@file="(file)=>{thumbFile2 = file;}" text="이미지 업로드" limit-size="10"></content-box-block-image-uploader-g-i-f>
                 <div class="hintText">
-                    정사각형 모양의 GIF 파일을 업로드 해주세요. ( 최대 10MB )
+                    512*340 사이즈의 GIF 파일을 업로드 해주세요. (최대 10MB)
                 </div>
             </content-box-block>
 
