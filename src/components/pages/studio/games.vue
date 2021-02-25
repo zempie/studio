@@ -80,6 +80,13 @@
                         <q-td style="text-align: center">
                             {{
                                 (props.row.game &&
+                                    props.row.game.count_over) ||
+                                0
+                            }}
+                        </q-td>
+                        <q-td style="text-align: center">
+                            {{
+                                (props.row.game &&
                                     props.row.game.count_heart) ||
                                 0
                             }}
@@ -137,6 +144,13 @@
                             {{
                                 (props.row.game &&
                                     props.row.game.count_start) ||
+                                0
+                            }}
+                        </q-td>
+                          <q-td style="text-align: center">
+                            {{
+                                (props.row.game &&
+                                    props.row.game.count_over) ||
                                 0
                             }}
                         </q-td>
@@ -226,9 +240,16 @@ export default class Games extends Vue {
             align: "center",
             sortable: true,
         },
+        {
+            name: "count_over",
+            label: "플레이수",
+            field: "count_over",
+            align: "center",
+            sortable: true,
+        },
           {
             name: "count_heart",
-            label: "좋아요",
+            label: "좋아요수",
             field: "count_heart",
             align: "center",
             sortable: true,
