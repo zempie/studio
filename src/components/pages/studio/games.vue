@@ -2,7 +2,7 @@
     <q-page class="q-pa-md center-container">
         <div class="text-right">
             <!-- 설문조사 btn -->
-            <template v-if="!survey.isDone && survey.url !== null">
+            <template v-if="!survey.isDone && survey.url !== null && survey.url !== undefined">
                 <a target="_blank" :href="survey.url + uid">
                     <q-btn class="q-my-sm q-mr-md" color="primary"
                         >설문조사</q-btn
@@ -77,6 +77,20 @@
                                 0
                             }}
                         </q-td>
+                        <q-td style="text-align: center">
+                            {{
+                                (props.row.game &&
+                                    props.row.game.count_over) ||
+                                0
+                            }}
+                        </q-td>
+                        <q-td style="text-align: center">
+                            {{
+                                (props.row.game &&
+                                    props.row.game.count_heart) ||
+                                0
+                            }}
+                        </q-td>
                     </q-tr>
 
                     <q-tr class="ban-detail" @click="checkBanDetail">
@@ -130,6 +144,20 @@
                             {{
                                 (props.row.game &&
                                     props.row.game.count_start) ||
+                                0
+                            }}
+                        </q-td>
+                          <q-td style="text-align: center">
+                            {{
+                                (props.row.game &&
+                                    props.row.game.count_over) ||
+                                0
+                            }}
+                        </q-td>
+                         <q-td style="text-align: center">
+                            {{
+                                (props.row.game &&
+                                    props.row.game.count_heart) ||
                                 0
                             }}
                         </q-td>
@@ -212,6 +240,20 @@ export default class Games extends Vue {
             align: "center",
             sortable: true,
         },
+        {
+            name: "count_over",
+            label: "플레이수",
+            field: "count_over",
+            align: "center",
+            sortable: true,
+        },
+          {
+            name: "count_heart",
+            label: "좋아요수",
+            field: "count_heart",
+            align: "center",
+            sortable: true,
+        },
     ];
     private filter: string = "";
     private projects = [];
@@ -287,7 +329,6 @@ export default class Games extends Vue {
     //survey
     async surveyStatus() {
         const result = await this.$http.surveyStatus();
-        console.log(result);
         this.survey.url = result.survey_url;
         this.survey.isDone = result.done;
     }

@@ -357,7 +357,7 @@
             if( !result || result.error ) {
                 if(result.error.code === 40101){
                     Notify.create({
-                    message : '사용하실 수 없는 단어가 포함되어 있습니다.',
+                    message : '올바르지 않은 단어가 포함되어 있습니다.',
                     position : 'top',
                     color : 'negative',
                     timeout: 2000
