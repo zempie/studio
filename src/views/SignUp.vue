@@ -181,6 +181,14 @@ export default class SignUp extends Vue {
             console.error( result && result.error || 'error' );
         }
         else {
+
+
+            const currentUser = firebase.auth().currentUser;
+                if (currentUser) {
+                    const idToken = await currentUser.getIdToken(true);
+                    this.$store.commit('idToken', idToken);
+                }
+                
             this.$store.getters.user.is_developer = true;
             this.step = 3;
         }
