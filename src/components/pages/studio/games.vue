@@ -1,13 +1,13 @@
 <template>
     <q-page class="q-pa-md center-container no-drag">
         <div class="text-right">
-            <!-- 설문조사 btn -->
-            <template v-if="!survey.isDone && survey.url !== null && survey.url !== undefined">
+            <!-- 설문조사 btn --> 
+            <template v-if="!survey.isDone && survey.url !== null && survey.url !== undefined && !isSurveyBtnClicked">
                 <a target="_blank" :href="survey.url + uid">
-                    <q-btn class="q-my-sm q-mr-md font-weight-300" color="primary"
+                    <q-btn class="q-my-sm q-mr-md font-weight-300" color="primary" @click="isSurveyBtnClicked=true"
                         >설문조사</q-btn
                     >
-                </a>
+                </a>            
             </template>
             <router-link to="/addGame">
                 <q-btn class="q-my-sm font-weight-300" color="primary">게임 추가하기</q-btn>
@@ -236,13 +236,16 @@ export default class Games extends Vue {
     private filter: string = "";
     private projects = [];
     private loading: boolean = false;
-
+    
     //설문조사
+    private isSurveyBtnClicked: boolean = false;
     private uid: string = "";
     survey: ISurvey = {
         url: "",
         isDone: false,
     };
+
+    
 
     async mounted() {
         this.loading = true;
@@ -258,7 +261,7 @@ export default class Games extends Vue {
         }
         this.loading = false;
     }
-
+    
     async loadProjects() {
         const result = await this.$http.getProjects();
         if (!result || result.error) {
@@ -310,6 +313,7 @@ export default class Games extends Vue {
         this.survey.url = result.survey_url;
         this.survey.isDone = result.done;
     }
+   
 }
 </script>
 
