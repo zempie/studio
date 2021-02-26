@@ -307,6 +307,7 @@ export default class Games extends Vue {
     //survey
     async surveyStatus() {
         const result = await this.$http.surveyStatus();
+        console.log(result)
         this.survey.url = result.survey_url;
         this.survey.isDone = result.done;
     }
