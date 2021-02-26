@@ -87,7 +87,7 @@
                     </q-tr>
 
                     <!-- <q-tr class="ban-detail" @click="checkBanDetail"> -->
-                      <q-tr class="ban-detail">  <a href="https://support.zempie.com/#/inquiry"  target="_blank">
+                      <q-tr class="ban-detail">  <a :href="$store.getters.supportUrl + 'inquiry'"  target="_blank">
                         자세한 제재 내용은 고객센터를 통해 문의해주세요.
                         </a>
                       </q-tr>
