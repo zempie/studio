@@ -4,7 +4,7 @@
         <div class="text-center">
             <span class="zempie-logo">ZEMPLATE</span><br><br>
         </div>
-        <div class="text-center q-my-lg" style="font-size:20px">개발을 모르는 사람도 쉽게 개발해보세요</div>
+        <div class="text-center q-my-lg" style="font-size:20px; font-weight: 500;">개발을 모르는 사람도 쉽게 개발해보세요</div>
         </div>
         <div class="game-selection row flex-center flex text-center">
             <q-card class="my-card col-3 q-mr-lg" >
@@ -75,9 +75,9 @@ export default class CreateGame extends Vue {}
 }
 
 .zempie-logo {
- 
+    font-weight: bold;
     font-size: 16px;
-    border: 1px solid;
+    border: 2px solid;
     border-radius: 20px;
     padding: 10px 40px 10px 40px;
      flex-direction: row;
@@ -99,7 +99,7 @@ export default class CreateGame extends Vue {}
     min-height: 70px;
     height: 150px;
     background-color: #181818 !important;
-    
+    font-weight: 300;
     text-align: left;
 }
 .q-card{
@@ -144,6 +144,6 @@ a:hover {
 }
 
 .zemplate-title {
-    font-weight: bold;
+    font-weight: 700;
 }
 </style>

@@ -154,7 +154,7 @@ export default class App extends Vue {
 .hintText {
     padding: 16px 0 16px 0;
     color: #777;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 </style>

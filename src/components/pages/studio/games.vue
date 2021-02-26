@@ -4,13 +4,13 @@
             <!-- 설문조사 btn -->
             <template v-if="!survey.isDone && survey.url !== null && survey.url !== undefined">
                 <a target="_blank" :href="survey.url + uid">
-                    <q-btn class="q-my-sm q-mr-md" color="primary"
+                    <q-btn class="q-my-sm q-mr-md font-weight-300" color="primary"
                         >설문조사</q-btn
                     >
                 </a>
             </template>
             <router-link to="/addGame">
-                <q-btn class="q-my-sm" color="primary">게임 추가하기</q-btn>
+                <q-btn class="q-my-sm font-weight-300" color="primary">게임 추가하기</q-btn>
             </router-link>
         </div>
 
@@ -31,7 +31,7 @@
                     <q-tr
                         :props="props"
                         @click="$router.push(`/project/${props.row.id}`)"
-                        class="banned"
+                        class="banned "
                     >
                         <q-td width="10%">
                             <q-img
@@ -53,10 +53,10 @@
 
                         <!-- 제재 상태-->
                         <template v-if="props.row.state === 1">
-                            <q-td width="10%" ref="ban"> 제재</q-td>
+                            <q-td width="10%" > 제재</q-td>
                         </template>
                         <template v-else-if="props.row.state === 2">
-                            <q-td ref="permanentBan" width="10%">
+                            <q-td  width="10%">
                                 영구 제재</q-td
                             >
                         </template>
@@ -116,10 +116,10 @@
 
                         <!-- 제재 상태-->
                         <template v-if="props.row.state === 1">
-                            <q-td width="10%" ref="ban"> 제재</q-td>
+                            <q-td width="10%" > 제재</q-td>
                         </template>
                         <template v-else-if="props.row.state === 2">
-                            <q-td ref="permanentBan" width="10%">
+                            <q-td  width="10%">
                                 영구 제재</q-td
                             >
                         </template>
@@ -316,6 +316,12 @@ export default class Games extends Vue {
 <style scoped lang="scss">
 .no-drag {-ms-user-select: none; -moz-user-select: -moz-none; -webkit-user-select: none; -khtml-user-select: none; user-select:none;}
 
+.font-weight-300{
+    font-weight: 300 !important;
+}
+.font-weight-100{
+    font-weight: 100 !important;
+}
 a {
     color: inherit;
     text-decoration: none;
@@ -340,5 +346,10 @@ a {
 }
 .q-table tbody td {
     height: 74px;
+    
 }
+*{
+    font-weight: 100 !important;
+}
+
 </style>
