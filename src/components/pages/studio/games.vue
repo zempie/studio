@@ -86,9 +86,12 @@
                         </q-td>
                     </q-tr>
 
-                    <q-tr class="ban-detail" @click="checkBanDetail">
-                        제재 내용 확인하기
-                    </q-tr>
+                    <!-- <q-tr class="ban-detail" @click="checkBanDetail"> -->
+                      <q-tr class="ban-detail">  <a href="https://support.zempie.com/#/inquiry"  target="_blank">
+                        자세한 제재 내용은 고객센터를 통해 문의해주세요.
+                        </a>
+                      </q-tr>
+                    <!-- </q-tr> -->
                 </template>
 
                 <template v-else>
@@ -303,9 +306,9 @@ export default class Games extends Vue {
         // console.log(res);
     }
 
-    checkBanDetail() {
-        console.log("제재내용확인하기");
-    }
+    // checkBanDetail() {
+    //     console.log("제재내용확인하기");
+    // }
 
     //survey
     async surveyStatus() {
