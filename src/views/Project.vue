@@ -27,7 +27,7 @@
                 </q-avatar>
                 <q-btn round class="q-ml-md">
                     <q-avatar>
-                        <q-img :src="$store.getters.user && $store.getters.user.picture || '/img/icon_pic_empty_01.png'"></q-img>
+                        <q-img :src="$store.getters.user && $store.getters.user.picture || 'img/icon_pic_empty_01.png'"></q-img>
                     </q-avatar>
                     <account-popup-desktop></account-popup-desktop>
                 </q-btn>
@@ -46,7 +46,7 @@
                     <!--                        <img src="favicon.ico" style="width: 34px; height: 34px;">-->
                     <!--                    </q-avatar>-->
                     <a :href="$store.getters.zempieUrl">
-                        <q-img src="/img/zempie-logo.png" width="130px" class="cursor-pointer"></q-img>
+                        <q-img src="img/zempie-logo.png" width="130px" class="cursor-pointer"></q-img>
                     </a>
                 </q-toolbar>
                 <q-separator />
