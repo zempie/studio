@@ -1,5 +1,5 @@
 <template>
-    <q-layout view="lHh Lpr lFf " class="no-drag">
+    <q-layout view="lHh Lpr lFf" class="no-drag">
         <q-header elevated class="bg-color-3">
             <q-toolbar>
                 <q-btn
@@ -20,9 +20,14 @@
 <!--                <q-btn flat round class="q-mx-sm">-->
 <!--                    <q-icon name="help" />-->
 <!--                </q-btn>-->
-                <q-btn round class="q-ml-lg">
+<q-avatar class="cursorPoint mailIcon" v-if="$store.getters.isLogin" size="30px" @click="openMailPopup">
+                    <q-icon name="fas fa-bullhorn" class=" self-center"></q-icon>
+                    <mail-popup-desktop v-if="$q.platform.is.desktop"></mail-popup-desktop>
+                    <mail-popup-mobile v-if="$q.platform.is.mobile"></mail-popup-mobile>
+                </q-avatar>
+                <q-btn round class="q-ml-md">
                     <q-avatar>
-                        <q-img :src="$store.getters.user && $store.getters.user.picture || 'img/icon_pic_empty_01.png'"></q-img>
+                        <q-img :src="$store.getters.user && $store.getters.user.picture || '/img/icon_pic_empty_01.png'"></q-img>
                     </q-avatar>
                     <account-popup-desktop></account-popup-desktop>
                 </q-btn>
@@ -41,7 +46,7 @@
                     <!--                        <img src="favicon.ico" style="width: 34px; height: 34px;">-->
                     <!--                    </q-avatar>-->
                     <a :href="$store.getters.zempieUrl">
-                        <q-img src="img/zempie-logo.png" width="130px" class="cursor-pointer"></q-img>
+                        <q-img src="/img/zempie-logo.png" width="130px" class="cursor-pointer"></q-img>
                     </a>
                 </q-toolbar>
                 <q-separator />
@@ -114,8 +119,10 @@
     import { Component, Prop, Vue } from 'vue-property-decorator';
     import {LoginState} from "@/store/modules/user";
     import AccountPopupDesktop from "@/components/accountPopupDesktop.vue";
+      import MailPopupMobile from "@/components/menu/mailPopupMobile.vue";
+    import MailPopupDesktop from "@/components/menu/mailPopupDesktop.vue";
 
-    @Component({components: {AccountPopupDesktop}})
+    @Component({components: {AccountPopupDesktop, MailPopupDesktop, MailPopupMobile}})
     export default class Project extends Vue {
         private leftDrawerOpen : boolean = false;
         @Prop() private projectId! : number;
@@ -144,6 +151,10 @@
             //     await this.$router.replace('/studio').catch(()=>{});
             // }
         }
+         async openMailPopup() {
+            await this.$store.dispatch('loadMails');
+            this.$store.commit('mailPopupMobile', true);
+        }
     }
 </script>
 
@@ -157,5 +168,26 @@
     .activeItem {
         color: inherit;
         background-color: #60676b;
+    }
+      // 알람
+    .mailIcon {
+        position: relative;
+        text-align: center;
+        width: 30px;
+        height: 30px;
+        i {
+            margin: 0 auto;
+        }
+        &::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid white;
+            left: 0;
+            top: 0;
+            border-radius: 50%;
+            z-index: -1;
+        }
     }
 </style>

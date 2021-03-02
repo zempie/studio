@@ -228,7 +228,6 @@
                 this.wait[id] = true;
 
                 const result = await this.$http.deleteVersion( id );
-
                 if( !result || result.error ) {
                     Notify.create({
                         message : result && result.error || '버전을 삭제하는데 실패하였습니다.',
