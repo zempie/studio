@@ -225,18 +225,27 @@ export default class ProjectAddVersion extends Vue {
 
         if (this.startFileOptions.length) {
             this.uploadGameFileError = '';
-        } else {
-            this.uploadGameFileError = ErrorMessage.NOT_FOUND_HTML;
-        }
-
-        this.$store.commit('ajaxBar', false);
-        this.$q.loading.hide();
-        Notify.create({
-            message : '저장되었습니다.',
+             Notify.create({
+            message : '파일이 정상적으로 업로드되었습니다.',
             position : 'top',
             color : 'primary',
             timeout: 2000
         });
+        } else {
+            this.uploadGameFileError = ErrorMessage.NOT_FOUND_HTML;
+             Notify.create({
+            message : '파일 업로드에 실패했습니다.',
+            position : 'top',
+            color : 'negative',
+            timeout: 2000
+        });
+        }
+
+        this.$store.commit('ajaxBar', false);
+        
+        this.$q.loading.hide();
+
+       
     }
 
     async save() {
@@ -307,7 +316,7 @@ export default class ProjectAddVersion extends Vue {
         else {
             const project = this.$store.getters.project( this.projectId );
             project.update_version_id = version.id;
-            this.$store.commit('version', version);
+                this.$store.commit('version', version);
             Notify.create({
                 message : '저장되었습니다.',
                 position : 'top',
