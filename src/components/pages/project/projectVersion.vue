@@ -113,7 +113,7 @@
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <q-btn :loading="wait[ props.row.id ]" @click="deleteVersion( props.row.id )">
+                                    <q-btn :loading="wait[ props.row.id ]" @click="deleteVersion( props.row )">
                                         삭제
                                     </q-btn>
                                 </div>
@@ -221,9 +221,19 @@
             }
         }
 
-        async deleteVersion( id ) {
+        async deleteVersion( rowInfo ) {
+            let id = rowInfo.id;
+            let state = rowInfo.state;            
 
             const ok = confirm('한 번 삭제한 버전은 다시 복구할 수 없습니다. 정말 삭제하시겠습니까?');
+            if(state === 'deploy'){
+                Notify.create({
+                    message : '배포 중인 버전은 삭제가 불가능합니다.',
+                    position : 'top',
+                    color : 'negative',
+                    timeout: 2000
+                });
+            }else{            
             if( ok ) {
                 this.wait[id] = true;
 
@@ -251,6 +261,7 @@
 
                 this.wait[id] = false;
             }
+        }
         }
     }
 </script>
