@@ -93,7 +93,9 @@
 <!--                                    </div>-->
 <!--                                </div>-->
 <!--                            </content-box-block>-->
-                            <content-box-block class="q-mb-xl" title="배포" v-if="props.row.state === 'passed'">
+
+                        <!-- 배포 버튼 -->
+                            <!-- <content-box-block class="q-mb-xl" title="배포" v-if="props.row.state === 'passed'">
                                 <div class="q-my-md">
                                     현재 진행중인 버전을 대신하여 이 버전을 배포 합니다.
                                 </div>
@@ -102,7 +104,7 @@
                                         배포
                                     </q-btn>
                                 </div>
-                            </content-box-block>
+                            </content-box-block> -->
                             <content-box-block class="q-mb-lg" title="버전 삭제">
                                 <div class="q-my-md">
                                     <div>
