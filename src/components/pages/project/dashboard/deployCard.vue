@@ -6,9 +6,9 @@
         <q-separator />
         <q-card-actions class="body">
 
-            <div class="full-width" v-if="version && version.state === 'deploy'">
+             <div class="full-width" v-if="version && version.state === 'deploy'">
                 <div class="text-body1 text-center q-mb-lg">
-                    {{ `${ version.version } (${version.number})` }}
+                    {{ `${ version.version }` }}
                 </div>
                 <div class="text-body1 text-center q-mb-lg">
                     배포 중입니다.
@@ -53,6 +53,7 @@ export default class DeployCard extends Vue {
 
     async mounted() {
         this.version = this.$store.getters.deployVersion( this.projectId );
+        console.log( this.version );
     }
 }
 </script>
