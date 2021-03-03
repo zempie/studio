@@ -196,9 +196,8 @@
                 console.error( result && result.error || 'error' );
             }
             else {
-
+         
                 version.state = 'deploy';
-
                 if( this.deployVersion ) {
                     const preVersion = _.find( versions, v => v.number === this.deployVersion.number );
                     preVersion.state = 'passed';
@@ -207,8 +206,14 @@
                     if( project.update_version_id === version.id ) {
                         project.update_version_id = null;
                     }
-                }
+                }else{
+                        const project = this.$store.getters.project( this.projectId );
+                        project.deploy_version_id = deploy_version_id;
 
+                        if( project.update_version_id === deploy_version_id ) {
+                            project.update_version_id = null;
+                        }
+                }
                 Notify.create({
                     message : '배포되었습니다.',
                     position : 'top',
