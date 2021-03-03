@@ -225,7 +225,6 @@
             let id = rowInfo.id;
             let state = rowInfo.state;            
 
-            const ok = confirm('한 번 삭제한 버전은 다시 복구할 수 없습니다. 정말 삭제하시겠습니까?');
             if(state === 'deploy'){
                 Notify.create({
                     message : '배포 중인 버전은 삭제가 불가능합니다.',
@@ -234,6 +233,7 @@
                     timeout: 2000
                 });
             }else{            
+                const ok = confirm('한 번 삭제한 버전은 다시 복구할 수 없습니다. 정말 삭제하시겠습니까?');
             if( ok ) {
                 this.wait[id] = true;
 

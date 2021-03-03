@@ -13,7 +13,7 @@
                 <q-btn class="q-my-sm font-weight-300" color="primary">게임 추가하기</q-btn>
             </router-link>
         </div>
-<content-box>
+
         <q-table
             :data="projects"
             :columns="columns"
@@ -167,7 +167,7 @@
                 </q-input>
             </template>
         </q-table>
-            </content-box>
+            
     </q-page>
 </template>
 
