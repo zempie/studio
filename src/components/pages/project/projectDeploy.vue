@@ -42,9 +42,14 @@
             </content-box-block>
 
         </content-box>
-        <fixed-bottom>
+
+        <!-- <fixed-bottom>
             <q-btn :loading="wait" color="primary q-mx-md" @click="deploy">배포</q-btn>
-        </fixed-bottom>
+        </fixed-bottom> -->
+         <!-- 저장 버튼 -->
+        <content-box class="save-btn"  v-if="!isUpdate">
+            <q-btn :loading="wait" color="primary" @click="deploy">저장</q-btn>
+        </content-box>
 
 
     </q-page>
@@ -218,5 +223,10 @@
 </script>
 
 <style scoped lang="scss">
+.save-btn{
+    background: rgb(255 255 255 / 0%);
+    text-align: right;
+    padding-right: 0px;
+}
 
 </style>

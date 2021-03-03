@@ -57,13 +57,18 @@
                 <q-icon v-else name="arrow_drop_up" />
             </q-btn>
             <div class="q-mb-xl"></div>
-            <fixed-bottom v-if="!isUpdate">
+            <!-- <fixed-bottom v-if="!isUpdate">
                 <q-btn :loading="wait" class="q-mr-md" color="primary" @click="save">저장</q-btn>
-            </fixed-bottom>
+            </fixed-bottom> -->
+            
             <div v-if="isUpdate" class="bg-fade-70 full-width full-height absolute-top">
                 <div class="text-h4 text-center q-my-xl"> 이미 업데이트중인 버전이 있습니다. </div>
 <!--                <div class="text-h4 text-center q-my-xl"> 이미 업데이트중인 버전이 있습니다. </div>-->
             </div>
+        </content-box>
+         <!-- 저장 버튼 -->
+        <content-box class="save-btn"  v-if="!isUpdate">
+            <q-btn :loading="wait" color="primary" @click="save">저장</q-btn>
         </content-box>
     </div>
 
@@ -332,4 +337,9 @@ export default class ProjectAddVersion extends Vue {
 </script>
 
 <style scoped lang="scss">
+.save-btn{
+    background: rgb(255 255 255 / 0%);
+    text-align: right;
+    padding-right: 0px;
+}
 </style>
