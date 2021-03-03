@@ -6,19 +6,17 @@
         <q-separator />
         <q-card-actions class="body">
 
-            <div class="full-width" v-if="!version">
-                <div class="text-body1 text-center q-mb-lg">
-                    배포 중인 버전이 없습니다.
-                </div>
-            </div>
-
-
-            <div class="full-width" v-else-if="version && version.state === 'deploy'">
+            <div class="full-width" v-if="version && version.state === 'deploy'">
                 <div class="text-body1 text-center q-mb-lg">
                     {{ `${ version.version } (${version.number})` }}
                 </div>
                 <div class="text-body1 text-center q-mb-lg">
                     배포 중입니다.
+                </div>
+            </div>
+             <div class="full-width" v-else>
+                <div class="text-body1 text-center q-mb-lg">
+                    배포 중인 버전이 없습니다.
                 </div>
             </div>
 
@@ -55,7 +53,6 @@ export default class DeployCard extends Vue {
 
     async mounted() {
         this.version = this.$store.getters.deployVersion( this.projectId );
-        // console.log( this.version );
     }
 }
 </script>
