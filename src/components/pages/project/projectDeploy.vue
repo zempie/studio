@@ -47,7 +47,7 @@
             <q-btn :loading="wait" color="primary q-mx-md" @click="deploy">배포</q-btn>
         </fixed-bottom> -->
          <!-- 저장 버튼 -->
-        <content-box class="save-btn"  v-if="!isUpdate">
+        <content-box class="save-btn">
             <q-btn :loading="wait" color="primary" @click="deploy">저장</q-btn>
         </content-box>
 
