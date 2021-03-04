@@ -104,10 +104,11 @@
                 <q-icon v-else name="arrow_drop_up" />
             </q-btn>
         </content-box>
-        <div class="q-mb-xl"></div>
-        <fixed-bottom>
-            <q-btn :loading="waitSave" class="q-mr-md" color="primary" @click="save">저장</q-btn>
-        </fixed-bottom>
+        <!-- 저장 버튼 -->
+        <content-box class="save-btn">
+            <q-btn :loading="waitSave" color="primary" @click="save">저장</q-btn>
+        </content-box>
+        
     </q-page>
 </template>
 
@@ -391,5 +392,9 @@
 </script>
 
 <style scoped lang="scss">
-
+.save-btn{
+    background: rgb(255 255 255 / 0%);
+    text-align: right;
+    padding-right: 0px;
+}
 </style>

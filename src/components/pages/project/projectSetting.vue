@@ -46,9 +46,14 @@
                 </div>
             </content-box-block>
         </content-box>
-        <fixed-bottom>
+        <!-- <fixed-bottom>
             <q-btn class="q-mr-md" color="primary" :loading="wait" @click="save">저장</q-btn>
-        </fixed-bottom>
+        </fixed-bottom> -->
+
+         <!-- 저장 버튼 -->
+        <content-box class="save-btn">
+            <q-btn :loading="wait" color="primary" @click="save">저장</q-btn>
+        </content-box>
     </div>
 </template>
 
@@ -236,5 +241,9 @@
 </script>
 
 <style scoped lang="scss">
-
+.save-btn{
+    background: rgb(255 255 255 / 0%);
+    text-align: right;
+    padding-right: 0px;
+}
 </style>

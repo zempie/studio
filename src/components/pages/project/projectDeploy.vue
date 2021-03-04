@@ -42,9 +42,14 @@
             </content-box-block>
 
         </content-box>
-        <fixed-bottom>
+
+        <!-- <fixed-bottom>
             <q-btn :loading="wait" color="primary q-mx-md" @click="deploy">배포</q-btn>
-        </fixed-bottom>
+        </fixed-bottom> -->
+         <!-- 저장 버튼 -->
+        <content-box class="save-btn">
+            <q-btn :loading="wait" color="primary" @click="deploy">저장</q-btn>
+        </content-box>
 
 
     </q-page>
@@ -191,9 +196,8 @@
                 console.error( result && result.error || 'error' );
             }
             else {
-
+         
                 version.state = 'deploy';
-
                 if( this.deployVersion ) {
                     const preVersion = _.find( versions, v => v.number === this.deployVersion.number );
                     preVersion.state = 'passed';
@@ -202,8 +206,14 @@
                     if( project.update_version_id === version.id ) {
                         project.update_version_id = null;
                     }
-                }
+                }else{
+                        const project = this.$store.getters.project( this.projectId );
+                        project.deploy_version_id = deploy_version_id;
 
+                        if( project.update_version_id === deploy_version_id ) {
+                            project.update_version_id = null;
+                        }
+                }
                 Notify.create({
                     message : '배포되었습니다.',
                     position : 'top',
@@ -218,5 +228,10 @@
 </script>
 
 <style scoped lang="scss">
+.save-btn{
+    background: rgb(255 255 255 / 0%);
+    text-align: right;
+    padding-right: 0px;
+}
 
 </style>

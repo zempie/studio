@@ -57,13 +57,18 @@
                 <q-icon v-else name="arrow_drop_up" />
             </q-btn>
             <div class="q-mb-xl"></div>
-            <fixed-bottom v-if="!isUpdate">
+            <!-- <fixed-bottom v-if="!isUpdate">
                 <q-btn :loading="wait" class="q-mr-md" color="primary" @click="save">저장</q-btn>
-            </fixed-bottom>
+            </fixed-bottom> -->
+            
             <div v-if="isUpdate" class="bg-fade-70 full-width full-height absolute-top">
                 <div class="text-h4 text-center q-my-xl"> 이미 업데이트중인 버전이 있습니다. </div>
 <!--                <div class="text-h4 text-center q-my-xl"> 이미 업데이트중인 버전이 있습니다. </div>-->
             </div>
+        </content-box>
+         <!-- 저장 버튼 -->
+        <content-box class="save-btn"  v-if="!isUpdate">
+            <q-btn :loading="wait" color="primary" @click="save">저장</q-btn>
         </content-box>
     </div>
 
@@ -225,18 +230,27 @@ export default class ProjectAddVersion extends Vue {
 
         if (this.startFileOptions.length) {
             this.uploadGameFileError = '';
-        } else {
-            this.uploadGameFileError = ErrorMessage.NOT_FOUND_HTML;
-        }
-
-        this.$store.commit('ajaxBar', false);
-        this.$q.loading.hide();
-        Notify.create({
-            message : '저장되었습니다.',
+             Notify.create({
+            message : '파일이 정상적으로 업로드되었습니다.',
             position : 'top',
             color : 'primary',
             timeout: 2000
         });
+        } else {
+            this.uploadGameFileError = ErrorMessage.NOT_FOUND_HTML;
+             Notify.create({
+            message : '파일 업로드에 실패했습니다.',
+            position : 'top',
+            color : 'negative',
+            timeout: 2000
+        });
+        }
+
+        this.$store.commit('ajaxBar', false);
+        
+        this.$q.loading.hide();
+
+       
     }
 
     async save() {
@@ -298,7 +312,7 @@ export default class ProjectAddVersion extends Vue {
 
         if( !version || version.error ) {
             Notify.create({
-                message : version && version.error || '실패하였습니다. 파일을 확인 후 다시 시도해 주세요.',
+                message : version && version.error.message || '실패하였습니다. 파일을 확인 후 다시 시도해 주세요.',
                 position : 'top',
                 color : 'negative',
                 timeout: 2000
@@ -308,6 +322,8 @@ export default class ProjectAddVersion extends Vue {
             const project = this.$store.getters.project( this.projectId );
             project.update_version_id = version.id;
             this.$store.commit('version', version);
+            project.projectVersions.push(version);
+            
             Notify.create({
                 message : '저장되었습니다.',
                 position : 'top',
@@ -323,4 +339,9 @@ export default class ProjectAddVersion extends Vue {
 </script>
 
 <style scoped lang="scss">
+.save-btn{
+    background: rgb(255 255 255 / 0%);
+    text-align: right;
+    padding-right: 0px;
+}
 </style>

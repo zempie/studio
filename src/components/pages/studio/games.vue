@@ -1,5 +1,5 @@
 <template>
-    <q-page class="q-pa-md center-container no-drag">
+    <q-page class="q-pt-md center-container no-drag">
         <div class="text-right">
             <!-- 설문조사 btn --> 
             <template v-if="!survey.isDone && survey.url !== null && survey.url !== undefined && !isSurveyBtnClicked">
@@ -30,7 +30,6 @@
                 <template v-if="props.row.state === 1 || props.row.state === 2">
                     <q-tr
                         :props="props"
-                        @click="$router.push(`/project/${props.row.id}`)"
                         class="banned "
                     >
                         <q-td width="10%">

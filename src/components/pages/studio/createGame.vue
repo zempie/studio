@@ -111,6 +111,8 @@ box-shadow: none !important;
 .game-selection {
     display: flex;
     align-items: center;
+    max-width: 1440px;
+    margin: 0 auto
 }
 .dimmed-above {
     z-index: 999;

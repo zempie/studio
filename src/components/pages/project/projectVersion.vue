@@ -93,7 +93,9 @@
 <!--                                    </div>-->
 <!--                                </div>-->
 <!--                            </content-box-block>-->
-                            <content-box-block class="q-mb-xl" title="배포" v-if="props.row.state === 'passed'">
+
+                        <!-- 배포 버튼 -->
+                            <!-- <content-box-block class="q-mb-xl" title="배포" v-if="props.row.state === 'passed'">
                                 <div class="q-my-md">
                                     현재 진행중인 버전을 대신하여 이 버전을 배포 합니다.
                                 </div>
@@ -102,7 +104,7 @@
                                         배포
                                     </q-btn>
                                 </div>
-                            </content-box-block>
+                            </content-box-block> -->
                             <content-box-block class="q-mb-lg" title="버전 삭제">
                                 <div class="q-my-md">
                                     <div>
@@ -113,7 +115,7 @@
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <q-btn :loading="wait[ props.row.id ]" @click="deleteVersion( props.row.id )">
+                                    <q-btn :loading="wait[ props.row.id ]" @click="deleteVersion( props.row )">
                                         삭제
                                     </q-btn>
                                 </div>
@@ -221,14 +223,23 @@
             }
         }
 
-        async deleteVersion( id ) {
+        async deleteVersion( rowInfo ) {
+            let id = rowInfo.id;
+            let state = rowInfo.state;            
 
-            const ok = confirm('한 번 삭제한 버전은 다시 복구할 수 없습니다. 정말 삭제하시겠습니까?');
+            if(state === 'deploy'){
+                Notify.create({
+                    message : '배포 중인 버전은 삭제가 불가능합니다.',
+                    position : 'top',
+                    color : 'negative',
+                    timeout: 2000
+                });
+            }else{            
+                const ok = confirm('한 번 삭제한 버전은 다시 복구할 수 없습니다. 정말 삭제하시겠습니까?');
             if( ok ) {
                 this.wait[id] = true;
 
                 const result = await this.$http.deleteVersion( id );
-
                 if( !result || result.error ) {
                     Notify.create({
                         message : result && result.error || '버전을 삭제하는데 실패하였습니다.',
@@ -252,6 +263,7 @@
 
                 this.wait[id] = false;
             }
+        }
         }
     }
 </script>

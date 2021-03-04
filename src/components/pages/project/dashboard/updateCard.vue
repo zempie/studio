@@ -19,7 +19,7 @@
 
             <div class="full-width" v-else-if="version && version.state === 'process'">
                 <div class="text-body1 text-center q-mb-lg">
-                    {{ `${version.version} (${version.number})` }}
+                    {{ `${version.version}` }}
                 </div>
                 <div class="text-body1 text-center">
                     심의가 진행중 입니다.
@@ -28,7 +28,7 @@
 
             <div class="full-width" v-else-if="version && version.state === 'passed'">
                 <div class="text-body1 text-center q-mb-lg">
-                    {{ `${version.version} (${version.number})` }}
+                    {{ `${version.version}` }}
                 </div>
                 <div class="text-body1 text-center q-mb-lg">
                     심의를 통과하였습니다.
@@ -42,7 +42,7 @@
 
             <div class="full-width" v-else-if="version && version.state === 'fail'">
                 <div class="text-body1 text-center q-mb-lg">
-                    {{ `${version.version} (${version.number})` }}
+                    {{ `${version.version}` }}
                 </div>
                 <div class="text-body1 text-center q-mb-lg">
                     심의를 실패하였습니다.
