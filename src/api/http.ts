@@ -19,7 +19,7 @@ export default class Http {
             return result.data;
         }
         catch (error) {
-            if (error && error.response && error.response.data && error.response.data.error === 'Unauthorized') {
+            if ( error?.response?.data?.code === 10001 ) {
                 const currentUser = firebase.auth().currentUser;
                 if (currentUser) {
                     const idToken = await currentUser.getIdToken(true);
