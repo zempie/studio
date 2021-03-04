@@ -11,7 +11,8 @@
                 <q-input type="textarea" counter maxlength="2000" v-model="description"/>
             </content-box-block>
             <content-box-block class="q-mb-xl" title="태그">
-                <q-input counter maxlength="255" :error="hashtagsError !== ''" :error-message="hashtagsError" v-model="hashtags" @change="onChangeHashtags"/>
+                <q-chips-input counter maxlength="255" :error="hashtagsError !== ''" :error-message="hashtagsError" v-model="hashtags" @change="onChangeHashtags" />
+                <!-- <q-input class="q-chips-input" counter maxlength="255" :error="hashtagsError !== ''" :error-message="hashtagsError" v-model="hashtags" @change="onChangeHashtags"/> -->
                 <div class="hintText">
                     게임을 나타낼 수 있는 단어를 태그로 설정하세요. 여러 개를 사용하는 경우 쉼표로 구분해 주세요.
                 </div>
@@ -134,7 +135,8 @@
             ContentBoxLine,
             ContentBoxBlockImageUploader,
             ContentBoxBlock,
-            FixedBottom
+            FixedBottom,
+            
 
         }
     })

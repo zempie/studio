@@ -110,6 +110,7 @@ export default class Http {
         }
 
         const response = await this.request('post', `/studio/project/${options.id}`, formData, false);
+        store.commit('project', response.result)
         return response.result || response;
     }
 

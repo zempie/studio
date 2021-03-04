@@ -180,7 +180,7 @@
                 id : this.projectId,
                 deploy_version_id,
             } );
-
+            
             this.$store.commit('ajaxBar', false);
             this.$q.loading.hide();
             this.wait = false;
@@ -206,13 +206,6 @@
                     if( project.update_version_id === version.id ) {
                         project.update_version_id = null;
                     }
-                }else{
-                        const project = this.$store.getters.project( this.projectId );
-                        project.deploy_version_id = deploy_version_id;
-
-                        if( project.update_version_id === deploy_version_id ) {
-                            project.update_version_id = null;
-                        }
                 }
                 Notify.create({
                     message : '배포되었습니다.',
