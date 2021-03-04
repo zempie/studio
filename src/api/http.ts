@@ -114,7 +114,7 @@ export default class Http {
     }
 
     async getProjects() {
-        const response = await this.request('get', '/studio/project', undefined, false);
+        const response = await this.request('get', '/studio/projects', undefined, false);
         return response.result || response;
     }
 
