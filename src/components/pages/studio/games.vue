@@ -30,7 +30,6 @@
                 <template v-if="props.row.state === 1 || props.row.state === 2">
                     <q-tr
                         :props="props"
-                        @click="$router.push(`/project/${props.row.id}`)"
                         class="banned "
                     >
                         <q-td width="10%">
