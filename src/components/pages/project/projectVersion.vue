@@ -250,14 +250,20 @@
                     console.error( result && result.error || 'error' );
                 }
                 else {
+
+
+
                     const versionList = this.$store.getters.versionList( this.projectId );
                     const versions = this.$store.getters.versions( this.projectId );
                     const idx = _.findIndex<any>( versionList, v => v.id === id);
                     if( idx > -1 ) {
                         versionList.splice( idx, 1 );
                     }
-
                     delete versions[id];
+                    const project = this.$store.getters.project( this.projectId );
+                    if( project.update_version_id ) {
+                          project.update_version_id = null;
+                    }
                     this.versions = this.$store.getters.versionList( this.projectId );
                 }
 

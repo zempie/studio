@@ -321,8 +321,8 @@ export default class ProjectAddVersion extends Vue {
         else {
             const project = this.$store.getters.project( this.projectId );
             project.update_version_id = version.id;
-            this.$store.commit('version', version);
             project.projectVersions.push(version);
+            project.versions[ version.id ] = version;
             
             Notify.create({
                 message : '저장되었습니다.',

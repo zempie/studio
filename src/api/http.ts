@@ -149,6 +149,8 @@ export default class Http {
         }
 
         const response = await this.request('post', `/studio/version`, formData, false);
+        
+        store.commit('version', response.result);
         return response.result || response;
     }
 
