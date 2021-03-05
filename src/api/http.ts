@@ -95,7 +95,7 @@ export default class Http {
 
     async updateProject(options: { id: number, name?: string, description?: string, hashtags?: string, deploy_version_id?: string }, file?: File, file2?: File) {
         //파일 업로드
-
+        console.log(options.id)
         const formData = new FormData();
         if (options.id) { formData.append('id', options.id.toString()); }
         if (options.name) { formData.append('name', options.name); }
@@ -110,7 +110,11 @@ export default class Http {
         }
 
         const response = await this.request('post', `/studio/project/${options.id}`, formData, false);
-        store.commit('project', response.result)
+
+        if(!response.error){
+            store.commit('project', response.result)
+        }
+
         return response.result || response;
     }
 
@@ -150,7 +154,9 @@ export default class Http {
 
         const response = await this.request('post', `/studio/version`, formData, false);
         
-        store.commit('version', response.result);
+        if(!response.error){
+            store.commit('version', response.result);
+        }
         return response.result || response;
     }
 
