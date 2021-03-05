@@ -10,6 +10,7 @@ export default class Http {
 
     async request(method: string, url: string, data: any, withCredentials: boolean = false, errorCallback: Function | null = null, retryCount: number = 0): Promise<any> {
         try {
+            //@ts-ignore
             const result = await Vue.$axios({
                 method: method,
                 url,
@@ -95,7 +96,6 @@ export default class Http {
 
     async updateProject(options: { id: number, name?: string, description?: string, hashtags?: string, deploy_version_id?: string }, file?: File, file2?: File) {
         //파일 업로드
-        console.log(options.id)
         const formData = new FormData();
         if (options.id) { formData.append('id', options.id.toString()); }
         if (options.name) { formData.append('name', options.name); }
@@ -108,7 +108,8 @@ export default class Http {
         if (file2) {
             formData.append('file2', file2);
         }
-
+        
+        console.log(options.hashtags)
         const response = await this.request('post', `/studio/project/${options.id}`, formData, false);
 
         if(!response.error){

@@ -131,6 +131,7 @@ import ContentBox from "@/components/layout/contentBox.vue";
 import ContentBoxBlock from "@/components/layout/contentBoxBlock.vue";
 import FixedBottom from "@/components/fixedBottom.vue";
 import {ErrorMessage} from "@/scripts/errorMessge";
+import {SuccessMessage} from "@/scripts/successMessage";
 import {Notify} from "quasar";
 
 
@@ -189,7 +190,7 @@ export default class ProjectAddVersion extends Vue {
 
         this.$store.commit('ajaxBar', true);
         this.$q.loading.show({
-            message: '잠시만 기다려 주세요.'
+            message: SuccessMessage.WAITING
         });
 
         const zip = await ZipUtil.zipFileToZip(this.uploadGameFile);
@@ -230,16 +231,16 @@ export default class ProjectAddVersion extends Vue {
 
         if (this.startFileOptions.length) {
             this.uploadGameFileError = '';
-             Notify.create({
-            message : '파일이 정상적으로 업로드되었습니다.',
+            Notify.create({
+            message : SuccessMessage.VERSION_FILE_OK,
             position : 'top',
             color : 'primary',
             timeout: 2000
         });
         } else {
             this.uploadGameFileError = ErrorMessage.NOT_FOUND_HTML;
-             Notify.create({
-            message : '파일 업로드에 실패했습니다.',
+            Notify.create({
+            message : ErrorMessage.UPLOAD_GAME_FAIL,
             position : 'top',
             color : 'negative',
             timeout: 2000
@@ -300,7 +301,7 @@ export default class ProjectAddVersion extends Vue {
 
         this.$store.commit('ajaxBar', true);
         this.$q.loading.show({
-            message: '잠시만 기다려 주세요.'
+            message: SuccessMessage.WAITING
         });
         const version = await this.$http.createVersion(this.projectId, this.version, this.uploadGameFiles, this.startFile, this.autoDeploy, this.totalSize, this.description);
 
@@ -312,7 +313,7 @@ export default class ProjectAddVersion extends Vue {
 
         if( !version || version.error ) {
             Notify.create({
-                message : version && version.error.message || '실패하였습니다. 파일을 확인 후 다시 시도해 주세요.',
+                message : ErrorMessage.NEW_VERSION_UPLOAD_FAIL,
                 position : 'top',
                 color : 'negative',
                 timeout: 2000
@@ -325,7 +326,7 @@ export default class ProjectAddVersion extends Vue {
             project.versions[ version.id ] = version;
             
             Notify.create({
-                message : '저장되었습니다.',
+                message : SuccessMessage.VERSION_UPLOAD_OK,
                 position : 'top',
                 color : 'primary',
                 timeout: 2000

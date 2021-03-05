@@ -11,7 +11,31 @@
                 <q-input type="textarea" counter maxlength="2000" v-model="description"/>
             </content-box-block>
             <content-box-block class="q-mb-xl" title="태그">
-                <q-input counter maxlength="255" :error="hashtagsError !== ''" :error-message="hashtagsError" v-model="hashtags" @change="onChangeHashtags"/>
+                <q-select
+                    ref="hashtagsArr"
+                    v-model="hashtagsArr"
+                    multiple
+                    use-chips
+                    use-input
+                    new-value-mode="add-unique"            
+                    hide-dropdown-icon            
+                    @input.native="createTagChip($event.target.value)"
+                    @new-value="createValue"
+                    :error="hashtagsError !== ''" :error-message="hashtagsError"
+                >
+                    <template v-slot:selected-item="scope">
+                        <q-chip
+                        removable              
+                        @remove="scope.removeAtIndex(scope.index)"       
+                        class="q-chip"
+                        >
+                        {{ scope.opt }}
+                        </q-chip>
+                    </template>
+                </q-select>
+                <!-- <q-input counter maxlength="255" :error="hashtagsError !== ''" :error-message="hashtagsError" v-model="hashtags" @change="onChangeHashtags"/> -->
+               
+               
                 <div class="hintText">
                     게임을 나타낼 수 있는 단어를 태그로 설정하세요. 여러 개를 사용하는 경우 쉼표로 구분해 주세요.
                 </div>
@@ -64,10 +88,13 @@
     import ContentBoxBlock from "@/components/layout/contentBoxBlock.vue";
     import ContentBoxBlockImageUploader from "@/components/layout/contentBoxBlockImageUploader.vue";
     import FixedBottom from "@/components/fixedBottom.vue";
+    import {ErrorMessage} from "@/scripts/errorMessge";
     import ContentBoxLine from "@/components/layout/contentBoxLine.vue";
     import {Notify} from "quasar";
     import {verifyHashtags} from "@/scripts/verifyHashtag";
+    import {verifySelectHashtags} from "@/scripts/verifySelectHashtags";
     import ContentBoxBlockImageUploaderGIF from "@/components/layout/contentBoxBlockImageUploaderGIF.vue";
+import { SuccessMessage } from '@/scripts/successMessage';
 
     @Component({
         components: {
@@ -106,18 +133,23 @@
 
         private wait : boolean = false;
 
+        
+        private hashtagsArr: string[] = [];
+        private inputValue: string =  '';
+        private isShowTag: boolean =  false;
+
         async mounted() {
             this.$store.commit('pageName', '설정');
 
             let project = await this.$store.dispatch( 'project', this.projectId );
-            // console.log( project );
+
             this.title = project.name;
             this.description = project.description;
             this.imgUrl = project.picture;
             this.imgUrl2 = project.picture2;
             this.gameId = project.id;
             this.gamePath = project && project.game && project.game.pathname || '';
-            this.hashtags = project.hashtags;
+            this.hashtagsArr = project.hashtags.split(',');
         }
 
         private onChangeHashtags() {
@@ -136,7 +168,7 @@
                 return;
             }
 
-
+console.log("태그태그",this.hashtagsArr.toString() )
             this.wait = true;
 
             const option : any = {
@@ -148,8 +180,9 @@
             if( this.description ) {
                 option.description = this.description;
             }
-            if( this.hashtags ) {
-                option.hashtags = this.hashtags;
+            if( this.hashtagsArr ) {
+                option.hashtags = this.hashtagsArr.toString();
+                
             }
 
 
@@ -164,7 +197,7 @@
             if( !result || result.error ) {
                  if(result.error.code === 40101){
                     Notify.create({
-                    message : '올바르지 않은 단어가 포함되어 있습니다.',
+                    message : ErrorMessage.FORBIDDEN_STRING,
                     position : 'top',
                     color : 'negative',
                     timeout: 2000
@@ -172,7 +205,7 @@
                 }
                 else{
                 Notify.create({
-                    message : result && result.error || '실패하였습니다.',
+                    message : ErrorMessage.SAVE_EDIT_GAME_FAIL,
                     position : 'top',
                     color : 'negative',
                     timeout: 2000
@@ -182,7 +215,7 @@
             }
             else {
                 Notify.create({
-                    message : '저장되었습니다.',
+                    message : SuccessMessage.GAME_EDIT_OK,
                     position : 'top',
                     color : 'primary',
                     timeout: 2000
@@ -221,7 +254,7 @@
 
                 if( !result || result.error ) {
                     Notify.create({
-                        message : result && result.error || '게임을 삭제하는데 실패하였습니다.',
+                        message : ErrorMessage.DELETE_GAME_FAIL,
                         position : 'top',
                         color : 'negative',
                         timeout: 2000
@@ -237,6 +270,30 @@
 
             }
         }
+        createValue (val, done) {
+            this.isShowTag = false
+            if(this.hashtagsArr.length <=20){
+                if( val === '' ) {
+                    this.hashtagsError = '';
+                    
+                }else{
+                    this.hashtagsError = verifySelectHashtags( val );                
+                }
+                if(this.hashtagsError === ''){
+                    if(done) {
+                        done(val)
+                    } 
+                }
+            }else{
+                this.hashtagsError = '입력된 태그가 너무 많습니다. 20개 이내로 설정해 주세요.'
+            }
+        }
+
+        createTagChip (val) {
+        this.isShowTag = true
+        this.inputValue = val
+        
+        }
     }
 </script>
 
@@ -245,5 +302,11 @@
     background: rgb(255 255 255 / 0%);
     text-align: right;
     padding-right: 0px;
+}
+.q-chip{
+    background-color: rgb(244,186,47) ;
+    border-radius: 5px ;
+    color: black ;
+    padding: 15px ;
 }
 </style>

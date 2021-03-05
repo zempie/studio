@@ -141,6 +141,8 @@
     import ContentBoxBlock from "@/components/layout/contentBoxBlock.vue";
     import _ from 'lodash';
     import {Notify} from "quasar";
+    import { ErrorMessage } from '@/scripts/errorMessge';
+    import {SuccessMessage} from "@/scripts/successMessage";
 
     @Component({
         components: {
@@ -229,7 +231,7 @@
 
             if(state === 'deploy'){
                 Notify.create({
-                    message : '배포 중인 버전은 삭제가 불가능합니다.',
+                    message : ErrorMessage.DELETE_DEPLOY_FAIL,
                     position : 'top',
                     color : 'negative',
                     timeout: 2000
@@ -242,7 +244,7 @@
                 const result = await this.$http.deleteVersion( id );
                 if( !result || result.error ) {
                     Notify.create({
-                        message : result && result.error || '버전을 삭제하는데 실패하였습니다.',
+                        message : ErrorMessage.DELETE_VERSION_FAIL,
                         position : 'top',
                         color : 'negative',
                         timeout: 2000

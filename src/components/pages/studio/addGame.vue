@@ -11,8 +11,30 @@
                 <q-input type="textarea" counter maxlength="2000" v-model="description"/>
             </content-box-block>
             <content-box-block class="q-mb-xl" title="태그">
-                <q-chips-input counter maxlength="255" :error="hashtagsError !== ''" :error-message="hashtagsError" v-model="hashtags" @change="onChangeHashtags" />
-                <!-- <q-input class="q-chips-input" counter maxlength="255" :error="hashtagsError !== ''" :error-message="hashtagsError" v-model="hashtags" @change="onChangeHashtags"/> -->
+                <q-select
+                ref="hashtagsArr"
+                v-model="hashtagsArr"
+                multiple
+                use-chips
+                use-input
+                new-value-mode="add-unique"            
+                hide-dropdown-icon            
+                @input.native="createTagChip($event.target.value)"
+                @new-value="createValue"
+                :error="hashtagsError !== ''" :error-message="hashtagsError"
+                >
+                  <template v-slot:selected-item="scope">
+                    <q-chip
+                    removable     
+                    @remove="scope.removeAtIndex(scope.index)"       
+                    class="q-chip"
+                    >
+                    {{ scope.opt }}
+                    </q-chip>
+                </template>
+                </q-select>
+            
+                <!-- <q-input counter maxlength="255" :error="hashtagsError !== ''" :error-message="hashtagsError" v-model="hashtags" @change="onChangeHashtags"/> -->
                 <div class="hintText">
                     게임을 나타낼 수 있는 단어를 태그로 설정하세요. 여러 개를 사용하는 경우 쉼표로 구분해 주세요.
                 </div>
@@ -126,7 +148,9 @@
     import {Notify} from "quasar";
     import {mbToByte} from "@/common/fileLoader";
     import {verifyHashtags} from "@/scripts/verifyHashtag";
+    import {verifySelectHashtags} from "@/scripts/verifySelectHashtags";
     import ContentBoxBlockImageUploaderGIF from "@/components/layout/contentBoxBlockImageUploaderGIF.vue";
+    import { SuccessMessage } from '@/scripts/successMessage';
 
     @Component({
         components: {
@@ -135,8 +159,7 @@
             ContentBoxLine,
             ContentBoxBlockImageUploader,
             ContentBoxBlock,
-            FixedBottom,
-            
+            FixedBottom,            
 
         }
     })
@@ -176,6 +199,11 @@
         private waitSave : boolean = false;
 
 
+        private hashtagsArr: string[] = [];
+        private inputValue: string =  '';
+        private isShowTag: boolean =  false;
+
+
 
         mounted() {
             this.$store.commit('pageName', '게임 추가');
@@ -194,7 +222,7 @@
 
             this.$store.commit('ajaxBar', true);
             this.$q.loading.show({
-                message: '파일을 확인하고 있습니다. 잠시만 기다려 주세요.'
+                message: SuccessMessage.CHECK_FILE
             });
 
             const zip = await ZipUtil.zipFileToZip(this.uploadGameFile);
@@ -248,7 +276,7 @@
                 this.hashtagsError = '';
             }
             else {
-                this.hashtagsError = verifyHashtags( this.hashtags );
+                this.hashtagsError = verifySelectHashtags( this.hashtags );
             }
         }
 
@@ -303,7 +331,7 @@
 
                     if( !this.confirmedGamePath ) {
                         Notify.create({
-                            message : '실패하였습니다. 잠시 후 다시 시도해 주세요.',
+                            message : ErrorMessage.COMMON_ERROR,
                             position : 'top',
                             color : 'negative',
                             timeout: 2000
@@ -332,10 +360,11 @@
 
             this.$store.commit('ajaxBar', true);
             this.$q.loading.show({
-                message: '잠시만 기다려 주세요.'
+                message: SuccessMessage.WAITING
             });
 
             console.log( this.versionDescription );
+            
 
             const result = await this.$http.createProject( {
                 name : this.title,
@@ -343,7 +372,7 @@
                 pathname : this.gamePath,
                 project_picture : this.thumbFile,
                 project_picture2 : this.thumbFile2,
-                hashtags : this.hashtags,
+                hashtags : this.hashtagsArr.toString(),
             }, {
                 autoDeploy : this.autoDeploy,
                 startFile : this.startFile,
@@ -360,7 +389,7 @@
             if( !result || result.error ) {
                 if(result.error.code === 40101){
                     Notify.create({
-                    message : '올바르지 않은 단어가 포함되어 있습니다.',
+                    message : ErrorMessage.FORBIDDEN_STRING,
                     position : 'top',
                     color : 'negative',
                     timeout: 2000
@@ -368,7 +397,7 @@
                 }
                 else{
                 Notify.create({
-                    message : result && result.error || '실패하였습니다. 파일을 확인 후 다시 시도해 주세요.',
+                    message : ErrorMessage.UPLOAD_GAME_FAIL,
                     position : 'top',
                     color : 'negative',
                     timeout: 2000
@@ -378,7 +407,7 @@
             }
             else {
                 Notify.create({
-                    message : '추가되었습니다.',
+                    message : SuccessMessage.GAME_UPLOAD_OK,
                     position : 'top',
                     color : 'primary',
                     timeout: 2000
@@ -390,6 +419,31 @@
 
 
         }
+
+        createValue (val, done) {
+            this.isShowTag = false
+            if(this.hashtagsArr.length <=20){
+                if( val === '' ) {
+                    this.hashtagsError = '';
+                    
+                }else{
+                    this.hashtagsError = verifySelectHashtags( val );                
+                }
+                if(this.hashtagsError === ''){
+                    if(done) {
+                        done(val)
+                    } 
+                }
+            }else{
+                this.hashtagsError = ErrorMessage.INPUT_NUMBERS_TAGS
+            }
+        }
+
+        createTagChip (val) {
+        this.isShowTag = true
+        this.inputValue = val
+        
+        }
     }
 </script>
 
@@ -399,4 +453,11 @@
     text-align: right;
     padding-right: 0px;
 }
+.q-chip{
+    background-color: rgb(244,186,47) ;
+    border-radius: 5px ;
+    color: black ;
+    padding: 15px ;
+}
+
 </style>

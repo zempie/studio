@@ -64,6 +64,8 @@
     import FixedBottom from "@/components/fixedBottom.vue";
     import {roundFace} from "@quasar/extras/material-icons-round";
     import {Notify} from "quasar";
+import { ErrorMessage } from '@/scripts/errorMessge';
+import { SuccessMessage } from '@/scripts/successMessage';
 
     @Component({
         components: {
@@ -131,7 +133,7 @@
 
             if( !result || result.error ) {
                 Notify.create({
-                    message : result && result.error || '실패하였습니다.',
+                    message : ErrorMessage.COMMON_ERROR,
                     position : 'top',
                     color : 'negative',
                     timeout: 2000
@@ -149,7 +151,7 @@
                 }
 
                 Notify.create({
-                    message : '게임이 비공개 되었습니다.',
+                    message : SuccessMessage.UNDEPLOY_OK,
                     position : 'top',
                     color : 'primary',
                     timeout: 2000
@@ -188,7 +190,7 @@
 
             if( !result || result.error ) {
                 Notify.create({
-                    message : result && result.error || '배포에 실패하였습니다.',
+                    message : ErrorMessage.DEPLOY_FAIL,
                     position : 'top',
                     color : 'negative',
                     timeout: 2000
@@ -208,7 +210,7 @@
                     }
                 }
                 Notify.create({
-                    message : '배포되었습니다.',
+                    message : SuccessMessage.DEPLOY_VERSION_OK,
                     position : 'top',
                     color : 'primary',
                     timeout: 2000

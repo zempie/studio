@@ -174,6 +174,8 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { LoginState } from "@/store/modules/user";
 import { Notify } from "quasar";
+import { ErrorMessage } from "@/scripts/errorMessge";
+import { SuccessMessage } from '@/scripts/successMessage';
 
 interface ISurvey {
     url: string;
@@ -269,8 +271,7 @@ export default class Games extends Vue {
         if (!result || result.error) {
             Notify.create({
                 message:
-                    (result && result.error) ||
-                    "프로젝트 목록을 불러오는데 실패하였습니다.",
+                   ErrorMessage.LOAD_PROJECTS_FAIL,
                 position: "top",
                 color: "negative",
                 timeout: 2000,
