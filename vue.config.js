@@ -7,8 +7,7 @@ module.exports = {
     },
 
     transpileDependencies: [
-      'quasar',
-      'vuetify'
+      'quasar'
     ],
 
     publicPath: process.env.VUE_APP_PUBLIC_PATH,
