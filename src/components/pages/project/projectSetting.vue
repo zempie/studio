@@ -149,7 +149,13 @@ import { SuccessMessage } from '@/scripts/successMessage';
             this.imgUrl2 = project.picture2;
             this.gameId = project.id;
             this.gamePath = project && project.game && project.game.pathname || '';
-            this.hashtagsArr = project.hashtags.split(',');
+
+            if(project.hashtags === ''){
+                this.hashtagsArr =[];
+            }else{
+
+                this.hashtagsArr = project.hashtags.split(',');
+            }
         }
 
         private onChangeHashtags() {
@@ -167,8 +173,6 @@ import { SuccessMessage } from '@/scripts/successMessage';
             if( this.wait || this.hashtagsError ) {
                 return;
             }
-
-console.log("태그태그",this.hashtagsArr.toString() )
             this.wait = true;
 
             const option : any = {

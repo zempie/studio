@@ -97,7 +97,6 @@ export default class Http {
     async updateProject(options: { id: number, name?: string, description?: string, hashtags?: string, deploy_version_id?: string }, file?: File, file2?: File) {
         //파일 업로드
         const formData = new FormData();
-        
         if (options.id) { formData.append('id', options.id.toString()); }
         if (options.name) { formData.append('name', options.name); }
         if (options.description) { formData.append('description', options.description); }
