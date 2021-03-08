@@ -65,7 +65,15 @@
 
 <script  lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-export default class CreateGame extends Vue {}
+@Component({
+    
+})
+export default class CreateGame extends Vue {
+    async mounted() {
+        this.$store.commit('pageName', this.$t('createGame.toolbarTitle'));
+        
+    }
+}
 </script>
 <style scoped>
 .no-drag {-ms-user-select: none; -moz-user-select: -moz-none; -webkit-user-select: none; -khtml-user-select: none; user-select:none;}
