@@ -27,7 +27,7 @@
                 <q-item clickable>
                     <q-item-section>
                         <div class="row">
-                            <q-icon name="fas fa-user" class="q-mr-md self-center"></q-icon><div class="self-center">내 프로필</div>
+                            <q-icon name="fas fa-user" class="q-mr-md self-center"></q-icon><div class="self-center">{{ $t('accountPopup.profileLabel') }}</div>
                         </div>
                     </q-item-section>
                 </q-item>
@@ -37,7 +37,7 @@
                 <q-item clickable>
                     <q-item-section>
                         <div class="row">
-                            <q-icon name="far fa-id-card" class="q-mr-md self-center"></q-icon><div class="self-center">내 채널</div>
+                            <q-icon name="far fa-id-card" class="q-mr-md self-center"></q-icon><div class="self-center">{{ $t('accountPopup.channelLabel') }}</div>
                         </div>
                     </q-item-section>
                 </q-item>
@@ -47,7 +47,7 @@
                 <q-item clickable>
                     <q-item-section>
                         <div class="row">
-                            <q-icon name="far fa-question-circle" class="q-mr-md self-center"></q-icon><div class="self-center">고객센터</div>
+                            <q-icon name="far fa-question-circle" class="q-mr-md self-center"></q-icon><div class="self-center">{{ $t('accountPopup.supportLabel') }}</div>
                         </div>
                     </q-item-section>
                 </q-item>
@@ -63,7 +63,7 @@
             <q-item clickable @click="logout">
                 <q-item-section>
                     <div class="row">
-                        <q-icon name="fas fa-sign-out-alt" class="q-mr-md self-center"></q-icon><div class="self-center">로그아웃</div>
+                        <q-icon name="fas fa-sign-out-alt" class="q-mr-md self-center"></q-icon><div class="self-center">{{ $t('accountPopup.logoutLabel') }}</div>
                     </div>
                 </q-item-section>
             </q-item>

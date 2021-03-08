@@ -2,36 +2,59 @@
     <q-page class="q-pa-lg">
         <content-box>
             <div class="text-h6 q-mb-sm">
-                새 게임 추가
+                  {{$t('addGame.addGameTitle')}}
             </div>
-            <content-box-block class="q-my-xl" title="게임 제목">
+            <content-box-block class="q-my-xl" :title="$t('addGame.title')">
                 <q-input :error="titleError !== ''" :error-message="titleError" counter maxlength="50" v-model="title" @change="(str)=>{ if( str ){ titleError = '' } }" />
             </content-box-block>
-            <content-box-block class="q-mb-xl" title="자세한 설명">
+            <content-box-block class="q-mb-xl" :title="$t('addGame.description')">
                 <q-input type="textarea" counter maxlength="2000" v-model="description"/>
             </content-box-block>
-            <content-box-block class="q-mb-xl" title="태그">
-                <q-input counter maxlength="255" :error="hashtagsError !== ''" :error-message="hashtagsError" v-model="hashtags" @change="onChangeHashtags"/>
+            <content-box-block class="q-mb-xl" :title="$t('addGame.tag.title')">
+                <q-select
+                ref="hashtagsArr"
+                v-model="hashtagsArr"
+                multiple
+                use-chips
+                use-input
+                new-value-mode="add-unique"            
+                hide-dropdown-icon            
+                @input.native="createTagChip($event.target.value)"
+                @new-value="createValue"
+                :error="hashtagsError !== ''" :error-message="hashtagsError"
+                >
+                  <template v-slot:selected-item="scope">
+                    <q-chip
+                    removable     
+                    @remove="scope.removeAtIndex(scope.index)"       
+                    class="q-chip"
+                    >
+                    {{ scope.opt }}
+                    </q-chip>
+                </template>
+                </q-select>
+            
+                <!-- <q-input counter maxlength="255" :error="hashtagsError !== ''" :error-message="hashtagsError" v-model="hashtags" @change="onChangeHashtags"/> -->
                 <div class="hintText">
-                    게임을 나타낼 수 있는 단어를 태그로 설정하세요. 여러 개를 사용하는 경우 쉼표로 구분해 주세요.
+                    {{$t('addGame.tag.rules')}}
                 </div>
             </content-box-block>
-            <content-box-block class="q-mb-xl" title="썸네일 이미지">
-                <content-box-block-image-uploader v-on:@file="(file)=>{thumbFile = file;}" text="이미지 업로드" limit-size="4"></content-box-block-image-uploader>
+            <content-box-block class="q-mb-xl" :title="$t('addGame.thumbnailImg.title')">
+                <content-box-block-image-uploader v-on:@file="(file)=>{thumbFile = file;}" :text="$t('addGame.thumbnailImg.text')" limit-size="4"></content-box-block-image-uploader>
                 <div class="hintText">
-                    512*340 사이즈의 JPEG, PNG 파일을 업로드 해주세요. (최대 4MB)
+                    {{$t('addGame.thumbnailImg.rules')}}
                 </div>
             </content-box-block>
 
-            <content-box-block class="q-mb-xl" title="미리보기 이미지">
-                <content-box-block-image-uploader-g-i-f v-on:@file="(file)=>{thumbFile2 = file;}" text="이미지 업로드" limit-size="10"></content-box-block-image-uploader-g-i-f>
+            <content-box-block class="q-mb-xl" :title="$t('addGame.previewImg.title')">
+                <content-box-block-image-uploader-g-i-f v-on:@file="(file)=>{thumbFile2 = file;}" :text="$t('addGame.thumbnailImg.text')" limit-size="10"></content-box-block-image-uploader-g-i-f>
                 <div class="hintText">
-                    512*340 사이즈의 GIF 파일을 업로드 해주세요. (최대 10MB)
+                    {{$t('addGame.previewImg.rules')}}
                 </div>
             </content-box-block>
 
-            <content-box-block class="q-mb-xl" title="영문 게임 아이디 설정">
-                <q-toggle v-model="autoGamePath">{{ autoGamePath ? '자동 입력':'수동 입력' }}</q-toggle>
+            <content-box-block class="q-mb-xl" :title="$t('addGame.engGameIdSetting.title')">
+                <q-toggle v-model="autoGamePath">{{ autoGamePath ? $t('addGame.engGameIdSetting.autoInput'):$t('addGame.engGameIdSetting.manualInput') }}</q-toggle>
                 <q-slide-transition>
                     <div v-if="!autoGamePath">
                         <q-input :disable="waitGamePath"
@@ -42,12 +65,12 @@
                                  @change="(str)=>{ confirmedGamePath = false; if( str ){ gamePathError = '' } }"
                         >
                             <template v-slot:append>
-                                <q-btn v-if="!confirmedGamePath" :loading="waitGamePath" style="background-color: #3b3b3b" @click="checkGamePath">중복 확인</q-btn>
-                                <span class="text-body2 text-primary" v-else>확인 완료</span>
+                                <q-btn v-if="!confirmedGamePath" :loading="waitGamePath" style="background-color: #3b3b3b" @click="checkGamePath">{{$t('addGame.engGameIdSetting.duplicateCheck')}}</q-btn>
+                                <span class="text-body2 text-primary" v-else>{{$t('addGame.engGameIdSetting.completeBtn')}}</span>
                             </template>
                         </q-input>
                         <div class="hintText">
-                            영문과 숫자로 된 고유한 게임 아이디를 만듭니다. 만들어진 아이디는 게임 접속 주소등으로 사용됩니다.
+                            {{$t('addGame.engGameIdSetting.rules')}}
                         </div>
                     </div>
 
@@ -58,9 +81,9 @@
 
             <content-box-line></content-box-line>
             <div class="text-h6 q-my-xl">
-                첫번째 버전 추가
+                {{$t('addGame.firstVersionAdd')}}
             </div>
-            <content-box-block class="q-mb-xl" title="게임 업로드">
+            <content-box-block class="q-mb-xl" :title="$t('addGame.gameFileUpload.title')">
                 <q-input
                     @input="val => { uploadGameFile = val[0] }"
                     filled
@@ -69,25 +92,25 @@
                     :error="uploadGameFileError !== ''"
                     :error-message="uploadGameFileError"
                 />
-                <div v-if="uploadGameFiles.length" class="text-body2 text-right">총 사이즈 : {{ totalSize < 1 ? `${totalSize * 1000} KB`  : `${totalSize} MB` }} </div>
+                <div v-if="uploadGameFiles.length" class="text-body2 text-right">  {{$t('addGame.totalSize')}} : {{ totalSize < 1 ? `${totalSize * 1000} KB`  : `${totalSize} MB` }} </div>
                 <div class="hintText">
-                    게임이 포함된 웹페이지를 압축 파일로 업로드 해 주세요. zip 파일만 업로드가 가능하고, 압축하지 않은 파일들의 총 크기가 100MB 이하여야 합니다.
+                    {{$t('addGame.gameFileUpload.rules')}}
                 </div>
             </content-box-block>
             <q-slide-transition>
                 <div v-if="uploadMore">
-                    <content-box-block class="q-mb-xl" title="시작파일 선택">
+                    <content-box-block class="q-mb-xl" :title="$t('addGame.startFileSelect.title')">
                         <q-select style="margin-top: 20px"
-                                  label="시작 파일을 선택 해 주세요."
+                                  :label="$t('addGame.startFileSelect.desc')"
                                   v-model="startFile"
                                   :options="startFileOptions"
                                   :error="startFileError !== ''" :error-message="startFileError"
 
                         ></q-select>
                     </content-box-block>
-                    <content-box-block class="q-mb-xl" title="자동 배포 여부">
-                        <q-toggle v-model="autoDeploy">{{ autoDeploy ? '자동 배포모드' : '자동 배포모드 해제' }}</q-toggle>
-                        <div class="hintText">자동배포 모드에서는 심사를 마치면 자동으로 공개됩니다. 자동배포를 원하지 않으시면, 자동배포 모드를 비활성화하고 심사가 끝난후에 수동으로 배포하십시오.</div>
+                    <content-box-block class="q-mb-xl" :title="$t('addGame.autoDeployStatus.title')">
+                        <q-toggle v-model="autoDeploy">{{ autoDeploy ? $t('addGame.autoDeployStatus.autoDeployMode') : $t('addGame.autoDeployStatus.manualDeployMode') }}</q-toggle>
+                        <div class="hintText"> {{$t('addGame.autoDeployStatus.rules')}}</div>
                     </content-box-block>
 <!--                    <content-box-block class="q-mb-xl" title="버전 설명">-->
 <!--                        <q-input type="textarea" counter maxlength="2000" v-model="versionDescription"/>-->
@@ -99,14 +122,14 @@
             </q-slide-transition>
 
             <q-btn flat class="full-width" @click="uploadMore = !uploadMore">
-                고급
+                {{$t('advancedSetting')}}
                 <q-icon v-if="!uploadMore" name="arrow_drop_down" />
                 <q-icon v-else name="arrow_drop_up" />
             </q-btn>
         </content-box>
         <!-- 저장 버튼 -->
         <content-box class="save-btn">
-            <q-btn :loading="waitSave" color="primary" @click="save">저장</q-btn>
+            <q-btn :loading="waitSave" color="primary" @click="save">{{$t('save')}}</q-btn>
         </content-box>
         
     </q-page>
@@ -121,10 +144,10 @@
     import ContentBox from "@/components/layout/contentBox.vue";
     import ZipUtil from "@/common/zipUtil";
     import {randomString} from "@/common/util";
-    import {ErrorMessage} from "@/scripts/errorMessge";
     import {Notify} from "quasar";
     import {mbToByte} from "@/common/fileLoader";
     import {verifyHashtags} from "@/scripts/verifyHashtag";
+    import {verifySelectHashtags} from "@/scripts/verifySelectHashtags";
     import ContentBoxBlockImageUploaderGIF from "@/components/layout/contentBoxBlockImageUploaderGIF.vue";
 
     @Component({
@@ -134,7 +157,7 @@
             ContentBoxLine,
             ContentBoxBlockImageUploader,
             ContentBoxBlock,
-            FixedBottom
+            FixedBottom,            
 
         }
     })
@@ -174,9 +197,14 @@
         private waitSave : boolean = false;
 
 
+        private hashtagsArr: string[] = [];
+        private inputValue: string =  '';
+        private isShowTag: boolean =  false;
+
+
 
         mounted() {
-            this.$store.commit('pageName', '게임 추가');
+            this.$store.commit('pageName', this.$t('addGame.toolbarTitle'));
             // this.gamePath = randomString( 100 );
             
         }
@@ -192,7 +220,7 @@
 
             this.$store.commit('ajaxBar', true);
             this.$q.loading.show({
-                message: '파일을 확인하고 있습니다. 잠시만 기다려 주세요.'
+                message: this.$t('addGame.success.checkFile').toString()
             });
 
             const zip = await ZipUtil.zipFileToZip(this.uploadGameFile);
@@ -205,7 +233,7 @@
             }
 
             if( size > this.limitSize ) {
-                this.uploadGameFileError = ErrorMessage.FILE_SIZE_EXCEEDED;
+                this.uploadGameFileError = this.$t('addGame.error.fileSizeExceeded').toString();
                 return;
             }
 
@@ -234,7 +262,7 @@
             if (this.startFileOptions.length) {
                 this.uploadGameFileError = '';
             } else {
-                this.uploadGameFileError = ErrorMessage.NOT_FOUND_HTML;
+                this.uploadGameFileError = this.$t('addGame.error.notFoundHtml').toString();
             }
 
             this.$store.commit('ajaxBar', false);
@@ -246,7 +274,7 @@
                 this.hashtagsError = '';
             }
             else {
-                this.hashtagsError = verifyHashtags( this.hashtags );
+                this.hashtagsError = verifySelectHashtags( this.hashtags );
             }
         }
 
@@ -258,7 +286,7 @@
                 this.gamePathError = '';
             }
             else {
-                this.gamePathError = ErrorMessage.ALREADY_EXIST_GAME_PATH;
+                this.gamePathError = this.$t('addGame.error.usedId').toString();
             }
             this.waitGamePath = false;
         }
@@ -275,7 +303,7 @@
 
 
             if( !this.title ) {
-                this.titleError = ErrorMessage.BLANK_GAME_TITLE;
+                this.titleError = this.$t('addGame.error.blankTitle').toString();
                 isError = true;
             }
             if( this.hashtagsError ) {
@@ -285,7 +313,7 @@
             if( !this.confirmedGamePath ) {
 
                 if( !this.autoGamePath ) {
-                    this.gamePathError = ErrorMessage.NO_CONFIRMED_GAME_PATH;
+                    this.gamePathError =this.$t('addGame.error.doubleCheckEngId').toString();
                     isError = true;
                 }
                 else {
@@ -301,7 +329,7 @@
 
                     if( !this.confirmedGamePath ) {
                         Notify.create({
-                            message : '실패하였습니다. 잠시 후 다시 시도해 주세요.',
+                            message : this.$t('commonError').toString(),
                             position : 'top',
                             color : 'negative',
                             timeout: 2000
@@ -314,7 +342,7 @@
 
             if( !this.uploadGameFiles.length ) {
                 isError = true;
-                this.uploadGameFileError = ErrorMessage.NO_UPLOAD_FILE;
+                this.uploadGameFileError = this.$t('addGame.error.noLoadFile').toString();
             }
 
             if( !this.startFileOptions.length ) {
@@ -330,10 +358,11 @@
 
             this.$store.commit('ajaxBar', true);
             this.$q.loading.show({
-                message: '잠시만 기다려 주세요.'
+                message: this.$t('waiting').toString()
             });
 
             console.log( this.versionDescription );
+            
 
             const result = await this.$http.createProject( {
                 name : this.title,
@@ -341,7 +370,7 @@
                 pathname : this.gamePath,
                 project_picture : this.thumbFile,
                 project_picture2 : this.thumbFile2,
-                hashtags : this.hashtags,
+                hashtags : this.hashtagsArr.toString(),
             }, {
                 autoDeploy : this.autoDeploy,
                 startFile : this.startFile,
@@ -358,7 +387,7 @@
             if( !result || result.error ) {
                 if(result.error.code === 40101){
                     Notify.create({
-                    message : '올바르지 않은 단어가 포함되어 있습니다.',
+                    message :this.$t('addGame.forbiddenString').toString(),
                     position : 'top',
                     color : 'negative',
                     timeout: 2000
@@ -366,7 +395,7 @@
                 }
                 else{
                 Notify.create({
-                    message : result && result.error || '실패하였습니다. 파일을 확인 후 다시 시도해 주세요.',
+                    message : this.$t('addGame.error.uploadGame').toString(),
                     position : 'top',
                     color : 'negative',
                     timeout: 2000
@@ -376,7 +405,7 @@
             }
             else {
                 Notify.create({
-                    message : '추가되었습니다.',
+                    message : this.$t('addGame.success.uploadGame').toString(),
                     position : 'top',
                     color : 'primary',
                     timeout: 2000
@@ -388,6 +417,31 @@
 
 
         }
+
+        createValue (val, done) {
+            this.isShowTag = false
+            if(this.hashtagsArr.length <=20){
+                if( val === '' ) {
+                    this.hashtagsError = '';
+                    
+                }else{
+                    this.hashtagsError = verifySelectHashtags( val );                
+                }
+                if(this.hashtagsError === ''){
+                    if(done) {
+                        done(val)
+                    } 
+                }
+            }else{
+                this.hashtagsError = this.$t('addGame.error.tooManyInputs').toString()
+            }
+        }
+
+        createTagChip (val) {
+        this.isShowTag = true
+        this.inputValue = val
+        
+        }
     }
 </script>
 
@@ -397,4 +451,11 @@
     text-align: right;
     padding-right: 0px;
 }
+.q-chip{
+    background-color: rgb(244,186,47) ;
+    border-radius: 5px ;
+    color: black ;
+    padding: 15px ;
+}
+
 </style>

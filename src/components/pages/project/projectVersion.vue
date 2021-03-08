@@ -2,7 +2,7 @@
     <q-page class="q-pa-md center-container">
         <div class="text-right">
             <router-link :to="`/project/addVersion/${projectId}`">
-                <q-btn class="q-my-sm" color="primary">버전 추가하기</q-btn>
+                <q-btn class="q-my-sm" color="primary">  {{$t('projectVersion.versionListText')}}</q-btn>
             </router-link>
         </div>
         <q-table
@@ -12,9 +12,9 @@
             :pagination="pagination"
             :filter="filter"
             ref="table"
-            no-data-label="등록된 버전이 없습니다."
-            no-results-label="검색된 버전이 없습니다."
-            rows-per-page-label="한 페이지에 표시할 버전수"
+            :no-data-label="$t('projectVersion.label.no_data')"
+            :no-results-label="$t('projectVersion.label.no_results')"
+            :rows-per-page-label="$t('projectVersion.label.rows_per_page')"
         >
             <template v-slot:body="props">
                 <q-tr :props="props">
@@ -28,11 +28,11 @@
                         {{ props.row.version }}
                     </q-td>
                     <q-td>
-                        <span style="color: #F2C037; font-weight: bold" v-if="props.row.state === 'process'">{{`심사 중 ( ${props.row.state} )`}}</span>
-                        <span style="color: #027BE3; font-weight: bold" v-else-if="props.row.state === 'passed'">{{`심사 완료 ( ${props.row.state} )`}}</span>
-                        <span style="color: #C10015; font-weight: bold" v-else-if="props.row.state === 'fail'">{{`심사 미통과 ( ${props.row.state} )`}}</span>
-                        <span style="color: #2AC940; font-weight: bold" v-else-if="props.row.state === 'deploy'">{{`배포 중 ( ${props.row.state} )`}}</span>
-                        <span style="color: #C10015; font-weight: bold" v-else-if="props.row.state === 'ban'">{{`해당 버전 제재 ( ${props.row.state} )`}}</span>
+                        <span style="color: #F2C037; font-weight: bold" v-if="props.row.state === 'process'">{{$t('projectVersion.status.process') }}{{`( ${props.row.state} )`}}</span>
+                        <span style="color: #027BE3; font-weight: bold" v-else-if="props.row.state === 'passed'">{{$t('projectVersion.status.passed') }}{{`( ${props.row.state} )`}}</span>
+                        <span style="color: #C10015; font-weight: bold" v-else-if="props.row.state === 'fail'">{{$t('projectVersion.status.fail') }}{{` ( ${props.row.state} )`}}</span>
+                        <span style="color: #2AC940; font-weight: bold" v-else-if="props.row.state === 'deploy'">{{$t('projectVersion.status.deploy') }}{{`( ${props.row.state} )`}}</span>
+                        <span style="color: #C10015; font-weight: bold" v-else-if="props.row.state === 'ban'">{{$t('projectVersion.status.ban') }}{{`( ${props.row.state} )`}}</span>
                     
                     </q-td>
                     <q-td>
@@ -69,13 +69,13 @@
 <!--                                <q-input type="textarea" v-model="props.row.description" readonly></q-input>-->
 <!--                            </content-box-block>-->
 
-                            <content-box-block class="q-mb-lg"  v-if="props.row.reason" title="실패사유">
+                            <content-box-block class="q-mb-lg"  v-if="props.row.reason" :title="$t('projectVersion.failReason')">
                                 <q-input type="textarea" v-model="props.row.reason" readonly></q-input>
                             </content-box-block>
-                            <content-box-block class="q-mb-lg" title="업로드 파일 정보">
+                            <content-box-block class="q-mb-lg" :title="$t('projectVersion.fileInfo')">
                                 <div class="q-my-md">
                                     <div>
-                                        파일 크기 : {{ props.row.size ? props.row.size + ' MB' : '알 수 없음' }}
+                                        {{$t('projectVersion.fileSize') }}: {{ props.row.size ? props.row.size + ' MB' : $t('projectVersion.unknowFileSize') }}
                                     </div>
 <!--                                    <div class="text-right">-->
 <!--                                        <q-btn>-->
@@ -105,18 +105,18 @@
                                     </q-btn>
                                 </div>
                             </content-box-block> -->
-                            <content-box-block class="q-mb-lg" title="버전 삭제">
+                            <content-box-block class="q-mb-lg" :title="$t('projectVersion.delete.title')">
                                 <div class="q-my-md">
                                     <div>
-                                        삭제된 버전은 복구 할 수 없습니다.
+                                         {{$t('projectVersion.delete.desc1') }}
                                     </div>
                                     <div>
-                                        배포 중인 버전은 삭제 할 수 없습니다.
+                                         {{$t('projectVersion.delete.desc2') }}
                                     </div>
                                 </div>
                                 <div class="text-right">
                                     <q-btn :loading="wait[ props.row.id ]" @click="deleteVersion( props.row )">
-                                        삭제
+                                         {{$t('projectVersion.delete.btn') }}
                                     </q-btn>
                                 </div>
                             </content-box-block>
@@ -125,7 +125,7 @@
                 </q-tr>
             </template>
             <template v-slot:top-right>
-                <q-input borderless dense debounce="300" v-model="filter" placeholder="검색">
+                <q-input borderless dense debounce="300" v-model="filter" :placeholder="$t('projectVersion.columns.search')">
                     <template v-slot:append>
                         <q-icon name="search" />
                     </template>
@@ -141,6 +141,7 @@
     import ContentBoxBlock from "@/components/layout/contentBoxBlock.vue";
     import _ from 'lodash';
     import {Notify} from "quasar";
+
 
     @Component({
         components: {
@@ -168,15 +169,15 @@
             {
                 name: 'number',
                 required: true,
-                label: '번호',
+                label: this.$t('projectVersion.columns.number'),
                 align: 'left',
                 field: (row : any) => row.number,
                 format: (val : any) => `${val}`,
                 sortable: true
             },
-            { name: 'version', align: 'left', label: '세부 버전', field: 'number', format: (val : any) => `v${val}`, sortable: true },
-            { name: 'state', label: '상태', field: 'state',align: 'left', sortable: true },
-            { name: 'created_at', align: 'left', label: '생성 일시', field: 'created_at', sortable: true },
+            { name: 'version', align: 'left', label: this.$t('projectVersion.columns.version'), field: 'number', format: (val : any) => `v${val}`, sortable: true },
+            { name: 'state', label: this.$t('projectVersion.columns.state'), field: 'state',align: 'left', sortable: true },
+            { name: 'created_at', align: 'left', label: this.$t('projectVersion.columns.created_at'), field: 'created_at', sortable: true },
             // { name: 'support', align: 'left', label: '호환성', field: '' },
             // { name: 'count', label: '조회수', field: 'count',align: 'center', sortable: true },
         ];
@@ -201,7 +202,7 @@
         ];
 
         async mounted() {
-            this.$store.commit('pageName', '버전 목록');
+            this.$store.commit('pageName', this.$t('projectVersion.toolbarTitle'));
             await this.loadVersions();
         }
 
@@ -229,20 +230,20 @@
 
             if(state === 'deploy'){
                 Notify.create({
-                    message : '배포 중인 버전은 삭제가 불가능합니다.',
+                    message : this.$t('projectVersion.error.deleteDeployFail').toString(),
                     position : 'top',
                     color : 'negative',
                     timeout: 2000
                 });
             }else{            
-                const ok = confirm('한 번 삭제한 버전은 다시 복구할 수 없습니다. 정말 삭제하시겠습니까?');
+                const ok = confirm(this.$t('projectVersion.delete.confirm').toString());
             if( ok ) {
                 this.wait[id] = true;
 
                 const result = await this.$http.deleteVersion( id );
                 if( !result || result.error ) {
                     Notify.create({
-                        message : result && result.error || '버전을 삭제하는데 실패하였습니다.',
+                        message : this.$t('projectVersion.error.deleteVersion').toString(),
                         position : 'top',
                         color : 'negative',
                         timeout: 2000
@@ -250,14 +251,20 @@
                     console.error( result && result.error || 'error' );
                 }
                 else {
+
+
+
                     const versionList = this.$store.getters.versionList( this.projectId );
                     const versions = this.$store.getters.versions( this.projectId );
                     const idx = _.findIndex<any>( versionList, v => v.id === id);
                     if( idx > -1 ) {
                         versionList.splice( idx, 1 );
                     }
-
                     delete versions[id];
+                    const project = this.$store.getters.project( this.projectId );
+                    if( project.update_version_id ) {
+                          project.update_version_id = null;
+                    }
                     this.versions = this.$store.getters.versionList( this.projectId );
                 }
 

@@ -68,7 +68,7 @@
                         <q-icon name="sports_esports" />
                     </q-item-section>
                     <q-item-section>
-                        <q-item-label>모든 게임</q-item-label>
+                        <q-item-label>{{$t('studioMenu.allGames')}}</q-item-label>
                             <!--                        <q-item-label caption>quasar.dev</q-item-label>-->
                     </q-item-section>
                     
@@ -79,7 +79,7 @@
                         <q-icon name="games" />
                     </q-item-section>
                     <q-item-section>
-                        <q-item-label>게임 추가</q-item-label>
+                        <q-item-label>{{$t('studioMenu.addGame')}}</q-item-label>
                         <!--                        <q-item-label caption>github.com/quasarframework</q-item-label>-->
                     </q-item-section>
                 </q-item>
@@ -89,7 +89,7 @@
                         <q-icon name="code" />
                     </q-item-section>
                     <q-item-section>
-                        <q-item-label>게임 만들기</q-item-label>
+                        <q-item-label>{{$t('studioMenu.createGame')}}</q-item-label>
                     </q-item-section>
                 </q-item>
 
@@ -108,7 +108,7 @@
                         <q-icon name="flight_takeoff" />
                     </q-item-section>
                     <q-item-section>
-                        <q-item-label>게임 테스트</q-item-label>
+                        <q-item-label>{{$t('studioMenu.testGame')}}</q-item-label>
                         <!--                        <q-item-label caption>github.com/quasarframework</q-item-label>-->
                     </q-item-section>
                 </q-item>

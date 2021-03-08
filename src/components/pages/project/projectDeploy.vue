@@ -2,21 +2,21 @@
     <q-page class="projectDeploy">
         <content-box>
             <div class="text-h6 q-mb-xl">
-                배포 정보
+                  {{$t('projectDeploy.deployTitle')}}
             </div>
 
             <div class="q-mb-xl" v-if="!deployVersion">
                 <div class="text-h7">
-                    아직 배포된 게임이 없습니다.
+                   {{$t('projectDeploy.noGame')}}
                 </div>
             </div>
 
             <div class="q-mb-lg" v-else>
-                <content-box-block title="버전(숫자)" class="q-mb-xl">
+                <content-box-block :title="$t('projectDeploy.versionNumber')" class="q-mb-xl">
                     <q-input readonly v-model="number">
                     </q-input>
                 </content-box-block>
-                <content-box-block title="버전(세부 버전)" class="q-mb-xl">
+                <content-box-block :title="$t('projectDeploy.versionDetail')" class="q-mb-xl">
                     <q-input readonly v-model="version">
                     </q-input>
                 </content-box-block>
@@ -25,19 +25,19 @@
             <content-box-line class="q-mb-xl"></content-box-line>
 
             <div class="text-h6 q-mb-xl">
-                배포 하기
+                {{$t('projectDeploy.deployText')}}
             </div>
-            <content-box-block title="배포 버전 선택" class="q-pb-xl">
+            <content-box-block :title="$t('projectDeploy.versionSelect')" class="q-pb-xl">
                 <q-select v-model="selectVersion" :options="options"></q-select>
             </content-box-block>
             <div class="q-pb-xl"></div>
 
-            <content-box-block title="배포 취소" class="q-mb-xl" v-if="deployVersion">
+            <content-box-block :title="$t('projectDeploy.cancelDeploy.title')" class="q-mb-xl" v-if="deployVersion">
                 <div class="hintText">
-                    배포된 버전의 게임을 비공개로 전환합니다.
+                     {{$t('projectDeploy.cancelDeploy.desc')}}
                 </div>
                 <div class="text-right">
-                    <q-btn @click="cancelDeploy">배포 해제</q-btn>
+                    <q-btn @click="cancelDeploy"> {{$t('projectDeploy.cancelDeploy.btn')}}</q-btn>
                 </div>
             </content-box-block>
 
@@ -48,7 +48,7 @@
         </fixed-bottom> -->
          <!-- 저장 버튼 -->
         <content-box class="save-btn">
-            <q-btn :loading="wait" color="primary" @click="deploy">저장</q-btn>
+            <q-btn :loading="wait" color="primary" @click="deploy">  {{$t('save')}}</q-btn>
         </content-box>
 
 
@@ -89,7 +89,7 @@
 
 
         async mounted() {
-            this.$store.commit('pageName', '배포');
+            this.$store.commit('pageName', this.$t('projectDeploy.toolbarTitle'));
 
             const project = this.$store.getters.project( this.projectId );
             const versions = this.$store.getters.versionList( this.projectId );
@@ -117,7 +117,7 @@
 
             this.$store.commit('ajaxBar', true);
             this.$q.loading.show({
-                message: '잠시만 기다려 주세요.'
+                message: this.$t('waiting').toString()
             });
 
             const result = await this.$http.updateProject( {
@@ -131,7 +131,7 @@
 
             if( !result || result.error ) {
                 Notify.create({
-                    message : result && result.error || '실패하였습니다.',
+                    message : this.$t('commonError').toString(),
                     position : 'top',
                     color : 'negative',
                     timeout: 2000
@@ -149,7 +149,7 @@
                 }
 
                 Notify.create({
-                    message : '게임이 비공개 되었습니다.',
+                    message : this.$t('projectDeploy.success.undeploy').toString(),
                     position : 'top',
                     color : 'primary',
                     timeout: 2000
@@ -173,14 +173,14 @@
 
             this.$store.commit('ajaxBar', true);
             this.$q.loading.show({
-                message: '잠시만 기다려 주세요.'
+                message: this.$t('waiting').toString()
             });
 
             const result = await this.$http.updateProject( {
                 id : this.projectId,
                 deploy_version_id,
             } );
-
+            
             this.$store.commit('ajaxBar', false);
             this.$q.loading.hide();
             this.wait = false;
@@ -188,7 +188,7 @@
 
             if( !result || result.error ) {
                 Notify.create({
-                    message : result && result.error || '배포에 실패하였습니다.',
+                    message : this.$t('projectDeploy.error.deployFail').toString(),
                     position : 'top',
                     color : 'negative',
                     timeout: 2000
@@ -206,16 +206,9 @@
                     if( project.update_version_id === version.id ) {
                         project.update_version_id = null;
                     }
-                }else{
-                        const project = this.$store.getters.project( this.projectId );
-                        project.deploy_version_id = deploy_version_id;
-
-                        if( project.update_version_id === deploy_version_id ) {
-                            project.update_version_id = null;
-                        }
                 }
                 Notify.create({
-                    message : '배포되었습니다.',
+                    message : this.$t('projectDeploy.success.deploy').toString(),
                     position : 'top',
                     color : 'primary',
                     timeout: 2000

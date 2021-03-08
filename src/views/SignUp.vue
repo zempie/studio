@@ -2,7 +2,7 @@
     <div class="signup">
         <content-box>
             <div class="text-h5 q-mb-sm">
-                개발자 등록 페이지
+                  {{$t('signUp.signUpTitle')}}
             </div>
 
 
@@ -16,14 +16,14 @@
             >
                 <q-step
                     :name="1"
-                    title="개발자 이용약관 동의"
+                    :title="$t('signUp.TermsOfService.stepTitle')"
                     prefix="1"
                 >
                     <div class="stepTitle">
-                        개발자 이용약관
+                         {{$t('signUp.TermsOfService.title')}}
                     </div>
                     <div class="MAB20">
-                        Zempie studio 가입을 위해서는 아래 '이용약관' 및 '개인정보 수집 및 이용'을 읽고, 동의해 주시기 바랍니다.
+                         {{$t('signUp.TermsOfService.agreement')}}
                     </div>
                     <tos v-on:@agree="onAgree">
 
@@ -33,34 +33,34 @@
 
                 <q-step
                     :name="2"
-                    title="개발자 정보 확인"
+                    :title="$t('signUp.developerInfo.stepTitle')"
                     prefix="2"
                 >
                     <div class="stepTitle">
-                        개발자 정보 확인
+                        {{$t('signUp.developerInfo.title')}}
                     </div>
                     <div class="MAB20">
-                        연락처 정보를 확인해 주세요.
+                        {{$t('signUp.developerInfo.contactConfirm')}}
                     </div>
                     <div class="BLINE MAB40"></div>
-                    <content-box-block title="이메일 주소" class="MAB40">
-                        <q-input hint="이 정보는 Zempie에서 연락을 드리는 데 사용됩니다." readonly v-model="email">
+                    <content-box-block :title="$t('signUp.emailVerify.title')" class="MAB40">
+                        <q-input :hint="$t('signUp.emailVerify.text')" readonly v-model="email">
                             <template v-slot:append>
                                 <div v-if="verifyEmail" class="q-ml-md bg-grey-9 q-px-md appendBox text-no-wrap">
-                                    인증 완료
+                                    {{$t('signUp.emailVerify.success')}}
                                 </div>
                                 <div v-else>
                                     <div v-if="!loadingEmail">
                                         <q-btn color="grey-9"  @click="requestEmail">
-                                            인증 요청
+                                            {{$t('signUp.emailVerify.request')}}
                                         </q-btn>
                                     </div>
                                     <div v-else>
                                         <q-btn color="grey-9" class="q-mr-sm"  @click="requestEmail">
-                                            다시 요청
+                                            {{$t('signUp.emailVerify.retry')}}
                                         </q-btn>
                                         <q-btn color="grey-9"  @click="confirmEmail">
-                                            인증 확인
+                                            {{$t('signUp.emailVerify.confirm')}}
                                         </q-btn>
                                     </div>
 
@@ -74,13 +74,13 @@
 <!--                    </content-box-block>-->
                     <div class="BLINE"></div>
                     <fixed-bottom>
-                        <q-btn :loading="loading" :disable="!verifyEmail" class="MAR10" color="light-blue" label="등록" @click="signup" />
+                        <q-btn :loading="loading" :disable="!verifyEmail" class="MAR10" color="light-blue" :label="$t('signUp.register')" @click="signup" />
                     </fixed-bottom>
                 </q-step>
 
                 <q-step
                     :name="3"
-                    title="개발자 등록 완료"
+                    :title="$t('signUp.registeredDeveloper.title')"
                     prefix="3"
                     icon="add_comment"
                 >
@@ -91,11 +91,11 @@
 
 
                         <div class="q-my-xl text-h6">
-                            축하합니다! 이제 Zempie에 게임 업로드를 신청할 수 있습니다.
+                            {{$t('signUp.registeredDeveloper.desc')}}
                         </div>
 
                         <router-link to="/addGame">
-                            <q-btn class="q-mb-xl" color="primary">게임 업로드 하러 가기</q-btn>
+                            <q-btn class="q-mb-xl" color="primary">{{$t('signUp.registeredDeveloper.addGame')}}</q-btn>
                         </router-link>
 
                     </div>
@@ -205,10 +205,10 @@ export default class SignUp extends Vue {
 
         try {
             await firebase.auth().currentUser.sendEmailVerification();
-            alert('인증 메일을 보냈습니다. 등록된 메일함을 확인해 주세요.');
+            alert(this.$t('signUp.emailVerify.sendEmailText').toString());
         }
         catch (e) {
-            alert('메일을 보낼 수 없습니다. 잠시 후 다시 시도해주세요.');
+            alert(this.$t('signUp.error.sendEmail').toString());
         }
 
 
@@ -222,7 +222,7 @@ export default class SignUp extends Vue {
             this.verifyEmail = true;
         }
         else {
-            alert( '이메일이 인증되지 않았습니다. 메일을 확인해주세요.' );
+            alert(this.$t('signUp.error.verifyEmil').toString());
         }
     }
 

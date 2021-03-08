@@ -31,7 +31,7 @@ export default class ContentBoxBlockImageUploader extends Vue {
     onLoadFile( data, file : File ) {
 
         if( this.limitSize && file.size > mbToByte( this.limitSize ) ) {
-            alert(`파일 크기가 허용된 사이즈보다 큽니다. (최대 ${this.limitSize}MB) `);
+            alert(this.$t('contentBox.limitSizeErr') + `${this.limitSize}MB) `);
             return;
         }
 

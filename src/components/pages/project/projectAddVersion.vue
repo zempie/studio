@@ -2,7 +2,7 @@
     <div class="q-pa-lg">
         <content-box class="relative-position">
             <div class="text-h6 q-mb-lg">
-                새 버전 등록
+                  {{$t('projectAddVersion.addNewVersionText')}}
             </div>
 <!--            <content-box-block class="q-my-xl" title="게임 제목">-->
 <!--                <q-input :error="titleError !== ''" :error-message="titleError" counter maxlength="50" v-model="title" @change="(str)=>{ if( str ){ titleError = '' } }" />-->
@@ -15,7 +15,7 @@
 <!--                </div>-->
 <!--            </content-box-block>-->
 
-            <content-box-block class="q-mb-xl" title="게임 업로드">
+            <content-box-block class="q-mb-xl" :title="$t('projectAddVersion.uploadGameFile.title')">
                 <q-input
                     @input="val => { uploadGameFile = val[0] }"
                     filled
@@ -24,35 +24,35 @@
                     :error="uploadGameFileError !== ''"
                     :error-message="uploadGameFileError"
                 />
-                <div v-if="uploadGameFiles.length" class="text-body2 text-right">총 사이즈 : {{ totalSize < 1 ? `${totalSize * 1000} KB`  : `${totalSize} MB` }} </div>
+                <div v-if="uploadGameFiles.length" class="text-body2 text-right">  {{$t('projectAddVersion.totalSize')}} : {{ totalSize < 1 ? `${totalSize * 1000} KB`  : `${totalSize} MB` }} </div>
                 <div class="hintText">
-                    게임이 포함된 웹페이지를 압축 파일로 업로드 해 주세요. zip 파일만 업로드가 가능하고, 압축하지 않은 파일들의 총 크기가 100MB 이하여야 합니다.
+                    {{$t('projectAddVersion.uploadGameFile.rules')}}
                 </div>
             </content-box-block>
             <q-slide-transition>
                 <div v-if="uploadMore">
-                    <content-box-block class="q-mb-xl" title="시작파일 선택">
+                    <content-box-block class="q-mb-xl" :title="$t('projectAddVersion.startFile.title')">
                         <q-select style="margin-top: 20px"
-                                  label="시작 파일을 선택 해 주세요."
+                                  :label="$t('projectAddVersion.startFile.label')"
                                   v-model="startFile"
                                   :options="startFileOptions"
                                   :error="startFileError !== ''" :error-message="startFileError"
 
                         ></q-select>
                     </content-box-block>
-                    <content-box-block class="q-mb-xl" title="자동 배포 여부">
-                        <q-toggle v-model="autoDeploy">{{ autoDeploy ? '자동 배포모드' : '자동 배포모드 해제' }}</q-toggle>
-                        <div class="hintText">자동배포 모드에서는 심사를 마치면 자동으로 공개됩니다. 자동배포를 원하지 않으시면, 자동배포 모드를 비활성화하고 심사가 끝난후에 수동으로 배포하십시오.</div>
+                    <content-box-block class="q-mb-xl" :title="$t('projectAddVersion.autoDeploy.title')">
+                        <q-toggle v-model="autoDeploy">{{ autoDeploy ? $t('projectAddVersion.autoDeploy.autoDeployMode'): $t('projectAddVersion.autoDeploy.manualDeployMode') }}</q-toggle>
+                        <div class="hintText">  {{$t('projectAddVersion.autoDeploy.rules')}}</div>
                     </content-box-block>
-                    <content-box-block class="q-mb-xl" title="버전">
+                    <content-box-block class="q-mb-xl" :title="$t('projectAddVersion.version.title')">
                         <q-input counter maxlength="50" v-model="version" :error="versionError !== ''"
                             :error-message="versionError"/>
-                        <div class="hintText">버전은 Major.Miner.Patch 의 순서로 번호를 기록 하며 .으로 구분 됩니다. 새로 만드는 버전은 항상 이전 버전 보다 높은 번호 여야 합니다.</div>
+                        <div class="hintText"> {{$t('projectAddVersion.version.rules')}}</div>
                     </content-box-block>
                 </div>
             </q-slide-transition>
             <q-btn flat class="full-width" @click="uploadMore = !uploadMore">
-                고급
+                {{$t('advancedSetting')}}
                 <q-icon v-if="!uploadMore" name="arrow_drop_down" />
                 <q-icon v-else name="arrow_drop_up" />
             </q-btn>
@@ -62,13 +62,13 @@
             </fixed-bottom> -->
             
             <div v-if="isUpdate" class="bg-fade-70 full-width full-height absolute-top">
-                <div class="text-h4 text-center q-my-xl"> 이미 업데이트중인 버전이 있습니다. </div>
+                <div class="text-h4 text-center q-my-xl">{{$t('projectAddVersion.versionError')}}</div>
 <!--                <div class="text-h4 text-center q-my-xl"> 이미 업데이트중인 버전이 있습니다. </div>-->
             </div>
         </content-box>
          <!-- 저장 버튼 -->
         <content-box class="save-btn"  v-if="!isUpdate">
-            <q-btn :loading="wait" color="primary" @click="save">저장</q-btn>
+            <q-btn :loading="wait" color="primary" @click="save"> {{$t('save')}}</q-btn>
         </content-box>
     </div>
 
@@ -130,7 +130,6 @@ import Version from "@/common/version";
 import ContentBox from "@/components/layout/contentBox.vue";
 import ContentBoxBlock from "@/components/layout/contentBoxBlock.vue";
 import FixedBottom from "@/components/fixedBottom.vue";
-import {ErrorMessage} from "@/scripts/errorMessge";
 import {Notify} from "quasar";
 
 
@@ -166,7 +165,7 @@ export default class ProjectAddVersion extends Vue {
 
 
     mounted() {
-        this.$store.commit('pageName', '버전 추가');
+        this.$store.commit('pageName', this.$t('projectAddVersion.toolbarTitle'));
 
         const lastVersion = this.$store.getters.lastVersion(this.projectId);
         if (lastVersion) {
@@ -189,7 +188,7 @@ export default class ProjectAddVersion extends Vue {
 
         this.$store.commit('ajaxBar', true);
         this.$q.loading.show({
-            message: '잠시만 기다려 주세요.'
+            message: this.$t('waiting').toString()
         });
 
         const zip = await ZipUtil.zipFileToZip(this.uploadGameFile);
@@ -202,7 +201,7 @@ export default class ProjectAddVersion extends Vue {
         }
 
         if( size > this.limitSize ) {
-            this.uploadGameFileError = ErrorMessage.FILE_SIZE_EXCEEDED;
+            this.uploadGameFileError = this.$t('projectAddVersion.error.fileSizeExceeded').toString();
             return;
         }
 
@@ -230,16 +229,16 @@ export default class ProjectAddVersion extends Vue {
 
         if (this.startFileOptions.length) {
             this.uploadGameFileError = '';
-             Notify.create({
-            message : '파일이 정상적으로 업로드되었습니다.',
+            Notify.create({
+            message : this.$t('projectAddVersion.success.loadFile').toString(),
             position : 'top',
             color : 'primary',
             timeout: 2000
         });
         } else {
-            this.uploadGameFileError = ErrorMessage.NOT_FOUND_HTML;
-             Notify.create({
-            message : '파일 업로드에 실패했습니다.',
+            this.uploadGameFileError = this.$t('projectAddVersion.error.notFoundHtml').toString();
+            Notify.create({
+            message : this.$t('projectAddVersion.error.uploadFail').toString(),
             position : 'top',
             color : 'negative',
             timeout: 2000
@@ -265,7 +264,7 @@ export default class ProjectAddVersion extends Vue {
 
         if (!Version.validity(this.version)) {
             isError = true;
-            this.versionError = ErrorMessage.NOT_VALID_VERSION;
+            this.versionError = this.$t('projectAddVersion.error.notValidVersion').toString();
         }
         else {
             const lastVersion = this.$store.getters.lastVersion(this.projectId);
@@ -276,7 +275,7 @@ export default class ProjectAddVersion extends Vue {
                 if (!newVersion.isNew(oldVersion)) {
                     isError = true;
                     //이전 버전 보다 작음.
-                    this.versionError = ErrorMessage.LOW_VERSION;
+                    this.versionError = this.$t('projectAddVersion.error.lowVersion').toString();
                     return;
                 }
             }
@@ -285,7 +284,7 @@ export default class ProjectAddVersion extends Vue {
 
         if( !this.uploadGameFiles.length ) {
             isError = true;
-            this.uploadGameFileError = ErrorMessage.NO_UPLOAD_FILE;
+            this.uploadGameFileError = this.$t('projectAddVersion.error.noUploadFile').toString();
         }
 
         if( !this.startFileOptions.length ) {
@@ -300,7 +299,7 @@ export default class ProjectAddVersion extends Vue {
 
         this.$store.commit('ajaxBar', true);
         this.$q.loading.show({
-            message: '잠시만 기다려 주세요.'
+            message: this.$t('waiting').toString()
         });
         const version = await this.$http.createVersion(this.projectId, this.version, this.uploadGameFiles, this.startFile, this.autoDeploy, this.totalSize, this.description);
 
@@ -312,7 +311,7 @@ export default class ProjectAddVersion extends Vue {
 
         if( !version || version.error ) {
             Notify.create({
-                message : version && version.error.message || '실패하였습니다. 파일을 확인 후 다시 시도해 주세요.',
+                message : this.$t('projectAddVersion.error.newVersionUploadFail').toString(),
                 position : 'top',
                 color : 'negative',
                 timeout: 2000
@@ -321,11 +320,11 @@ export default class ProjectAddVersion extends Vue {
         else {
             const project = this.$store.getters.project( this.projectId );
             project.update_version_id = version.id;
-            this.$store.commit('version', version);
             project.projectVersions.push(version);
+            project.versions[ version.id ] = version;
             
             Notify.create({
-                message : '저장되었습니다.',
+                message : this.$t('projectAddVersion.success.uploadFile').toString(),
                 position : 'top',
                 color : 'primary',
                 timeout: 2000
