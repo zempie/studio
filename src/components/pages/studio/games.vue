@@ -5,12 +5,12 @@
             <template v-if="!survey.isDone && survey.url !== null && survey.url !== undefined && !isSurveyBtnClicked">
                 <a target="_blank" :href="survey.url + uid">
                     <q-btn class="q-my-sm q-mr-md font-weight-300" color="primary" @click="isSurveyBtnClicked=true"
-                        >설문조사</q-btn
+                        >{{$t('gameListPage.survey')}}</q-btn
                     >
                 </a>            
             </template>
             <router-link to="/addGame">
-                <q-btn class="q-my-sm font-weight-300" color="primary">게임 추가하기</q-btn>
+                <q-btn class="q-my-sm font-weight-300" color="primary">{{$t('gameListPage.addGame')}}</q-btn>
             </router-link>
         </div>
 
@@ -22,9 +22,9 @@
             class="table"
             :pagination="pagination"
             :filter="filter"
-            no-data-label="등록된 게임이 없습니다."
-            no-results-label="검색된 게임이 없습니다."
-            rows-per-page-label="한 페이지에 표시할 게임수"
+            :no-data-label="$t('gameListPage.label.no_data')"
+            :no-results-label="$t('gameListPage.label.no_result')"
+            :rows-per-page-label="$t('gameListPage.label.rows_per_page')"
         >
             <template v-slot:body="props">
                 <template v-if="props.row.state === 1 || props.row.state === 2">
@@ -52,19 +52,19 @@
 
                         <!-- 제재 상태-->
                         <template v-if="props.row.state === 1">
-                            <q-td width="10%" > 제재</q-td>
+                            <q-td width="10%" >{{$t('ban.ban')}}</q-td>
                         </template>
                         <template v-else-if="props.row.state === 2">
                             <q-td  width="10%">
-                                영구 제재</q-td
+                                {{$t('ban.permanentBan')}}</q-td
                             >
                         </template>
                         <template v-else>
                             <q-td width="10%">
                                 {{
                                     (props.row.deploy_version_id &&
-                                        "배포 중") ||
-                                    "배포 안됨"
+                                         $t('gameListPage.status.deploy')) ||
+                                    $t('gameListPage.status.noDeploy')
                                 }}</q-td
                             >
                         </template>
@@ -87,7 +87,7 @@
 
                     <!-- <q-tr class="ban-detail" @click="checkBanDetail"> -->
                       <q-tr class="ban-detail">  <a :href="$store.getters.supportUrl + 'inquiry'"  target="_blank">
-                        자세한 제재 내용은 고객센터를 통해 문의해주세요.
+                      {{$t('ban.messages.inquiry')}}
                         </a>
                       </q-tr>
                     <!-- </q-tr> -->
@@ -118,19 +118,19 @@
 
                         <!-- 제재 상태-->
                         <template v-if="props.row.state === 1">
-                            <q-td width="10%" > 제재</q-td>
+                            <q-td width="10%" > {{$t('ban.ban')}}</q-td>
                         </template>
                         <template v-else-if="props.row.state === 2">
                             <q-td  width="10%">
-                                영구 제재</q-td
+                                 {{$t('ban.permanentBan')}}</q-td
                             >
                         </template>
                         <template v-else>
                             <q-td width="10%">
                                 {{
                                     (props.row.deploy_version_id &&
-                                        "배포 중") ||
-                                    "배포 안됨"
+                                       $t('gameListPage.status.deploy')) ||
+                                    $t('gameListPage.status.noDeploy')
                                 }}</q-td
                             >
                         </template>
@@ -158,7 +158,7 @@
                     dense
                     debounce="300"
                     v-model="filter"
-                    placeholder="검색"
+                    :placeholder="$t('gameListPage.search')"
                 >
                     <template v-slot:append>
                         <q-icon name="search" />
@@ -174,8 +174,6 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { LoginState } from "@/store/modules/user";
 import { Notify } from "quasar";
-import { ErrorMessage } from "@/scripts/errorMessge";
-import { SuccessMessage } from '@/scripts/successMessage';
 
 interface ISurvey {
     url: string;
@@ -196,13 +194,13 @@ export default class Games extends Vue {
         {
             name: "picture",
             required: false,
-            label: "썸네일",
+            label: this.$t('gameListPage.columns.picture'),
             align: "left",
         },
         {
             name: "name",
             required: true,
-            label: "게임 이름",
+            label: this.$t('gameListPage.columns.name'),
             align: "left",
             field: (row: any) => row.name,
             format: (val: any) => `${val}`,
@@ -211,27 +209,27 @@ export default class Games extends Vue {
         {
             name: "updated_at",
             align: "left",
-            label: "최종 업데이트",
+            label: this.$t('gameListPage.columns.updated_at'),
             field: "updated_at",
             sortable: true,
         },
         {
             name: "state",
-            label: "상태",
+            label: this.$t('gameListPage.columns.state'),
             field: "state",
             align: "left",
             sortable: true,
         },
         {
             name: "count_over",
-            label: "플레이수",
+            label: this.$t('gameListPage.columns.count_over'),
             field: "count_over",
             align: "center",
             sortable: true,
         },
           {
             name: "count_heart",
-            label: "좋아요수",
+            label: this.$t('gameListPage.columns.count_heart'),
             field: "count_heart",
             align: "center",
             sortable: true,
@@ -256,7 +254,7 @@ export default class Games extends Vue {
         const loginState = await this.$store.dispatch("loginState");
 
         if (loginState === LoginState.login) {
-            this.$store.commit("pageName", "모든 게임");
+            this.$store.commit("pageName", this.$t('studioMenu.allGames'));
             this.uid = this.$store.getters.user.uid;
             await this.loadProjects();
             await this.surveyStatus();
@@ -271,7 +269,7 @@ export default class Games extends Vue {
         if (!result || result.error) {
             Notify.create({
                 message:
-                   ErrorMessage.LOAD_PROJECTS_FAIL,
+                   this.$t('gameListPage.error.loadFail').toString(),
                 position: "top",
                 color: "negative",
                 timeout: 2000,

@@ -4,20 +4,24 @@
         <div class="text-center">
             <span class="zempie-logo">ZEMPLATE</span><br><br>
         </div>
-        <div class="text-center q-my-lg" style="font-size:20px; font-weight: 500;">개발을 모르는 사람도 쉽게 개발해보세요</div>
+        <div class="text-center q-my-lg" style="font-size:20px; font-weight: 500;">  {{$t('createGame.description')}}</div>
         </div>
         <div class="game-selection row flex-center flex text-center">
             <q-card class="my-card col-3 q-mr-lg" >
-                <a :href="$store.getters.shootingTemplateUrl" target="_blank">
-                    <q-card-section>
+                <!-- <a :href="$store.getters.shootingTemplateUrl" target="_blank"> -->
+                    <q-card-section class="dimmed">
+                               <div class="dimmed-above">
+                        COMING<br />
+                        SOON!
+                             </div>
                         <i class="round-icon fas fa-rocket"></i>
                     </q-card-section>
                     
                     <q-card-section class="zemplate-desc">
                         <div class="text-h6 q-mb-md zemplate-title">
-                            슈팅게임
+                            {{$t('createGame.shootingGame.title')}}
                         </div>
-                        <div>적의 공격을 피하며 무기를 쏘는 게임입니다.</div>
+                        <div>{{$t('createGame.shootingGame.desc')}}</div>
                     </q-card-section>
                 </a>
             </q-card>
@@ -33,11 +37,9 @@
                     <q-separator />
                     <q-card-section class="zemplate-desc">
                         <div class="text-h6 q-mb-md zemplate-title">
-                            플랫포머
+                            {{$t('createGame.platformer.title')}}
                         </div>
-                        <div>
-                            점프 앤 런!
-                            발판이 등장하는 게임입니다.
+                        <div>{{$t('createGame.platformer.desc')}}
                         </div>
                     </q-card-section>
                 <!-- </a> -->
@@ -53,7 +55,7 @@
                 <q-separator />
                 <q-card-section class="zemplate-desc">
                     <div class="text-h6 q-mb-md">???</div>
-                    <div>다음 장르는 무엇일까요?</div>
+                    <div>{{$t('createGame.next.desc')}}</div>
                 </q-card-section>
             </q-card>
         </div>

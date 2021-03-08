@@ -55,7 +55,7 @@
                         <q-icon name="keyboard_backspace" />
                     </q-item-section>
                     <q-item-section>
-                        <q-item-label>모든 게임</q-item-label>
+                        <q-item-label>  {{$t('studioMenu.allGames')}}</q-item-label>
                         <!--                        <q-item-label caption>quasar.dev</q-item-label>-->
                     </q-item-section>
                 </q-item>
@@ -65,7 +65,7 @@
                         <q-icon name="dashboard" />
                     </q-item-section>
                     <q-item-section>
-                        <q-item-label>대시보드</q-item-label>
+                        <q-item-label>{{$t('studioMenu.subMenu.projectDashboard')}}</q-item-label>
                         <!--                        <q-item-label caption>quasar.dev</q-item-label>-->
                     </q-item-section>
                 </q-item>
@@ -74,7 +74,7 @@
                         <q-icon name="settings_ethernet" />
                     </q-item-section>
                     <q-item-section>
-                        <q-item-label>기본설정</q-item-label>
+                        <q-item-label>{{$t('studioMenu.subMenu.projectSetting')}}</q-item-label>
                         <!--                        <q-item-label caption>quasar.dev</q-item-label>-->
                     </q-item-section>
                 </q-item>
@@ -83,7 +83,7 @@
                         <q-icon name="launch" />
                     </q-item-section>
                     <q-item-section>
-                        <q-item-label>새 버전</q-item-label>
+                        <q-item-label>{{$t('studioMenu.subMenu.ProjectAddVersion')}}</q-item-label>
                         <!--                        <q-item-label caption>github.com/quasarframework</q-item-label>-->
                     </q-item-section>
                 </q-item>
@@ -92,7 +92,7 @@
                         <q-icon name="launch" />
                     </q-item-section>
                     <q-item-section>
-                        <q-item-label>버전 목록</q-item-label>
+                        <q-item-label>{{$t('studioMenu.subMenu.ProjectVersion')}}</q-item-label>
                         <!--                        <q-item-label caption>github.com/quasarframework</q-item-label>-->
                     </q-item-section>
                 </q-item>
@@ -101,7 +101,7 @@
                         <q-icon name="language" />
                     </q-item-section>
                     <q-item-section>
-                        <q-item-label>배포</q-item-label>
+                        <q-item-label>{{$t('studioMenu.subMenu.ProjectDeploy')}}</q-item-label>
                         <!--                        <q-item-label caption>chat.quasar.dev</q-item-label>-->
                     </q-item-section>
                 </q-item>

@@ -2,15 +2,15 @@
     <div class="q-pa-lg">
         <content-box>
             <div class="text-h6 q-mb-lg">
-                게임 세부 정보
+                  {{$t('projectSetting.projectSettingText')}}
             </div>
-            <content-box-block class="q-my-xl" title="게임 제목">
+            <content-box-block class="q-my-xl" :title="$t('projectSetting.title')">
                 <q-input :error="titleError !== ''" :error-message="titleError" counter maxlength="50" v-model="title" @change="(str)=>{ if( str ){ titleError = '' } }" />
             </content-box-block>
-            <content-box-block class="q-mb-xl" title="자세한 설명">
+            <content-box-block class="q-mb-xl" :title="$t('projectSetting.description')">
                 <q-input type="textarea" counter maxlength="2000" v-model="description"/>
             </content-box-block>
-            <content-box-block class="q-mb-xl" title="태그">
+            <content-box-block class="q-mb-xl" :title="$t('projectSetting.tag.title')">
                 <q-select
                     ref="hashtagsArr"
                     v-model="hashtagsArr"
@@ -37,36 +37,36 @@
                
                
                 <div class="hintText">
-                    게임을 나타낼 수 있는 단어를 태그로 설정하세요. 여러 개를 사용하는 경우 쉼표로 구분해 주세요.
+                    {{$t('projectSetting.tag.rules')}}
                 </div>
             </content-box-block>
-            <content-box-block class="q-mb-xl" title="썸네일 이미지">
-                <content-box-block-image-uploader :default-src="imgUrl" v-on:@file="(file)=>{thumbFile = file;}" text="이미지 업로드" limit-size="4">
+            <content-box-block class="q-mb-xl" :title="$t('projectSetting.thumbnailImg.title')">
+                <content-box-block-image-uploader :default-src="imgUrl" v-on:@file="(file)=>{thumbFile = file;}" :text="$t('projectSetting.thumbnailImg.text')" limit-size="4">
                 </content-box-block-image-uploader>
                 <div class="hintText">
-                    512*340 사이즈의 JPEG, PNG 파일을 업로드 해주세요. (최대 4MB)
+                    {{$t('projectSetting.thumbnailImg.rules')}}
                 </div>
             </content-box-block>
-            <content-box-block class="q-mb-xl" title="미리보기 이미지">
-                <content-box-block-image-uploader-g-i-f :default-src="imgUrl2" v-on:@file="(file)=>{thumbFile2 = file;}" text="이미지 업로드" limit-size="10">
+            <content-box-block class="q-mb-xl" :title="$t('projectSetting.previewImg.title')">
+                <content-box-block-image-uploader-g-i-f :default-src="imgUrl2" v-on:@file="(file)=>{thumbFile2 = file;}" :text="$t('projectSetting.thumbnailImg.text')" limit-size="10">
                 </content-box-block-image-uploader-g-i-f>
                 <div class="hintText">
-                    512*340 사이즈의 GIF 파일을 업로드 해주세요. (최대 10MB)
+                 {{$t('projectSetting.previewImg.rules')}}
                 </div>
             </content-box-block>
-            <content-box-block class="q-mb-xl" title="접속 아이디">
+            <content-box-block class="q-mb-xl" :title="$t('projectSetting.gamePath')">
                 <q-input v-model="gamePath" readonly />
             </content-box-block>
-            <content-box-block class="q-mb-xl" title="게임 아이디">
+            <content-box-block class="q-mb-xl" :title="$t('projectSetting.gameId')">
                 <q-input v-model="gameId" readonly />
             </content-box-block>
             <content-box-line></content-box-line>
-            <content-box-block title="게임 삭제" class="q-mb-xl">
+            <content-box-block :title="$t('projectSetting.delete.title')" class="q-mb-xl">
                 <div class="hintText">
-                    한 번 삭제한 게임은 복구할 수 없습니다.
+                     {{$t('projectSetting.delete.rules')}}
                 </div>
                 <div class="text-right">
-                    <q-btn @click="deleteProject">삭제</q-btn>
+                    <q-btn @click="deleteProject"> {{$t('projectSetting.delete.btn')}}</q-btn>
                 </div>
             </content-box-block>
         </content-box>
@@ -76,7 +76,7 @@
 
          <!-- 저장 버튼 -->
         <content-box class="save-btn">
-            <q-btn :loading="wait" color="primary" @click="save">저장</q-btn>
+            <q-btn :loading="wait" color="primary" @click="save">{{$t('save')}}</q-btn>
         </content-box>
     </div>
 </template>
@@ -88,13 +88,11 @@
     import ContentBoxBlock from "@/components/layout/contentBoxBlock.vue";
     import ContentBoxBlockImageUploader from "@/components/layout/contentBoxBlockImageUploader.vue";
     import FixedBottom from "@/components/fixedBottom.vue";
-    import {ErrorMessage} from "@/scripts/errorMessge";
     import ContentBoxLine from "@/components/layout/contentBoxLine.vue";
     import {Notify} from "quasar";
     import {verifyHashtags} from "@/scripts/verifyHashtag";
     import {verifySelectHashtags} from "@/scripts/verifySelectHashtags";
     import ContentBoxBlockImageUploaderGIF from "@/components/layout/contentBoxBlockImageUploaderGIF.vue";
-import { SuccessMessage } from '@/scripts/successMessage';
 
     @Component({
         components: {
@@ -139,7 +137,7 @@ import { SuccessMessage } from '@/scripts/successMessage';
         private isShowTag: boolean =  false;
 
         async mounted() {
-            this.$store.commit('pageName', '설정');
+            this.$store.commit('pageName',  this.$t('projectSetting.toolbarTitle'));
 
             let project = await this.$store.dispatch( 'project', this.projectId );
 
@@ -192,7 +190,7 @@ import { SuccessMessage } from '@/scripts/successMessage';
 
             this.$store.commit('ajaxBar', true);
             this.$q.loading.show({
-                message: '잠시만 기다려 주세요.'
+                message: this.$t('waiting').toString()
             });
             const result = await this.$http.updateProject( option, this.thumbFile, this.thumbFile2 );
             this.$store.commit('ajaxBar', false);
@@ -201,7 +199,7 @@ import { SuccessMessage } from '@/scripts/successMessage';
             if( !result || result.error ) {
                  if(result.error.code === 40101){
                     Notify.create({
-                    message : ErrorMessage.FORBIDDEN_STRING,
+                    message :this.$t('forbiddenString').toString(),
                     position : 'top',
                     color : 'negative',
                     timeout: 2000
@@ -209,7 +207,7 @@ import { SuccessMessage } from '@/scripts/successMessage';
                 }
                 else{
                 Notify.create({
-                    message : ErrorMessage.SAVE_EDIT_GAME_FAIL,
+                    message : this.$t('projectSetting.error.saveEditGameFail').toString(),
                     position : 'top',
                     color : 'negative',
                     timeout: 2000
@@ -219,7 +217,7 @@ import { SuccessMessage } from '@/scripts/successMessage';
             }
             else {
                 Notify.create({
-                    message : SuccessMessage.GAME_EDIT_OK,
+                    message : this.$t('projectSetting.success.editSave').toString(),
                     position : 'top',
                     color : 'primary',
                     timeout: 2000
@@ -250,7 +248,7 @@ import { SuccessMessage } from '@/scripts/successMessage';
                 return;
             }
 
-            const ok = confirm( '한 번 삭제한 게임은 복구할 수 없습니다. 정말 삭제하시겠습니까?' );
+            const ok = confirm( this.$t('projectSetting.delete.confirm').toString() );
             if( ok ) {
                 this.wait = true;
                 const result = await this.$http.deleteProject( this.projectId );
@@ -258,7 +256,7 @@ import { SuccessMessage } from '@/scripts/successMessage';
 
                 if( !result || result.error ) {
                     Notify.create({
-                        message : ErrorMessage.DELETE_GAME_FAIL,
+                        message : this.$t('projectSetting.error.deleteGameFail').toString(),
                         position : 'top',
                         color : 'negative',
                         timeout: 2000
@@ -289,7 +287,7 @@ import { SuccessMessage } from '@/scripts/successMessage';
                     } 
                 }
             }else{
-                this.hashtagsError = '입력된 태그가 너무 많습니다. 20개 이내로 설정해 주세요.'
+                this.hashtagsError = this.$t('projectSetting.error.tooManyInputs').toString()
             }
         }
 

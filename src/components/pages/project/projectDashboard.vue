@@ -146,7 +146,7 @@ export default class ProjectDashboard extends Vue {
     private updateVersion : any = null;
 
     mounted() {
-        this.$store.commit('pageName', '대시 보드');
+        this.$store.commit('pageName', this.$t('studioMenu.subMenu.projectDashboard'));
         this.deployVersion = this.$store.getters.deployVersion( this.projectId );
         this.updateVersion = this.$store.getters.updateVersion( this.projectId );
     }

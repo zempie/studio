@@ -2,21 +2,21 @@
     <q-page class="projectDeploy">
         <content-box>
             <div class="text-h6 q-mb-xl">
-                배포 정보
+                  {{$t('projectDeploy.deployTitle')}}
             </div>
 
             <div class="q-mb-xl" v-if="!deployVersion">
                 <div class="text-h7">
-                    아직 배포된 게임이 없습니다.
+                   {{$t('projectDeploy.noGame')}}
                 </div>
             </div>
 
             <div class="q-mb-lg" v-else>
-                <content-box-block title="버전(숫자)" class="q-mb-xl">
+                <content-box-block :title="$t('projectDeploy.versionNumber')" class="q-mb-xl">
                     <q-input readonly v-model="number">
                     </q-input>
                 </content-box-block>
-                <content-box-block title="버전(세부 버전)" class="q-mb-xl">
+                <content-box-block :title="$t('projectDeploy.versionDetail')" class="q-mb-xl">
                     <q-input readonly v-model="version">
                     </q-input>
                 </content-box-block>
@@ -25,19 +25,19 @@
             <content-box-line class="q-mb-xl"></content-box-line>
 
             <div class="text-h6 q-mb-xl">
-                배포 하기
+                {{$t('projectDeploy.deployText')}}
             </div>
-            <content-box-block title="배포 버전 선택" class="q-pb-xl">
+            <content-box-block :title="$t('projectDeploy.versionSelect')" class="q-pb-xl">
                 <q-select v-model="selectVersion" :options="options"></q-select>
             </content-box-block>
             <div class="q-pb-xl"></div>
 
-            <content-box-block title="배포 취소" class="q-mb-xl" v-if="deployVersion">
+            <content-box-block :title="$t('projectDeploy.cancelDeploy.title')" class="q-mb-xl" v-if="deployVersion">
                 <div class="hintText">
-                    배포된 버전의 게임을 비공개로 전환합니다.
+                     {{$t('projectDeploy.cancelDeploy.desc')}}
                 </div>
                 <div class="text-right">
-                    <q-btn @click="cancelDeploy">배포 해제</q-btn>
+                    <q-btn @click="cancelDeploy"> {{$t('projectDeploy.cancelDeploy.btn')}}</q-btn>
                 </div>
             </content-box-block>
 
@@ -48,7 +48,7 @@
         </fixed-bottom> -->
          <!-- 저장 버튼 -->
         <content-box class="save-btn">
-            <q-btn :loading="wait" color="primary" @click="deploy">저장</q-btn>
+            <q-btn :loading="wait" color="primary" @click="deploy">  {{$t('save')}}</q-btn>
         </content-box>
 
 
@@ -64,8 +64,6 @@
     import FixedBottom from "@/components/fixedBottom.vue";
     import {roundFace} from "@quasar/extras/material-icons-round";
     import {Notify} from "quasar";
-import { ErrorMessage } from '@/scripts/errorMessge';
-import { SuccessMessage } from '@/scripts/successMessage';
 
     @Component({
         components: {
@@ -91,7 +89,7 @@ import { SuccessMessage } from '@/scripts/successMessage';
 
 
         async mounted() {
-            this.$store.commit('pageName', '배포');
+            this.$store.commit('pageName', this.$t('projectDeploy.toolbarTitle'));
 
             const project = this.$store.getters.project( this.projectId );
             const versions = this.$store.getters.versionList( this.projectId );
@@ -119,7 +117,7 @@ import { SuccessMessage } from '@/scripts/successMessage';
 
             this.$store.commit('ajaxBar', true);
             this.$q.loading.show({
-                message: '잠시만 기다려 주세요.'
+                message: this.$t('waiting').toString()
             });
 
             const result = await this.$http.updateProject( {
@@ -133,7 +131,7 @@ import { SuccessMessage } from '@/scripts/successMessage';
 
             if( !result || result.error ) {
                 Notify.create({
-                    message : ErrorMessage.COMMON_ERROR,
+                    message : this.$t('commonError').toString(),
                     position : 'top',
                     color : 'negative',
                     timeout: 2000
@@ -151,7 +149,7 @@ import { SuccessMessage } from '@/scripts/successMessage';
                 }
 
                 Notify.create({
-                    message : SuccessMessage.UNDEPLOY_OK,
+                    message : this.$t('projectDeploy.success.undeploy').toString(),
                     position : 'top',
                     color : 'primary',
                     timeout: 2000
@@ -175,7 +173,7 @@ import { SuccessMessage } from '@/scripts/successMessage';
 
             this.$store.commit('ajaxBar', true);
             this.$q.loading.show({
-                message: '잠시만 기다려 주세요.'
+                message: this.$t('waiting').toString()
             });
 
             const result = await this.$http.updateProject( {
@@ -190,7 +188,7 @@ import { SuccessMessage } from '@/scripts/successMessage';
 
             if( !result || result.error ) {
                 Notify.create({
-                    message : ErrorMessage.DEPLOY_FAIL,
+                    message : this.$t('projectDeploy.error.deployFail').toString(),
                     position : 'top',
                     color : 'negative',
                     timeout: 2000
@@ -210,7 +208,7 @@ import { SuccessMessage } from '@/scripts/successMessage';
                     }
                 }
                 Notify.create({
-                    message : SuccessMessage.DEPLOY_VERSION_OK,
+                    message : this.$t('projectDeploy.success.deploy').toString(),
                     position : 'top',
                     color : 'primary',
                     timeout: 2000

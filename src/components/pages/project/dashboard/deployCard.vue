@@ -1,7 +1,7 @@
 <template>
     <q-card class="versionCard" bordered>
         <q-card-section class="head" >
-            <div class="text-h6">배포 버전</div>
+            <div class="text-h6">{{$t('deployCard.cardHeader')}}</div>
         </q-card-section>
         <q-separator />
         <q-card-actions class="body">
@@ -11,12 +11,12 @@
                     {{ `${ version.version }` }}
                 </div>
                 <div class="text-body1 text-center q-mb-lg">
-                    배포 중입니다.
+                    {{$t('deployCard.isDeploying')}}
                 </div>
             </div>
              <div class="full-width" v-else>
                 <div class="text-body1 text-center q-mb-lg">
-                    배포 중인 버전이 없습니다.
+                    {{$t('deployCard.noDeploy')}}
                 </div>
             </div>
 

@@ -5,14 +5,14 @@
 
             </iframe>
             <p class="join_check">
-                <input id="useAgree" v-model="useAgree" type="checkbox"><label for="useAgree" class="MAL5">이용약관에 동의합니다.(필수)</label>
+                <input id="useAgree" v-model="useAgree" type="checkbox"><label for="useAgree" class="MAL5">  {{$t('agreement.title')}}</label>
             </p>
         </div>
 
         <fixed-bottom>
-            <q-btn class="MAR10" color="light-blue" label="동의함" @click="onAgree" />
+            <q-btn class="MAR10" color="light-blue" :label="$t('agreement.agreement')" @click="onAgree" />
             <a :href="$store.getters.zempieUrl">
-                <q-btn class="MAR30" outline color="light-blue" label="동의안함"/>
+                <q-btn class="MAR30" outline color="light-blue" :label="$t('agreement.disagreement')"/>
             </a>
 
         </fixed-bottom>
@@ -37,7 +37,7 @@ export default class Tos extends Vue {
 
         if( !this.useAgree || !this.useAgree ) {
 
-            alert( '약관에 동의하셔야 등록이 가능합니다.' )
+            alert( this.$t('agreement.rules'))
             return;
         }
 
