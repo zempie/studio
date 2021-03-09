@@ -8,7 +8,7 @@
                 <q-input :error="titleError !== ''" :error-message="titleError" counter maxlength="50" v-model="title" @change="(str)=>{ if( str ){ titleError = '' } }" />
             </content-box-block>
             <content-box-block class="q-mb-xl" :title="$t('projectSetting.description')" :star="'*'">
-                <q-input type="textarea" counter maxlength="2000" v-model="description" />
+                <q-input type="textarea" counter maxlength="2000" v-model="description" :error="descError !== ''" :error-message="descError"/>
             </content-box-block>
             <content-box-block class="q-mb-xl" :title="$t('projectSetting.tag.title')" :star="'*'">
                 <q-select
@@ -43,6 +43,7 @@
             <content-box-block class="q-mb-xl" :title="$t('projectSetting.thumbnailImg.title')" :star="'*'">
                 <content-box-block-image-uploader :default-src="imgUrl" v-on:@file="(file)=>{thumbFile = file;}" :text="$t('projectSetting.thumbnailImg.text')" limit-size="4">
                 </content-box-block-image-uploader>
+                 <div :class="thumbnailErr && !thumbFile? 'thumbnailErr' : 'thumbnailErr off'">{{$t('addGame.error.thumbnailBlank')}}</div>
                 <div class="hintText">
                     {{$t('projectSetting.thumbnailImg.rules')}}
                 </div>
@@ -113,11 +114,13 @@
         private titleError : string = '';
 
         private description : string = '';
+        private descError : string = '';
 
         private hashtags : string = '';
         private hashtagsError : string = '';
 
         private thumbFile : File = null;
+        private thumbnailErr : boolean = false;
         private imgUrl : string = '';
 
 
@@ -172,22 +175,43 @@
                 return;
             }
             this.wait = true;
+            let isError = false;
 
             const option : any = {
                 id : this.projectId,
             }
             if( this.title ) {
                 option.name = this.title;
+            }else{
+                 this.titleError = this.$t('addGame.error.blankTitle').toString();
+                isError = true;
             }
             if( this.description ) {
                 option.description = this.description;
+            }else{
+                this.descError = this.$t('addGame.error.blankDescription').toString();
+                isError = true;
+            }
+            if(this.hashtagsArr.length === 0){
+                this.hashtagsError = this.$t('addGame.error.blankHashtag').toString();
+                isError = true;
+            }
+            if(!this.thumbFile){
+                this.thumbnailErr = true;
+                isError = true;
+            }
+            if( this.hashtagsError ) {
+                isError = true;
             }
             if( this.hashtagsArr ) {
                 option.hashtags = this.hashtagsArr.toString();
                 
             }
 
-
+            if( isError ) {
+                this.wait = false;
+                return;
+            }
             this.$store.commit('ajaxBar', true);
             this.$q.loading.show({
                 message: this.$t('waiting').toString()
@@ -310,5 +334,13 @@
     border-radius: 5px ;
     color: black ;
     padding: 15px ;
+}
+.thumbnailErr.off{
+    display: none;
+}
+.thumbnailErr{
+    color:#C10015;
+    font-size:12px;
+    margin-top:2px
 }
 </style>
