@@ -2,6 +2,7 @@
     "save": "저장",
     "advancedSetting": "고급",
     "waiting": "잠시만 기다려주세요",
+    "loading": "로딩중...",
     "checkingFile": "파일을 확인하고 있습니다. 잠시만 기다려 주세요.",
     "forbiddenString": "올바르지 않은 단어가 포함되어 있습니다.",
     "commonError": "오류가 발생했습니다. 잠시 후 다시 시도해 주세요.",
