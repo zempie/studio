@@ -396,8 +396,6 @@
                 version_description : this.versionDescription
             }, this.uploadGameFiles  );
 
-            console.log("this.thumbFile",this.thumbFile);
-
             this.$store.commit('ajaxBar', false);
             this.$q.loading.hide();
             this.waitSave = false;
