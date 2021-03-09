@@ -4,13 +4,13 @@
             <div class="text-h6 q-mb-lg">
                   {{$t('projectSetting.projectSettingText')}}
             </div>
-            <content-box-block class="q-my-xl" :title="$t('projectSetting.title')">
+            <content-box-block class="q-my-xl" :title="$t('projectSetting.title')" :star="'*'">
                 <q-input :error="titleError !== ''" :error-message="titleError" counter maxlength="50" v-model="title" @change="(str)=>{ if( str ){ titleError = '' } }" />
             </content-box-block>
-            <content-box-block class="q-mb-xl" :title="$t('projectSetting.description')">
-                <q-input type="textarea" counter maxlength="2000" v-model="description"/>
+            <content-box-block class="q-mb-xl" :title="$t('projectSetting.description')" :star="'*'">
+                <q-input type="textarea" counter maxlength="2000" v-model="description" />
             </content-box-block>
-            <content-box-block class="q-mb-xl" :title="$t('projectSetting.tag.title')">
+            <content-box-block class="q-mb-xl" :title="$t('projectSetting.tag.title')" :star="'*'">
                 <q-select
                     ref="hashtagsArr"
                     v-model="hashtagsArr"
@@ -40,7 +40,7 @@
                     {{$t('projectSetting.tag.rules')}}
                 </div>
             </content-box-block>
-            <content-box-block class="q-mb-xl" :title="$t('projectSetting.thumbnailImg.title')">
+            <content-box-block class="q-mb-xl" :title="$t('projectSetting.thumbnailImg.title')" :star="'*'">
                 <content-box-block-image-uploader :default-src="imgUrl" v-on:@file="(file)=>{thumbFile = file;}" :text="$t('projectSetting.thumbnailImg.text')" limit-size="4">
                 </content-box-block-image-uploader>
                 <div class="hintText">

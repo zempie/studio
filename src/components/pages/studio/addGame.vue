@@ -4,13 +4,13 @@
             <div class="text-h6 q-mb-sm">
                   {{$t('addGame.addGameTitle')}}
             </div>
-            <content-box-block class="q-my-xl" :title="$t('addGame.title')">
+            <content-box-block class="q-my-xl" :title="$t('addGame.title')" :star="'*'">
                 <q-input :error="titleError !== ''" :error-message="titleError" counter maxlength="50" v-model="title" @change="(str)=>{ if( str ){ titleError = '' } }" />
             </content-box-block>
-            <content-box-block class="q-mb-xl" :title="$t('addGame.description')">
-                <q-input type="textarea" counter maxlength="2000" v-model="description"/>
+            <content-box-block class="q-mb-xl" :title="$t('addGame.description')" :star="'*'" >
+                <q-input type="textarea" counter maxlength="2000" v-model="description" :error="descError !== ''" :error-message="descError" />
             </content-box-block>
-            <content-box-block class="q-mb-xl" :title="$t('addGame.tag.title')">
+            <content-box-block class="q-mb-xl" :title="$t('addGame.tag.title')" :star="'*'">
                 <q-select
                 ref="hashtagsArr"
                 v-model="hashtagsArr"
@@ -39,11 +39,15 @@
                     {{$t('addGame.tag.rules')}}
                 </div>
             </content-box-block>
-            <content-box-block class="q-mb-xl" :title="$t('addGame.thumbnailImg.title')">
-                <content-box-block-image-uploader v-on:@file="(file)=>{thumbFile = file;}" :text="$t('addGame.thumbnailImg.text')" limit-size="4"></content-box-block-image-uploader>
+            <content-box-block class="q-mb-xl" :title="$t('addGame.thumbnailImg.title')" :star="'*'">                
+                
+                    <content-box-block-image-uploader v-on:@file="(file)=>{thumbFile = file;}" :text="$t('addGame.thumbnailImg.text')" limit-size="4"></content-box-block-image-uploader>
+                    <div :class="thumbnailErr && !thumbFile? 'thumbnailErr' : 'thumbnailErr off'">{{$t('addGame.error.thumbnailBlank')}}</div>
                 <div class="hintText">
                     {{$t('addGame.thumbnailImg.rules')}}
+                
                 </div>
+                
             </content-box-block>
 
             <content-box-block class="q-mb-xl" :title="$t('addGame.previewImg.title')">
@@ -53,7 +57,7 @@
                 </div>
             </content-box-block>
 
-            <content-box-block class="q-mb-xl" :title="$t('addGame.engGameIdSetting.title')">
+            <content-box-block class="q-mb-xl" :title="$t('addGame.engGameIdSetting.title')" >
                 <q-toggle v-model="autoGamePath">{{ autoGamePath ? $t('addGame.engGameIdSetting.autoInput'):$t('addGame.engGameIdSetting.manualInput') }}</q-toggle>
                 <q-slide-transition>
                     <div v-if="!autoGamePath">
@@ -83,7 +87,7 @@
             <div class="text-h6 q-my-xl">
                 {{$t('addGame.firstVersionAdd')}}
             </div>
-            <content-box-block class="q-mb-xl" :title="$t('addGame.gameFileUpload.title')">
+            <content-box-block class="q-mb-xl" :title="$t('addGame.gameFileUpload.title')" :star="'*'">
                 <q-input
                     @input="val => { uploadGameFile = val[0] }"
                     filled
@@ -99,7 +103,7 @@
             </content-box-block>
             <q-slide-transition>
                 <div v-if="uploadMore">
-                    <content-box-block class="q-mb-xl" :title="$t('addGame.startFileSelect.title')">
+                    <content-box-block class="q-mb-xl" :title="$t('addGame.startFileSelect.title')" :star="'*'">
                         <q-select style="margin-top: 20px"
                                   :label="$t('addGame.startFileSelect.desc')"
                                   v-model="startFile"
@@ -166,9 +170,11 @@
         private title : string = '';
         private titleError : string = '';
         private description : string = '';
+        private descError : string = '';
         private hashtags : string = '';
 
         private thumbFile : File = null;
+        private thumbnailErr : boolean = false;
         private thumbFile2 : File = null;
 
         private autoGamePath : boolean = true;
@@ -200,7 +206,7 @@
         private hashtagsArr: string[] = [];
         private inputValue: string =  '';
         private isShowTag: boolean =  false;
-
+        private star: string ='';
 
 
         mounted() {
@@ -306,6 +312,18 @@
                 this.titleError = this.$t('addGame.error.blankTitle').toString();
                 isError = true;
             }
+            if(!this.description){
+                this.descError = this.$t('addGame.error.blankDescription').toString();
+                isError = true;
+            }
+            if(this.hashtagsArr.length === 0){
+                this.hashtagsError = this.$t('addGame.error.blankHashtag').toString();
+                isError = true;
+            }
+            if(!this.thumbFile){
+                this.thumbnailErr = true;
+                isError = true;
+            }
             if( this.hashtagsError ) {
                 isError = true;
             }
@@ -378,7 +396,7 @@
                 version_description : this.versionDescription
             }, this.uploadGameFiles  );
 
-            // console.log(result);
+            console.log("this.thumbFile",this.thumbFile);
 
             this.$store.commit('ajaxBar', false);
             this.$q.loading.hide();
@@ -387,7 +405,7 @@
             if( !result || result.error ) {
                 if(result.error.code === 40101){
                     Notify.create({
-                    message :this.$t('addGame.forbiddenString').toString(),
+                    message :this.$t('forbiddenString').toString(),
                     position : 'top',
                     color : 'negative',
                     timeout: 2000
@@ -442,6 +460,8 @@
         this.inputValue = val
         
         }
+
+        
     }
 </script>
 
@@ -457,5 +477,16 @@
     color: black ;
     padding: 15px ;
 }
-
+.fileUpload{
+    // background-color: red;
+    // width: 100%;
+}
+.thumbnailErr.off{
+    display: none;
+}
+.thumbnailErr{
+    color:#C10015;
+    font-size:12px;
+    margin-top:2px
+}
 </style>
