@@ -1,6 +1,6 @@
 <template>
     <div class="contentBoxBlock">
-        <div class="head"> {{title}} </div>
+        <div class="head"> {{title}} <span class="star">{{star}}</span> </div>
         <div class="body">
             <slot></slot>
         </div>
@@ -16,6 +16,7 @@ import {Component, Prop, Vue} from 'vue-property-decorator';
 })
 export default class ContentBoxBlock extends Vue {
     @Prop() private title! : string;
+    @Prop() private star! : string;
 }
 </script>
 
@@ -33,6 +34,9 @@ export default class ContentBoxBlock extends Vue {
         }
         .body {
 
+        }
+        .star{
+            color: #C10015;
         }
     }
 

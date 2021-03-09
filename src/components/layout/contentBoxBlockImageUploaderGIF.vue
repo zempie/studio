@@ -1,7 +1,15 @@
 <template>
     <div class="uploader">
         <content-box-block-image v-if="url || defaultSrc" :src="url || defaultSrc"></content-box-block-image>
+           <div class="btn_wrapper">
         <content-box-block-upload-button :text="text" v-on:@click="fileLoader.addFile()"></content-box-block-upload-button>
+         <!-- 삭제 버튼 -->
+        <template v-if="url || defaultSrc">
+            <q-btn color="grey-9 q-mb-sm" class="removeBtn" @click="reset()" >
+                <q-icon name="far fa-trash-alt" style="font-size: 16px"></q-icon>
+            </q-btn>
+        </template>
+    </div>
     </div>
 </template>
 
@@ -39,12 +47,30 @@ export default class ContentBoxBlockImageUploaderGIF extends Vue {
         this.file = file;
         this.$emit('@file', this.file);
     }
+     // 이미지 삭제
+        reset(){
+            this.url = '';
+            this.file = null;
+            this.$emit('@file', this.file);
+            console.log("this.thumbFile", this.url)
+        }
 }
 </script>
 
 <style scoped lang="scss">
 .uploader {
-
+    display: flex;
+}
+.btn_wrapper{
+    display: flex ;
+    flex-direction: column;
+    
+}
+.removeBtn{
+    margin-top: 20px;
+    margin-left: 20px;
+    max-width: 150px;
+    width: 90%;
 }
 
 </style>
