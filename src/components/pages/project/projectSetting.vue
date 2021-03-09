@@ -41,7 +41,7 @@
                 </div>
             </content-box-block>
             <content-box-block class="q-mb-xl" :title="$t('projectSetting.thumbnailImg.title')" :star="'*'">
-                <content-box-block-image-uploader :default-src="imgUrl" v-on:@file="(file)=>{thumbFile = file;}" :text="$t('projectSetting.thumbnailImg.text')" limit-size="4">
+                <content-box-block-image-uploader v-on:@remove="imgUrl = ''" :default-src="imgUrl" v-on:@file="(file)=>{thumbFile = file;}" :text="$t('projectSetting.thumbnailImg.text')" limit-size="4">
                 </content-box-block-image-uploader>
                  <div :class="thumbnailErr && !thumbFile? 'thumbnailErr' : 'thumbnailErr off'">{{$t('addGame.error.thumbnailBlank')}}</div>
                 <div class="hintText">
@@ -49,7 +49,7 @@
                 </div>
             </content-box-block>
             <content-box-block class="q-mb-xl" :title="$t('projectSetting.previewImg.title')">
-                <content-box-block-image-uploader-g-i-f :default-src="imgUrl2" v-on:@file="(file)=>{thumbFile2 = file;}" :text="$t('projectSetting.thumbnailImg.text')" limit-size="10">
+                <content-box-block-image-uploader-g-i-f v-on:@remove="imgUrl2 = ''" :default-src="imgUrl2" v-on:@file="(file)=>{thumbFile2 = file;}" :text="$t('projectSetting.thumbnailImg.text')" limit-size="10">
                 </content-box-block-image-uploader-g-i-f>
                 <div class="hintText">
                  {{$t('projectSetting.previewImg.rules')}}

@@ -52,7 +52,7 @@ export default class ContentBoxBlockImageUploaderGIF extends Vue {
             this.url = '';
             this.file = null;
             this.$emit('@file', this.file);
-            console.log("this.thumbFile", this.url)
+             this.$emit('@remove', this.defaultSrc)
         }
 }
 </script>

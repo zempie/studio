@@ -5,7 +5,7 @@
            <content-box-block-upload-button :text="text" v-on:@click="fileLoader.addFile()"></content-box-block-upload-button>
         <!-- 삭제 버튼 -->
         <template v-if="url || defaultSrc">
-            <q-btn color="grey-9 q-mb-sm" class="removeBtn" @click="reset()" >
+            <q-btn color="grey-9 q-mb-sm" class="removeBtn" @click="reset()"  >
                 <q-icon name="far fa-trash-alt" style="font-size: 16px"></q-icon>
             </q-btn>
         </template>
@@ -47,12 +47,19 @@ export default class ContentBoxBlockImageUploader extends Vue {
         this.$emit('@file', this.file);
     }
 
+    // getUrl() {
+    //     if( this.url !== null ) {
+    //         return this.url;
+    //     }
+    //     return this.defaultSrc;
+    // }
+
     // 이미지 삭제
         reset(){
             this.url = '';
             this.file = null;
             this.$emit('@file', this.file);
-            console.log("this.thumbFile", this.url)
+             this.$emit('@remove', this.defaultSrc)
         }
 }
 </script>
