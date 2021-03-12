@@ -268,6 +268,7 @@ export default class ProjectAddVersion extends Vue {
         }
         else {
             const lastVersion = this.$store.getters.lastVersion(this.projectId);
+            console.log("lastVersion",lastVersion)
             if (lastVersion && Version.validity(lastVersion.version)) {
                 const newVersion = new Version(this.version);
                 const oldVersion = new Version(lastVersion.version);

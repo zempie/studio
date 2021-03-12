@@ -2,6 +2,7 @@
     "save": "저장",
     "advancedSetting": "고급",
     "waiting": "잠시만 기다려주세요",
+    "loading": "로딩중...",
     "checkingFile": "파일을 확인하고 있습니다. 잠시만 기다려 주세요.",
     "forbiddenString": "올바르지 않은 단어가 포함되어 있습니다.",
     "commonError": "오류가 발생했습니다. 잠시 후 다시 시도해 주세요.",
@@ -100,6 +101,9 @@
             "noLoadFile": "게임파일을 업로드 해주세요.",
             "doubleCheckEngId": "영문 게임아이디를 다시 확인해 주세요.",
             "blankTitle": "게임 제목을 입력해 주세요.",
+            "blankHashtag":"태그를 최소 1개 이상 설정해주세요",
+            "thumbnailBlank":"썸네일 이미지는 필수 등록 사항입니다.",
+            "blankDescription" : "게임 상세 설명을 입력해주세요.",
             "usedId": "사용중인 아이디 입니다. 다른 아이디를 입력하세요.",
             "notFoundHtml": ".html 파일을 찾을 수 없습니다.",
             "fileSizeExceeded": "게임파일이 제한 크기를 초과하였습니다."
@@ -322,5 +326,17 @@
         "channelLabel": "내 채널",
         "supportLabel": "고객센터",
         "logoutLabel": "로그아웃"
+    },
+    "mailPopup" : {
+        "mailLabel" : "",
+        "date" : {
+            "minute" : "분",
+            "hour" : "시간",
+            "day" : "일",
+            "month" : "개월",
+            "year" : "년",
+            "before" : " 전"
+        },
+        "noMail" : "알림이 없습니다."
     }
 }

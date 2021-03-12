@@ -211,7 +211,7 @@ export default class Games extends Vue {
             align: "left",
             label: this.$t('gameListPage.columns.updated_at'),
             field: "updated_at",
-             sortable: true,
+            sortable: true,
         },
         {
             name: "state",

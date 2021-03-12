@@ -88,6 +88,7 @@ export default {
             }
         },
         version( state, payload ) {
+            state.projects[payload.project_id].versions = state.projects[payload.project_id].verions || [];
             state.projects[payload.project_id].versions[ payload.number ] = payload;
         },
         versions( state, payload ) {
