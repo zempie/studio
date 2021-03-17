@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import { languages } from '../locales/index'
+import { languages } from '../../translationTool/languages'
 
 const messages = Object.assign(languages)
 

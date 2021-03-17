@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --mode local",
+    "serve": "npm run download:i18n && vue-cli-service serve --mode local",
     "build": "vue-cli-service build --mode production",
     "build-dev": "vue-cli-service build --mode development",
-    "i18n:report": "vue-cli-service i18n:report --src \"./src/**/*.?(js|vue)\" --locales \"./src/locales/**/*.json\""
+    "i18n:report": "vue-cli-service i18n:report --src \"./src/**/*.?(js|vue)\" --locales \"./src/locales/**/*.json\"",
+    "scan:i18n": "i18next-scanner --config i18next-scanner.config.js",
+    "upload:i18n": "npm run scan:i18n && node translationTool/upload.js",
+    "download:i18n": "node translationTool/download.js"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",

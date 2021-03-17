@@ -21,3 +21,4 @@ pnpm-debug.log*
 *.sln
 *.sw?
 /package-lock.json
+translationTool/.credentials/round-ring-307203-d7d20d7d442d.json

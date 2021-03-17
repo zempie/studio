@@ -34,7 +34,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-  ],
+, "translationTool/index.ts"  ],
   "exclude": [
     "node_modules"
   ]
