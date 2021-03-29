@@ -43,7 +43,7 @@
             <content-box-block class="q-mb-xl" :title="$t('projectSetting.thumbnailImg.title')" :star="'*'">
                 <content-box-block-image-uploader v-on:@remove="imgUrl = ''" :default-src="imgUrl" v-on:@file="(file)=>{thumbFile = file;}" :text="$t('projectSetting.thumbnailImg.text')" limit-size="4">
                 </content-box-block-image-uploader>
-                 <div :class="thumbnailErr && !thumbFile? 'thumbnailErr' : 'thumbnailErr off'">{{$t('addGame.error.thumbnailBlank')}}</div>
+                 <div :class="thumbnailErr && !thumbFile && !imgUrl? 'thumbnailErr' : 'thumbnailErr off'">{{$t('addGame.error.thumbnailBlank')}}</div>
                 <div class="hintText">
                     {{$t('projectSetting.thumbnailImg.rules')}}
                 </div>
