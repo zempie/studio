@@ -41,7 +41,7 @@
             </content-box-block>
             <content-box-block class="q-mb-xl" :title="$t('addGame.thumbnailImg.title')" :star="'*'">                
                 
-                    <content-box-block-image-uploader v-on:@file="(file)=>{thumbFile = file;}" :text="$t('addGame.thumbnailImg.text')" limit-size="4"></content-box-block-image-uploader>
+                    <content-box-block-image-uploader  v-on:@file="(file)=>{thumbFile = file;}" :text="$t('addGame.thumbnailImg.text')" limit-size="4"></content-box-block-image-uploader>
                     <div :class="thumbnailErr && !thumbFile? 'thumbnailErr' : 'thumbnailErr off'">{{$t('addGame.error.thumbnailBlank')}}</div>
                 <div class="hintText">
                     {{$t('addGame.thumbnailImg.rules')}}
@@ -219,7 +219,6 @@
 
         @Watch('uploadGameFile')
         private async onChangedFile() {
-
             if( !this.uploadGameFile ) {
                 return;
             }
@@ -296,7 +295,13 @@
             }
             this.waitGamePath = false;
         }
-
+        @Watch('description')
+        watchDesc(){
+            if(
+            this.description.length> 0){
+                this.descError = '';
+            }
+        }
         async save() {
 
             if( this.waitSave ) {

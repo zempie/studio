@@ -7,8 +7,10 @@
             <content-box-block class="q-my-xl" :title="$t('projectSetting.title')" :star="'*'">
                 <q-input :error="titleError !== ''" :error-message="titleError" counter maxlength="50" v-model="title" @change="(str)=>{ if( str ){ titleError = '' } }" />
             </content-box-block>
-            <content-box-block class="q-mb-xl" :title="$t('projectSetting.description')" :star="'*'">
+            <content-box-block class="q-mb-xl" :title="$t('projectSetting.description')" :star="'*'" >
+          
                 <q-input type="textarea" counter maxlength="2000" v-model="description" :error="descError !== ''" :error-message="descError"/>
+          
             </content-box-block>
             <content-box-block class="q-mb-xl" :title="$t('projectSetting.tag.title')" :star="'*'">
                 <q-select
@@ -43,7 +45,8 @@
             <content-box-block class="q-mb-xl" :title="$t('projectSetting.thumbnailImg.title')" :star="'*'">
                 <content-box-block-image-uploader v-on:@remove="imgUrl = ''" :default-src="imgUrl" v-on:@file="(file)=>{thumbFile = file;}" :text="$t('projectSetting.thumbnailImg.text')" limit-size="4">
                 </content-box-block-image-uploader>
-                 <div :class="thumbnailErr && !thumbFile && !imgUrl? 'thumbnailErr' : 'thumbnailErr off'">{{$t('addGame.error.thumbnailBlank')}}</div>
+                
+                 <div :class=" thumbnailErr && !imgUrl? 'thumbnailErr' : 'thumbnailErr off'">{{$t('addGame.error.thumbnailBlank')}}</div>
                 <div class="hintText">
                     {{$t('projectSetting.thumbnailImg.rules')}}
                 </div>
@@ -199,6 +202,8 @@
             if(!this.thumbFile){
                 this.thumbnailErr = true;
                 isError = true;
+            }else{
+                this.thumbnailErr = false;
             }
             if( this.hashtagsError ) {
                 isError = true;

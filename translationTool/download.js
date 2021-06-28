@@ -35,6 +35,7 @@ async function fetchTranslationsFromSheetToJson(doc) {
 //디렉토리 설정
 function checkAndMakeLocaleDir(dirPath, subDirs) {
   return new Promise((resolve) => {
+    console.info(subDirs)
     subDirs.forEach((subDir, index) => {
       mkdirp(`${dirPath}/${subDir}`, (err) => {
         if (err) {
