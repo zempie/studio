@@ -68,6 +68,12 @@ const routes: Array<RouteConfig> = [
                 component: () => import(/* webpackChunkName: "about" */ "@/components/pages/studio/createGame.vue"),
 
             },
+            {
+                path: '/selectStage',
+                name: 'SelectStage',
+                component: () => import(/* webpackChunkName: "about" */ "@/components/pages/studio/selectStage.vue"),
+            },
+           
         ]
     },
 

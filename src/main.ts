@@ -9,7 +9,7 @@ import store from './store'
 import './quasar'
 import './plugins/analytics';
 import i18n from './plugins/i18n';
-
+import './styles/styles.css'
 
 Vue.config.productionTip = false
 
