@@ -1,816 +1,83 @@
 <template>
-    <div
-        class="content-grid"
-        style="
-            transform: translate(296.5px, 0px);
-            transition: transform 0.4s ease-in-out 0s;
-        "
-    >
-        <!-- SECTION BANNER -->
-        <div class="section-banner">
-            <!-- SECTION BANNER ICON -->
-            <img
-                class="section-banner-icon"
-                src="img/banner/accounthub-icon.png"
-                alt="accounthub-icon"
-            />
-            <!-- /SECTION BANNER ICON -->
-
-            <!-- SECTION BANNER TITLE -->
-            <p class="section-banner-title">Account Hub</p>
-            <!-- /SECTION BANNER TITLE -->
-
-            <!-- SECTION BANNER TEXT -->
-            <p class="section-banner-text">
-                Profile info, messages, settings and much more!
-            </p>
-            <!-- /SECTION BANNER TEXT -->
-        </div>
-        <!-- /SECTION BANNER -->
-
-        <!-- GRID -->
-        <div class="grid grid-3-9 medium-space">
-            <!-- GRID COLUMN -->
-            <div class="account-hub-sidebar">
-                <!-- SIDEBAR BOX -->
-                <div class="sidebar-box no-padding">
-                    <!-- SIDEBAR MENU -->
-                    <div class="sidebar-menu">
-                        <!-- SIDEBAR MENU ITEM -->
-                        <div class="sidebar-menu-item">
-                            <!-- SIDEBAR MENU HEADER -->
-                            <div
-                                class="
-                                    sidebar-menu-header
-                                    accordion-trigger-linked
-                                "
-                            >
-                                <!-- SIDEBAR MENU HEADER ICON -->
-                                <svg
-                                    class="
-                                        sidebar-menu-header-icon
-                                        icon-profile
-                                    "
-                                >
-                                    <use xlink:href="#svg-profile"></use>
-                                </svg>
-                                <!-- /SIDEBAR MENU HEADER ICON -->
-
-                                <!-- SIDEBAR MENU HEADER CONTROL ICON -->
-                                <div class="sidebar-menu-header-control-icon">
-                                    <!-- SIDEBAR MENU HEADER CONTROL ICON OPEN -->
-                                    <svg
-                                        class="
-                                            sidebar-menu-header-control-icon-open
-                                            icon-minus-small
-                                        "
-                                    >
-                                        <use
-                                            xlink:href="#svg-minus-small"
-                                        ></use>
-                                    </svg>
-                                    <!-- /SIDEBAR MENU HEADER CONTROL ICON OPEN -->
-
-                                    <!-- SIDEBAR MENU HEADER CONTROL ICON CLOSED -->
-                                    <svg
-                                        class="
-                                            sidebar-menu-header-control-icon-closed
-                                            icon-plus-small
-                                        "
-                                    >
-                                        <use xlink:href="#svg-plus-small"></use>
-                                    </svg>
-                                    <!-- /SIDEBAR MENU HEADER CONTROL ICON CLOSED -->
-                                </div>
-                                <!-- /SIDEBAR MENU HEADER CONTROL ICON -->
-
-                                <!-- SIDEBAR MENU HEADER TITLE -->
-                                <p class="sidebar-menu-header-title">
-                                    My Profile
-                                </p>
-                                <!-- /SIDEBAR MENU HEADER TITLE -->
-
-                                <!-- SIDEBAR MENU HEADER TEXT -->
-                                <p class="sidebar-menu-header-text">
-                                    Change your avatar &amp; cover, accept
-                                    friends, read messages and more!
-                                </p>
-                                <!-- /SIDEBAR MENU HEADER TEXT -->
-                            </div>
-                            <!-- /SIDEBAR MENU HEADER -->
-
-                            <!-- SIDEBAR MENU BODY -->
-
-                            <!-- /SIDEBAR MENU BODY -->
-                            <div
-                                style="
-                                    overflow: hidden;
-                                    height: 0px;
-                                    transition: all 0.3s ease-in-out 0s;
-                                "
-                            >
-                                <div
-                                    class="
-                                        sidebar-menu-body
-                                        accordion-content-linked
-                                    "
-                                >
-                                    <!-- SIDEBAR MENU LINK -->
-                                    <a
-                                        class="sidebar-menu-link"
-                                        href="hub-profile-info.html"
-                                        >Profile Info</a
-                                    >
-                                    <!-- /SIDEBAR MENU LINK -->
-
-                                    <!-- SIDEBAR MENU LINK -->
-                                    <a
-                                        class="sidebar-menu-link"
-                                        href="hub-profile-social.html"
-                                        >Social &amp; Stream</a
-                                    >
-                                    <!-- /SIDEBAR MENU LINK -->
-
-                                    <!-- SIDEBAR MENU LINK -->
-                                    <a
-                                        class="sidebar-menu-link"
-                                        href="hub-profile-notifications.html"
-                                        >Notifications</a
-                                    >
-                                    <!-- /SIDEBAR MENU LINK -->
-
-                                    <!-- SIDEBAR MENU LINK -->
-                                    <a
-                                        class="sidebar-menu-link"
-                                        href="hub-profile-messages.html"
-                                        >Messages</a
-                                    >
-                                    <!-- /SIDEBAR MENU LINK -->
-
-                                    <!-- SIDEBAR MENU LINK -->
-                                    <a
-                                        class="sidebar-menu-link"
-                                        href="hub-profile-requests.html"
-                                        >Friend Requests</a
-                                    >
-                                    <!-- /SIDEBAR MENU LINK -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /SIDEBAR MENU ITEM -->
-
-                        <!-- SIDEBAR MENU ITEM -->
-                        <div class="sidebar-menu-item selected">
-                            <!-- SIDEBAR MENU HEADER -->
-                            <div
-                                class="
-                                    sidebar-menu-header
-                                    accordion-trigger-linked
-                                "
-                            >
-                                <!-- SIDEBAR MENU HEADER ICON -->
-                                <svg
-                                    class="
-                                        sidebar-menu-header-icon
-                                        icon-settings
-                                    "
-                                >
-                                    <use xlink:href="#svg-settings"></use>
-                                </svg>
-                                <!-- /SIDEBAR MENU HEADER ICON -->
-
-                                <!-- SIDEBAR MENU HEADER CONTROL ICON -->
-                                <div class="sidebar-menu-header-control-icon">
-                                    <!-- SIDEBAR MENU HEADER CONTROL ICON OPEN -->
-                                    <svg
-                                        class="
-                                            sidebar-menu-header-control-icon-open
-                                            icon-minus-small
-                                        "
-                                    >
-                                        <use
-                                            xlink:href="#svg-minus-small"
-                                        ></use>
-                                    </svg>
-                                    <!-- /SIDEBAR MENU HEADER CONTROL ICON OPEN -->
-
-                                    <!-- SIDEBAR MENU HEADER CONTROL ICON CLOSED -->
-                                    <svg
-                                        class="
-                                            sidebar-menu-header-control-icon-closed
-                                            icon-plus-small
-                                        "
-                                    >
-                                        <use xlink:href="#svg-plus-small"></use>
-                                    </svg>
-                                    <!-- /SIDEBAR MENU HEADER CONTROL ICON CLOSED -->
-                                </div>
-                                <!-- /SIDEBAR MENU HEADER CONTROL ICON -->
-
-                                <!-- SIDEBAR MENU HEADER TITLE -->
-                                <p class="sidebar-menu-header-title">Account</p>
-                                <!-- /SIDEBAR MENU HEADER TITLE -->
-
-                                <!-- SIDEBAR MENU HEADER TEXT -->
-                                <p class="sidebar-menu-header-text">
-                                    Change settings, configure notifications,
-                                    and review your privacy
-                                </p>
-                                <!-- /SIDEBAR MENU HEADER TEXT -->
-                            </div>
-                            <!-- /SIDEBAR MENU HEADER -->
-
-                            <!-- SIDEBAR MENU BODY -->
-
-                            <!-- /SIDEBAR MENU BODY -->
-                            <div
-                                style="
-                                    overflow: hidden;
-                                    height: 126px;
-                                    transition: all 0.3s ease-in-out 0s;
-                                "
-                            >
-                                <div
-                                    class="
-                                        sidebar-menu-body
-                                        accordion-content-linked accordion-open
-                                    "
-                                >
-                                    <!-- SIDEBAR MENU LINK -->
-                                    <a
-                                        class="sidebar-menu-link"
-                                        href="hub-account-info.html"
-                                        >Account Info</a
-                                    >
-                                    <!-- /SIDEBAR MENU LINK -->
-
-                                    <!-- SIDEBAR MENU LINK -->
-                                    <a
-                                        class="sidebar-menu-link"
-                                        href="hub-account-password.html"
-                                        >Change Password</a
-                                    >
-                                    <!-- /SIDEBAR MENU LINK -->
-
-                                    <!-- SIDEBAR MENU LINK -->
-                                    <a
-                                        class="sidebar-menu-link active"
-                                        href="hub-account-settings.html"
-                                        >General Settings</a
-                                    >
-                                    <!-- /SIDEBAR MENU LINK -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /SIDEBAR MENU ITEM -->
-
-                        <!-- SIDEBAR MENU ITEM -->
-                        <div class="sidebar-menu-item">
-                            <!-- SIDEBAR MENU HEADER -->
-                            <div
-                                class="
-                                    sidebar-menu-header
-                                    accordion-trigger-linked
-                                "
-                            >
-                                <!-- SIDEBAR MENU HEADER ICON -->
-                                <svg
-                                    class="sidebar-menu-header-icon icon-group"
-                                >
-                                    <use xlink:href="#svg-group"></use>
-                                </svg>
-                                <!-- /SIDEBAR MENU HEADER ICON -->
-
-                                <!-- SIDEBAR MENU HEADER CONTROL ICON -->
-                                <div class="sidebar-menu-header-control-icon">
-                                    <!-- SIDEBAR MENU HEADER CONTROL ICON OPEN -->
-                                    <svg
-                                        class="
-                                            sidebar-menu-header-control-icon-open
-                                            icon-minus-small
-                                        "
-                                    >
-                                        <use
-                                            xlink:href="#svg-minus-small"
-                                        ></use>
-                                    </svg>
-                                    <!-- /SIDEBAR MENU HEADER CONTROL ICON OPEN -->
-
-                                    <!-- SIDEBAR MENU HEADER CONTROL ICON CLOSED -->
-                                    <svg
-                                        class="
-                                            sidebar-menu-header-control-icon-closed
-                                            icon-plus-small
-                                        "
-                                    >
-                                        <use xlink:href="#svg-plus-small"></use>
-                                    </svg>
-                                    <!-- /SIDEBAR MENU HEADER CONTROL ICON CLOSED -->
-                                </div>
-                                <!-- /SIDEBAR MENU HEADER CONTROL ICON -->
-
-                                <!-- SIDEBAR MENU HEADER TITLE -->
-                                <p class="sidebar-menu-header-title">Groups</p>
-                                <!-- /SIDEBAR MENU HEADER TITLE -->
-
-                                <!-- SIDEBAR MENU HEADER TEXT -->
-                                <p class="sidebar-menu-header-text">
-                                    Create new groups, manage the ones you
-                                    created or accept invites!
-                                </p>
-                                <!-- /SIDEBAR MENU HEADER TEXT -->
-                            </div>
-                            <!-- /SIDEBAR MENU HEADER -->
-
-                            <!-- SIDEBAR MENU BODY -->
-
-                            <!-- /SIDEBAR MENU BODY -->
-                            <div
-                                style="
-                                    overflow: hidden;
-                                    height: 0px;
-                                    transition: all 0.3s ease-in-out 0s;
-                                "
-                            >
-                                <div
-                                    class="
-                                        sidebar-menu-body
-                                        accordion-content-linked
-                                    "
-                                >
-                                    <!-- SIDEBAR MENU LINK -->
-                                    <a
-                                        class="sidebar-menu-link"
-                                        href="hub-group-management.html"
-                                        >Manage Groups</a
-                                    >
-                                    <!-- /SIDEBAR MENU LINK -->
-
-                                    <!-- SIDEBAR MENU LINK -->
-                                    <a
-                                        class="sidebar-menu-link"
-                                        href="hub-group-invitations.html"
-                                        >Invitations</a
-                                    >
-                                    <!-- /SIDEBAR MENU LINK -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /SIDEBAR MENU ITEM -->
-
-                        <!-- SIDEBAR MENU ITEM -->
-                        <div class="sidebar-menu-item">
-                            <!-- SIDEBAR MENU HEADER -->
-                            <div
-                                class="
-                                    sidebar-menu-header
-                                    accordion-trigger-linked
-                                "
-                            >
-                                <!-- SIDEBAR MENU HEADER ICON -->
-                                <svg
-                                    class="sidebar-menu-header-icon icon-store"
-                                >
-                                    <use xlink:href="#svg-store"></use>
-                                </svg>
-                                <!-- /SIDEBAR MENU HEADER ICON -->
-
-                                <!-- SIDEBAR MENU HEADER CONTROL ICON -->
-                                <div class="sidebar-menu-header-control-icon">
-                                    <!-- SIDEBAR MENU HEADER CONTROL ICON OPEN -->
-                                    <svg
-                                        class="
-                                            sidebar-menu-header-control-icon-open
-                                            icon-minus-small
-                                        "
-                                    >
-                                        <use
-                                            xlink:href="#svg-minus-small"
-                                        ></use>
-                                    </svg>
-                                    <!-- /SIDEBAR MENU HEADER CONTROL ICON OPEN -->
-
-                                    <!-- SIDEBAR MENU HEADER CONTROL ICON CLOSED -->
-                                    <svg
-                                        class="
-                                            sidebar-menu-header-control-icon-closed
-                                            icon-plus-small
-                                        "
-                                    >
-                                        <use xlink:href="#svg-plus-small"></use>
-                                    </svg>
-                                    <!-- /SIDEBAR MENU HEADER CONTROL ICON CLOSED -->
-                                </div>
-                                <!-- /SIDEBAR MENU HEADER CONTROL ICON -->
-
-                                <!-- SIDEBAR MENU HEADER TITLE -->
-                                <p class="sidebar-menu-header-title">
-                                    My Store
-                                </p>
-                                <!-- /SIDEBAR MENU HEADER TITLE -->
-
-                                <!-- SIDEBAR MENU HEADER TEXT -->
-                                <p class="sidebar-menu-header-text">
-                                    Review your account, manage products check
-                                    stats and much more!
-                                </p>
-                                <!-- /SIDEBAR MENU HEADER TEXT -->
-                            </div>
-                            <!-- /SIDEBAR MENU HEADER -->
-
-                            <!-- SIDEBAR MENU BODY -->
-
-                            <!-- /SIDEBAR MENU BODY -->
-                            <div
-                                style="
-                                    overflow: hidden;
-                                    height: 0px;
-                                    transition: all 0.3s ease-in-out 0s;
-                                "
-                            >
-                                <div
-                                    class="
-                                        sidebar-menu-body
-                                        accordion-content-linked
-                                    "
-                                >
-                                    <!-- SIDEBAR MENU LINK -->
-                                    <a
-                                        class="sidebar-menu-link"
-                                        href="hub-store-account.html"
-                                        >My Account</a
-                                    >
-                                    <!-- /SIDEBAR MENU LINK -->
-
-                                    <!-- SIDEBAR MENU LINK -->
-                                    <a
-                                        class="sidebar-menu-link"
-                                        href="hub-store-statement.html"
-                                        >Sales Statement</a
-                                    >
-                                    <!-- /SIDEBAR MENU LINK -->
-
-                                    <!-- SIDEBAR MENU LINK -->
-                                    <a
-                                        class="sidebar-menu-link"
-                                        href="hub-store-items.html"
-                                        >Manage Items</a
-                                    >
-                                    <!-- /SIDEBAR MENU LINK -->
-
-                                    <!-- SIDEBAR MENU LINK -->
-                                    <a
-                                        class="sidebar-menu-link"
-                                        href="hub-store-downloads.html"
-                                        >Downloads</a
-                                    >
-                                    <!-- /SIDEBAR MENU LINK -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /SIDEBAR MENU ITEM -->
+    <div>
+        <div class="notification-box-list">
+            <div class="notification-box">
+                <div class="user-status request">
+                    <div
+                        class="user-status-avatar user-avatar small no-outline"
+                    >
+                        <q-img src="/img/develope_log.png" />
                     </div>
-                    <!-- /SIDEBAR MENU -->
 
-                    <!-- SIDEBAR BOX FOOTER -->
-                    <div class="sidebar-box-footer">
-                        <!-- BUTTON -->
-                        <p class="button primary">Save Changes!</p>
-                        <!-- /BUTTON -->
+                    <div class="info-box">
+                        <p class="user-status-title">개발 로그</p>
 
-                        <!-- BUTTON -->
-                        <p class="button white small-space">Discard All</p>
-                        <!-- /BUTTON -->
+                        <p class="user-status-text small-space">
+                            아직 게임을 플레이 할 수 없지만 여러분의 게임 개발
+                            아이디어를 이미지, 게시물등으로 다른 사람들에게
+                            공유해보세요.
+                        </p>
                     </div>
-                    <!-- /SIDEBAR BOX FOOTER -->
                 </div>
-                <!-- /SIDEBAR BOX -->
             </div>
-            <!-- /GRID COLUMN -->
 
-            <!-- GRID COLUMN -->
-            <div class="account-hub-content">
-                <!-- SECTION HEADER -->
-                <div class="section-header">
-                    <!-- SECTION HEADER INFO -->
-                    <div class="section-header-info">
-                        <!-- SECTION PRETITLE -->
-                        <p class="section-pretitle">Account</p>
-                        <!-- /SECTION PRETITLE -->
-
-                        <!-- SECTION TITLE -->
-                        <h2 class="section-title">General Settings</h2>
-                        <!-- /SECTION TITLE -->
+            <div class="notification-box">
+                <div class="user-status request">
+                    <div
+                        class="user-status-avatar user-avatar small no-outline"
+                    >
+                        <q-img src="/img/develope_early.png" />
                     </div>
-                    <!-- /SECTION HEADER INFO -->
+
+                    <div class="info-box">
+                        <p class="user-status-title">얼리 억세스</p>
+
+                        <p class="user-status-text small-space">
+                            게임을 실행할 수 있지만 아직 개발이 더 필요한
+                            상태입니다.
+                        </p>
+                    </div>
                 </div>
-                <!-- /SECTION HEADER -->
-
-                <!-- GRID COLUMN -->
-                <div class="grid-column">
-                    <!-- WIDGET BOX -->
-                    <div class="widget-box">
-                        <!-- WIDGET BOX TITLE -->
-                        <p class="widget-box-title">Email Notifications</p>
-                        <!-- /WIDGET BOX TITLE -->
-
-                        <!-- WIDGET BOX CONTENT -->
-                        <div class="widget-box-content">
-                            <!-- SWITCH OPTION LIST -->
-                            <div class="switch-option-list">
-                                <!-- SWITCH OPTION -->
-                                forum-post-user-title
-                                <!-- /SWITCH OPTION -->
-
-                                <!-- SWITCH OPTION -->
-                                <div class="switch-option">
-                                    <!-- SWITCH OPTION TITLE -->
-                                    <p class="switch-option-title">Tags</p>
-                                    <!-- /SWITCH OPTION TITLE -->
-
-                                    <!-- SWITCH OPTION TEXT -->
-                                    <p class="switch-option-text">
-                                        These are notifications for when someone
-                                        tags you in a post of image
-                                    </p>
-                                    <!-- /SWITCH OPTION TEXT -->
-
-                                    <!-- FORM SWITCH -->
-                                    <div class="form-switch active">
-                                        <!-- FORM SWITCH BUTTON -->
-                                        <div class="form-switch-button"></div>
-                                        <!-- /FORM SWITCH BUTTON -->
-                                    </div>
-                                    <!-- /FORM SWITCH -->
-                                </div>
-                                <!-- /SWITCH OPTION -->
-
-                                <!-- SWITCH OPTION -->
-                                <div class="switch-option">
-                                    <!-- SWITCH OPTION TITLE -->
-                                    <p class="switch-option-title">
-                                        Friend Requests
-                                    </p>
-                                    <!-- /SWITCH OPTION TITLE -->
-
-                                    <!-- SWITCH OPTION TEXT -->
-                                    <p class="switch-option-text">
-                                        You'll be notified when someone send you
-                                        a friend request
-                                    </p>
-                                    <!-- /SWITCH OPTION TEXT -->
-
-                                    <!-- FORM SWITCH -->
-                                    <div class="form-switch active">
-                                        <!-- FORM SWITCH BUTTON -->
-                                        <div class="form-switch-button"></div>
-                                        <!-- /FORM SWITCH BUTTON -->
-                                    </div>
-                                    <!-- /FORM SWITCH -->
-                                </div>
-                                <!-- /SWITCH OPTION -->
-
-                                <!-- SWITCH OPTION -->
-                                <div class="switch-option">
-                                    <!-- SWITCH OPTION TITLE -->
-                                    <p class="switch-option-title">Groups</p>
-                                    <!-- /SWITCH OPTION TITLE -->
-
-                                    <!-- SWITCH OPTION TEXT -->
-                                    <p class="switch-option-text">
-                                        These are notifications for activity on
-                                        groups you created or joined
-                                    </p>
-                                    <!-- /SWITCH OPTION TEXT -->
-
-                                    <!-- FORM SWITCH -->
-                                    <div class="form-switch">
-                                        <!-- FORM SWITCH BUTTON -->
-                                        <div class="form-switch-button"></div>
-                                        <!-- /FORM SWITCH BUTTON -->
-                                    </div>
-                                    <!-- /FORM SWITCH -->
-                                </div>
-                                <!-- /SWITCH OPTION -->
-
-                                <!-- SWITCH OPTION -->
-                                <div class="switch-option">
-                                    <!-- SWITCH OPTION TITLE -->
-                                    <p class="switch-option-title">Events</p>
-                                    <!-- /SWITCH OPTION TITLE -->
-
-                                    <!-- SWITCH OPTION TEXT -->
-                                    <p class="switch-option-text">
-                                        You'll be notified about events you
-                                        created or added to your calendar
-                                    </p>
-                                    <!-- /SWITCH OPTION TEXT -->
-
-                                    <!-- FORM SWITCH -->
-                                    <div class="form-switch active">
-                                        <!-- FORM SWITCH BUTTON -->
-                                        <div class="form-switch-button"></div>
-                                        <!-- /FORM SWITCH BUTTON -->
-                                    </div>
-                                    <!-- /FORM SWITCH -->
-                                </div>
-                                <!-- /SWITCH OPTION -->
-
-                                <!-- SWITCH OPTION -->
-                                <div class="switch-option">
-                                    <!-- SWITCH OPTION TITLE -->
-                                    <p class="switch-option-title">
-                                        Marketplace
-                                    </p>
-                                    <!-- /SWITCH OPTION TITLE -->
-
-                                    <!-- SWITCH OPTION TEXT -->
-                                    <p class="switch-option-text">
-                                        These are notifications for marketplace
-                                        items you posted
-                                    </p>
-                                    <!-- /SWITCH OPTION TEXT -->
-
-                                    <!-- FORM SWITCH -->
-                                    <div class="form-switch">
-                                        <!-- FORM SWITCH BUTTON -->
-                                        <div class="form-switch-button"></div>
-                                        <!-- /FORM SWITCH BUTTON -->
-                                    </div>
-                                    <!-- /FORM SWITCH -->
-                                </div>
-                                <!-- /SWITCH OPTION -->
-                            </div>
-                            <!-- /SWITCH OPTION LIST -->
-                        </div>
-                        <!-- WIDGET BOX CONTENT -->
-                    </div>
-                    <!-- /WIDGET BOX -->
-
-                    <!-- WIDGET BOX -->
-                    <div class="widget-box">
-                        <!-- WIDGET BOX TITLE -->
-                        <p class="widget-box-title">Privacy Settings</p>
-                        <!-- /WIDGET BOX TITLE -->
-
-                        <!-- WIDGET BOX CONTENT -->
-                        <div class="widget-box-content">
-                            <!-- FORM -->
-                            <form class="form">
-                                <!-- FORM ROW -->
-                                <div class="form-row split">
-                                    <!-- FORM ITEM -->
-                                    <div class="form-item centered">
-                                        <label
-                                            class="form-title"
-                                            for="profile-privacy-visibility"
-                                            >Who can see your profile?</label
-                                        >
-                                    </div>
-                                    <!-- /FORM ITEM -->
-
-                                    <!-- FORM ITEM -->
-                                    <div class="form-item">
-                                        <!-- FORM SELECT -->
-                                        <div class="form-select">
-                                            <select
-                                                id="profile-privacy-visibility"
-                                                name="profile_privacy_visibility"
-                                            >
-                                                <option value="1" selected="">
-                                                    Members Only
-                                                </option>
-                                                <option value="2">
-                                                    Everyone (Public)
-                                                </option>
-                                            </select>
-                                            <!-- FORM SELECT ICON -->
-                                            <svg
-                                                class="
-                                                    form-select-icon
-                                                    icon-small-arrow
-                                                "
-                                            >
-                                                <use
-                                                    xlink:href="#svg-small-arrow"
-                                                ></use>
-                                            </svg>
-                                            <!-- /FORM SELECT ICON -->
-                                        </div>
-                                        <!-- /FORM SELECT -->
-                                    </div>
-                                    <!-- /FORM ITEM -->
-                                </div>
-                                <!-- /FORM ROW -->
-
-                                <!-- FORM ROW -->
-                                <div class="form-row split">
-                                    <!-- FORM ITEM -->
-                                    <div class="form-item centered">
-                                        <label
-                                            class="form-title"
-                                            for="profile-privacy-friend-request"
-                                            >Who can send you a friend
-                                            request?</label
-                                        >
-                                    </div>
-                                    <!-- /FORM ITEM -->
-
-                                    <!-- FORM ITEM -->
-                                    <div class="form-item">
-                                        <!-- FORM SELECT -->
-                                        <div class="form-select">
-                                            <select
-                                                id="profile-privacy-friend-request"
-                                                name="profile_privacy_friend_request"
-                                            >
-                                                <option value="1" selected="">
-                                                    Everyone (Public)
-                                                </option>
-                                                <option value="2">
-                                                    Friends of Friends
-                                                </option>
-                                                <option value="3">
-                                                    No One (Private)
-                                                </option>
-                                            </select>
-                                            <!-- FORM SELECT ICON -->
-                                            <svg
-                                                class="
-                                                    form-select-icon
-                                                    icon-small-arrow
-                                                "
-                                            >
-                                                <use
-                                                    xlink:href="#svg-small-arrow"
-                                                ></use>
-                                            </svg>
-                                            <!-- /FORM SELECT ICON -->
-                                        </div>
-                                        <!-- /FORM SELECT -->
-                                    </div>
-                                    <!-- /FORM ITEM -->
-                                </div>
-                                <!-- /FORM ROW -->
-
-                                <!-- FORM ROW -->
-                                <div class="form-row split">
-                                    <!-- FORM ITEM -->
-                                    <div class="form-item centered">
-                                        <label
-                                            class="form-title"
-                                            for="profile-privacy-chat-activity"
-                                            >Who can see your chat
-                                            activity?</label
-                                        >
-                                    </div>
-                                    <!-- /FORM ITEM -->
-
-                                    <!-- FORM ITEM -->
-                                    <div class="form-item">
-                                        <!-- FORM SELECT -->
-                                        <div class="form-select">
-                                            <select
-                                                id="profile-privacy-chat-activity"
-                                                name="profile_privacy_chat_activity"
-                                            >
-                                                <option value="1" selected="">
-                                                    Friends Only
-                                                </option>
-                                                <option value="2">
-                                                    Everyone (Public)
-                                                </option>
-                                            </select>
-                                            <!-- FORM SELECT ICON -->
-                                            <svg
-                                                class="
-                                                    form-select-icon
-                                                    icon-small-arrow
-                                                "
-                                            >
-                                                <use
-                                                    xlink:href="#svg-small-arrow"
-                                                ></use>
-                                            </svg>
-                                            <!-- /FORM SELECT ICON -->
-                                        </div>
-                                        <!-- /FORM SELECT -->
-                                    </div>
-                                    <!-- /FORM ITEM -->
-                                </div>
-                                <!-- /FORM ROW -->
-                            </form>
-                            <!-- /FORM -->
-                        </div>
-                        <!-- WIDGET BOX CONTENT -->
-                    </div>
-                    <!-- /WIDGET BOX -->
-                </div>
-                <!-- /GRID COLUMN -->
             </div>
-            <!-- /GRID COLUMN -->
+
+            <router-link class="notification-box" to="/addGame">
+                <div class="user-status request">
+                    <div
+                        class="user-status-avatar user-avatar small no-outline"
+                    >
+                        <q-img src="/img/develope_result.png" />
+                    </div>
+
+                    <div class="info-box">
+                        <p class="user-status-title">결과물</p>
+
+                        <p class="user-status-text small-space">
+                            게임이 완성되었습니다. 젬파이 퍼블리싱 화면에 멋진
+                            작품을 공개해주세요!
+                        </p>
+                    </div>
+                </div>
+            </router-link>
+
+            <div class="notification-box" @click="clickStage()">
+                <div class="user-status request">
+                    <div
+                        class="user-status-avatar user-avatar small no-outline"
+                    >
+                        <q-img src="/img/develope_monetize.png" />
+                    </div>
+
+                    <div class="info-box">
+                        <p class="user-status-title">수익화</p>
+
+                        <p class="user-status-text small-space">
+                            젬파이 SDK를 이용하여 완성한 게임을 통해 수익을
+                            벌어보세요.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- /GRID -->
     </div>
 </template>
 
@@ -820,8 +87,71 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 @Component({
     components: {},
 })
-export default class selectStage extends Vue {}
+export default class selectStage extends Vue {
+    clickStage() {}
+}
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.state-box {
+    display: flex;
+    .stage-list {
+        cursor: pointer;
+        height: 112px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .sidebar-menu-header-title {
+            font-weight: bold;
+        }
+    }
+    .stage-list:hover {
+        background-color: #293249;
+    }
+    .stage-list:first-child {
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+    }
+    .account-hub-sidebar {
+        width: 25%;
+    }
+    .notification-box-list {
+        width: 75%;
+    }
+    .stage-list.active {
+        background-color: #7750f8;
+    }
+}
+.notification-box {
+    display: flex;
+    .user-status.request {
+        padding-right: 0px !important;
+    }
+    .user-status {
+        height: 100px;
+    }
+    .user-avatar {
+        width: 100px;
+        height: auto;
+    }
+    .user-status-title {
+        font-weight: bold;
+    }
+    .info-box {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 100px;
+        .user-status-text {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+}
+.notification-box:hover {
+    cursor: pointer;
+    background-color: #293249;
+}
 </style>

@@ -36,46 +36,60 @@ const routes: Array<RouteConfig> = [
     //         }
     //     ]
     // },
+    // {
+    //     path: '/studio',
+    //     name: 'Studio',
+    //     component: () => import(/* webpackChunkName: "about" */ "@/views/Studio.vue"),
+    //     children: [
     {
-        path: '/studio',
-        name: 'Studio',
-        component: () => import(/* webpackChunkName: "about" */ "@/views/Studio.vue"),
+        path: '/games',
+        name: 'Games',
+        component: () => import(/* webpackChunkName: "about" */ "@/components/pages/studio/games.vue"),
+        alias: '/'
+    },
+
+    {
+        path: '/setting',
+        name: 'Setting',
+        component: () => import(/* webpackChunkName: "about" */ "@/components/pages/studio/setting.vue"),
+    },
+    {
+        path: '/sdk',
+        name: 'SDK',
+        component: () => import(/* webpackChunkName: "about" */ "@/components/pages/studio/sdk.vue"),
+    },
+    {
+        path: '/createGame',
+        name: 'CreateGame',
+        component: () => import(/* webpackChunkName: "about" */ "@/components/pages/studio/createGame.vue"),
+
+    },
+    {
+        path: '/uploadGame',
+        name: 'UploadGame',
+        component: () => import(/* webpackChunkName: "about" */ "@/views/UploadGame.vue"),
+        redirect: 'selectStage',
         children: [
-            {
-                path: '/games',
-                name: 'Games',
-                component: () => import(/* webpackChunkName: "about" */ "@/components/pages/studio/games.vue"),
-                alias: '/'
-            },
             {
                 path: '/addGame',
                 name: 'AddGame',
                 component: () => import(/* webpackChunkName: "about" */ "@/components/pages/studio/addGame.vue"),
             },
             {
-                path: '/setting',
-                name: 'Setting',
-                component: () => import(/* webpackChunkName: "about" */ "@/components/pages/studio/setting.vue"),
-            },
-            {
-                path: '/sdk',
-                name: 'SDK',
-                component: () => import(/* webpackChunkName: "about" */ "@/components/pages/studio/sdk.vue"),
-            },
-            {
-                path: '/createGame',
-                name: 'CreateGame',
-                component: () => import(/* webpackChunkName: "about" */ "@/components/pages/studio/createGame.vue"),
-
-            },
-            {
                 path: '/selectStage',
                 name: 'SelectStage',
                 component: () => import(/* webpackChunkName: "about" */ "@/components/pages/studio/selectStage.vue"),
             },
-           
         ]
     },
+    {
+        path: '/dashBoard',
+        name: 'DashBoard',
+        component: () => import(/* webpackChunkName: "about" */ "@/components/pages/studio/dashBoard.vue"),
+    },
+
+    //     ]
+    // },
 
     // {
     //     path: '/auth',

@@ -161,7 +161,7 @@
   "createGame.next.desc": "???",
   "createGame.toolbarTitle": "게임 만들기",
   "gameListPage.survey": "설문조사",
-  "gameListPage.addGame": "게임 추가",
+  "gameListPage.addGame": "게임 업로드",
   "gameListPage.label.no_data": "등록된 게임이 없습니다,",
   "gameListPage.label.no_result": "검색된 게임이 없습니다.",
   "gameListPage.label.rows_per_page": "한 페이지에 표시할 게임 수",

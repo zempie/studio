@@ -1,6 +1,10 @@
 <template>
-    <div>
-        <router-view></router-view>
+    <div id="app" class="no-drag">
+        <navigator></navigator>
+        <navigation-widget></navigation-widget>
+        <div class="router-container">
+            <router-view></router-view>
+        </div>
         <q-ajax-bar
             ref="bar"
             position="bottom"
@@ -12,47 +16,48 @@
 </template>
 
 <script lang="ts">
-import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import * as firebase from "firebase";
-import {LoginState} from "@/store/modules/user";
-import {QSpinnerGears} from "quasar";
+import { LoginState } from "@/store/modules/user";
+import { QSpinnerGears } from "quasar";
 // import {onAuthStateChanged} from "@/plugins/firebase";
+
+import Navigator from "@/components/layout/navigator.vue";
+import NavigationWidget from "@/components/layout/navigationWidget.vue";
 
 @Component({
     components: {
-        QSpinnerGears
-    }
+        QSpinnerGears,
+        Navigator,
+        NavigationWidget,
+    },
 })
 export default class App extends Vue {
-
     async mounted() {
-
-        const spinner : any = QSpinnerGears;
+        const spinner: any = QSpinnerGears;
 
         this.$q.loading.show({
             spinner,
-            spinnerColor: 'grey',
-            messageColor: 'white',
-            backgroundColor: 'dark',
-            message: this.$t('loading').toString()
-        })
+            spinnerColor: "grey",
+            messageColor: "white",
+            backgroundColor: "dark",
+            message: this.$t("loading").toString(),
+        });
 
-        const state = await this.$store.dispatch('loginState');
+        const state = await this.$store.dispatch("loginState");
 
         this.$q.loading.hide();
 
-
-        if( state === LoginState.login ) {
-            if( !this.$store.getters.user.is_developer ) {
-                await this.$router.replace('/signup').catch(()=>{});
+        if (state === LoginState.login) {
+            if (!this.$store.getters.user.is_developer) {
+                await this.$router.replace("/signup").catch(() => {});
             }
-        }
-        else {
-            await this.$router.replace('/login');
+        } else {
+            await this.$router.replace("/login");
         }
     }
 
-    @Watch('$store.getters.ajaxBar')
+    @Watch("$store.getters.ajaxBar")
     onChangeAjaxBar() {
         if (this.$store.getters.ajaxBar) {
             //@ts-ignore
@@ -99,39 +104,79 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss">
+.MAB40 {
+    margin-bottom: 40px;
+}
+.MAB20 {
+    margin-bottom: 20px;
+}
+.MAB10 {
+    margin-bottom: 10px;
+}
+.MAT0 {
+    margin-top: 0 !important;
+}
 
-.MAB40 { margin-bottom: 40px; }
-.MAB20 { margin-bottom: 20px; }
-.MAB10 { margin-bottom: 10px; }
-.MAT0 { margin-top: 0 !important; }
+.MAL10 {
+    margin-left: 10px;
+}
+.MAL5 {
+    margin-left: 5px;
+}
 
-.MAL10 { margin-left: 10px;}
-.MAL5 { margin-left: 5px; }
+.MAR30 {
+    margin-right: 30px;
+}
+.MAR20 {
+    margin-right: 20px;
+}
+.MAR10 {
+    margin-right: 10px;
+}
+.MAR5 {
+    margin-right: 5px;
+}
 
-.MAR30 { margin-right: 30px;}
-.MAR20 { margin-right: 20px; }
-.MAR10 { margin-right: 10px;}
-.MAR5 { margin-right: 5px; }
-
-.BLINE { border-bottom: 1px solid rgb(218, 220, 224); }
-
+.BLINE {
+    border-bottom: 1px solid rgb(218, 220, 224);
+}
 
 .body--light {
     /* ... */
-    .bg-color-0 { background-color: #000000; }
-    .bg-color-1 { background-color: #181818; }
-    .bg-color-2 { background-color: #202020; }
-    .bg-color-3 { background-color: #212121; }
+    .bg-color-0 {
+        background-color: #000000;
+    }
+    .bg-color-1 {
+        background-color: #181818;
+    }
+    .bg-color-2 {
+        background-color: #202020;
+    }
+    .bg-color-3 {
+        background-color: #212121;
+    }
 }
 
 .body--dark {
     background-color: #181818;
-    .bg-color-0 { background-color: #000000; }
-    .bg-color-1 { background-color: #181818; }
-    .bg-color-2 { background-color: #202020; }
-    .bg-color-3 { background-color: #212121; }
-    .bg-color-10 { background-color: #3b3b3b; }
-    .no-border { border: none }
+    .bg-color-0 {
+        background-color: #000000;
+    }
+    .bg-color-1 {
+        background-color: #181818;
+    }
+    .bg-color-2 {
+        background-color: #202020;
+    }
+    .bg-color-3 {
+        background-color: #212121;
+    }
+    .bg-color-10 {
+        background-color: #3b3b3b;
+    }
+    .no-border {
+        border: none;
+    }
 }
 
 .bg-fade-70 {
@@ -157,4 +202,20 @@ export default class App extends Vue {
     font-size: 14px;
 }
 
+#app {
+    font-family: "Noto Sans KR", "sans-serif";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
+
+    // margin-top: 60px;
+}
+
+.no-drag {
+    -ms-user-select: none;
+    -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+}
 </style>

@@ -316,4 +316,29 @@ pre {
         width: 100% !important
     }
 }
+.add-game-container{
+    display: flex;
+    
+    justify-content: flex-end;
+    .survey, .add-game{
+        width: 100px !important;
+    }
+    .add-game{
+        margin-left: 10px;
+    }
+}
 
+.table {
+    background-color: #1d2333 !important;
+    border-radius: 12px;
+    .q-table__top {
+       
+        input {
+            height: 40px !important;
+        }
+    }
+}
+
+.router-container{
+    padding-top: 80px; padding-left: 250px
+}

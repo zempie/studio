@@ -1,16 +1,39 @@
 <template>
-    <q-page class="q-pt-md center-container no-drag">
-        <div class="text-right">
-            <!-- 설문조사 btn --> 
-            <template v-if="!survey.isDone && survey.url !== null && survey.url !== undefined && !isSurveyBtnClicked">
+    <div class="content-grid">
+        <div class="section-banner">
+            <img
+                class="section-banner-icon"
+                src="img/banner/overview-icon.png"
+                alt="overview-icon"
+            />
+
+            <p class="section-banner-title">모든 게임</p>
+
+            <p class="section-banner-text">님이 올린 모든 게임</p>
+        </div>
+        <div class="add-game-container">
+            <!-- 설문조사 btn -->
+            <template
+                v-if="
+                    !survey.isDone &&
+                    survey.url !== null &&
+                    survey.url !== undefined &&
+                    !isSurveyBtnClicked
+                "
+            >
                 <a target="_blank" :href="survey.url + uid">
-                    <q-btn class="q-my-sm q-mr-md font-weight-300" color="primary" @click="isSurveyBtnClicked=true"
-                        >{{$t('gameListPage.survey')}}</q-btn
+                    <button
+                        class="button primary survey"
+                        @click="isSurveyBtnClicked = true"
                     >
-                </a>            
+                        {{ $t("gameListPage.survey") }}
+                    </button>
+                </a>
             </template>
-            <router-link to="/addGame">
-                <q-btn class="q-my-sm font-weight-300" color="primary">{{$t('gameListPage.addGame')}}</q-btn>
+            <router-link to="/selectStage">
+                <button class="button secondary add-game">
+                    {{ $t("gameListPage.addGame") }}
+                </button>
             </router-link>
         </div>
 
@@ -28,10 +51,7 @@
         >
             <template v-slot:body="props">
                 <template v-if="props.row.state === 1 || props.row.state === 2">
-                    <q-tr
-                        :props="props"
-                        class="banned "
-                    >
+                    <q-tr :props="props" class="banned">
                         <q-td width="10%">
                             <q-img
                                 :src="
@@ -52,19 +72,19 @@
 
                         <!-- 제재 상태-->
                         <template v-if="props.row.state === 1">
-                            <q-td width="10%" >{{$t('ban.ban')}}</q-td>
+                            <q-td width="10%">{{ $t("ban.ban") }}</q-td>
                         </template>
                         <template v-else-if="props.row.state === 2">
-                            <q-td  width="10%">
-                                {{$t('ban.permanentBan')}}</q-td
+                            <q-td width="10%">
+                                {{ $t("ban.permanentBan") }}</q-td
                             >
                         </template>
                         <template v-else>
                             <q-td width="10%">
                                 {{
                                     (props.row.deploy_version_id &&
-                                         $t('gameListPage.status.deploy')) ||
-                                    $t('gameListPage.status.noDeploy')
+                                        $t("gameListPage.status.deploy")) ||
+                                    $t("gameListPage.status.noDeploy")
                                 }}</q-td
                             >
                         </template>
@@ -86,10 +106,14 @@
                     </q-tr>
 
                     <!-- <q-tr class="ban-detail" @click="checkBanDetail"> -->
-                      <q-tr class="ban-detail">  <a :href="$store.getters.supportUrl + 'inquiry'"  target="_blank">
-                      {{$t('ban.messages.inquiry')}}
+                    <q-tr class="ban-detail">
+                        <a
+                            :href="$store.getters.supportUrl + 'inquiry'"
+                            target="_blank"
+                        >
+                            {{ $t("ban.messages.inquiry") }}
                         </a>
-                      </q-tr>
+                    </q-tr>
                     <!-- </q-tr> -->
                 </template>
 
@@ -118,30 +142,29 @@
 
                         <!-- 제재 상태-->
                         <template v-if="props.row.state === 1">
-                            <q-td width="10%" > {{$t('ban.ban')}}</q-td>
+                            <q-td width="10%"> {{ $t("ban.ban") }}</q-td>
                         </template>
                         <template v-else-if="props.row.state === 2">
-                            <q-td  width="10%">
-                                 {{$t('ban.permanentBan')}}</q-td
+                            <q-td width="10%">
+                                {{ $t("ban.permanentBan") }}</q-td
                             >
                         </template>
                         <template v-else>
                             <q-td width="10%">
                                 {{
                                     (props.row.deploy_version_id &&
-                                       $t('gameListPage.status.deploy')) ||
-                                    $t('gameListPage.status.noDeploy')
+                                        $t("gameListPage.status.deploy")) ||
+                                    $t("gameListPage.status.noDeploy")
                                 }}</q-td
                             >
                         </template>
-                          <q-td style="text-align: center">
+                        <q-td style="text-align: center">
                             {{
-                                (props.row.game &&
-                                    props.row.game.count_over) ||
+                                (props.row.game && props.row.game.count_over) ||
                                 0
                             }}
                         </q-td>
-                         <q-td style="text-align: center">
+                        <q-td style="text-align: center">
                             {{
                                 (props.row.game &&
                                     props.row.game.count_heart) ||
@@ -151,7 +174,7 @@
                     </q-tr>
                 </template>
             </template>
-            
+
             <template v-slot:top-right>
                 <q-input
                     borderless
@@ -166,8 +189,7 @@
                 </q-input>
             </template>
         </q-table>
-            
-    </q-page>
+    </div>
 </template>
 
 <script lang="ts">
@@ -175,16 +197,14 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import { LoginState } from "@/store/modules/user";
 import { Notify } from "quasar";
 
+import Form from "@/scripts/form";
+
 interface ISurvey {
     url: string;
     isDone: boolean;
 }
-@Component({
-    
-})
+@Component({})
 export default class Games extends Vue {
-    
-
     private pagination = {
         rowsPerPage: 15,
         // rowsNumber: xx if getting data from a server
@@ -194,13 +214,13 @@ export default class Games extends Vue {
         {
             name: "picture",
             required: false,
-            label: this.$t('gameListPage.columns.picture'),
+            label: this.$t("gameListPage.columns.picture"),
             align: "left",
         },
         {
             name: "name",
             required: true,
-            label: this.$t('gameListPage.columns.name'),
+            label: this.$t("gameListPage.columns.name"),
             align: "left",
             field: (row: any) => row.name,
             format: (val: any) => `${val}`,
@@ -209,27 +229,27 @@ export default class Games extends Vue {
         {
             name: "updated_at",
             align: "left",
-            label: this.$t('gameListPage.columns.updated_at'),
+            label: this.$t("gameListPage.columns.updated_at"),
             field: "updated_at",
             sortable: true,
         },
         {
             name: "state",
-            label: this.$t('gameListPage.columns.state'),
+            label: this.$t("gameListPage.columns.state"),
             field: "state",
             align: "left",
             sortable: true,
         },
         {
             name: "count_over",
-            label: this.$t('gameListPage.columns.count_over'),
+            label: this.$t("gameListPage.columns.count_over"),
             field: "count_over",
             align: "center",
             sortable: true,
         },
-          {
+        {
             name: "count_heart",
-            label: this.$t('gameListPage.columns.count_heart'),
+            label: this.$t("gameListPage.columns.count_heart"),
             field: "count_heart",
             align: "center",
             sortable: true,
@@ -238,7 +258,7 @@ export default class Games extends Vue {
     private filter: string = "";
     private projects = [];
     private loading: boolean = false;
-    
+
     //설문조사
     private isSurveyBtnClicked: boolean = false;
     private uid: string = "";
@@ -247,14 +267,13 @@ export default class Games extends Vue {
         isDone: false,
     };
 
-    
-
     async mounted() {
+        Form.formInput();
         this.loading = true;
         const loginState = await this.$store.dispatch("loginState");
 
         if (loginState === LoginState.login) {
-            this.$store.commit("pageName", this.$t('studioMenu.allGames'));
+            this.$store.commit("pageName", this.$t("studioMenu.allGames"));
             this.uid = this.$store.getters.user.uid;
             await this.loadProjects();
             await this.surveyStatus();
@@ -263,13 +282,12 @@ export default class Games extends Vue {
         }
         this.loading = false;
     }
-    
+
     async loadProjects() {
         const result = await this.$http.getProjects();
         if (!result || result.error) {
             Notify.create({
-                message:
-                   this.$t('gameListPage.error.loadFail').toString(),
+                message: this.$t("gameListPage.error.loadFail").toString(),
                 position: "top",
                 color: "negative",
                 timeout: 2000,
@@ -314,19 +332,10 @@ export default class Games extends Vue {
         this.survey.url = result.survey_url;
         this.survey.isDone = result.done;
     }
-   
 }
 </script>
 
 <style scoped lang="scss">
-.no-drag {-ms-user-select: none; -moz-user-select: -moz-none; -webkit-user-select: none; -khtml-user-select: none; user-select:none;}
-
-.font-weight-300{
-    font-weight: 300 !important;
-}
-.font-weight-100{
-    font-weight: 100 !important;
-}
 a {
     color: inherit;
     text-decoration: none;
@@ -351,10 +360,5 @@ a {
 }
 .q-table tbody td {
     height: 74px;
-    
 }
-*{
-    font-weight: 100 !important;
-}
-
 </style>

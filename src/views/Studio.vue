@@ -1,6 +1,5 @@
 <template>
     <q-layout view="lHh Lpr lFf" class="no-drag">
-        <navigator></navigator>
         <!-- <q-header elevated class="bg-color-3">
             <q-toolbar>
                 <q-btn
@@ -35,7 +34,7 @@
             show-if-above
             content-class="bg-color-2 no-border"
         >
-            <q-list>
+            <q-list style="margin-top: 80px">
                 <q-toolbar>
                     <!--                    <q-avatar>-->
                     <!--                        <img src="favicon.ico" style="width: 34px; height: 34px;">-->

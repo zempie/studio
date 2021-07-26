@@ -3,7 +3,7 @@
         <div class="header-actions">
             <div class="header-brand">
                 <div class="logo">
-                    <b-img
+                    <q-img
                         src="img/zempie_logo.png"
                         @click="$router.push('/')"
                     />

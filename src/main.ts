@@ -11,6 +11,12 @@ import './plugins/analytics';
 import i18n from './plugins/i18n';
 import './styles/styles.css'
 
+
+import 'tiny-slider'
+
+import 'simplebar/dist/simplebar.min.css';
+
+
 Vue.config.productionTip = false
 
 

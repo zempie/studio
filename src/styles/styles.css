@@ -12,6 +12,7 @@
 @import url("https://fonts.googleapis.com/css?family=Titillium+Web:400,900&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Rajdhani:400,500,600,700&display=swap");
 
+
 *,
 *::before,
 *::after {
@@ -1542,7 +1543,8 @@ textarea::placeholder {
 .icon-earnings,
 .icon-wallet,
 .icon-item,
-.icon-revenue {
+.icon-revenue,
+.icon-alert{
   fill: #616a82;
   width: 20px;
   height: 20px;
@@ -1960,10 +1962,19 @@ textarea::placeholder {
 /*--------------------
     MEDIA QUERIES 
 --------------------*/
+
+@media screen and (max-width: 1860px){
+  .content-grid{
+    margin: 0 auto;
+    /* margin-left: 300px ; */
+  }
+  
+}
 @media screen and (max-width: 1500px) {
   .content-grid {
     max-width: 1142px;
   }
+ 
 }
 
 @media screen and (max-width: 1366px) {
@@ -2026,6 +2037,7 @@ textarea::placeholder {
 }
 
 @media screen and (max-width: 1070px) {
+ 
   .grid.grid-3-6-3 {
     grid-template-columns: 100%;
     grid-template-areas: 'sidebar1'
@@ -2047,6 +2059,24 @@ textarea::placeholder {
   }
 }
 
+
+@media screen and (max-width: 1000px) {
+  .router-container{
+    padding-left: 0px;
+  }
+  .content-grid {
+    margin: 0 auto;
+    padding: 92px 0 200px;
+  }
+
+  .chat-widget,
+  .navigation-widget-desktop {
+    display: none;
+  }
+  .chat-widget-wrap .chat-widget {
+    display: block;
+  }
+}
 @media screen and (max-width: 960px) {
   .grid.grid-half {
     grid-template-columns: 100%;
@@ -2064,6 +2094,7 @@ textarea::placeholder {
   .content-grid {
     width: 95%;
     padding: 92px 0 200px;
+    margin: 0 auto;
   }
   .content-grid.full {
     width: 100%;
@@ -2081,7 +2112,14 @@ textarea::placeholder {
     display: block;
   }
 }
-
+@media screen and (max-width: 576px) {
+  .account-hub-sidebar{
+    display: none;
+  }
+  .notification-box-list{
+    width: 100% !important;
+  }
+}
 @media screen and (max-width: 460px) {
   .grid.grid-4-4-4, .grid.grid-4-4, .grid.grid-3-3-3-3 {
     grid-template-columns: 100%;
@@ -7065,7 +7103,7 @@ figure > img {
   display: flex;
   -ms-flex-align: center;
       align-items: center;
-  min-height: 88px;
+  min-height: 150px;
   padding: 22px 28px;
   border-radius: 12px;
   background-color: #1d2333;
@@ -10215,7 +10253,7 @@ figure > img {
     1. NAVIGATION WIDGET
 ----------------------------*/
 .navigation-widget {
-  width: 300px;
+  width: 250px;
   padding-bottom: 40px;
   background-color: #1d2333;
   box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.06);
@@ -10332,7 +10370,7 @@ figure > img {
 }
 
 .navigation-widget .menu {
-  margin-top: 60px;
+  margin-top: 40px;
 }
 
 .navigation-widget .menu + .navigation-widget-section-title {
