@@ -5,7 +5,10 @@
     >
         <!-- <a href="profile-timeline.html"> 뒤로가기 버튼이나 만들까 </a> -->
         <ul class="menu small">
-            <li class="menu-item text-center" :class="$route.name === 'DashBoard' ? 'active' : ''">
+            <li
+                class="menu-item text-center"
+                :class="$route.name === 'DashBoard' ? 'active' : ''"
+            >
                 <router-link to="/dashBoard" class="menu-item-link">
                     대시 보드
                 </router-link>
@@ -18,10 +21,11 @@
                     모든 게임
                 </router-link>
             </li>
-
             <li
                 class="menu-item text-center"
-                :class="$route.name === 'SelectStage' ? 'active' : ''"
+                :class="$route.name === 'SelectStage'||
+                                $route.meta.parentRouterName ===
+                                    'UploadGame' ? 'active' : ''"
             >
                 <router-link to="/selectStage" class="menu-item-link">
                     게임 업로드

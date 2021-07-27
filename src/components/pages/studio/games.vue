@@ -9,7 +9,7 @@
 
             <p class="section-banner-title">모든 게임</p>
 
-            <p class="section-banner-text">님이 올린 모든 게임</p>
+            <p class="section-banner-text">{{user.name}}님이 올린 모든 게임</p>
         </div>
         <div class="add-game-container">
             <!-- 설문조사 btn -->
@@ -194,6 +194,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
+import { mapGetters } from "vuex";
 import { LoginState } from "@/store/modules/user";
 import { Notify } from "quasar";
 
@@ -203,7 +204,7 @@ interface ISurvey {
     url: string;
     isDone: boolean;
 }
-@Component({})
+@Component({ computed: { ...mapGetters(["user"]) } })
 export default class Games extends Vue {
     private pagination = {
         rowsPerPage: 15,

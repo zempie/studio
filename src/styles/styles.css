@@ -486,10 +486,10 @@ input[type="password"],
 input[type="email"],
 textarea,
 select {
-  background-color: #1d2333 !important;
-  border: 1px solid #3f485f !important;
-  color: #fff!important; 
-  transition: border-color .2s ease-in-out !important;
+  background-color: #1d2333 ;
+  border: 1px solid #3f485f ;
+  color: #fff; 
+  transition: border-color .2s ease-in-out ;
 }
 
 input[type="text"]:focus,
@@ -5287,42 +5287,42 @@ figure > img {
 }
 
 .stats-box.small.stat-profile-views {
-  background: url("/public/img/graph/stat/01.jpg") no-repeat center;
+  background: url("/img/graph/stat/01.jpg") no-repeat center;
   background-size: cover;
 }
 
 .stats-box.small.stat-posts-created {
-  background: url("/public/img/graph/stat/02.jpg") no-repeat center;
+  background: url("/img/graph/stat/02.jpg") no-repeat center;
   background-size: cover;
 }
 
 .stats-box.small.stat-reactions-received {
-  background: url("/public/img/graph/stat/03.jpg") no-repeat center;
+  background: url("/img/graph/stat/03.jpg") no-repeat center;
   background-size: cover;
 }
 
 .stats-box.small.stat-comments-received {
-  background: url("/public/img/graph/stat/04.jpg") no-repeat center;
+  background: url("/img/graph/stat/04.jpg") no-repeat center;
   background-size: cover;
 }
 
 .stats-box.stat-profile-views {
-  background: url("/public/img/graph/stat/01-big.png") no-repeat center;
+  background: url("/img/graph/stat/01-big.png") no-repeat center;
   background-size: cover;
 }
 
 .stats-box.stat-posts-created {
-  background: url("/public/img/graph/stat/02-big.png") no-repeat center;
+  background: url("/img/graph/stat/02-big.png") no-repeat center;
   background-size: cover;
 }
 
 .stats-box.stat-reactions-received {
-  background: url("/public/img/graph/stat/03-big.png") no-repeat center;
+  background: url("/img/graph/stat/03-big.png") no-repeat center;
   background-size: cover;
 }
 
 .stats-box.stat-comments-received {
-  background: url("/public/img/graph/stat/04-big.png") no-repeat center;
+  background: url("/img/graph/stat/04-big.png") no-repeat center;
   background-size: cover;
 }
 
@@ -5727,7 +5727,7 @@ figure > img {
 }
 
 .stats-decoration.secondary {
-  background: url("/public/img/graph/stat/05.png") no-repeat right bottom #1d2333;
+  background: url("/img/graph/stat/05.png") no-repeat right bottom #1d2333;
 }
 
 .stats-decoration.secondary .stats-decoration-icon-wrap {
@@ -5735,7 +5735,7 @@ figure > img {
 }
 
 .stats-decoration.primary {
-  background: url("/public/img/graph/stat/06.png") no-repeat right bottom #1d2333;
+  background: url("/img/graph/stat/06.png") no-repeat right bottom #1d2333;
 }
 
 .stats-decoration.primary .stats-decoration-icon-wrap {
@@ -5774,11 +5774,11 @@ figure > img {
 }
 
 .stats-decoration.v2.big.secondary {
-  background: url("/public/img/graph/stat/05-big.png") repeat-x center bottom #1d2333;
+  background: url("/img/graph/stat/05-big.png") repeat-x center bottom #1d2333;
 }
 
 .stats-decoration.v2.big.primary {
-  background: url("/public/img/graph/stat/06-big.png") repeat-x center bottom #1d2333;
+  background: url("/img/graph/stat/06-big.png") repeat-x center bottom #1d2333;
 }
 
 .stats-decoration.v2.big .stats-decoration-title {
@@ -6694,7 +6694,7 @@ figure > img {
 }
 
 .account-stat-box.account-stat-active-users {
-  background: url("/public/img/graph/stat/07.png") no-repeat center bottom #1d2333;
+  background: url("/img/graph/stat/07.png") no-repeat center bottom #1d2333;
   background-size: contain;
 }
 
@@ -6703,7 +6703,7 @@ figure > img {
 }
 
 .account-stat-box.account-stat-visits {
-  background: url("/public/img/graph/stat/08.png") no-repeat center bottom #1d2333;
+  background: url("/img/graph/stat/08.png") no-repeat center bottom #1d2333;
   background-size: contain;
 }
 
@@ -6712,7 +6712,7 @@ figure > img {
 }
 
 .account-stat-box.account-stat-session-duration {
-  background: url("/public/img/graph/stat/09.png") no-repeat center bottom #1d2333;
+  background: url("/img/graph/stat/09.png") no-repeat center bottom #1d2333;
   background-size: contain;
 }
 
@@ -6721,7 +6721,7 @@ figure > img {
 }
 
 .account-stat-box.account-stat-returning-visitors {
-  background: url("/public/img/graph/stat/10.png") no-repeat center bottom #1d2333;
+  background: url("/img/graph/stat/10.png") no-repeat center bottom #1d2333;
   background-size: contain;
 }
 

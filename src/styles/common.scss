@@ -342,3 +342,21 @@ pre {
 .router-container{
     padding-top: 80px; padding-left: 250px
 }
+
+// stduio
+.input{
+    background-color: transparent !important;
+    border: transparent !important;
+}
+
+.modal-dialog{
+   
+    button{
+        width: 80px !important;
+    }
+    .q-card__actions{
+        justify-content: center!important;
+display: flex !important;
+
+    }
+}

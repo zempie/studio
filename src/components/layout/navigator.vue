@@ -236,13 +236,13 @@ import Dropdown from "@/plugins/dropdown";
 
 import plugins from "@/plugins/plugins";
 import router from "@/router";
-
+import ProfileMenu from "@/components/layout/profileMenu.vue";
 // import ProfileMenu from "@/components/layout/navigator/ProfileMenu.vue";
 import Header from "@/scripts/header";
 import Hexagon from "@/plugins/hexagon";
 import { Group, User } from "@/types";
 @Component({
-    components: {},
+    components: {ProfileMenu},
 })
 export default class navtigator extends Vue {
     private dropdown: Dropdown = new Dropdown();

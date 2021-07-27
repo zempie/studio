@@ -19,98 +19,83 @@
             <div class="account-hub-sidebar">
                 <div class="sidebar-box no-padding">
                     <div class="sidebar-menu">
-                        <div class="sidebar-menu-item">
-                            <div class="stage-list active">
+                        <router-link
+                            to="/selectStage"
+                            class="sidebar-menu-item"
+                            :class="
+                                $route.name === 'SelectStage' ? 'active' : ''
+                            "
+                        >
+                            <div class="stage-list">
                                 <p class="sidebar-menu-header-title">
                                     게임 단계 선택
                                 </p>
-                                <svg
-                                    width="20"
-                                    viewBox="0 0 286.054 286.054"
-                                    style="margin-left: 5px; margin-top: 2px"
-                                    xml:space="preserve"
-                                >
-                                    <g id="alert">
-                                        <path
-                                            style="fill: #e2574c"
-                                            d="M143.027,0C64.04,0,0,64.04,0,143.027c0,78.996,64.04,143.027,143.027,143.027   c78.996,0,143.027-64.022,143.027-143.027C286.054,64.04,222.022,0,143.027,0z M143.027,259.236   c-64.183,0-116.209-52.026-116.209-116.209S78.844,26.818,143.027,26.818s116.209,52.026,116.209,116.209   S207.21,259.236,143.027,259.236z M143.036,62.726c-10.244,0-17.995,5.346-17.995,13.981v79.201c0,8.644,7.75,13.972,17.995,13.972   c9.994,0,17.995-5.551,17.995-13.972V76.707C161.03,68.277,153.03,62.726,143.036,62.726z M143.036,187.723   c-9.842,0-17.852,8.01-17.852,17.86c0,9.833,8.01,17.843,17.852,17.843s17.843-8.01,17.843-17.843   C160.878,195.732,152.878,187.723,143.036,187.723z"
-                                        />
-                                    </g>
-                                </svg>
-                            </div>
-                        </div>
 
-                        <div class="sidebar-menu-item selected">
+                                <select-alert
+                                    :isPass="$store.getters.gameStage"
+                                ></select-alert>
+                            </div>
+                        </router-link>
+
+                        <div
+                            @click="clickSideBar"
+                            class="sidebar-menu-item"
+                            :class="
+                                $route.name === 'SelectdStage' ? 'active' : ''
+                            "
+                        >
                             <div class="stage-list">
                                 <p class="sidebar-menu-header-title">
                                     페이지 정보
                                 </p>
-                                <svg
-                                    width="20"
-                                    viewBox="0 0 286.054 286.054"
-                                    style="margin-left: 5px; margin-top: 2px"
-                                    xml:space="preserve"
-                                >
-                                    <g id="alert">
-                                        <path
-                                            style="fill: #e2574c"
-                                            d="M143.027,0C64.04,0,0,64.04,0,143.027c0,78.996,64.04,143.027,143.027,143.027   c78.996,0,143.027-64.022,143.027-143.027C286.054,64.04,222.022,0,143.027,0z M143.027,259.236   c-64.183,0-116.209-52.026-116.209-116.209S78.844,26.818,143.027,26.818s116.209,52.026,116.209,116.209   S207.21,259.236,143.027,259.236z M143.036,62.726c-10.244,0-17.995,5.346-17.995,13.981v79.201c0,8.644,7.75,13.972,17.995,13.972   c9.994,0,17.995-5.551,17.995-13.972V76.707C161.03,68.277,153.03,62.726,143.036,62.726z M143.036,187.723   c-9.842,0-17.852,8.01-17.852,17.86c0,9.833,8.01,17.843,17.852,17.843s17.843-8.01,17.843-17.843   C160.878,195.732,152.878,187.723,143.036,187.723z"
-                                        />
-                                    </g>
-                                </svg>
+                                <select-alert :key="$route.name"></select-alert>
                             </div>
                         </div>
-
-                        <div class="sidebar-menu-item">
-                            <div
-                                class="stage-list"
-                                :class="
-                                    $route.name === 'addGame' ? 'active' : ''
-                                "
-                            >
+                        <div
+                            @click="clickSideBar('/addGameInfo')"
+                            class="sidebar-menu-item"
+                            :class="
+                                $route.name === 'AddGameInfo' ? 'active' : ''
+                            "
+                        >
+                            <div class="stage-list">
                                 <p class="sidebar-menu-header-title">
                                     게임 정보
                                 </p>
-                                <svg
-                                    width="20"
-                                    viewBox="0 0 286.054 286.054"
-                                    style="margin-left: 5px; margin-top: 2px"
-                                    xml:space="preserve"
-                                >
-                                    <g id="alert">
-                                        <path
-                                            style="fill: #e2574c"
-                                            d="M143.027,0C64.04,0,0,64.04,0,143.027c0,78.996,64.04,143.027,143.027,143.027   c78.996,0,143.027-64.022,143.027-143.027C286.054,64.04,222.022,0,143.027,0z M143.027,259.236   c-64.183,0-116.209-52.026-116.209-116.209S78.844,26.818,143.027,26.818s116.209,52.026,116.209,116.209   S207.21,259.236,143.027,259.236z M143.036,62.726c-10.244,0-17.995,5.346-17.995,13.981v79.201c0,8.644,7.75,13.972,17.995,13.972   c9.994,0,17.995-5.551,17.995-13.972V76.707C161.03,68.277,153.03,62.726,143.036,62.726z M143.036,187.723   c-9.842,0-17.852,8.01-17.852,17.86c0,9.833,8.01,17.843,17.852,17.843s17.843-8.01,17.843-17.843   C160.878,195.732,152.878,187.723,143.036,187.723z"
-                                        />
-                                    </g>
-                                </svg>
+                                <select-alert
+                                    :isPass="
+                                        $store.getters.gameStage &&
+                                        $store.getters.sendGameInfoDone
+                                    "
+                                ></select-alert>
                             </div>
                         </div>
-
-                        <div class="sidebar-menu-item">
+                        <div
+                            @click="clickSideBar('/addGameFile')"
+                            class="sidebar-menu-item"
+                            :class="
+                                $route.name === 'AddGameFile' 
+                                    ? 'active'
+                                    : ''
+                            "
+                        >
                             <div class="stage-list">
                                 <p class="sidebar-menu-header-title">
                                     게임 업로드
                                 </p>
-                                <svg
-                                    width="20"
-                                    viewBox="0 0 286.054 286.054"
-                                    style="margin-left: 5px; margin-top: 2px"
-                                    xml:space="preserve"
-                                >
-                                    <g id="alert">
-                                        <path
-                                            style="fill: #e2574c"
-                                            d="M143.027,0C64.04,0,0,64.04,0,143.027c0,78.996,64.04,143.027,143.027,143.027   c78.996,0,143.027-64.022,143.027-143.027C286.054,64.04,222.022,0,143.027,0z M143.027,259.236   c-64.183,0-116.209-52.026-116.209-116.209S78.844,26.818,143.027,26.818s116.209,52.026,116.209,116.209   S207.21,259.236,143.027,259.236z M143.036,62.726c-10.244,0-17.995,5.346-17.995,13.981v79.201c0,8.644,7.75,13.972,17.995,13.972   c9.994,0,17.995-5.551,17.995-13.972V76.707C161.03,68.277,153.03,62.726,143.036,62.726z M143.036,187.723   c-9.842,0-17.852,8.01-17.852,17.86c0,9.833,8.01,17.843,17.852,17.843s17.843-8.01,17.843-17.843   C160.878,195.732,152.878,187.723,143.036,187.723z"
-                                        />
-                                    </g>
-                                </svg>
+                                <select-alert
+                                    :isPass="
+                                        $store.getters.gameStage &&
+                                        $store.getters.sendGameFileDone
+                                    "
+                                ></select-alert>
                             </div>
                         </div>
                     </div>
 
                     <div class="sidebar-box-footer">
-                        <p class="button primary">퍼블리싱</p>
+                        <!-- todo:버튼 활성화 -->
+                        <p class="button primary disabled">퍼블리싱</p>
                     </div>
                 </div>
             </div>
@@ -120,13 +105,27 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+
+import SelectAlert from "@/components/common/selectAlert.vue";
 
 @Component({
-    components: {},
+    components: { SelectAlert },
 })
 export default class UploadGame extends Vue {
-    clickStage() {}
+    mounted() {
+        console.log(this.$route.meta.parentRouterName);
+    }
+    clickSideBar(to: string) {
+        if (!this.$store.getters.gameStage) {
+            alert("게임 단계를 먼저 선택해주세용");
+            return;
+        } else {
+            this.$router.push(to);
+        }
+
+        console.log("side!");
+    }
 }
 </script>
 
@@ -143,23 +142,36 @@ export default class UploadGame extends Vue {
             font-weight: bold;
         }
     }
-    .stage-list:hover{
-        border-top-left-radius: 0px !important;
-        border-top-right-radius: 0px !important;
-        background-color: #293249;
+    .sidebar-menu-item:first-child:hover {
+        .stage-list {
+            border-top-left-radius: 12px !important;
+            border-top-right-radius: 12px !important;
+        }
     }
-    .stage-list:first-child {
-        border-top-left-radius: 12px;
-        border-top-right-radius: 12px;
+    .sidebar-menu-item:hover {
+        .stage-list {
+            border-top-left-radius: 0px !important;
+            border-top-right-radius: 0px !important;
+            background-color: #293249;
+        }
     }
+    .sidebar-menu-item:first-child {
+        .stage-list {
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+    }
+   
     .account-hub-sidebar {
-        width: 25%;
+       width: 200px;
     }
     .notification-box-list {
-        width: 75%;
+        // width: 75%;
     }
-    .stage-list.active {
-        background-color: #7750f8;
+    .sidebar-menu-item.active {
+        .stage-list {
+            background-color: #7750f8;
+        }
     }
 }
 .notification-box {
@@ -194,5 +206,8 @@ export default class UploadGame extends Vue {
 .notification-box:hover {
     cursor: pointer;
     background-color: #293249;
+}
+.disabled:hover {
+    background-color: #40d04f;
 }
 </style>

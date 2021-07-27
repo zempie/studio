@@ -1,9 +1,6 @@
 <template>
     <div class="grid-column">
         <content-box>
-            <!-- <div class="text-h6 q-mb-sm">
-               {{ $t("addGame.addGameTitle") }}
-            </div> -->
             <content-box-block
                 class="q-my-xl"
                 :title="$t('addGame.title')"
@@ -169,113 +166,33 @@
                     </div>
                 </q-slide-transition>
             </content-box-block>
-
-            <content-box-line></content-box-line>
-            <div class="text-h6 q-my-xl">
-                {{ $t("addGame.firstVersionAdd") }}
-            </div>
-            <content-box-block
-                class="q-mb-xl"
-                :title="$t('addGame.gameFileUpload.title')"
-                :star="'*'"
+        </content-box>
+        <div class="btn-container">
+            <button :loading="waitSave" class="button">임시저장</button>
+            <button
+                :loading="waitSave"
+                color="primary"
+                class="button secondary q-ml-md"
+                @click="save()"
             >
-                <q-input
-                    @input="
-                        (val) => {
-                            uploadGameFile = val[0];
-                        }
-                    "
-                    filled
-                    type="file"
-                    accept=".zip"
-                    :error="uploadGameFileError !== ''"
-                    :error-message="uploadGameFileError"
-                />
-                <div
-                    v-if="uploadGameFiles.length"
-                    class="text-body2 text-right"
-                >
-                    {{ $t("addGame.totalSize") }} :
-                    {{
-                        totalSize < 1
-                            ? `${totalSize * 1000} KB`
-                            : `${totalSize} MB`
-                    }}
-                </div>
-                <div class="hintText">
-                    {{ $t("addGame.gameFileUpload.rules") }}
-                </div>
-            </content-box-block>
-            <q-slide-transition>
-                <div v-if="uploadMore">
-                    <content-box-block
-                        class="q-mb-xl"
-                        :title="$t('addGame.startFileSelect.title')"
-                        :star="'*'"
-                    >
-                        <q-select
-                            style="margin-top: 20px"
-                            :label="$t('addGame.startFileSelect.desc')"
-                            v-model="startFile"
-                            :options="startFileOptions"
-                            :error="startFileError !== ''"
-                            :error-message="startFileError"
-                        ></q-select>
-                    </content-box-block>
-                    <content-box-block
-                        class="q-mb-xl"
-                        :title="$t('addGame.autoDeployStatus.title')"
-                    >
-                        <q-toggle v-model="autoDeploy">{{
-                            autoDeploy
-                                ? $t("addGame.autoDeployStatus.autoDeployMode")
-                                : $t(
-                                      "addGame.autoDeployStatus.manualDeployMode"
-                                  )
-                        }}</q-toggle>
-                        <div class="hintText">
-                            {{ $t("addGame.autoDeployStatus.rules") }}
-                        </div>
-                    </content-box-block>
-                    <!--                    <content-box-block class="q-mb-xl" title="버전 설명">-->
-                    <!--                        <q-input type="textarea" counter maxlength="2000" v-model="versionDescription"/>-->
-                    <!--                        <div class="hintText">-->
-                    <!--                            새로운 버전에 대한 내용을 입력해 주세요.-->
-                    <!--                        </div>-->
-                    <!--                    </content-box-block>-->
-                </div>
-            </q-slide-transition>
-
-            <q-btn flat class="full-width" @click="uploadMore = !uploadMore">
-                {{ $t("advancedSetting") }}
-                <q-icon v-if="!uploadMore" name="arrow_drop_down" />
-                <q-icon v-else name="arrow_drop_up" />
-            </q-btn>
-        </content-box>
-        <!-- 저장 버튼 -->
-        <content-box class="save-btn">
-            <q-btn :loading="waitSave" color="primary" @click="save">{{
-                $t("save")
-            }}</q-btn>
-        </content-box>
+                다음
+            </button>
+        </div>
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-import FixedBottom from "@/components/fixedBottom.vue";
 import ContentBoxBlock from "@/components/layout/contentBoxBlock.vue";
+import ContentBoxBlockImageUploaderGIF from "@/components/layout/contentBoxBlockImageUploaderGIF.vue";
 import ContentBoxBlockImageUploader from "@/components/layout/contentBoxBlockImageUploader.vue";
 import ContentBoxLine from "@/components/layout/contentBoxLine.vue";
 import ContentBox from "@/components/layout/contentBox.vue";
-import ZipUtil from "@/common/zipUtil";
+import { verifySelectHashtags } from "@/scripts/verifySelectHashtags";
 import { randomString } from "@/common/util";
 import { Notify } from "quasar";
-import { mbToByte } from "@/common/fileLoader";
-import { verifyHashtags } from "@/scripts/verifyHashtag";
-import { verifySelectHashtags } from "@/scripts/verifySelectHashtags";
-import ContentBoxBlockImageUploaderGIF from "@/components/layout/contentBoxBlockImageUploaderGIF.vue";
-
+import { event } from "vue-gtag";
+// import { useQuasar } from "quasar";
 @Component({
     components: {
         ContentBoxBlockImageUploaderGIF,
@@ -283,10 +200,9 @@ import ContentBoxBlockImageUploaderGIF from "@/components/layout/contentBoxBlock
         ContentBoxLine,
         ContentBoxBlockImageUploader,
         ContentBoxBlock,
-        FixedBottom,
     },
 })
-export default class AddGame extends Vue {
+export default class addGameInfo extends Vue {
     private title: string = "";
     private titleError: string = "";
     private description: string = "";
@@ -304,95 +220,100 @@ export default class AddGame extends Vue {
     private waitGamePath: boolean = false;
     private hashtagsError: string = "";
 
-    private uploadMore: boolean = false;
-
-    private limitSize: number = 1024 * 1000 * 100;
-    private totalSize: number = 0;
-    private uploadGameFileError: string = "";
-    private uploadGameFile: File = null;
-    private uploadGameFiles: File[] = [];
-
-    private startFileOptions: string[] = [];
-    private startFile: string = "";
-    private startFileError: string = "";
-
-    private autoDeploy: boolean = true;
-
-    private versionDescription: string = "";
-
-    private waitSave: boolean = false;
-
     private hashtagsArr: string[] = [];
     private inputValue: string = "";
     private isShowTag: boolean = false;
     private star: string = "";
 
+    private waitSave: boolean = false;
+
+    private isClickedSave: boolean = false;
+
+    beforeRouteLeave(to, from, next) {
+        //todo: 브라우저에 잠깐 저장했다가 돌아가면 바로 보여주기
+        if(to.name === 'AddGameFile'){
+
+        }
+        // console.log(to.name)
+        if (this.isClickedSave) {
+            next();
+        } else if (
+            this.title.length > 0 ||
+            this.description.length > 0 ||
+            this.gamePath.length > 0 ||
+            this.hashtagsArr.length > 0 ||
+            this.thumbFile ||
+            this.thumbFile2
+        ) {
+            this.$q
+                .dialog({
+                    class: "modal-dialog",
+                    message:
+                        "<div class='text-center'>지금까지 작성한 내용이 사라집니다. <br>정말 나가시겠습니까 </div>",
+                    ok: {
+                        push: true,
+                        label: "네",
+                    },
+                    cancel: {
+                        push: true,
+                        color: "negative",
+                        label: "아니요",
+                    },
+                    html: true,
+                    persistent: true,
+                })
+                .onOk(() => {
+                    next();
+                })
+                .onCancel(() => {});
+        } else {
+            next();
+            console.log("다 비어있음");
+        }
+    }
     mounted() {
-        this.$store.commit("pageName", this.$t("addGame.toolbarTitle"));
-        // this.gamePath = randomString( 100 );
+          console.log(this.$route)
+        this.$store.commit("sendGameInfoDone", false);
+        // window.addEventListener("keydown", this.handleRefresh);
+        // window.addEventListener("click", this.handleRefresh);
+        window.onbeforeunload = function() {
+        return "Dude, are you sure you want to refresh? Think of the kittens!";
+}
     }
+    // destroyed() {
+        
+    //     window.removeEventListener("keydown", this.handleRefresh);
+    // }
+    // handleRefresh(e) {
+    //     console.log(e)
+    //     if (e.code === "F5") {
+    //         e.preventDefault();
 
-    @Watch("uploadGameFile")
-    private async onChangedFile() {
-        if (!this.uploadGameFile) {
-            return;
-        }
-
-        this.$store.commit("ajaxBar", true);
-        this.$q.loading.show({
-            message: this.$t("addGame.success.checkFile").toString(),
-        });
-
-        const zip = await ZipUtil.zipFileToZip(this.uploadGameFile);
-        // console.log( zip );
-
-        const files = await ZipUtil.zipToFiles(zip);
-        let size = 0;
-        for (let f in files) {
-            size += files[f].size;
-        }
-
-        if (size > this.limitSize) {
-            this.uploadGameFileError = this.$t(
-                "addGame.error.fileSizeExceeded"
-            ).toString();
-            return;
-        }
-
-        this.totalSize = Number((size / (1024 * 1000)).toFixed(2));
-        this.uploadGameFiles = files;
-        // console.log(this.uploadGameFiles);
-
-        const htmls = this.uploadGameFiles.filter((file) => {
-            return file.name.indexOf(".html") > -1;
-        });
-
-        this.startFileOptions = htmls.map((file) => file.name);
-        this.startFileOptions.sort((a, b) => a.length - b.length);
-        const indexFiles = this.startFileOptions.filter((name) =>
-            name.includes("index")
-        );
-
-        if (indexFiles.length) {
-            indexFiles.sort((a, b) => a.length - b.length);
-            this.startFile = indexFiles[0];
-        } else {
-            this.startFile = this.startFileOptions[0];
-        }
-
-        this.startFileOptions.sort((a, b) => a.length - b.length);
-
-        if (this.startFileOptions.length) {
-            this.uploadGameFileError = "";
-        } else {
-            this.uploadGameFileError = this.$t(
-                "addGame.error.notFoundHtml"
-            ).toString();
-        }
-
-        this.$store.commit("ajaxBar", false);
-        this.$q.loading.hide();
-    }
+    //         this.$q
+    //             .dialog({
+    //                 class: "modal-dialog",
+    //                 message:
+    //                     "<div class='text-center'>지금까지 작성한 내용이 사라집니다. <br>정말 새로고침하시겠습니까?</div>",
+    //                 ok: {
+    //                     push: true,
+    //                     label: "네",
+    //                 },
+    //                 cancel: {
+    //                     push: true,
+    //                     color: "negative",
+    //                     label: "아니요",
+    //                 },
+    //                 html: true,
+    //                 persistent: true,
+    //             })
+    //             .onOk(() => {
+    //               location.reload();
+    //             })
+    //             .onCancel(() => {
+    //                 e.preventDefault();
+    //             });
+    //     }
+    // }
 
     private onChangeHashtags() {
         if (this.hashtags === "") {
@@ -419,7 +340,35 @@ export default class AddGame extends Vue {
             this.descError = "";
         }
     }
+
+    createValue(val, done) {
+        this.isShowTag = false;
+
+        if (this.hashtagsArr.length <= 20) {
+            if (val === "") {
+                this.hashtagsError = "";
+            } else {
+                this.hashtagsError = verifySelectHashtags(val.trim());
+            }
+            if (this.hashtagsError === "") {
+                if (done) {
+                    done(val.trim());
+                }
+            }
+        } else {
+            this.hashtagsError = this.$t(
+                "addGame.error.tooManyInputs"
+            ).toString();
+        }
+    }
+
+    createTagChip(val) {
+        this.isShowTag = true;
+        this.inputValue = val;
+    }
+
     async save() {
+        this.isClickedSave = true;
         if (this.waitSave) {
             return;
         }
@@ -483,124 +432,40 @@ export default class AddGame extends Vue {
                 }
             }
         }
-
-        if (!this.uploadGameFiles.length) {
-            isError = true;
-            this.uploadGameFileError = this.$t(
-                "addGame.error.noLoadFile"
-            ).toString();
-        }
-
-        if (!this.startFileOptions.length) {
-            isError = true;
-        }
-
         if (isError) {
             this.waitSave = false;
             return;
         }
 
-        this.$store.commit("ajaxBar", true);
-        this.$q.loading.show({
-            message: this.$t("waiting").toString(),
+        // this.$store.commit("ajaxBar", true);
+        // this.$q.loading.show({
+        //     message: this.$t("waiting").toString(),
+        // });
+        console.log({
+            name: this.title,
+            description: this.description,
+            pathname: this.gamePath,
+            project_picture: this.thumbFile,
+            project_picture2: this.thumbFile2,
+            hashtags: this.hashtagsArr.toString(),
         });
+        this.$store.commit("sendGameInfoDone", true);
 
-        console.log(this.versionDescription);
-
-        const result = await this.$http.createProject(
-            {
-                name: this.title,
-                description: this.description,
-                pathname: this.gamePath,
-                project_picture: this.thumbFile,
-                project_picture2: this.thumbFile2,
-                hashtags: this.hashtagsArr.toString(),
-            },
-            {
-                autoDeploy: this.autoDeploy,
-                startFile: this.startFile,
-                size: this.totalSize,
-                version_description: this.versionDescription,
-            },
-            this.uploadGameFiles
-        );
-
-        this.$store.commit("ajaxBar", false);
-        this.$q.loading.hide();
-        this.waitSave = false;
-
-        if (!result || result.error) {
-            if (result.error.code === 40101) {
-                Notify.create({
-                    message: this.$t("forbiddenString").toString(),
-                    position: "top",
-                    color: "negative",
-                    timeout: 2000,
-                });
-            } else {
-                Notify.create({
-                    message: this.$t("addGame.error.uploadGame").toString(),
-                    position: "top",
-                    color: "negative",
-                    timeout: 2000,
-                });
-            }
-            console.error((result && result.error) || "error");
-        } else {
-            Notify.create({
-                message: this.$t("addGame.success.uploadGame").toString(),
-                position: "top",
-                color: "primary",
-                timeout: 2000,
-            });
-            this.$router.push("/studio").catch(() => {});
-        }
-    }
-
-    createValue(val, done) {
-        this.isShowTag = false;
-
-        if (this.hashtagsArr.length <= 20) {
-            if (val === "") {
-                this.hashtagsError = "";
-            } else {
-                this.hashtagsError = verifySelectHashtags(val.trim());
-            }
-            if (this.hashtagsError === "") {
-                if (done) {
-                    done(val.trim());
-                }
-            }
-        } else {
-            this.hashtagsError = this.$t(
-                "addGame.error.tooManyInputs"
-            ).toString();
-        }
-    }
-
-    createTagChip(val) {
-        this.isShowTag = true;
-        this.inputValue = val;
+        this.$router.push("/addGameFile");
     }
 }
 </script>
 
 <style scoped lang="scss">
-.save-btn {
-    background: rgb(255 255 255 / 0%);
-    text-align: right;
-    padding-right: 0px;
+.btn-container {
+    display: flex;
+    justify-content: flex-end;
+
+    .button {
+        width: 15% !important;
+    }
 }
-.q-chip {
-    background-color: rgb(244, 186, 47);
-    border-radius: 5px;
-    color: black;
-    padding: 15px;
-}
-.fileUpload {
-    // background-color: red;
-    // width: 100%;
-}
+
 .thumbnailErr.off {
     display: none;
 }
@@ -608,5 +473,17 @@ export default class AddGame extends Vue {
     color: #c10015;
     font-size: 12px;
     margin-top: 2px;
+}
+
+.q-chip {
+    background-color: rgb(244, 186, 47);
+    border-radius: 5px;
+    color: black;
+    padding: 15px;
+}
+.dialog {
+    background-color: #c10015 !important;
+    .q-card {
+    }
 }
 </style>

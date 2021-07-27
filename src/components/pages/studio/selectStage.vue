@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="notification-box-list">
-            <div class="notification-box">
+            <div class="notification-box" @click="clickStage(0)">
                 <div class="user-status request">
                     <div
                         class="user-status-avatar user-avatar small no-outline"
@@ -21,7 +21,7 @@
                 </div>
             </div>
 
-            <div class="notification-box">
+            <div class="notification-box" @click="clickStage(1)">
                 <div class="user-status request">
                     <div
                         class="user-status-avatar user-avatar small no-outline"
@@ -40,7 +40,11 @@
                 </div>
             </div>
 
-            <router-link class="notification-box" to="/addGame">
+            <div
+                class="notification-box"
+            
+                @click="clickStage(2)"
+            >
                 <div class="user-status request">
                     <div
                         class="user-status-avatar user-avatar small no-outline"
@@ -57,7 +61,7 @@
                         </p>
                     </div>
                 </div>
-            </router-link>
+            </div>
 
             <div class="notification-box" @click="clickStage()">
                 <div class="user-status request">
@@ -88,7 +92,17 @@ import { Component, Prop, Vue } from "vue-property-decorator";
     components: {},
 })
 export default class selectStage extends Vue {
-    clickStage() {}
+    mounted() {
+        this.$store.commit("gameStage", null);
+    }
+    clickStage(stage: number) {
+        
+        this.$store.commit("gameStage", stage);
+        this.$store.commit("sendGameInfoDone", false);
+        this.$store.commit("sendGameFileDone", false);
+        console.log("getters", this.$store.getters.gameStage);
+        this.$router.push("/addGameInfo")
+    }
 }
 </script>
 
@@ -113,11 +127,11 @@ export default class selectStage extends Vue {
         border-top-right-radius: 12px;
     }
     .account-hub-sidebar {
-        width: 25%;
+        width: 200px;
     }
-    .notification-box-list {
-        width: 75%;
-    }
+    // .notification-box-list {
+    //     width: 75%;
+    // }
     .stage-list.active {
         background-color: #7750f8;
     }

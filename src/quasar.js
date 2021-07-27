@@ -5,18 +5,19 @@ import '@quasar/extras/material-icons/material-icons.css'
 import '@quasar/extras/fontawesome-v5/fontawesome-v5.css';
 import '@quasar/quasar-ui-qmarkdown/dist/index.css'
 
-import {Quasar, Notify, Loading} from 'quasar'
+import { Quasar, Notify, Loading, Dialog } from 'quasar'
 
 Vue.use(Quasar, {
     config: {
         dark: true,
         notify: {},
-        loading : {}
+        loading: {}
     },
-    components: { /* not needed if importStrategy is not 'manual' */},
-    directives: { /* not needed if importStrategy is not 'manual' */},
+    components: { /* not needed if importStrategy is not 'manual' */ },
+    directives: { /* not needed if importStrategy is not 'manual' */ },
     plugins: {
         Notify,
         Loading,
+        Dialog
     },
 })

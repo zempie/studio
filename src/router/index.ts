@@ -68,17 +68,31 @@ const routes: Array<RouteConfig> = [
         path: '/uploadGame',
         name: 'UploadGame',
         component: () => import(/* webpackChunkName: "about" */ "@/views/UploadGame.vue"),
-        redirect: 'selectStage',
+        props: true,
         children: [
             {
                 path: '/addGame',
                 name: 'AddGame',
                 component: () => import(/* webpackChunkName: "about" */ "@/components/pages/studio/addGame.vue"),
+                meta: { parentRouterName: 'UploadGame' }
             },
             {
                 path: '/selectStage',
                 name: 'SelectStage',
                 component: () => import(/* webpackChunkName: "about" */ "@/components/pages/studio/selectStage.vue"),
+                meta: { parentRouterName: 'UploadGame' }
+            },
+            {
+                path: '/addGameFile',
+                name: 'AddGameFile',
+                component: () => import(/* webpackChunkName: "about" */ "@/components/pages/studio/addGameFile.vue"),
+                meta: { parentRouterName: 'UploadGame' }
+            },
+            {
+                path: '/addGameInfo',
+                name: 'AddGameInfo',
+                component: () => import(/* webpackChunkName: "about" */ "@/components/pages/studio/addGameInfo.vue"),
+                meta: { parentRouterName: 'UploadGame' }
             },
         ]
     },

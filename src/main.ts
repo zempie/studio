@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import Component from 'vue-class-component'
 import './plugins/axios'
 import './plugins/firebase'
 import './api/rpc';
@@ -13,12 +14,17 @@ import './styles/styles.css'
 
 
 import 'tiny-slider'
-
+import '@/scripts/utils/svg-loader'
 import 'simplebar/dist/simplebar.min.css';
 
 
 Vue.config.productionTip = false
 
+Component.registerHooks([
+  'beforeRouteEnter',
+  'beforeRouteLeave',
+  'beforeRouteUpdate'
+])
 
 new Vue({
   router,

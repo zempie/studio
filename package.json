@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "npm run download:i18n && vue-cli-service serve --mode local",
+    "serve": "vue-cli-service serve --mode local",
     "build": "vue-cli-service build --mode production",
     "build-dev": "npm run download:i18n && vue-cli-service build --mode development",
     "i18n:report": "vue-cli-service i18n:report --src \"./src/**/*.?(js|vue)\" --locales \"./src/locales/**/*.json\"",
