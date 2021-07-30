@@ -6334,7 +6334,7 @@ figure > img {
   padding-top: 34px;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
-  background: url("/public/img/banner/banner-profile-stats.jpg") no-repeat center;
+  background: url("/img/banner/banner-profile-stats.jpg") no-repeat center;
   background-size: cover;
 }
 
@@ -6444,12 +6444,12 @@ figure > img {
 }
 
 .featured-stat-box.reactioner .featured-stat-box-cover {
-  background: url("/public/img/banner/banner-reaction.jpg") no-repeat center;
+  background: url("/img/banner/banner-reaction.jpg") no-repeat center;
   background-size: cover;
 }
 
 .featured-stat-box.commenter .featured-stat-box-cover {
-  background: url("/public/img/banner/banner-commenter.jpg") no-repeat center;
+  background: url("/img/banner/banner-commenter.jpg") no-repeat center;
   background-size: cover;
 }
 
@@ -6528,12 +6528,12 @@ figure > img {
 }
 
 .achievement-box.secondary {
-  background: url("/public/img/achievement/banner/01.jpg") no-repeat center;
+  background: url("//img/achievement/banner/01.jpg") no-repeat center;
   background-size: cover;
 }
 
 .achievement-box.primary {
-  background: url("/public/img/achievement/banner/02.jpg") no-repeat center;
+  background: url("/img/achievement/banner/02.jpg") no-repeat center;
   background-size: cover;
 }
 
@@ -6610,7 +6610,7 @@ figure > img {
       justify-content: center;
   width: 88px;
   height: 86px;
-  background: url("/public/img/badge/level-badge.png") no-repeat center;
+  background: url("/img/badge/level-badge.png") no-repeat center;
 }
 
 .level-progress-badge .level-progress-badge-title,
@@ -7195,7 +7195,7 @@ figure > img {
 }
 
 .create-entity-box.v2 .create-entity-box-avatar {
-  background: url("/public/img/badge/badge-empty-02.png") no-repeat center;
+  background: url("/img/badge/badge-empty-02.png") no-repeat center;
   top: 36px;
 }
 
@@ -7229,7 +7229,7 @@ figure > img {
       align-items: center;
   width: 100px;
   height: 110px;
-  background: url("/public/img/badge/badge-empty.png") no-repeat center;
+  background: url("/img/badge/badge-empty.png") no-repeat center;
   position: absolute;
   top: 16px;
   left: 50%;
@@ -8583,7 +8583,7 @@ figure > img {
 .error-section {
   width: 100%;
   height: 100%;
-  background: url("/public/img/landing/404-bg.png") no-repeat left top, url("/public/img/landing/vikinger-logo.png") right 40px top 40px no-repeat, url("/public/img/landing/dot-texture.png") repeat left top, #161b28;
+  background: url("/img/landing/404-bg.png") no-repeat left top, url("/img/landing/vikinger-logo.png") right 40px top 40px no-repeat, url("/img/landing/dot-texture.png") repeat left top, #161b28;
   background-size: contain, auto, auto;
   position: fixed;
   top: 0;
@@ -8657,7 +8657,7 @@ figure > img {
 
 @media screen and (max-width: 1365px) {
   .error-section {
-    background: url("/public/img/landing/dot-texture.png") repeat left top #161b28;
+    background: url("/img/landing/dot-texture.png") repeat left top #161b28;
     background-size: auto;
     padding: 120px 0;
     position: static;
@@ -9786,7 +9786,7 @@ figure > img {
 .landing {
   width: 100%;
   height: 100%;
-  background: url("/public/img/landing/landing-background.jpg") no-repeat left center;
+  background: url("/img/landing/landing-background.jpg") no-repeat left center;
   background-size: cover;
   position: fixed;
   top: 0;
@@ -9797,7 +9797,7 @@ figure > img {
   width: 64%;
   height: 140%;
   border-radius: 50%;
-  background: url("/public/img/landing/dot-texture.png") repeat left top #161b28;
+  background: url("/img/landing/dot-texture.png") repeat left top #161b28;
   position: absolute;
   top: -20%;
   right: -32%;
@@ -10253,7 +10253,7 @@ figure > img {
     1. NAVIGATION WIDGET
 ----------------------------*/
 .navigation-widget {
-  width: 250px;
+  width: 300px;
   padding-bottom: 40px;
   background-color: #1d2333;
   box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.06);
@@ -11792,7 +11792,7 @@ figure > img {
 }
 
 .product-category-box.category-all {
-  background: url("/public/img/marketplace/category/01.png") no-repeat right top, linear-gradient(to right, #7750f8, #84d2ff);
+  background: url("/img/marketplace/category/01.png") no-repeat right top, linear-gradient(to right, #7750f8, #84d2ff);
 }
 
 .product-category-box.category-all .product-category-box-tag {
@@ -11800,7 +11800,7 @@ figure > img {
 }
 
 .product-category-box.category-featured {
-  background: url("/public/img/marketplace/category/02.png") no-repeat right top, linear-gradient(to right, #006fb5, #3af0d4);
+  background: url("/img/marketplace/category/02.png") no-repeat right top, linear-gradient(to right, #006fb5, #3af0d4);
 }
 
 .product-category-box.category-featured .product-category-box-tag {
@@ -11808,7 +11808,7 @@ figure > img {
 }
 
 .product-category-box.category-digital {
-  background: url("/public/img/marketplace/category/03.png") no-repeat right top, linear-gradient(to right, #009989, #4df960);
+  background: url("/img/marketplace/category/03.png") no-repeat right top, linear-gradient(to right, #009989, #4df960);
 }
 
 .product-category-box.category-digital .product-category-box-tag {
@@ -11816,7 +11816,7 @@ figure > img {
 }
 
 .product-category-box.category-physical {
-  background: url("/public/img/marketplace/category/04.png") no-repeat right top, linear-gradient(to right, #2f9a3a, #e9fc49);
+  background: url("/img/marketplace/category/04.png") no-repeat right top, linear-gradient(to right, #2f9a3a, #e9fc49);
 }
 
 .product-category-box.category-physical .product-category-box-tag {
@@ -16031,7 +16031,7 @@ figure > img {
   min-height: 160px;
   padding: 52px 60px 0 200px;
   border-radius: 12px;
-  background: url("/public/img/banner/banner-bg.png") no-repeat center;
+  background: url("/img/banner/banner-bg.png") no-repeat center;
   position: relative;
 }
 

@@ -81,6 +81,7 @@
                     </q-item-section>
                 </q-item>
                 <q-separator />
+            
                 <q-item
                     :active="$route.name === 'ProjectDashboard'"
                     active-class="activeItem"

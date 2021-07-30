@@ -23,7 +23,11 @@
                     <div class="burger-icon-bar"></div>
                 </div>
             </div>
-
+            <div class="sidemenu-trigger navigation-widget-trigger">
+                <svg class="icon-grid">
+                    <use xlink:href="#svg-grid"></use>
+                </svg>
+            </div>
             <nav class="navigation">
                 <ul class="menu-main">
                     <li class="menu-main-item">
@@ -242,7 +246,7 @@ import Header from "@/scripts/header";
 import Hexagon from "@/plugins/hexagon";
 import { Group, User } from "@/types";
 @Component({
-    components: {ProfileMenu},
+    components: { ProfileMenu },
 })
 export default class navtigator extends Vue {
     private dropdown: Dropdown = new Dropdown();

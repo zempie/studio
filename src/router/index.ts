@@ -137,45 +137,45 @@ const routes: Array<RouteConfig> = [
     //     // which is lazy-loaded when the route is visited.
     //     component: () => import(/* webpackChunkName: "about" */ "@/views/Logout.vue")
     // },
+    // {
+    //     path: '/project/:projectId',
+    //     name: 'Project',
+    //     component: () => import(/* webpackChunkName: "about" */ "@/views/Project.vue"),
+    //     props: true,
+    //     children: [
     {
-        path: '/project/:projectId',
-        name: 'Project',
-        component: () => import(/* webpackChunkName: "about" */ "@/views/Project.vue"),
-        props: true,
-        children: [
-            {
-                path: '/project/dashboard/:projectId',
-                name: 'ProjectDashboard',
-                component: () => import(/* webpackChunkName: "about" */ "@/components/pages/project/projectDashboard.vue"),
-                alias: '/project/:projectId',
-                props: true
-            },
-            {
-                path: '/project/deploy/:projectId',
-                name: 'ProjectDeploy',
-                component: () => import(/* webpackChunkName: "about" */ "@/components/pages/project/projectDeploy.vue"),
-                props: true
-            },
-            {
-                path: '/project/version/:projectId',
-                name: 'ProjectVersion',
-                component: () => import(/* webpackChunkName: "about" */ "@/components/pages/project/projectVersion.vue"),
-                props: true
-            },
-            {
-                path: '/project/setting/:projectId',
-                name: 'ProjectSetting',
-                component: () => import(/* webpackChunkName: "about" */ "@/components/pages/project/projectSetting.vue"),
-                props: true
-            },
-            {
-                path: '/project/addVersion/:projectId',
-                name: 'ProjectAddVersion',
-                component: () => import(/* webpackChunkName: "about" */ "@/components/pages/project/projectAddVersion.vue"),
-                props: true
-            },
-        ]
-    }
+        path: '/project/dashboard/:projectId',
+        name: 'ProjectDashboard',
+        component: () => import(/* webpackChunkName: "about" */ "@/components/pages/project/projectDashboard.vue"),
+        alias: '/project/:projectId',
+        props: true
+    },
+    {
+        path: '/project/deploy/:projectId',
+        name: 'ProjectDeploy',
+        component: () => import(/* webpackChunkName: "about" */ "@/components/pages/project/projectDeploy.vue"),
+        props: true
+    },
+    {
+        path: '/project/version/:projectId',
+        name: 'ProjectVersion',
+        component: () => import(/* webpackChunkName: "about" */ "@/components/pages/project/projectVersion.vue"),
+        props: true
+    },
+    {
+        path: '/project/setting/:projectId',
+        name: 'ProjectSetting',
+        component: () => import(/* webpackChunkName: "about" */ "@/components/pages/project/projectSetting.vue"),
+        props: true
+    },
+    {
+        path: '/project/addVersion/:projectId',
+        name: 'ProjectAddVersion',
+        component: () => import(/* webpackChunkName: "about" */ "@/components/pages/project/projectAddVersion.vue"),
+        props: true
+    },
+    //     ]
+    // }
 
 ]
 

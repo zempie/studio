@@ -1,8 +1,8 @@
 <template>
     <div id="app" class="no-drag">
-        <navigator></navigator>
         <navigation-widget></navigation-widget>
-        <div class="router-container">
+        <navigator></navigator>
+        <div class="content-grid">
             <router-view></router-view>
         </div>
         <q-ajax-bar
@@ -21,6 +21,7 @@ import * as firebase from "firebase";
 import { LoginState } from "@/store/modules/user";
 import { QSpinnerGears } from "quasar";
 // import {onAuthStateChanged} from "@/plugins/firebase";
+import Sidebar from "@/scripts/sidebar";
 
 import Navigator from "@/components/layout/navigator.vue";
 import NavigationWidget from "@/components/layout/navigationWidget.vue";
@@ -33,6 +34,8 @@ import NavigationWidget from "@/components/layout/navigationWidget.vue";
     },
 })
 export default class App extends Vue {
+    private sideBar: Sidebar = new Sidebar();
+
     async mounted() {
         const spinner: any = QSpinnerGears;
 
@@ -47,11 +50,14 @@ export default class App extends Vue {
         const state = await this.$store.dispatch("loginState");
 
         this.$q.loading.hide();
+        console.log("loading");
+
+        this.sideBar.init();
 
         if (state === LoginState.login) {
-            if (!this.$store.getters.user.is_developer) {
-                await this.$router.replace("/signup").catch(() => {});
-            }
+            // if (!this.$store.getters.user.is_developer) {
+            //     await this.$router.replace("/signup").catch(() => {});
+            // }
         } else {
             await this.$router.replace("/login");
         }

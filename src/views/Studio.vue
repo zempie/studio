@@ -162,7 +162,7 @@ import AccountPopupDesktop from "@/components/accountPopupDesktop.vue";
 import MailPopupMobile from "@/components/menu/mailPopupMobile.vue";
 import MailPopupDesktop from "@/components/menu/mailPopupDesktop.vue";
 import Navigator from "@/components/layout/navigator.vue";
-
+import Sidebar from "@/scripts/sidebar";
 @Component({
     components: {
         AccountPopupDesktop,
@@ -176,8 +176,8 @@ export default class Studio extends Vue {
     private searchText: string = "";
 
     private isLoad: boolean = false;
-
-    async mounted() {
+ private sideBar: Sidebar = new Sidebar();
+    async mounted() {  this.sideBar.init();
         this.isLoad = false;
 
         const loginState = await this.$store.dispatch("loginState");

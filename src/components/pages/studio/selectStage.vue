@@ -1,12 +1,12 @@
 <template>
-    <div>
+    <div style="width:80%">
         <div class="notification-box-list">
             <div class="notification-box" @click="clickStage(0)">
                 <div class="user-status request">
                     <div
                         class="user-status-avatar user-avatar small no-outline"
                     >
-                        <q-img src="/img/develope_log.png" />
+                        <q-img src="img/develope_log.png" />
                     </div>
 
                     <div class="info-box">
@@ -26,7 +26,7 @@
                     <div
                         class="user-status-avatar user-avatar small no-outline"
                     >
-                        <q-img src="/img/develope_early.png" />
+                        <q-img src="img/develope_early.png" />
                     </div>
 
                     <div class="info-box">
@@ -49,7 +49,7 @@
                     <div
                         class="user-status-avatar user-avatar small no-outline"
                     >
-                        <q-img src="/img/develope_result.png" />
+                        <q-img src="img/develope_result.png" />
                     </div>
 
                     <div class="info-box">
@@ -68,7 +68,7 @@
                     <div
                         class="user-status-avatar user-avatar small no-outline"
                     >
-                        <q-img src="/img/develope_monetize.png" />
+                        <q-img src="img/develope_monetize.png" />
                     </div>
 
                     <div class="info-box">
@@ -109,6 +109,7 @@ export default class selectStage extends Vue {
 <style lang="scss" scoped>
 .state-box {
     display: flex;
+    width:100%;
     .stage-list {
         cursor: pointer;
         height: 112px;
@@ -127,7 +128,7 @@ export default class selectStage extends Vue {
         border-top-right-radius: 12px;
     }
     .account-hub-sidebar {
-        width: 200px;
+        width: 20%;
     }
     // .notification-box-list {
     //     width: 75%;

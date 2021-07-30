@@ -130,6 +130,8 @@ querySelector('.content-grid', (el: any) => {
         }
     };
 
+    
+
 
     querySelector('.navigation-widget-trigger', (el: any[]) => {
         const navigationTrigger = el[0],

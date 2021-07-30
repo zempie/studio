@@ -1,9 +1,9 @@
 <template>
-    <div class="content-grid">
+    <div>
         <div class="section-banner">
             <img
                 class="section-banner-icon"
-                src="/img/banner/overview-icon.png"
+                src="img/banner/overview-icon.png"
                 alt="overview-icon"
             />
 
@@ -39,7 +39,7 @@
 
                     <p class="stats-box-title">플레이 수</p>
 
-                    <p class="stats-box-text">전 날 대비</p>
+                    <p class="stats-box-text">전날 대비</p>
                 </div>
 
                 <div class="stats-box small stat-posts-created">
@@ -105,7 +105,7 @@
 
             <div class="grid grid-layout-1">
                 <div class="grid-sidebar">
-                    <div class="profile-stats fixed-height">
+                    <div class="profile-stats">
                         <div class="profile-stats-cover">
                             <p class="profile-stats-cover-title">
                                 Welcome Back!
@@ -170,181 +170,1407 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="grid-header">
-                    <div class="slider-line small">
-                        <div
-                            id="user-stats-slider-controls"
-                            class="slider-controls"
-                        >
-                            <div class="slider-control left">
-                                <svg
-                                    class="slider-control-icon icon-small-arrow"
-                                >
-                                    <use xlink:href="#svg-small-arrow"></use>
-                                </svg>
-                            </div>
-
-                            <div class="slider-control right">
-                                <svg
-                                    class="slider-control-icon icon-small-arrow"
-                                >
-                                    <use xlink:href="#svg-small-arrow"></use>
-                                </svg>
-                            </div>
-                        </div>
-
-                        <div
-                            id="user-stats-slider"
-                            class="slider-slides with-separator"
-                        >
-                            <div class="slider-slide">
-                                <div class="user-stat big">
-                                    <p class="user-stat-title">930</p>
-
-                                    <p class="user-stat-text">posts</p>
-                                </div>
-                            </div>
-
-                            <div class="slider-slide">
-                                <div class="user-stat big">
-                                    <p class="user-stat-title">82</p>
-
-                                    <p class="user-stat-text">friends</p>
-                                </div>
-                            </div>
-
-                            <div class="slider-slide">
-                                <div class="user-stat big">
-                                    <p class="user-stat-title">5.7k</p>
-
-                                    <p class="user-stat-text">visits</p>
-                                </div>
-                            </div>
-
-                            <div class="slider-slide">
-                                <div class="user-stat big">
-                                    <p class="user-stat-title">13</p>
-
-                                    <p class="user-stat-text">badges</p>
-                                </div>
-                            </div>
-
-                            <div class="slider-slide">
-                                <div class="user-stat big">
-                                    <p class="user-stat-title">74</p>
-
-                                    <p class="user-stat-text">photos</p>
-                                </div>
-                            </div>
-
-                            <div class="slider-slide">
-                                <div class="user-stat big">
-                                    <p class="user-stat-title">10.6k</p>
-
-                                    <p class="user-stat-text">reactions (r)</p>
-                                </div>
-                            </div>
-
-                            <div class="slider-slide">
-                                <div class="user-stat big">
-                                    <p class="user-stat-title">8.4k</p>
-
-                                    <p class="user-stat-text">comments (r)</p>
-                                </div>
-                            </div>
-
-                            <div class="slider-slide">
-                                <div class="user-stat big">
-                                    <p class="user-stat-title">2.3k</p>
-
-                                    <p class="user-stat-text">shares (r)</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="grid-content">
                     <div class="widget-box no-padding">
-                        <p class="widget-box-title">Recent Comments</p>
+                        <p class="widget-box-title">Profile Activity</p>
 
                         <div
                             class="widget-box-content padded-for-scroll"
-                            data-simplebar
+                            data-simplebar="init"
                         >
-                            <div class="user-status-list scroll-content">
-                                <div class="user-status notification">
-                                    <a
-                                        class="user-status-avatar"
-                                        href="profile-timeline.html"
+                            <div
+                                class="simplebar-wrapper"
+                                style="margin: 0px 0px -28px"
+                            >
+                                <div
+                                    class="
+                                        simplebar-height-auto-observer-wrapper
+                                    "
+                                >
+                                    <div
+                                        class="simplebar-height-auto-observer"
+                                    ></div>
+                                </div>
+                                <div class="simplebar-mask">
+                                    <div
+                                        class="simplebar-offset"
+                                        style="right: 0px; bottom: 0px"
                                     >
                                         <div
-                                            class="user-avatar small no-outline"
+                                            class="simplebar-content-wrapper"
+                                            style="
+                                                height: 100%;
+                                                overflow: hidden scroll;
+                                            "
                                         >
-                                            <div class="user-avatar-content">
-                                                <div
-                                                    class="hexagon-image-30-32"
-                                                    data-src="img/avatar/03.jpg"
-                                                ></div>
-                                            </div>
-
-                                            <div class="user-avatar-progress">
-                                                <div
-                                                    class="
-                                                        hexagon-progress-40-44
-                                                    "
-                                                ></div>
-                                            </div>
-
                                             <div
-                                                class="
-                                                    user-avatar-progress-border
-                                                "
+                                                class="simplebar-content"
+                                                style="padding: 0px 0px 28px"
                                             >
                                                 <div
-                                                    class="hexagon-border-40-44"
-                                                ></div>
+                                                    class="
+                                                        user-status-list
+                                                        scroll-content
+                                                    "
+                                                >
+                                                    <div
+                                                        class="
+                                                            user-status
+                                                            notification
+                                                        "
+                                                    >
+                                                        <a
+                                                            class="
+                                                                user-status-avatar
+                                                            "
+                                                            href="profile-timeline.html"
+                                                        >
+                                                            <div
+                                                                class="
+                                                                    user-avatar
+                                                                    small
+                                                                    no-outline
+                                                                "
+                                                            >
+                                                                <div
+                                                                    class="
+                                                                        user-avatar-content
+                                                                    "
+                                                                >
+                                                                    <div
+                                                                        class="
+                                                                            hexagon-image-30-32
+                                                                        "
+                                                                        data-src="img/avatar/03.jpg"
+                                                                        style="
+                                                                            width: 30px;
+                                                                            height: 32px;
+                                                                            position: relative;
+                                                                        "
+                                                                    >
+                                                                        <canvas
+                                                                            width="30"
+                                                                            height="32"
+                                                                            style="
+                                                                                position: absolute;
+                                                                                top: 0px;
+                                                                                left: 0px;
+                                                                            "
+                                                                        ></canvas>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div
+                                                                    class="
+                                                                        user-avatar-progress
+                                                                    "
+                                                                >
+                                                                    <div
+                                                                        class="
+                                                                            hexagon-progress-40-44
+                                                                        "
+                                                                        style="
+                                                                            width: 40px;
+                                                                            height: 44px;
+                                                                            position: relative;
+                                                                        "
+                                                                    >
+                                                                        <canvas
+                                                                            width="40"
+                                                                            height="44"
+                                                                            style="
+                                                                                position: absolute;
+                                                                                top: 0px;
+                                                                                left: 0px;
+                                                                            "
+                                                                        ></canvas>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div
+                                                                    class="
+                                                                        user-avatar-progress-border
+                                                                    "
+                                                                >
+                                                                    <div
+                                                                        class="
+                                                                            hexagon-border-40-44
+                                                                        "
+                                                                        style="
+                                                                            width: 40px;
+                                                                            height: 44px;
+                                                                            position: relative;
+                                                                        "
+                                                                    >
+                                                                        <canvas
+                                                                            width="40"
+                                                                            height="44"
+                                                                            style="
+                                                                                position: absolute;
+                                                                                top: 0px;
+                                                                                left: 0px;
+                                                                            "
+                                                                        ></canvas>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div
+                                                                    class="
+                                                                        user-avatar-badge
+                                                                    "
+                                                                >
+                                                                    <div
+                                                                        class="
+                                                                            user-avatar-badge-border
+                                                                        "
+                                                                    >
+                                                                        <div
+                                                                            class="
+                                                                                hexagon-22-24
+                                                                            "
+                                                                            style="
+                                                                                width: 22px;
+                                                                                height: 24px;
+                                                                                position: relative;
+                                                                            "
+                                                                        >
+                                                                            <canvas
+                                                                                width="22"
+                                                                                height="24"
+                                                                                style="
+                                                                                    position: absolute;
+                                                                                    top: 0px;
+                                                                                    left: 0px;
+                                                                                "
+                                                                            ></canvas>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div
+                                                                        class="
+                                                                            user-avatar-badge-content
+                                                                        "
+                                                                    >
+                                                                        <div
+                                                                            class="
+                                                                                hexagon-dark-16-18
+                                                                            "
+                                                                            style="
+                                                                                width: 16px;
+                                                                                height: 18px;
+                                                                                position: relative;
+                                                                            "
+                                                                        >
+                                                                            <canvas
+                                                                                width="16"
+                                                                                height="18"
+                                                                                style="
+                                                                                    position: absolute;
+                                                                                    top: 0px;
+                                                                                    left: 0px;
+                                                                                "
+                                                                            ></canvas>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <p
+                                                                        class="
+                                                                            user-avatar-badge-text
+                                                                        "
+                                                                    >
+                                                                        16
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+
+                                                        <p
+                                                            class="
+                                                                user-status-title
+                                                            "
+                                                        >
+                                                            <a
+                                                                class="bold"
+                                                                href="profile-timeline.html"
+                                                                >Nick Grissom</a
+                                                            >
+                                                            posted a comment on
+                                                            your
+                                                            <a
+                                                                class="
+                                                                    highlighted
+                                                                "
+                                                                href="profile-timeline.html"
+                                                                >status
+                                                                update</a
+                                                            >
+                                                        </p>
+
+                                                        <p
+                                                            class="
+                                                                user-status-timestamp
+                                                                small-space
+                                                            "
+                                                        >
+                                                            2 minutes ago
+                                                        </p>
+
+                                                        <div
+                                                            class="
+                                                                user-status-icon
+                                                            "
+                                                        >
+                                                            <svg
+                                                                class="
+                                                                    icon-comment
+                                                                "
+                                                            >
+                                                                <use
+                                                                    xlink:href="#svg-comment"
+                                                                ></use>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+
+                                                    <div
+                                                        class="
+                                                            user-status
+                                                            notification
+                                                        "
+                                                    >
+                                                        <a
+                                                            class="
+                                                                user-status-avatar
+                                                            "
+                                                            href="profile-timeline.html"
+                                                        >
+                                                            <div
+                                                                class="
+                                                                    user-avatar
+                                                                    small
+                                                                    no-outline
+                                                                "
+                                                            >
+                                                                <div
+                                                                    class="
+                                                                        user-avatar-content
+                                                                    "
+                                                                >
+                                                                    <div
+                                                                        class="
+                                                                            hexagon-image-30-32
+                                                                        "
+                                                                        data-src="img/avatar/07.jpg"
+                                                                        style="
+                                                                            width: 30px;
+                                                                            height: 32px;
+                                                                            position: relative;
+                                                                        "
+                                                                    >
+                                                                        <canvas
+                                                                            width="30"
+                                                                            height="32"
+                                                                            style="
+                                                                                position: absolute;
+                                                                                top: 0px;
+                                                                                left: 0px;
+                                                                            "
+                                                                        ></canvas>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div
+                                                                    class="
+                                                                        user-avatar-progress
+                                                                    "
+                                                                >
+                                                                    <div
+                                                                        class="
+                                                                            hexagon-progress-40-44
+                                                                        "
+                                                                        style="
+                                                                            width: 40px;
+                                                                            height: 44px;
+                                                                            position: relative;
+                                                                        "
+                                                                    >
+                                                                        <canvas
+                                                                            width="40"
+                                                                            height="44"
+                                                                            style="
+                                                                                position: absolute;
+                                                                                top: 0px;
+                                                                                left: 0px;
+                                                                            "
+                                                                        ></canvas>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div
+                                                                    class="
+                                                                        user-avatar-progress-border
+                                                                    "
+                                                                >
+                                                                    <div
+                                                                        class="
+                                                                            hexagon-border-40-44
+                                                                        "
+                                                                        style="
+                                                                            width: 40px;
+                                                                            height: 44px;
+                                                                            position: relative;
+                                                                        "
+                                                                    >
+                                                                        <canvas
+                                                                            width="40"
+                                                                            height="44"
+                                                                            style="
+                                                                                position: absolute;
+                                                                                top: 0px;
+                                                                                left: 0px;
+                                                                            "
+                                                                        ></canvas>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div
+                                                                    class="
+                                                                        user-avatar-badge
+                                                                    "
+                                                                >
+                                                                    <div
+                                                                        class="
+                                                                            user-avatar-badge-border
+                                                                        "
+                                                                    >
+                                                                        <div
+                                                                            class="
+                                                                                hexagon-22-24
+                                                                            "
+                                                                            style="
+                                                                                width: 22px;
+                                                                                height: 24px;
+                                                                                position: relative;
+                                                                            "
+                                                                        >
+                                                                            <canvas
+                                                                                width="22"
+                                                                                height="24"
+                                                                                style="
+                                                                                    position: absolute;
+                                                                                    top: 0px;
+                                                                                    left: 0px;
+                                                                                "
+                                                                            ></canvas>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div
+                                                                        class="
+                                                                            user-avatar-badge-content
+                                                                        "
+                                                                    >
+                                                                        <div
+                                                                            class="
+                                                                                hexagon-dark-16-18
+                                                                            "
+                                                                            style="
+                                                                                width: 16px;
+                                                                                height: 18px;
+                                                                                position: relative;
+                                                                            "
+                                                                        >
+                                                                            <canvas
+                                                                                width="16"
+                                                                                height="18"
+                                                                                style="
+                                                                                    position: absolute;
+                                                                                    top: 0px;
+                                                                                    left: 0px;
+                                                                                "
+                                                                            ></canvas>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <p
+                                                                        class="
+                                                                            user-avatar-badge-text
+                                                                        "
+                                                                    >
+                                                                        26
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+
+                                                        <p
+                                                            class="
+                                                                user-status-title
+                                                            "
+                                                        >
+                                                            <a
+                                                                class="bold"
+                                                                href="profile-timeline.html"
+                                                                >Sarah
+                                                                Diamond</a
+                                                            >
+                                                            left a like
+                                                            <img
+                                                                class="reaction"
+                                                                src="img/reaction/like.png"
+                                                                alt="reaction-like"
+                                                            />
+                                                            reaction on your
+                                                            <a
+                                                                class="
+                                                                    highlighted
+                                                                "
+                                                                href="profile-timeline.html"
+                                                                >status
+                                                                update</a
+                                                            >
+                                                        </p>
+
+                                                        <p
+                                                            class="
+                                                                user-status-timestamp
+                                                                small-space
+                                                            "
+                                                        >
+                                                            17 minutes ago
+                                                        </p>
+
+                                                        <div
+                                                            class="
+                                                                user-status-icon
+                                                            "
+                                                        >
+                                                            <svg
+                                                                class="
+                                                                    icon-thumbs-up
+                                                                "
+                                                            >
+                                                                <use
+                                                                    xlink:href="#svg-thumbs-up"
+                                                                ></use>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+
+                                                    <div
+                                                        class="
+                                                            user-status
+                                                            notification
+                                                        "
+                                                    >
+                                                        <a
+                                                            class="
+                                                                user-status-avatar
+                                                            "
+                                                            href="profile-timeline.html"
+                                                        >
+                                                            <div
+                                                                class="
+                                                                    user-avatar
+                                                                    small
+                                                                    no-outline
+                                                                "
+                                                            >
+                                                                <div
+                                                                    class="
+                                                                        user-avatar-content
+                                                                    "
+                                                                >
+                                                                    <div
+                                                                        class="
+                                                                            hexagon-image-30-32
+                                                                        "
+                                                                        data-src="img/avatar/02.jpg"
+                                                                        style="
+                                                                            width: 30px;
+                                                                            height: 32px;
+                                                                            position: relative;
+                                                                        "
+                                                                    >
+                                                                        <canvas
+                                                                            width="30"
+                                                                            height="32"
+                                                                            style="
+                                                                                position: absolute;
+                                                                                top: 0px;
+                                                                                left: 0px;
+                                                                            "
+                                                                        ></canvas>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div
+                                                                    class="
+                                                                        user-avatar-progress
+                                                                    "
+                                                                >
+                                                                    <div
+                                                                        class="
+                                                                            hexagon-progress-40-44
+                                                                        "
+                                                                        style="
+                                                                            width: 40px;
+                                                                            height: 44px;
+                                                                            position: relative;
+                                                                        "
+                                                                    >
+                                                                        <canvas
+                                                                            width="40"
+                                                                            height="44"
+                                                                            style="
+                                                                                position: absolute;
+                                                                                top: 0px;
+                                                                                left: 0px;
+                                                                            "
+                                                                        ></canvas>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div
+                                                                    class="
+                                                                        user-avatar-progress-border
+                                                                    "
+                                                                >
+                                                                    <div
+                                                                        class="
+                                                                            hexagon-border-40-44
+                                                                        "
+                                                                        style="
+                                                                            width: 40px;
+                                                                            height: 44px;
+                                                                            position: relative;
+                                                                        "
+                                                                    >
+                                                                        <canvas
+                                                                            width="40"
+                                                                            height="44"
+                                                                            style="
+                                                                                position: absolute;
+                                                                                top: 0px;
+                                                                                left: 0px;
+                                                                            "
+                                                                        ></canvas>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div
+                                                                    class="
+                                                                        user-avatar-badge
+                                                                    "
+                                                                >
+                                                                    <div
+                                                                        class="
+                                                                            user-avatar-badge-border
+                                                                        "
+                                                                    >
+                                                                        <div
+                                                                            class="
+                                                                                hexagon-22-24
+                                                                            "
+                                                                            style="
+                                                                                width: 22px;
+                                                                                height: 24px;
+                                                                                position: relative;
+                                                                            "
+                                                                        >
+                                                                            <canvas
+                                                                                width="22"
+                                                                                height="24"
+                                                                                style="
+                                                                                    position: absolute;
+                                                                                    top: 0px;
+                                                                                    left: 0px;
+                                                                                "
+                                                                            ></canvas>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div
+                                                                        class="
+                                                                            user-avatar-badge-content
+                                                                        "
+                                                                    >
+                                                                        <div
+                                                                            class="
+                                                                                hexagon-dark-16-18
+                                                                            "
+                                                                            style="
+                                                                                width: 16px;
+                                                                                height: 18px;
+                                                                                position: relative;
+                                                                            "
+                                                                        >
+                                                                            <canvas
+                                                                                width="16"
+                                                                                height="18"
+                                                                                style="
+                                                                                    position: absolute;
+                                                                                    top: 0px;
+                                                                                    left: 0px;
+                                                                                "
+                                                                            ></canvas>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <p
+                                                                        class="
+                                                                            user-avatar-badge-text
+                                                                        "
+                                                                    >
+                                                                        13
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+
+                                                        <p
+                                                            class="
+                                                                user-status-title
+                                                            "
+                                                        >
+                                                            <a
+                                                                class="bold"
+                                                                href="profile-timeline.html"
+                                                                >Destroy Dex</a
+                                                            >
+                                                            posted a comment on
+                                                            your
+                                                            <a
+                                                                class="
+                                                                    highlighted
+                                                                "
+                                                                href="profile-photos.html"
+                                                                >photo</a
+                                                            >
+                                                        </p>
+
+                                                        <p
+                                                            class="
+                                                                user-status-timestamp
+                                                                small-space
+                                                            "
+                                                        >
+                                                            31 minutes ago
+                                                        </p>
+
+                                                        <div
+                                                            class="
+                                                                user-status-icon
+                                                            "
+                                                        >
+                                                            <svg
+                                                                class="
+                                                                    icon-comment
+                                                                "
+                                                            >
+                                                                <use
+                                                                    xlink:href="#svg-comment"
+                                                                ></use>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+
+                                                    <div
+                                                        class="
+                                                            user-status
+                                                            notification
+                                                        "
+                                                    >
+                                                        <a
+                                                            class="
+                                                                user-status-avatar
+                                                            "
+                                                            href="profile-timeline.html"
+                                                        >
+                                                            <div
+                                                                class="
+                                                                    user-avatar
+                                                                    small
+                                                                    no-outline
+                                                                "
+                                                            >
+                                                                <div
+                                                                    class="
+                                                                        user-avatar-content
+                                                                    "
+                                                                >
+                                                                    <div
+                                                                        class="
+                                                                            hexagon-image-30-32
+                                                                        "
+                                                                        data-src="img/avatar/03.jpg"
+                                                                        style="
+                                                                            width: 30px;
+                                                                            height: 32px;
+                                                                            position: relative;
+                                                                        "
+                                                                    >
+                                                                        <canvas
+                                                                            width="30"
+                                                                            height="32"
+                                                                            style="
+                                                                                position: absolute;
+                                                                                top: 0px;
+                                                                                left: 0px;
+                                                                            "
+                                                                        ></canvas>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div
+                                                                    class="
+                                                                        user-avatar-progress
+                                                                    "
+                                                                >
+                                                                    <div
+                                                                        class="
+                                                                            hexagon-progress-40-44
+                                                                        "
+                                                                        style="
+                                                                            width: 40px;
+                                                                            height: 44px;
+                                                                            position: relative;
+                                                                        "
+                                                                    >
+                                                                        <canvas
+                                                                            width="40"
+                                                                            height="44"
+                                                                            style="
+                                                                                position: absolute;
+                                                                                top: 0px;
+                                                                                left: 0px;
+                                                                            "
+                                                                        ></canvas>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div
+                                                                    class="
+                                                                        user-avatar-progress-border
+                                                                    "
+                                                                >
+                                                                    <div
+                                                                        class="
+                                                                            hexagon-border-40-44
+                                                                        "
+                                                                        style="
+                                                                            width: 40px;
+                                                                            height: 44px;
+                                                                            position: relative;
+                                                                        "
+                                                                    >
+                                                                        <canvas
+                                                                            width="40"
+                                                                            height="44"
+                                                                            style="
+                                                                                position: absolute;
+                                                                                top: 0px;
+                                                                                left: 0px;
+                                                                            "
+                                                                        ></canvas>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div
+                                                                    class="
+                                                                        user-avatar-badge
+                                                                    "
+                                                                >
+                                                                    <div
+                                                                        class="
+                                                                            user-avatar-badge-border
+                                                                        "
+                                                                    >
+                                                                        <div
+                                                                            class="
+                                                                                hexagon-22-24
+                                                                            "
+                                                                            style="
+                                                                                width: 22px;
+                                                                                height: 24px;
+                                                                                position: relative;
+                                                                            "
+                                                                        >
+                                                                            <canvas
+                                                                                width="22"
+                                                                                height="24"
+                                                                                style="
+                                                                                    position: absolute;
+                                                                                    top: 0px;
+                                                                                    left: 0px;
+                                                                                "
+                                                                            ></canvas>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div
+                                                                        class="
+                                                                            user-avatar-badge-content
+                                                                        "
+                                                                    >
+                                                                        <div
+                                                                            class="
+                                                                                hexagon-dark-16-18
+                                                                            "
+                                                                            style="
+                                                                                width: 16px;
+                                                                                height: 18px;
+                                                                                position: relative;
+                                                                            "
+                                                                        >
+                                                                            <canvas
+                                                                                width="16"
+                                                                                height="18"
+                                                                                style="
+                                                                                    position: absolute;
+                                                                                    top: 0px;
+                                                                                    left: 0px;
+                                                                                "
+                                                                            ></canvas>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <p
+                                                                        class="
+                                                                            user-avatar-badge-text
+                                                                        "
+                                                                    >
+                                                                        16
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+
+                                                        <p
+                                                            class="
+                                                                user-status-title
+                                                            "
+                                                        >
+                                                            <a
+                                                                class="bold"
+                                                                href="profile-timeline.html"
+                                                                >Nick Grissom</a
+                                                            >
+                                                            shared your
+                                                            <a
+                                                                class="
+                                                                    highlighted
+                                                                "
+                                                                href="profile-timeline.html"
+                                                                >status
+                                                                update</a
+                                                            >
+                                                        </p>
+
+                                                        <p
+                                                            class="
+                                                                user-status-timestamp
+                                                                small-space
+                                                            "
+                                                        >
+                                                            39 minutes ago
+                                                        </p>
+
+                                                        <div
+                                                            class="
+                                                                user-status-icon
+                                                            "
+                                                        >
+                                                            <svg
+                                                                class="
+                                                                    icon-share
+                                                                "
+                                                            >
+                                                                <use
+                                                                    xlink:href="#svg-share"
+                                                                ></use>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+
+                                                    <div
+                                                        class="
+                                                            user-status
+                                                            notification
+                                                        "
+                                                    >
+                                                        <a
+                                                            class="
+                                                                user-status-avatar
+                                                            "
+                                                            href="profile-timeline.html"
+                                                        >
+                                                            <div
+                                                                class="
+                                                                    user-avatar
+                                                                    small
+                                                                    no-outline
+                                                                "
+                                                            >
+                                                                <div
+                                                                    class="
+                                                                        user-avatar-content
+                                                                    "
+                                                                >
+                                                                    <div
+                                                                        class="
+                                                                            hexagon-image-30-32
+                                                                        "
+                                                                        data-src="img/avatar/10.jpg"
+                                                                        style="
+                                                                            width: 30px;
+                                                                            height: 32px;
+                                                                            position: relative;
+                                                                        "
+                                                                    >
+                                                                        <canvas
+                                                                            width="30"
+                                                                            height="32"
+                                                                            style="
+                                                                                position: absolute;
+                                                                                top: 0px;
+                                                                                left: 0px;
+                                                                            "
+                                                                        ></canvas>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div
+                                                                    class="
+                                                                        user-avatar-progress
+                                                                    "
+                                                                >
+                                                                    <div
+                                                                        class="
+                                                                            hexagon-progress-40-44
+                                                                        "
+                                                                        style="
+                                                                            width: 40px;
+                                                                            height: 44px;
+                                                                            position: relative;
+                                                                        "
+                                                                    >
+                                                                        <canvas
+                                                                            width="40"
+                                                                            height="44"
+                                                                            style="
+                                                                                position: absolute;
+                                                                                top: 0px;
+                                                                                left: 0px;
+                                                                            "
+                                                                        ></canvas>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div
+                                                                    class="
+                                                                        user-avatar-progress-border
+                                                                    "
+                                                                >
+                                                                    <div
+                                                                        class="
+                                                                            hexagon-border-40-44
+                                                                        "
+                                                                        style="
+                                                                            width: 40px;
+                                                                            height: 44px;
+                                                                            position: relative;
+                                                                        "
+                                                                    >
+                                                                        <canvas
+                                                                            width="40"
+                                                                            height="44"
+                                                                            style="
+                                                                                position: absolute;
+                                                                                top: 0px;
+                                                                                left: 0px;
+                                                                            "
+                                                                        ></canvas>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div
+                                                                    class="
+                                                                        user-avatar-badge
+                                                                    "
+                                                                >
+                                                                    <div
+                                                                        class="
+                                                                            user-avatar-badge-border
+                                                                        "
+                                                                    >
+                                                                        <div
+                                                                            class="
+                                                                                hexagon-22-24
+                                                                            "
+                                                                            style="
+                                                                                width: 22px;
+                                                                                height: 24px;
+                                                                                position: relative;
+                                                                            "
+                                                                        >
+                                                                            <canvas
+                                                                                width="22"
+                                                                                height="24"
+                                                                                style="
+                                                                                    position: absolute;
+                                                                                    top: 0px;
+                                                                                    left: 0px;
+                                                                                "
+                                                                            ></canvas>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div
+                                                                        class="
+                                                                            user-avatar-badge-content
+                                                                        "
+                                                                    >
+                                                                        <div
+                                                                            class="
+                                                                                hexagon-dark-16-18
+                                                                            "
+                                                                            style="
+                                                                                width: 16px;
+                                                                                height: 18px;
+                                                                                position: relative;
+                                                                            "
+                                                                        >
+                                                                            <canvas
+                                                                                width="16"
+                                                                                height="18"
+                                                                                style="
+                                                                                    position: absolute;
+                                                                                    top: 0px;
+                                                                                    left: 0px;
+                                                                                "
+                                                                            ></canvas>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <p
+                                                                        class="
+                                                                            user-avatar-badge-text
+                                                                        "
+                                                                    >
+                                                                        5
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+
+                                                        <p
+                                                            class="
+                                                                user-status-title
+                                                            "
+                                                        >
+                                                            <a
+                                                                class="bold"
+                                                                href="profile-timeline.html"
+                                                                >The Green
+                                                                Goo</a
+                                                            >
+                                                            left a love
+                                                            <img
+                                                                class="reaction"
+                                                                src="img/reaction/love.png"
+                                                                alt="reaction-love"
+                                                            />
+                                                            reaction on your
+                                                            <a
+                                                                class="
+                                                                    highlighted
+                                                                "
+                                                                href="profile-timeline.html"
+                                                                >status
+                                                                update</a
+                                                            >
+                                                        </p>
+
+                                                        <p
+                                                            class="
+                                                                user-status-timestamp
+                                                                small-space
+                                                            "
+                                                        >
+                                                            2 hours ago
+                                                        </p>
+
+                                                        <div
+                                                            class="
+                                                                user-status-icon
+                                                            "
+                                                        >
+                                                            <svg
+                                                                class="
+                                                                    icon-thumbs-up
+                                                                "
+                                                            >
+                                                                <use
+                                                                    xlink:href="#svg-thumbs-up"
+                                                                ></use>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+
+                                                    <div
+                                                        class="
+                                                            user-status
+                                                            notification
+                                                        "
+                                                    >
+                                                        <a
+                                                            class="
+                                                                user-status-avatar
+                                                            "
+                                                            href="profile-timeline.html"
+                                                        >
+                                                            <div
+                                                                class="
+                                                                    user-avatar
+                                                                    small
+                                                                    no-outline
+                                                                "
+                                                            >
+                                                                <div
+                                                                    class="
+                                                                        user-avatar-content
+                                                                    "
+                                                                >
+                                                                    <div
+                                                                        class="
+                                                                            hexagon-image-30-32
+                                                                        "
+                                                                        data-src="img/avatar/05.jpg"
+                                                                        style="
+                                                                            width: 30px;
+                                                                            height: 32px;
+                                                                            position: relative;
+                                                                        "
+                                                                    >
+                                                                        <canvas
+                                                                            width="30"
+                                                                            height="32"
+                                                                            style="
+                                                                                position: absolute;
+                                                                                top: 0px;
+                                                                                left: 0px;
+                                                                            "
+                                                                        ></canvas>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div
+                                                                    class="
+                                                                        user-avatar-progress
+                                                                    "
+                                                                >
+                                                                    <div
+                                                                        class="
+                                                                            hexagon-progress-40-44
+                                                                        "
+                                                                        style="
+                                                                            width: 40px;
+                                                                            height: 44px;
+                                                                            position: relative;
+                                                                        "
+                                                                    >
+                                                                        <canvas
+                                                                            width="40"
+                                                                            height="44"
+                                                                            style="
+                                                                                position: absolute;
+                                                                                top: 0px;
+                                                                                left: 0px;
+                                                                            "
+                                                                        ></canvas>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div
+                                                                    class="
+                                                                        user-avatar-progress-border
+                                                                    "
+                                                                >
+                                                                    <div
+                                                                        class="
+                                                                            hexagon-border-40-44
+                                                                        "
+                                                                        style="
+                                                                            width: 40px;
+                                                                            height: 44px;
+                                                                            position: relative;
+                                                                        "
+                                                                    >
+                                                                        <canvas
+                                                                            width="40"
+                                                                            height="44"
+                                                                            style="
+                                                                                position: absolute;
+                                                                                top: 0px;
+                                                                                left: 0px;
+                                                                            "
+                                                                        ></canvas>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div
+                                                                    class="
+                                                                        user-avatar-badge
+                                                                    "
+                                                                >
+                                                                    <div
+                                                                        class="
+                                                                            user-avatar-badge-border
+                                                                        "
+                                                                    >
+                                                                        <div
+                                                                            class="
+                                                                                hexagon-22-24
+                                                                            "
+                                                                            style="
+                                                                                width: 22px;
+                                                                                height: 24px;
+                                                                                position: relative;
+                                                                            "
+                                                                        >
+                                                                            <canvas
+                                                                                width="22"
+                                                                                height="24"
+                                                                                style="
+                                                                                    position: absolute;
+                                                                                    top: 0px;
+                                                                                    left: 0px;
+                                                                                "
+                                                                            ></canvas>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div
+                                                                        class="
+                                                                            user-avatar-badge-content
+                                                                        "
+                                                                    >
+                                                                        <div
+                                                                            class="
+                                                                                hexagon-dark-16-18
+                                                                            "
+                                                                            style="
+                                                                                width: 16px;
+                                                                                height: 18px;
+                                                                                position: relative;
+                                                                            "
+                                                                        >
+                                                                            <canvas
+                                                                                width="16"
+                                                                                height="18"
+                                                                                style="
+                                                                                    position: absolute;
+                                                                                    top: 0px;
+                                                                                    left: 0px;
+                                                                                "
+                                                                            ></canvas>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <p
+                                                                        class="
+                                                                            user-avatar-badge-text
+                                                                        "
+                                                                    >
+                                                                        12
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+
+                                                        <p
+                                                            class="
+                                                                user-status-title
+                                                            "
+                                                        >
+                                                            <a
+                                                                class="bold"
+                                                                href="profile-timeline.html"
+                                                                >Neko Bebop</a
+                                                            >
+                                                            posted a comment on
+                                                            your
+                                                            <a
+                                                                class="
+                                                                    highlighted
+                                                                "
+                                                                href="profile-timeline.html"
+                                                                >status
+                                                                update</a
+                                                            >
+                                                        </p>
+
+                                                        <p
+                                                            class="
+                                                                user-status-timestamp
+                                                                small-space
+                                                            "
+                                                        >
+                                                            3 hours ago
+                                                        </p>
+
+                                                        <div
+                                                            class="
+                                                                user-status-icon
+                                                            "
+                                                        >
+                                                            <svg
+                                                                class="
+                                                                    icon-comment
+                                                                "
+                                                            >
+                                                                <use
+                                                                    xlink:href="#svg-comment"
+                                                                ></use>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </a>
-
-                                    <p class="user-status-title">
-                                        <a
-                                            class="bold"
-                                            href="profile-timeline.html"
-                                            >Nick Grissom</a
-                                        >
-                                        posted a comment on your
-                                        <a
-                                            class="highlighted"
-                                            href="profile-timeline.html"
-                                            >status update</a
-                                        >
-                                    </p>
-
-                                    <p
-                                        class="
-                                            user-status-timestamp
-                                            small-space
-                                        "
-                                    >
-                                        2 minutes ago
-                                    </p>
-
-                                    <div class="user-status-icon">
-                                        <svg class="icon-comment">
-                                            <use
-                                                xlink:href="#svg-comment"
-                                            ></use>
-                                        </svg>
                                     </div>
                                 </div>
+                                <div
+                                    class="simplebar-placeholder"
+                                    style="width: auto; height: 402px"
+                                ></div>
+                            </div>
+                            <div
+                                class="simplebar-track simplebar-horizontal"
+                                style="visibility: hidden"
+                            >
+                                <div
+                                    class="simplebar-scrollbar"
+                                    style="width: 0px; display: none"
+                                ></div>
+                            </div>
+                            <div
+                                class="simplebar-track simplebar-vertical"
+                                style="visibility: visible"
+                            >
+                                <div
+                                    class="simplebar-scrollbar"
+                                    style="
+                                        height: 318px;
+                                        transform: translate3d(0px, 0px, 0px);
+                                        display: block;
+                                    "
+                                ></div>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="grid-column grid-content-sidebar">
                     <div class="stats-decoration v2 big secondary">
                         <p class="stats-decoration-title">33</p>
@@ -392,482 +1618,13 @@
                     </div>
                 </div>
             </div>
-
-            <div class="slider-line medium">
-                <div
-                    id="reaction-stats-slider-controls"
-                    class="slider-controls"
-                >
-                    <div class="slider-control left">
-                        <svg class="slider-control-icon icon-small-arrow">
-                            <use xlink:href="#svg-small-arrow"></use>
-                        </svg>
-                    </div>
-
-                    <div class="slider-control right">
-                        <svg class="slider-control-icon icon-small-arrow">
-                            <use xlink:href="#svg-small-arrow"></use>
-                        </svg>
-                    </div>
-                </div>
-
-                <div
-                    id="reaction-stats-slider"
-                    class="slider-slides with-separator"
-                >
-                    <div class="slider-slide">
-                        <div class="reaction-stat">
-                            <img
-                                class="reaction-stat-image"
-                                src="img/reaction/like.png"
-                                alt="reaction-like"
-                            />
-
-                            <p class="reaction-stat-title">12.642</p>
-
-                            <p class="reaction-stat-text">Likes</p>
-                        </div>
-                    </div>
-
-                    <div class="slider-slide">
-                        <div class="reaction-stat">
-                            <img
-                                class="reaction-stat-image"
-                                src="img/reaction/love.png"
-                                alt="reaction-love"
-                            />
-
-                            <p class="reaction-stat-title">8.913</p>
-
-                            <p class="reaction-stat-text">Loves</p>
-                        </div>
-                    </div>
-
-                    <div class="slider-slide">
-                        <div class="reaction-stat">
-                            <img
-                                class="reaction-stat-image"
-                                src="img/reaction/dislike.png"
-                                alt="reaction-dislike"
-                            />
-
-                            <p class="reaction-stat-title">945</p>
-
-                            <p class="reaction-stat-text">Dislikes</p>
-                        </div>
-                    </div>
-
-                    <div class="slider-slide">
-                        <div class="reaction-stat">
-                            <img
-                                class="reaction-stat-image"
-                                src="img/reaction/happy.png"
-                                alt="reaction-happy"
-                            />
-
-                            <p class="reaction-stat-title">7.034</p>
-
-                            <p class="reaction-stat-text">Happy</p>
-                        </div>
-                    </div>
-
-                    <div class="slider-slide">
-                        <div class="reaction-stat">
-                            <img
-                                class="reaction-stat-image"
-                                src="img/reaction/funny.png"
-                                alt="reaction-funny"
-                            />
-
-                            <p class="reaction-stat-title">2.356</p>
-
-                            <p class="reaction-stat-text">Funny</p>
-                        </div>
-                    </div>
-
-                    <div class="slider-slide">
-                        <div class="reaction-stat">
-                            <img
-                                class="reaction-stat-image"
-                                src="img/reaction/wow.png"
-                                alt="reaction-wow"
-                            />
-
-                            <p class="reaction-stat-title">5.944</p>
-
-                            <p class="reaction-stat-text">Wow</p>
-                        </div>
-                    </div>
-
-                    <div class="slider-slide">
-                        <div class="reaction-stat">
-                            <img
-                                class="reaction-stat-image"
-                                src="img/reaction/angry.png"
-                                alt="reaction-angry"
-                            />
-
-                            <p class="reaction-stat-title">1.706</p>
-
-                            <p class="reaction-stat-text">Angry</p>
-                        </div>
-                    </div>
-
-                    <div class="slider-slide">
-                        <div class="reaction-stat">
-                            <img
-                                class="reaction-stat-image"
-                                src="img/reaction/sad.png"
-                                alt="reaction-sad"
-                            />
-
-                            <p class="reaction-stat-title">801</p>
-
-                            <p class="reaction-stat-text">Sad</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-3-3-3-3 centered">
-                <div class="featured-stat-box reactioner">
-                    <div class="featured-stat-box-cover">
-                        <p class="featured-stat-box-cover-title">Top Reactor</p>
-
-                        <p class="featured-stat-box-cover-text">
-                            of last month
-                        </p>
-                    </div>
-
-                    <div class="featured-stat-box-info">
-                        <div class="user-avatar small">
-                            <div class="user-avatar-border">
-                                <div class="hexagon-50-56"></div>
-                            </div>
-
-                            <div class="user-avatar-content">
-                                <div
-                                    class="hexagon-image-30-32"
-                                    data-src="img/avatar/02.jpg"
-                                ></div>
-                            </div>
-
-                            <div class="user-avatar-progress">
-                                <div class="hexagon-progress-40-44"></div>
-                            </div>
-
-                            <div class="user-avatar-progress-border">
-                                <div class="hexagon-border-40-44"></div>
-                            </div>
-
-                            <div class="user-avatar-badge">
-                                <div class="user-avatar-badge-border">
-                                    <div class="hexagon-22-24"></div>
-                                </div>
-
-                                <div class="user-avatar-badge-content">
-                                    <div class="hexagon-dark-16-18"></div>
-                                </div>
-
-                                <p class="user-avatar-badge-text">13</p>
-                            </div>
-                        </div>
-
-                        <p class="featured-stat-box-title">94</p>
-
-                        <p class="featured-stat-box-subtitle">Reactions</p>
-
-                        <p class="featured-stat-box-text">Destroy Dex</p>
-                    </div>
-                </div>
-
-                <div class="featured-stat-box reactioner">
-                    <div class="featured-stat-box-cover">
-                        <p class="featured-stat-box-cover-title">Top Reactor</p>
-
-                        <p class="featured-stat-box-cover-text">of all time</p>
-                    </div>
-
-                    <div class="featured-stat-box-info">
-                        <div class="user-avatar small">
-                            <div class="user-avatar-border">
-                                <div class="hexagon-50-56"></div>
-                            </div>
-
-                            <div class="user-avatar-content">
-                                <div
-                                    class="hexagon-image-30-32"
-                                    data-src="img/avatar/03.jpg"
-                                ></div>
-                            </div>
-
-                            <div class="user-avatar-progress">
-                                <div class="hexagon-progress-40-44"></div>
-                            </div>
-
-                            <div class="user-avatar-progress-border">
-                                <div class="hexagon-border-40-44"></div>
-                            </div>
-
-                            <div class="user-avatar-badge">
-                                <div class="user-avatar-badge-border">
-                                    <div class="hexagon-22-24"></div>
-                                </div>
-
-                                <div class="user-avatar-badge-content">
-                                    <div class="hexagon-dark-16-18"></div>
-                                </div>
-
-                                <p class="user-avatar-badge-text">16</p>
-                            </div>
-                        </div>
-
-                        <p class="featured-stat-box-title">1.569</p>
-
-                        <p class="featured-stat-box-subtitle">Reactions</p>
-
-                        <p class="featured-stat-box-text">Nick Grissom</p>
-                    </div>
-                </div>
-
-                <div class="featured-stat-box commenter">
-                    <div class="featured-stat-box-cover">
-                        <p class="featured-stat-box-cover-title">
-                            Top Commenter
-                        </p>
-
-                        <p class="featured-stat-box-cover-text">
-                            of last month
-                        </p>
-                    </div>
-
-                    <div class="featured-stat-box-info">
-                        <div class="user-avatar small">
-                            <div class="user-avatar-border">
-                                <div class="hexagon-50-56"></div>
-                            </div>
-
-                            <div class="user-avatar-content">
-                                <div
-                                    class="hexagon-image-30-32"
-                                    data-src="img/avatar/05.jpg"
-                                ></div>
-                            </div>
-
-                            <div class="user-avatar-progress">
-                                <div class="hexagon-progress-40-44"></div>
-                            </div>
-
-                            <div class="user-avatar-progress-border">
-                                <div class="hexagon-border-40-44"></div>
-                            </div>
-
-                            <div class="user-avatar-badge">
-                                <div class="user-avatar-badge-border">
-                                    <div class="hexagon-22-24"></div>
-                                </div>
-
-                                <div class="user-avatar-badge-content">
-                                    <div class="hexagon-dark-16-18"></div>
-                                </div>
-
-                                <p class="user-avatar-badge-text">12</p>
-                            </div>
-                        </div>
-
-                        <p class="featured-stat-box-title">47</p>
-
-                        <p class="featured-stat-box-subtitle">Comments</p>
-
-                        <p class="featured-stat-box-text">Neko Bebop</p>
-                    </div>
-                </div>
-
-                <div class="featured-stat-box commenter">
-                    <div class="featured-stat-box-cover">
-                        <p class="featured-stat-box-cover-title">
-                            Top Commenter
-                        </p>
-
-                        <p class="featured-stat-box-cover-text">of all time</p>
-                    </div>
-
-                    <div class="featured-stat-box-info">
-                        <div class="user-avatar small">
-                            <div class="user-avatar-border">
-                                <div class="hexagon-50-56"></div>
-                            </div>
-
-                            <div class="user-avatar-content">
-                                <div
-                                    class="hexagon-image-30-32"
-                                    data-src="img/avatar/02.jpg"
-                                ></div>
-                            </div>
-
-                            <div class="user-avatar-progress">
-                                <div class="hexagon-progress-40-44"></div>
-                            </div>
-
-                            <div class="user-avatar-progress-border">
-                                <div class="hexagon-border-40-44"></div>
-                            </div>
-
-                            <div class="user-avatar-badge">
-                                <div class="user-avatar-badge-border">
-                                    <div class="hexagon-22-24"></div>
-                                </div>
-
-                                <div class="user-avatar-badge-content">
-                                    <div class="hexagon-dark-16-18"></div>
-                                </div>
-
-                                <p class="user-avatar-badge-text">13</p>
-                            </div>
-                        </div>
-
-                        <p class="featured-stat-box-title">803</p>
-
-                        <p class="featured-stat-box-subtitle">Comments</p>
-
-                        <p class="featured-stat-box-text">Destroy Dex</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slider-line">
-                <div id="stat-block-slider-controls" class="slider-controls">
-                    <div class="slider-control left">
-                        <svg class="slider-control-icon icon-small-arrow">
-                            <use xlink:href="#svg-small-arrow"></use>
-                        </svg>
-                    </div>
-
-                    <div class="slider-control right">
-                        <svg class="slider-control-icon icon-small-arrow">
-                            <use xlink:href="#svg-small-arrow"></use>
-                        </svg>
-                    </div>
-                </div>
-
-                <div id="stat-block-slider" class="slider-slides">
-                    <div class="slider-slide">
-                        <div class="stat-block">
-                            <div class="stat-block-decoration">
-                                <svg
-                                    class="
-                                        stat-block-decoration-icon
-                                        icon-friend
-                                    "
-                                >
-                                    <use xlink:href="#svg-friend"></use>
-                                </svg>
-                            </div>
-
-                            <div class="stat-block-info">
-                                <p class="stat-block-title">
-                                    Last friend added
-                                </p>
-
-                                <p class="stat-block-text">5 Days Ago</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="slider-slide">
-                        <div class="stat-block">
-                            <div class="stat-block-decoration">
-                                <svg
-                                    class="
-                                        stat-block-decoration-icon
-                                        icon-status
-                                    "
-                                >
-                                    <use xlink:href="#svg-status"></use>
-                                </svg>
-                            </div>
-
-                            <div class="stat-block-info">
-                                <p class="stat-block-title">Last post update</p>
-
-                                <p class="stat-block-text">1 Day Ago</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="slider-slide">
-                        <div class="stat-block">
-                            <div class="stat-block-decoration">
-                                <svg
-                                    class="
-                                        stat-block-decoration-icon
-                                        icon-comment
-                                    "
-                                >
-                                    <use xlink:href="#svg-comment"></use>
-                                </svg>
-                            </div>
-
-                            <div class="stat-block-info">
-                                <p class="stat-block-title">
-                                    Most commented post
-                                </p>
-
-                                <p class="stat-block-text">56 Comments</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="slider-slide">
-                        <div class="stat-block">
-                            <div class="stat-block-decoration">
-                                <svg
-                                    class="
-                                        stat-block-decoration-icon
-                                        icon-thumbs-up
-                                    "
-                                >
-                                    <use xlink:href="#svg-thumbs-up"></use>
-                                </svg>
-                            </div>
-
-                            <div class="stat-block-info">
-                                <p class="stat-block-title">Most liked post</p>
-
-                                <p class="stat-block-text">904 Likes</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="slider-slide">
-                        <div class="stat-block">
-                            <div class="stat-block-decoration">
-                                <svg
-                                    class="
-                                        stat-block-decoration-icon
-                                        icon-share
-                                    "
-                                >
-                                    <use xlink:href="#svg-share"></use>
-                                </svg>
-                            </div>
-
-                            <div class="stat-block-info">
-                                <p class="stat-block-title">Most shared post</p>
-
-                                <p class="stat-block-text">156 Shares</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <div class="section-header">
             <div class="section-header-info">
                 <p class="section-pretitle">Overview</p>
 
-                <h2 class="section-title">Account Analytics</h2>
+                <h2 class="section-title">Game Analytics</h2>
             </div>
         </div>
 
@@ -1009,13 +1766,7 @@
                     </div>
                 </div>
 
-                <div class="widget-box-content">
-                    <div class="chart-wrap">
-                        <div class="chart">
-                            <canvas id="ve-monthly-report-chart"></canvas>
-                        </div>
-                    </div>
-                </div>
+                <line-chart />
 
                 <div class="widget-box-footer">
                     <div class="chart-info">
@@ -1094,989 +1845,6 @@
                                 <p class="user-stat-text">
                                     engagements / jul 2019
                                 </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-9-3 stretched">
-                <div class="grid-column">
-                    <div class="widget-box">
-                        <p class="widget-box-title">Top Friends Activity</p>
-
-                        <div class="widget-box-content no-margin-top">
-                            <div class="table table-top-friends join-rows">
-                                <div class="table-header">
-                                    <div class="table-header-column">
-                                        <p class="table-header-title">Friend</p>
-                                    </div>
-
-                                    <div
-                                        class="
-                                            table-header-column
-                                            centered
-                                            padded
-                                        "
-                                    >
-                                        <p class="table-header-title">
-                                            Reactions
-                                        </p>
-                                    </div>
-
-                                    <div
-                                        class="
-                                            table-header-column
-                                            centered
-                                            padded
-                                        "
-                                    >
-                                        <p class="table-header-title">
-                                            Comments
-                                        </p>
-                                    </div>
-
-                                    <div
-                                        class="
-                                            table-header-column
-                                            centered
-                                            padded
-                                        "
-                                    >
-                                        <p class="table-header-title">Shares</p>
-                                    </div>
-
-                                    <div
-                                        class="
-                                            table-header-column
-                                            centered
-                                            padded
-                                        "
-                                    >
-                                        <p class="table-header-title">
-                                            Replies
-                                        </p>
-                                    </div>
-
-                                    <div
-                                        class="table-header-column padded-left"
-                                    >
-                                        <p class="table-header-title">
-                                            Post Engagement
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="table-body">
-                                    <div class="table-row tiny">
-                                        <div class="table-column">
-                                            <div class="user-status">
-                                                <a
-                                                    class="user-status-avatar"
-                                                    href="profile-timeline.html"
-                                                >
-                                                    <div
-                                                        class="
-                                                            user-avatar
-                                                            small
-                                                            no-outline
-                                                        "
-                                                    >
-                                                        <div
-                                                            class="
-                                                                user-avatar-content
-                                                            "
-                                                        >
-                                                            <div
-                                                                class="
-                                                                    hexagon-image-30-32
-                                                                "
-                                                                data-src="img/avatar/03.jpg"
-                                                            ></div>
-                                                        </div>
-
-                                                        <div
-                                                            class="
-                                                                user-avatar-progress
-                                                            "
-                                                        >
-                                                            <div
-                                                                class="
-                                                                    hexagon-progress-40-44
-                                                                "
-                                                            ></div>
-                                                        </div>
-
-                                                        <div
-                                                            class="
-                                                                user-avatar-progress-border
-                                                            "
-                                                        >
-                                                            <div
-                                                                class="
-                                                                    hexagon-border-40-44
-                                                                "
-                                                            ></div>
-                                                        </div>
-
-                                                        <div
-                                                            class="
-                                                                user-avatar-badge
-                                                            "
-                                                        >
-                                                            <div
-                                                                class="
-                                                                    user-avatar-badge-border
-                                                                "
-                                                            >
-                                                                <div
-                                                                    class="
-                                                                        hexagon-22-24
-                                                                    "
-                                                                ></div>
-                                                            </div>
-
-                                                            <div
-                                                                class="
-                                                                    user-avatar-badge-content
-                                                                "
-                                                            >
-                                                                <div
-                                                                    class="
-                                                                        hexagon-dark-16-18
-                                                                    "
-                                                                ></div>
-                                                            </div>
-
-                                                            <p
-                                                                class="
-                                                                    user-avatar-badge-text
-                                                                "
-                                                            >
-                                                                16
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </a>
-
-                                                <p class="user-status-title">
-                                                    <a
-                                                        class="bold"
-                                                        href="profile-timeline.html"
-                                                        >Nick Grissom</a
-                                                    >
-                                                </p>
-
-                                                <p
-                                                    class="
-                                                        user-status-text
-                                                        small
-                                                    "
-                                                >
-                                                    Friended: Jan 14, 2017
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <div
-                                            class="table-column centered padded"
-                                        >
-                                            <p class="table-title">1569</p>
-                                        </div>
-
-                                        <div
-                                            class="table-column centered padded"
-                                        >
-                                            <p class="table-title">750</p>
-                                        </div>
-
-                                        <div
-                                            class="table-column centered padded"
-                                        >
-                                            <p class="table-title">109</p>
-                                        </div>
-
-                                        <div
-                                            class="table-column centered padded"
-                                        >
-                                            <p class="table-title">223</p>
-                                        </div>
-
-                                        <div class="table-column padded-left">
-                                            <div class="progress-stat-wrap">
-                                                <div class="progress-stat">
-                                                    <div
-                                                        id="post-engagement-1"
-                                                        class="
-                                                            progress-stat-bar
-                                                        "
-                                                    ></div>
-
-                                                    <div
-                                                        class="
-                                                            bar-progress-wrap
-                                                        "
-                                                    >
-                                                        <p
-                                                            class="
-                                                                bar-progress-info
-                                                                medium
-                                                                negative
-                                                            "
-                                                        >
-                                                            <span
-                                                                class="
-                                                                    bar-progress-text
-                                                                    no-space
-                                                                "
-                                                            ></span>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="table-row tiny">
-                                        <div class="table-column">
-                                            <div class="user-status">
-                                                <a
-                                                    class="user-status-avatar"
-                                                    href="profile-timeline.html"
-                                                >
-                                                    <div
-                                                        class="
-                                                            user-avatar
-                                                            small
-                                                            no-outline
-                                                        "
-                                                    >
-                                                        <div
-                                                            class="
-                                                                user-avatar-content
-                                                            "
-                                                        >
-                                                            <div
-                                                                class="
-                                                                    hexagon-image-30-32
-                                                                "
-                                                                data-src="img/avatar/02.jpg"
-                                                            ></div>
-                                                        </div>
-
-                                                        <div
-                                                            class="
-                                                                user-avatar-progress
-                                                            "
-                                                        >
-                                                            <div
-                                                                class="
-                                                                    hexagon-progress-40-44
-                                                                "
-                                                            ></div>
-                                                        </div>
-
-                                                        <div
-                                                            class="
-                                                                user-avatar-progress-border
-                                                            "
-                                                        >
-                                                            <div
-                                                                class="
-                                                                    hexagon-border-40-44
-                                                                "
-                                                            ></div>
-                                                        </div>
-
-                                                        <div
-                                                            class="
-                                                                user-avatar-badge
-                                                            "
-                                                        >
-                                                            <div
-                                                                class="
-                                                                    user-avatar-badge-border
-                                                                "
-                                                            >
-                                                                <div
-                                                                    class="
-                                                                        hexagon-22-24
-                                                                    "
-                                                                ></div>
-                                                            </div>
-
-                                                            <div
-                                                                class="
-                                                                    user-avatar-badge-content
-                                                                "
-                                                            >
-                                                                <div
-                                                                    class="
-                                                                        hexagon-dark-16-18
-                                                                    "
-                                                                ></div>
-                                                            </div>
-
-                                                            <p
-                                                                class="
-                                                                    user-avatar-badge-text
-                                                                "
-                                                            >
-                                                                13
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </a>
-
-                                                <p class="user-status-title">
-                                                    <a
-                                                        class="bold"
-                                                        href="profile-timeline.html"
-                                                        >Destroy Dex</a
-                                                    >
-                                                </p>
-
-                                                <p
-                                                    class="
-                                                        user-status-text
-                                                        small
-                                                    "
-                                                >
-                                                    Friended: May 22, 2017
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <div
-                                            class="table-column centered padded"
-                                        >
-                                            <p class="table-title">1036</p>
-                                        </div>
-
-                                        <div
-                                            class="table-column centered padded"
-                                        >
-                                            <p class="table-title">803</p>
-                                        </div>
-
-                                        <div
-                                            class="table-column centered padded"
-                                        >
-                                            <p class="table-title">97</p>
-                                        </div>
-
-                                        <div
-                                            class="table-column centered padded"
-                                        >
-                                            <p class="table-title">126</p>
-                                        </div>
-
-                                        <div class="table-column padded-left">
-                                            <div class="progress-stat-wrap">
-                                                <div class="progress-stat">
-                                                    <div
-                                                        id="post-engagement-2"
-                                                        class="
-                                                            progress-stat-bar
-                                                        "
-                                                    ></div>
-
-                                                    <div
-                                                        class="
-                                                            bar-progress-wrap
-                                                        "
-                                                    >
-                                                        <p
-                                                            class="
-                                                                bar-progress-info
-                                                                medium
-                                                                negative
-                                                            "
-                                                        >
-                                                            <span
-                                                                class="
-                                                                    bar-progress-text
-                                                                    no-space
-                                                                "
-                                                            ></span>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="table-row tiny">
-                                        <div class="table-column">
-                                            <div class="user-status">
-                                                <a
-                                                    class="user-status-avatar"
-                                                    href="profile-timeline.html"
-                                                >
-                                                    <div
-                                                        class="
-                                                            user-avatar
-                                                            small
-                                                            no-outline
-                                                        "
-                                                    >
-                                                        <div
-                                                            class="
-                                                                user-avatar-content
-                                                            "
-                                                        >
-                                                            <div
-                                                                class="
-                                                                    hexagon-image-30-32
-                                                                "
-                                                                data-src="img/avatar/05.jpg"
-                                                            ></div>
-                                                        </div>
-
-                                                        <div
-                                                            class="
-                                                                user-avatar-progress
-                                                            "
-                                                        >
-                                                            <div
-                                                                class="
-                                                                    hexagon-progress-40-44
-                                                                "
-                                                            ></div>
-                                                        </div>
-
-                                                        <div
-                                                            class="
-                                                                user-avatar-progress-border
-                                                            "
-                                                        >
-                                                            <div
-                                                                class="
-                                                                    hexagon-border-40-44
-                                                                "
-                                                            ></div>
-                                                        </div>
-
-                                                        <div
-                                                            class="
-                                                                user-avatar-badge
-                                                            "
-                                                        >
-                                                            <div
-                                                                class="
-                                                                    user-avatar-badge-border
-                                                                "
-                                                            >
-                                                                <div
-                                                                    class="
-                                                                        hexagon-22-24
-                                                                    "
-                                                                ></div>
-                                                            </div>
-
-                                                            <div
-                                                                class="
-                                                                    user-avatar-badge-content
-                                                                "
-                                                            >
-                                                                <div
-                                                                    class="
-                                                                        hexagon-dark-16-18
-                                                                    "
-                                                                ></div>
-                                                            </div>
-
-                                                            <p
-                                                                class="
-                                                                    user-avatar-badge-text
-                                                                "
-                                                            >
-                                                                12
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </a>
-
-                                                <p class="user-status-title">
-                                                    <a
-                                                        class="bold"
-                                                        href="profile-timeline.html"
-                                                        >Neko Bebop</a
-                                                    >
-                                                </p>
-
-                                                <p
-                                                    class="
-                                                        user-status-text
-                                                        small
-                                                    "
-                                                >
-                                                    Friended: Sep 19, 2018
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <div
-                                            class="table-column centered padded"
-                                        >
-                                            <p class="table-title">860</p>
-                                        </div>
-
-                                        <div
-                                            class="table-column centered padded"
-                                        >
-                                            <p class="table-title">662</p>
-                                        </div>
-
-                                        <div
-                                            class="table-column centered padded"
-                                        >
-                                            <p class="table-title">102</p>
-                                        </div>
-
-                                        <div
-                                            class="table-column centered padded"
-                                        >
-                                            <p class="table-title">91</p>
-                                        </div>
-
-                                        <div class="table-column padded-left">
-                                            <div class="progress-stat-wrap">
-                                                <div class="progress-stat">
-                                                    <div
-                                                        id="post-engagement-3"
-                                                        class="
-                                                            progress-stat-bar
-                                                        "
-                                                    ></div>
-
-                                                    <div
-                                                        class="
-                                                            bar-progress-wrap
-                                                        "
-                                                    >
-                                                        <p
-                                                            class="
-                                                                bar-progress-info
-                                                                medium
-                                                                negative
-                                                            "
-                                                        >
-                                                            <span
-                                                                class="
-                                                                    bar-progress-text
-                                                                    no-space
-                                                                "
-                                                            ></span>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="table-row tiny">
-                                        <div class="table-column">
-                                            <div class="user-status">
-                                                <a
-                                                    class="user-status-avatar"
-                                                    href="profile-timeline.html"
-                                                >
-                                                    <div
-                                                        class="
-                                                            user-avatar
-                                                            small
-                                                            no-outline
-                                                        "
-                                                    >
-                                                        <div
-                                                            class="
-                                                                user-avatar-content
-                                                            "
-                                                        >
-                                                            <div
-                                                                class="
-                                                                    hexagon-image-30-32
-                                                                "
-                                                                data-src="img/avatar/07.jpg"
-                                                            ></div>
-                                                        </div>
-
-                                                        <div
-                                                            class="
-                                                                user-avatar-progress
-                                                            "
-                                                        >
-                                                            <div
-                                                                class="
-                                                                    hexagon-progress-40-44
-                                                                "
-                                                            ></div>
-                                                        </div>
-
-                                                        <div
-                                                            class="
-                                                                user-avatar-progress-border
-                                                            "
-                                                        >
-                                                            <div
-                                                                class="
-                                                                    hexagon-border-40-44
-                                                                "
-                                                            ></div>
-                                                        </div>
-
-                                                        <div
-                                                            class="
-                                                                user-avatar-badge
-                                                            "
-                                                        >
-                                                            <div
-                                                                class="
-                                                                    user-avatar-badge-border
-                                                                "
-                                                            >
-                                                                <div
-                                                                    class="
-                                                                        hexagon-22-24
-                                                                    "
-                                                                ></div>
-                                                            </div>
-
-                                                            <div
-                                                                class="
-                                                                    user-avatar-badge-content
-                                                                "
-                                                            >
-                                                                <div
-                                                                    class="
-                                                                        hexagon-dark-16-18
-                                                                    "
-                                                                ></div>
-                                                            </div>
-
-                                                            <p
-                                                                class="
-                                                                    user-avatar-badge-text
-                                                                "
-                                                            >
-                                                                26
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </a>
-
-                                                <p class="user-status-title">
-                                                    <a
-                                                        class="bold"
-                                                        href="profile-timeline.html"
-                                                        >Sarah Diamond</a
-                                                    >
-                                                </p>
-
-                                                <p
-                                                    class="
-                                                        user-status-text
-                                                        small
-                                                    "
-                                                >
-                                                    Friended: Aug 6, 2017
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <div
-                                            class="table-column centered padded"
-                                        >
-                                            <p class="table-title">742</p>
-                                        </div>
-
-                                        <div
-                                            class="table-column centered padded"
-                                        >
-                                            <p class="table-title">401</p>
-                                        </div>
-
-                                        <div
-                                            class="table-column centered padded"
-                                        >
-                                            <p class="table-title">77</p>
-                                        </div>
-
-                                        <div
-                                            class="table-column centered padded"
-                                        >
-                                            <p class="table-title">64</p>
-                                        </div>
-
-                                        <div class="table-column padded-left">
-                                            <div class="progress-stat-wrap">
-                                                <div class="progress-stat">
-                                                    <div
-                                                        id="post-engagement-4"
-                                                        class="
-                                                            progress-stat-bar
-                                                        "
-                                                    ></div>
-
-                                                    <div
-                                                        class="
-                                                            bar-progress-wrap
-                                                        "
-                                                    >
-                                                        <p
-                                                            class="
-                                                                bar-progress-info
-                                                                medium
-                                                                negative
-                                                            "
-                                                        >
-                                                            <span
-                                                                class="
-                                                                    bar-progress-text
-                                                                    no-space
-                                                                "
-                                                            ></span>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="table-row tiny">
-                                        <div class="table-column">
-                                            <div class="user-status">
-                                                <a
-                                                    class="user-status-avatar"
-                                                    href="profile-timeline.html"
-                                                >
-                                                    <div
-                                                        class="
-                                                            user-avatar
-                                                            small
-                                                            no-outline
-                                                        "
-                                                    >
-                                                        <div
-                                                            class="
-                                                                user-avatar-content
-                                                            "
-                                                        >
-                                                            <div
-                                                                class="
-                                                                    hexagon-image-30-32
-                                                                "
-                                                                data-src="img/avatar/10.jpg"
-                                                            ></div>
-                                                        </div>
-
-                                                        <div
-                                                            class="
-                                                                user-avatar-progress
-                                                            "
-                                                        >
-                                                            <div
-                                                                class="
-                                                                    hexagon-progress-40-44
-                                                                "
-                                                            ></div>
-                                                        </div>
-
-                                                        <div
-                                                            class="
-                                                                user-avatar-progress-border
-                                                            "
-                                                        >
-                                                            <div
-                                                                class="
-                                                                    hexagon-border-40-44
-                                                                "
-                                                            ></div>
-                                                        </div>
-
-                                                        <div
-                                                            class="
-                                                                user-avatar-badge
-                                                            "
-                                                        >
-                                                            <div
-                                                                class="
-                                                                    user-avatar-badge-border
-                                                                "
-                                                            >
-                                                                <div
-                                                                    class="
-                                                                        hexagon-22-24
-                                                                    "
-                                                                ></div>
-                                                            </div>
-
-                                                            <div
-                                                                class="
-                                                                    user-avatar-badge-content
-                                                                "
-                                                            >
-                                                                <div
-                                                                    class="
-                                                                        hexagon-dark-16-18
-                                                                    "
-                                                                ></div>
-                                                            </div>
-
-                                                            <p
-                                                                class="
-                                                                    user-avatar-badge-text
-                                                                "
-                                                            >
-                                                                5
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </a>
-
-                                                <p class="user-status-title">
-                                                    <a
-                                                        class="bold"
-                                                        href="profile-timeline.html"
-                                                        >The Green Goo</a
-                                                    >
-                                                </p>
-
-                                                <p
-                                                    class="
-                                                        user-status-text
-                                                        small
-                                                    "
-                                                >
-                                                    Friended: Dec 27, 2019
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <div
-                                            class="table-column centered padded"
-                                        >
-                                            <p class="table-title">421</p>
-                                        </div>
-
-                                        <div
-                                            class="table-column centered padded"
-                                        >
-                                            <p class="table-title">200</p>
-                                        </div>
-
-                                        <div
-                                            class="table-column centered padded"
-                                        >
-                                            <p class="table-title">34</p>
-                                        </div>
-
-                                        <div
-                                            class="table-column centered padded"
-                                        >
-                                            <p class="table-title">22</p>
-                                        </div>
-
-                                        <div class="table-column padded-left">
-                                            <div class="progress-stat-wrap">
-                                                <div class="progress-stat">
-                                                    <div
-                                                        id="post-engagement-5"
-                                                        class="
-                                                            progress-stat-bar
-                                                        "
-                                                    ></div>
-
-                                                    <div
-                                                        class="
-                                                            bar-progress-wrap
-                                                        "
-                                                    >
-                                                        <p
-                                                            class="
-                                                                bar-progress-info
-                                                                medium
-                                                                negative
-                                                            "
-                                                        >
-                                                            <span
-                                                                class="
-                                                                    bar-progress-text
-                                                                    no-space
-                                                                "
-                                                            ></span>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="grid-column">
-                    <div class="widget-box">
-                        <div class="widget-box-actions">
-                            <div class="widget-box-action">
-                                <p class="widget-box-title">Engagements</p>
-                            </div>
-                        </div>
-
-                        <div class="widget-box-content">
-                            <div class="progress-arc-wrap">
-                                <div class="progress-arc">
-                                    <canvas id="engagements-chart"></canvas>
-                                </div>
-
-                                <div class="progress-arc-info">
-                                    <p class="progress-arc-title">28.8K</p>
-
-                                    <p class="progress-arc-text">Engagements</p>
-                                </div>
-                            </div>
-
-                            <div class="user-stats reference">
-                                <div class="user-stat big">
-                                    <div
-                                        class="reference-bullet secondary"
-                                    ></div>
-
-                                    <p class="user-stat-title">18.3K</p>
-
-                                    <p class="user-stat-text">reactions</p>
-                                </div>
-
-                                <div class="user-stat big">
-                                    <div class="reference-bullet primary"></div>
-
-                                    <p class="user-stat-title">5.2K</p>
-
-                                    <p class="user-stat-text">comments</p>
-                                </div>
-                            </div>
-
-                            <div class="user-stats reference">
-                                <div class="user-stat big">
-                                    <div class="reference-bullet blue"></div>
-
-                                    <p class="user-stat-title">1.4K</p>
-
-                                    <p class="user-stat-text">shares</p>
-                                </div>
-
-                                <div class="user-stat big">
-                                    <div
-                                        class="reference-bullet light-blue"
-                                    ></div>
-
-                                    <p class="user-stat-title">3.9K</p>
-
-                                    <p class="user-stat-text">replies</p>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -2308,52 +2076,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="widget-box">
-                <div class="widget-box-actions">
-                    <div class="widget-box-action">
-                        <p class="widget-box-title">Yearly Report</p>
-                    </div>
-
-                    <div class="widget-box-action">
-                        <div class="reference-item-list">
-                            <div class="reference-item">
-                                <div class="reference-bullet primary"></div>
-
-                                <p class="reference-item-text">Reactions</p>
-                            </div>
-
-                            <div class="reference-item">
-                                <div class="reference-bullet blue"></div>
-
-                                <p class="reference-item-text">Comments</p>
-                            </div>
-                        </div>
-
-                        <div class="form-select v2">
-                            <select
-                                id="rc-yearly-report-date"
-                                name="rc_yearly_report_date"
-                            >
-                                <option value="0">Jan - Dec 2018</option>
-                                <option value="1">Jan - Dec 2019</option>
-                            </select>
-
-                            <svg class="form-select-icon icon-small-arrow">
-                                <use xlink:href="#svg-small-arrow"></use>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="widget-box-content">
-                    <div class="chart-wrap">
-                        <div class="chart">
-                            <canvas id="rc-yearly-report-chart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </template>
@@ -2361,27 +2083,72 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { mapGetters } from "vuex";
-
+import { GChart } from "vue-google-charts";
 import Hexagon from "@/plugins/hexagon";
 import Slider from "@/plugins/slider";
-import Chart from "@/plugins/chart";
+import LineChart from "./Chart.vue";
 import Dropdown from "@/plugins/dropdown";
-
 @Component({
-    components: {},
+    components: { GChart, LineChart },
     computed: { ...mapGetters(["user"]) },
 })
 export default class dashBoard extends Vue {
     private dropdown: Dropdown = new Dropdown();
     private hexagon: Hexagon = new Hexagon();
     private slider: Slider = new Slider();
-    private chart: Chart = new Chart();
-
-    mounted() {
+    loaded = false;
+    chartdata = null;
+    chartData = [
+        ["Year", "Sales", "Expenses", "Profit"],
+        ["2014", 1000, 400, 200],
+        ["2015", 1170, 460, 250],
+        ["2016", 660, 1120, 300],
+        ["2017", 1030, 540, 350],
+    ];
+    chartOptions = {
+        chart: {
+            title: "Company Performance",
+            subtitle: "Sales, Expenses, and Profit: 2014-2017",
+        },
+    };
+    private projects = [];
+    async mounted() {
         this.hexagon.init();
         this.slider.init();
         this.dropdown.init();
-        this.chart.init();
+        this.loaded = false;
+        try {
+            const result = [
+                {
+                    id: 111,
+                    type: "image",
+                    size: 200,
+                    url: "https://picsum.photos/1024/480/?image=52",
+                    name: "qwe.png",
+                },
+                {
+                    id: 22,
+                    type: "image",
+                    size: 300,
+                    url: "https://picsum.photos/1024/480/?image=54",
+                    name: "test.png",
+                },
+                {
+                    id: 33,
+                    type: "image",
+                    size: 400,
+                    url: "https://picsum.photos/1024/480/?image=53",
+                    name: "test1.png",
+                },
+            ];
+            this.projects = result;
+
+            //   const { userlist } = await fetch('/api/userlist')
+            this.chartdata = this.projects;
+            this.loaded = true;
+        } catch (e) {
+            console.error(e);
+        }
     }
 }
 </script>
@@ -2392,4 +2159,21 @@ export default class dashBoard extends Vue {
     height: 324px;
     align-items: center;
 }
+.grid.grid-layout-1 {
+    grid-template-areas: "sidebar content content contentsidebar";
+}
+.featured-stat-list {
+    height: 180px;
+}
+.grid-sidebar {
+    height: 442px;
+}
+.profile-stats {
+    padding-bottom: 0px;
+    height: 100%;
+}
+.account-stat-visits {
+    height: 336px;
+}
 </style>
+

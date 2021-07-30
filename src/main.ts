@@ -18,6 +18,11 @@ import '@/scripts/utils/svg-loader'
 import 'simplebar/dist/simplebar.min.css';
 
 
+import VueGoogleCharts from 'vue-google-charts'
+
+Vue.use(VueGoogleCharts)
+
+
 Vue.config.productionTip = false
 
 Component.registerHooks([

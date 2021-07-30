@@ -2,11 +2,11 @@
     <div class="header-actions">
         <!-- <div class="login" @click="logout">logout</div> -->
         <div class="lang-selector form-select dropbox-container">
-            <b-select name="sub-manager" class="dropbox">
-                <b-select-option v-for="lang in langList" :key="lang.id">{{
-                    lang
-                }}</b-select-option>
-            </b-select>
+            <select name="sub-manager" class="dropbox custom-select">
+                <option v-for="lang in langList" :key="lang.id">
+                    {{ lang }}
+                </option>
+            </select>
         </div>
         <div class="action-list dark">
             <!-- messages -->
@@ -173,6 +173,7 @@ export default class ProfileMenu extends Vue {
     align-items: center;
     height: 80px;
     .custom-select {
+        padding: 0.375rem 1.75rem 0.375rem 0.75rem;
         height: 38px;
         border: none !important;
         background: #7750f8

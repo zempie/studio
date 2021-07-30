@@ -28,12 +28,14 @@ _axios.interceptors.request.use(
 
 // Add a response interceptor
 _axios.interceptors.response.use(
-    (res) => {
-
+  (res) => {
+    
+    
       // Do something with response data
 
       if ( res.data.jsonrpc ) {
         res.data = res.data.result;
+        console.log('res.data')
       }
       else if ( res.data.data ) {
         res.data = res.data.data;

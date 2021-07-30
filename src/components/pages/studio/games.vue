@@ -1,5 +1,5 @@
 <template>
-    <div class="content-grid">
+    <div>
         <div class="section-banner">
             <img
                 class="section-banner-icon"
@@ -9,7 +9,9 @@
 
             <p class="section-banner-title">모든 게임</p>
 
-            <p class="section-banner-text">{{user.name}}님이 올린 모든 게임</p>
+            <p class="section-banner-text">
+                {{ user.name }}님이 올린 모든 게임
+            </p>
         </div>
         <div class="add-game-container">
             <!-- 설문조사 btn -->
