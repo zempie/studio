@@ -4,7 +4,7 @@ import app from "@/scripts/utils/app";
 class Sidebar {
 
     init() {
-    
+
         app.querySelector('.content-grid', (el) => {
             const sidebar = {
                 chat: {
@@ -23,11 +23,11 @@ class Sidebar {
             const updateGridPosition = (contentGrid) => {
                 if (window.innerWidth > breakpointWidth) {
                     const chatWidth = sidebar.chat.active ? sidebar.chat.maxWidth : sidebar.chat.minWidth,
-                    navigationWidth = sidebar.navigation.active ? sidebar.navigation.maxWidth : sidebar.navigation.minWidth,
-                    availableWidth = document.body.clientWidth - contentGrid.offsetWidth - navigationWidth,
-                    offsetX = (availableWidth / 2) + navigationWidth;
-                    console.log('init', availableWidth,navigationWidth)
-                    
+                        navigationWidth = sidebar.navigation.active ? sidebar.navigation.maxWidth : sidebar.navigation.minWidth,
+                        availableWidth = document.body.clientWidth - contentGrid.offsetWidth - navigationWidth,
+                        offsetX = (availableWidth / 2) + navigationWidth;
+                    console.log('init', availableWidth, navigationWidth)
+
                     contentGrid.style.transform = `translate(${offsetX}px, 0)`;
                 } else {
                     contentGrid.style.transform = `translate(0, 0)`;
@@ -134,7 +134,6 @@ class Sidebar {
                 NAVIGATION WIDGET 
             ------------------------*/
             app.querySelector('.navigation-widget-trigger', (el) => {
-                console.log('nav', el)
                 const navigationTrigger = el[0],
                     topOffset = 80,
                     navigationWidget = document.querySelector('#navigation-widget'),
@@ -143,6 +142,7 @@ class Sidebar {
                     hiddenClass = 'hidden',
                     delayedClass = 'delayed';
 
+                console.log('nav', navigationWidgetSmall)
                 const setNavigationWidgetDimensions = () => {
 
                     //@ts-ignore
@@ -150,15 +150,17 @@ class Sidebar {
                 };
 
                 const toggleNavigationWidget = () => {
-                    console.log('toggleNavigationWidget')
                     navigationTrigger.classList.toggle(activeClass);
+                    if (navigationWidget) {
+                        navigationWidget.classList.toggle(delayedClass);
+                        navigationWidget.classList.toggle(hiddenClass);
+                        sidebar.navigation.active = !navigationWidget.classList.contains(hiddenClass);
+                    }
+                    else if (navigationWidgetSmall) {
+                        navigationWidgetSmall.classList.toggle(delayedClass);
+                        navigationWidgetSmall.classList.toggle(hiddenClass);
+                    }
 
-                    navigationWidget.classList.toggle(delayedClass);
-                    navigationWidget.classList.toggle(hiddenClass);
-                    navigationWidgetSmall.classList.toggle(delayedClass);
-                    navigationWidgetSmall.classList.toggle(hiddenClass);
-
-                    sidebar.navigation.active = !navigationWidget.classList.contains(hiddenClass);
                     updateGridPositions();
                 };
 
@@ -184,8 +186,10 @@ class Sidebar {
                 overlay.style.position = 'fixed';
                 overlay.style.top = '0';
                 overlay.style.left = '0';
+                //@ts-ignore
                 overlay.style.zIndex = 99998;
                 overlay.style.backgroundColor = 'rgba(21, 21, 31, .96)';
+                //@ts-ignore
                 overlay.style.opacity = 0;
                 overlay.style.visibility = 'hidden';
                 overlay.style.transition = 'opacity .3s ease-in-out, visibility .3s ease-in-out';
@@ -193,16 +197,19 @@ class Sidebar {
                 document.body.appendChild(overlay);
 
                 const showOverlay = () => {
+                    //@ts-ignore
                     overlay.style.opacity = 1;
                     overlay.style.visibility = 'visible';
                 };
 
                 const hideOverlay = () => {
+                    //@ts-ignore
                     overlay.style.opacity = 0;
                     overlay.style.visibility = 'hidden';
                 };
 
                 const setNavigationWidgetMobileDimensions = () => {
+                    //@ts-ignore
                     navigationWidgetMobile.style.height = `${window.innerHeight}px`;
                 };
 

@@ -15,7 +15,11 @@
                     class="menu-item text-center"
                     :class="$route.name === 'DashBoard' ? 'active' : ''"
                 >
-                    <router-link to="/dashBoard" class="menu-item-link">
+                    <router-link
+                        to="/dashBoard"
+                        class="menu-item-link text-tooltip-tfr"
+                        data-title="대시보드"
+                    >
                         <svg class="menu-item-link-icon icon-overview">
                             <use xlink:href="#svg-overview"></use>
                         </svg>
@@ -25,9 +29,13 @@
                     class="menu-item text-center"
                     :class="$route.name === 'Games' ? 'active' : ''"
                 >
-                    <router-link to="/games" class="menu-item-link">
-                        <svg class="menu-item-link-icon icon-overview">
-                            <use xlink:href="#svg-overview"></use>
+                    <router-link
+                        to="/games"
+                        class="menu-item-link text-tooltip-tfr"
+                        data-title="모든게임"
+                    >
+                        <svg class="menu-item-link-icon icon-list-grid-view">
+                            <use xlink:href="#svg-list-grid-view"></use>
                         </svg>
                     </router-link>
                 </li>
@@ -40,9 +48,13 @@
                             : ''
                     "
                 >
-                    <router-link to="/selectStage" class="menu-item-link">
-                        <svg class="menu-item-link-icon icon-group">
-                            <use xlink:href="#svg-group"></use>
+                    <router-link
+                        to="/selectStage"
+                        class="menu-item-link text-tooltip-tfr"
+                        data-title="게임 업로드"
+                    >
+                        <svg class="menu-item-link-icon icon-plus">
+                            <use xlink:href="#svg-plus"></use>
                         </svg>
                     </router-link>
                 </li>
@@ -76,26 +88,30 @@
                     :class="$route.name === 'Games' ? 'active' : ''"
                 >
                     <a class="menu-item-link">
-                        <svg class="menu-item-link-icon icon-overview">
-                            <use xlink:href="#svg-overview"></use>
+                        <svg class="menu-item-link-icon icon-list-grid-view">
+                            <use xlink:href="#svg-list-grid-view"></use>
                         </svg>
+                        <!-- <svg class="icon-list-grid-view">
+                            <use xlink:href="#svg-list-grid-view"></use>
+                        </svg> -->
                         <router-link to="/games"> 모든 게임 </router-link>
                     </a>
                 </li>
 
-                <li class="menu-item">
-                    <a
-                        class="menu-item-link"
-                        :class="
+                <li class="menu-item" :class="
                             $route.name === 'SelectStage' ||
                             $route.meta.parentRouterName === 'UploadGame'
                                 ? 'active'
                                 : ''
-                        "
+                        ">
+                    <a
+                        class="menu-item-link"
+                        
                     >
-                        <svg class="menu-item-link-icon icon-group">
-                            <use xlink:href="#svg-group"></use>
+                        <svg class="menu-item-link-icon icon-plus">
+                            <use xlink:href="#svg-plus"></use>
                         </svg>
+
                         <router-link to="/selectStage">
                             게임 업로드
                         </router-link>
@@ -386,11 +402,17 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-
+import Tooltip from "@/plugins/tooltip";
 @Component({
     components: {},
 })
-export default class navigationWidget extends Vue {}
+export default class navigationWidget extends Vue {
+    private tooltip: Tooltip = new Tooltip();
+
+    async mounted() {
+        this.tooltip.init();
+    }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -408,5 +430,8 @@ export default class navigationWidget extends Vue {}
     .menu-item {
         cursor: pointer;
     }
+}
+.navigation-widget-desktop.closed {
+    padding-top: 0px !important;
 }
 </style>

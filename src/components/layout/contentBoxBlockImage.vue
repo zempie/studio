@@ -1,16 +1,15 @@
 <template>
-    <q-img class="blockImage" :src="src">
-    </q-img>
+    <q-img class="blockImage" :src="src"></q-img>
 </template>
 
 <script lang="ts">
-import {Component, Prop, Vue} from 'vue-property-decorator';
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({
-    components: {}
+    components: {},
 })
 export default class ContentBoxBlockImage extends Vue {
-    @Prop() private src! : string;
+    @Prop() private src!: string;
 }
 </script>
 
@@ -20,5 +19,4 @@ export default class ContentBoxBlockImage extends Vue {
     width: 90%;
     margin-top: 20px;
 }
-
 </style>

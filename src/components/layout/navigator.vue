@@ -3,13 +3,10 @@
         <div class="header-actions">
             <div class="header-brand">
                 <div class="logo">
-                    <q-img
-                        src="img/zempie_logo.png"
-                        @click="$router.push('/')"
-                    />
+                    <q-img src="img/zempie_logo.png" @click="goZempie" />
                 </div>
 
-                <h1 class="header-brand-text">Zempie</h1>
+                <h1 class="header-brand-text" @click="goZempie">Zempie</h1>
             </div>
         </div>
 
@@ -31,8 +28,10 @@
             <nav class="navigation">
                 <ul class="menu-main">
                     <li class="menu-main-item">
-                        <router-link class="menu-main-item-link" to="/"
-                            >Home</router-link
+                        <a
+                            class="menu-main-item-link"
+                            @click="goZempie"
+                            >Home</a
                         >
                     </li>
 
@@ -285,8 +284,8 @@ export default class navtigator extends Vue {
         //유저 검색
         if (this.searchInput.charAt(0) === "@") {
             query = this.searchInput.substring(1);
-            this.userList = await this.$api.search(query, "username");
-            console.log(this.userList);
+            // this.userList = await this.$api.search(query, "username");
+            // console.log(this.userList);
         }
         //게임 검색
         else if (this.searchInput.charAt(0) === "#") {
@@ -298,9 +297,9 @@ export default class navtigator extends Vue {
         else {
             // todo: hexagon delay backend 연결후 확인
             query = this.searchInput;
-            const result = await this.$api.search(query);
-            this.userList = result.user;
-            this.groupList = result.group;
+            // const result = await this.$api.search(query);
+            // this.userList = result.user;
+            // this.groupList = result.group;
         }
     }
     closeDropbox() {
@@ -310,6 +309,9 @@ export default class navtigator extends Vue {
     blur() {
         console.log("blur");
         (this.$refs.closeDropbox as HTMLElement).click();
+    }
+    goZempie() {
+        location.href = process.env.VUE_APP_ZEMPIE_URL;
     }
 }
 </script>

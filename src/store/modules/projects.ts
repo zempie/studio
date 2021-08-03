@@ -23,7 +23,6 @@ export default {
             const versions = state.projects[project_id] && state.projects[project_id].projectVersions;
             const deployVersionId = state.projects[project_id].deploy_version_id;
             let deployVersion = null;
-
             if( versions && deployVersionId ) {
                 for( let i = 0; i < versions.length; i++ ) {
                     if( versions[i].id === deployVersionId ) {

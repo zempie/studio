@@ -20,7 +20,9 @@ export default class Http {
             return result.data;
         }
         catch (error) {
-            if ( error?.response?.data?.code === 10001 ) {
+
+            if (error?.response?.data?.error.code === 10001) {
+
                 const currentUser = firebase.auth().currentUser;
                 if (currentUser) {
                     const idToken = await currentUser.getIdToken(true);
@@ -101,7 +103,7 @@ export default class Http {
         if (options.name) { formData.append('name', options.name); }
         if (options.description) { formData.append('description', options.description); }
         if (options.hashtags) { formData.append('hashtags', options.hashtags); }
-        else{formData.append('hashtags', "");}
+        else { formData.append('hashtags', ""); }
         if (options.deploy_version_id !== undefined) { formData.append('deploy_version_id', options.deploy_version_id); }
         if (file) {
             formData.append('file', file);
@@ -109,11 +111,11 @@ export default class Http {
         if (file2) {
             formData.append('file2', file2);
         }
-        
+
 
         const response = await this.request('post', `/studio/project/${options.id}`, formData, false);
 
-        if(!response.error){
+        if (!response.error) {
             store.commit('project', response.result)
         }
 
@@ -155,8 +157,8 @@ export default class Http {
         }
 
         const response = await this.request('post', `/studio/version`, formData, false);
-        
-        if(!response.error){
+
+        if (!response.error) {
             store.commit('version', response.result);
         }
         return response.result || response;
@@ -188,10 +190,12 @@ export default class Http {
     }
 
     //survey
-    async surveyStatus(){
+    async surveyStatus() {
         const response = await this.request('get', '/studio/survey', undefined)
         return response.result || response;
     }
+
+
 }
 
 

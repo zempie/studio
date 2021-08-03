@@ -12,7 +12,6 @@ const _axios = axios.create(config);
 
 _axios.interceptors.request.use(
     (cfg) => {
-
       // Do something before request is sent
       if (store.getters.idToken) {
             cfg.headers.authorization = `Bearer ${store.getters.idToken}`;

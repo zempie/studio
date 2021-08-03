@@ -1,25 +1,5 @@
 <template>
     <div>
-        <div class="section-banner">
-            <img
-                class="section-banner-icon"
-                src="img/banner/overview-icon.png"
-                alt="overview-icon"
-            />
-
-            <p class="section-banner-title">DashBoard</p>
-
-            <p class="section-banner-text">게임 대시보드!</p>
-        </div>
-
-        <div class="section-header">
-            <div class="section-header-info">
-                <p class="section-pretitle">Overview</p>
-
-                <h2 class="section-title">My Profile</h2>
-            </div>
-        </div>
-
         <div class="grid">
             <div class="grid grid-3-3-3-3 centered">
                 <div class="stats-box small stat-profile-views">
@@ -107,12 +87,10 @@
                 <div class="grid-sidebar">
                     <div class="profile-stats">
                         <div class="profile-stats-cover">
-                            <p class="profile-stats-cover-title">
-                                Welcome Back!
-                            </p>
+                            <p class="profile-stats-cover-title">Your Game!</p>
 
                             <p class="profile-stats-cover-text">
-                                {{ user && user.name }}
+                                {{ project && project.name }}
                             </p>
                         </div>
 
@@ -125,7 +103,7 @@
                                 <div class="user-avatar-content">
                                     <div
                                         class="hexagon-image-82-90"
-                                        :data-src="user && user.picture"
+                                        :data-src="project && project.picture"
                                     ></div>
                                 </div>
 
@@ -1572,26 +1550,34 @@
                     </div>
                 </div>
                 <div class="grid-column grid-content-sidebar">
-                    <div class="stats-decoration v2 big secondary">
-                        <p class="stats-decoration-title">33</p>
-
-                        <p class="stats-decoration-subtitle">
-                            Post Engagements
+                    <div
+                        class="stats-decoration v2 big secondary"
+                        v-if="version && version.state === 'deploy'"
+                    >
+                        <p class="stats-decoration-title">
+                            {{ version.version }}
                         </p>
 
-                        <p class="stats-decoration-text">Today</p>
+                        <p class="stats-decoration-subtitle">배포 버전</p>
 
-                        <div class="percentage-diff">
-                            <div class="percentage-diff-icon-wrap positive">
-                                <svg
-                                    class="percentage-diff-icon icon-plus-small"
-                                >
-                                    <use xlink:href="#svg-plus-small"></use>
-                                </svg>
-                            </div>
+                        <router-link
+                              :to="`/project/${projectId}/deploy`"
+                            class="stats-decoration-text"
+                            >다른 버전 배포하기</router-link
+                        >
+                    </div>
+                    <div class="stats-decoration v2 big secondary" v-else>
+                        <p class="stats-decoration-title">0.0.0</p>
 
-                            <p class="percentage-diff-text">5.3%</p>
-                        </div>
+                        <p class="stats-decoration-subtitle">
+                            배포 중인 버전이 없습니다.
+                        </p>
+
+                        <router-link
+                            :to="`/project/${projectId}/deploy`"
+                            class="stats-decoration-text"
+                            >배포하러 가기</router-link
+                        >
                     </div>
 
                     <div class="stats-decoration v2 big primary">
@@ -1622,7 +1608,7 @@
 
         <div class="section-header">
             <div class="section-header-info">
-                <p class="section-pretitle">Overview</p>
+                <p class="section-pretitle"></p>
 
                 <h2 class="section-title">Game Analytics</h2>
             </div>
@@ -2086,18 +2072,18 @@ import { mapGetters } from "vuex";
 import { GChart } from "vue-google-charts";
 import Hexagon from "@/plugins/hexagon";
 import Slider from "@/plugins/slider";
-import LineChart from "./Chart.vue";
+import LineChart from "@/components/pages/studio/Chart.vue";
 import Dropdown from "@/plugins/dropdown";
-
 @Component({
     components: { GChart, LineChart },
     computed: { ...mapGetters(["user"]) },
 })
-export default class dashBoard extends Vue {
-    private user!: any;
+export default class projectOverview extends Vue {
     private dropdown: Dropdown = new Dropdown();
     private hexagon: Hexagon = new Hexagon();
     private slider: Slider = new Slider();
+    private projectId: number = parseInt(this.$route.params.projectId);
+    private version: any = null;
     loaded = false;
     chartdata = null;
     chartData = [
@@ -2114,7 +2100,16 @@ export default class dashBoard extends Vue {
         },
     };
     private projects = [];
+    private project = "";
     async mounted() {
+        await this.$store.dispatch("loginState");
+        await this.$store.dispatch("project", this.projectId);
+
+        this.project = this.$store.getters.project(this.projectId);
+        this.version = this.$store.getters.deployVersion(this.projectId);
+        console.log("mounted", this.version);
+
+        this.hexagon.init();
         this.slider.init();
         this.dropdown.init();
         this.loaded = false;
@@ -2151,7 +2146,8 @@ export default class dashBoard extends Vue {
             console.error(e);
         }
     }
-    @Watch("user", { immediate: true })
+
+    @Watch("project", { immediate: true })
     initHexa() {
         this.$nextTick(() => {
             this.hexagon.init();

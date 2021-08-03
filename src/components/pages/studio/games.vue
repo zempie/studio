@@ -1,6 +1,11 @@
 <template>
     <div>
-        <div class="section-banner">
+        <div
+            class="section-banner"
+            style="
+                background: url('img/banner/banner-bg.png') no-repeat center;
+            "
+        >
             <img
                 class="section-banner-icon"
                 src="img/banner/overview-icon.png"
@@ -122,7 +127,9 @@
                 <template v-else>
                     <q-tr
                         :props="props"
-                        @click="$router.push(`/project/${props.row.id}`)"
+                        @click="
+                            $router.push(`/project/${props.row.id}/dashboard`)
+                        "
                     >
                         <q-td width="10%">
                             <q-img

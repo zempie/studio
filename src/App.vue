@@ -50,7 +50,6 @@ export default class App extends Vue {
         const state = await this.$store.dispatch("loginState");
 
         this.$q.loading.hide();
-        console.log("loading");
 
         this.sideBar.init();
 

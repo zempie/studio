@@ -91,8 +91,9 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import ZipUtil from "@/common/zipUtil";
 import ContentBox from "@/components/layout/contentBox.vue";
 import ContentBoxBlock from "@/components/layout/contentBoxBlock.vue";
+import store from "@/store";
 @Component({
-    components: { ContentBox,ContentBoxBlock },
+    components: { ContentBox, ContentBoxBlock },
 })
 export default class addGameFile extends Vue {
     private limitSize: number = 1024 * 1000 * 100;
@@ -105,8 +106,19 @@ export default class addGameFile extends Vue {
 
     private uploadMore: boolean = false;
 
+    private autoDeploy: boolean = true;
+    private versionDescription: string = "";
+
+    beforeRouteEnter(to, undefined, next) {
+        if (!store.getters.gameStage) {
+            next("/selectStage");
+        } else {
+            next();
+        }
+    }
+
     mounted() {
-          this.$store.commit("sendGameFileDone", false);
+        this.$store.commit("sendGameFileDone", false);
     }
 
     @Watch("uploadGameFile")
@@ -175,6 +187,15 @@ export default class addGameFile extends Vue {
             this.startFileOptions.length > 0
         ) {
             this.$store.commit("sendGameFileDone", true);
+            const gameFileInfo = {
+                autoDeploy: this.autoDeploy,
+                starFile: this.startFile,
+                size: this.totalSize,
+                version_description: this.versionDescription,
+            };
+            console.log(gameFileInfo);
+            this.$store.commit("gameFileInfoObj", gameFileInfo);
+            this.$store.commit("uploadGameFiles", this.uploadGameFiles);
         } else {
             this.$store.commit("sendGameFileDone", false);
         }

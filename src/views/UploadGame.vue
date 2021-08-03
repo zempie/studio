@@ -1,5 +1,5 @@
 <template>
-    <div class="content-grid">
+    <div>
         <div class="section-banner">
             <img
                 class="section-banner-icon"
@@ -37,7 +37,7 @@
                             </div>
                         </router-link>
 
-                        <div
+                        <!-- <div
                             @click="clickSideBar"
                             class="sidebar-menu-item"
                             :class="
@@ -50,7 +50,7 @@
                                 </p>
                                 <select-alert :key="$route.name"></select-alert>
                             </div>
-                        </div>
+                        </div> -->
                         <div
                             @click="clickSideBar('/addGameInfo')"
                             class="sidebar-menu-item"
@@ -74,9 +74,7 @@
                             @click="clickSideBar('/addGameFile')"
                             class="sidebar-menu-item"
                             :class="
-                                $route.name === 'AddGameFile' 
-                                    ? 'active'
-                                    : ''
+                                $route.name === 'AddGameFile' ? 'active' : ''
                             "
                         >
                             <div class="stage-list">
@@ -95,7 +93,17 @@
 
                     <div class="sidebar-box-footer">
                         <!-- todo:버튼 활성화 -->
-                        <p class="button primary disabled">퍼블리싱</p>
+                        <p
+                            @click="uplaodGame"
+                            class="button primary"
+                            :class="
+                                $store.getters.gameStage &&
+                                $store.getters.sendGameFileDone &&
+                                $store.getters.sendGameInfoDone
+                            "
+                        >
+                            퍼블리싱
+                        </p>
                     </div>
                 </div>
             </div>
@@ -126,6 +134,22 @@ export default class UploadGame extends Vue {
 
         console.log("side!");
     }
+   async uplaodGame() {
+       const gameInfo = this.$store.getters.gameInfoObj;
+        const gameFileInfo = this.$store.getters.gameFileInfoObj;
+        // console.log(gameInfo, gameFileInfo)
+        
+         const result = await this.$http.createProject(
+           gameInfo,
+           gameFileInfo,
+            this.$store.getters.uploadGameFiles
+        );
+
+        console.log(result)
+
+
+    }
+  
 }
 </script>
 
@@ -161,9 +185,9 @@ export default class UploadGame extends Vue {
             border-top-right-radius: 12px;
         }
     }
-   
+
     .account-hub-sidebar {
-       width: 200px;
+        width: 200px;
     }
     .notification-box-list {
         // width: 75%;

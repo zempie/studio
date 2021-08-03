@@ -144,18 +144,43 @@ const routes: Array<RouteConfig> = [
     //     props: true,
     //     children: [
     {
-        path: '/project/dashboard/:projectId',
-        name: 'ProjectDashboard',
-        component: () => import(/* webpackChunkName: "about" */ "@/components/pages/project/projectDashboard.vue"),
-        alias: '/project/:projectId',
-        props: true
+        path: '/project/:projectId',
+        name: 'Project',
+        component: () => import(/* webpackChunkName: "about" */ "@/views/GameDashboard.vue"),
+        children: [
+            {
+                path: '/project/:projectId/dashboard',
+                name: 'ProjectOverview',
+                component: () => import(/* webpackChunkName: "about" */ "@/components/pages/project/projectOverview.vue"),
+            },
+            {
+                path: '/project/:projectId/setting/',
+                name: 'ProjectSetting',
+                component: () => import(/* webpackChunkName: "about" */ "@/components/pages/project/projectSetting.vue"),
+                props: true
+            },
+            {
+                path: '/project/:projectId/version',
+                name: 'ProjectVersion',
+                component: () => import(/* webpackChunkName: "about" */ "@/components/pages/project/projectVersion.vue"),
+                props: true
+            },
+            {
+                path: '/project/:projectId/deploy',
+                name: 'ProjectDeploy',
+                component: () => import(/* webpackChunkName: "about" */ "@/components/pages/project/projectDeploy.vue"),
+                props: true
+            },
+        ]
     },
-    {
-        path: '/project/deploy/:projectId',
-        name: 'ProjectDeploy',
-        component: () => import(/* webpackChunkName: "about" */ "@/components/pages/project/projectDeploy.vue"),
-        props: true
-    },
+    // {
+    //     path: '/project/dashboard/:projectId',
+    //     name: 'gameDashboard',
+    //     component: () => import(/* webpackChunkName: "about" */ "@/components/pages/project/gameDashboard.vue"),
+    //     // alias: '/project/:projectId',
+    //     props: true
+    // },
+    
     {
         path: '/project/version/:projectId',
         name: 'ProjectVersion',
@@ -164,7 +189,7 @@ const routes: Array<RouteConfig> = [
     },
     {
         path: '/project/setting/:projectId',
-        name: 'ProjectSetting',
+        name: 'ProjectSetting1',
         component: () => import(/* webpackChunkName: "about" */ "@/components/pages/project/projectSetting.vue"),
         props: true
     },

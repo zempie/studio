@@ -6,7 +6,9 @@ export default {
         gameStage: null,
         sendGameInfoDone: false,
         sendGameFileDone: false,
-
+        gameInfoObj: null,
+        gameFileInfoObj: null,
+        uploadGameFiles: null,
     },
     getters: {
         gameStage: (state: any) => {
@@ -18,6 +20,15 @@ export default {
         sendGameFileDone: (state: any) => {
             return state.sendGameFileDone;
         },
+        gameInfoObj: (state: any) => {
+            return state.gameInfoObj;
+        },
+        gameFileInfoObj: (state: any) => {
+            return state.gameFileInfoObj;
+        },
+        uploadGameFiles: (state: any) => {
+            return state.uploadGameFiles;
+        },
     },
     mutations: {
         gameStage: (state: any, payload: any) => {
@@ -28,6 +39,15 @@ export default {
         },
         sendGameFileDone: (state: any, payload: any) => {
             state.sendGameFileDone = payload;
+        },
+        gameInfoObj: (state: any, payload: any) => {
+            state.gameInfoObj = payload;
+        },
+        gameFileInfoObj: (state: any, payload: any) => {
+            state.gameFileInfoObj = payload;
+        },
+        uploadGameFiles: (state: any, payload: any) => {
+            state.uploadGameFiles = payload;
         },
     },
     actions: {

@@ -1,6 +1,6 @@
-function execCommandCopy( text : string) {
+function execCommandCopy(text: string) {
     const input = document.createElement('input') as HTMLInputElement;
-    document.body.appendChild( input );
+    document.body.appendChild(input);
     input.value = text;
     input.select();
     document.execCommand('copy');
@@ -8,36 +8,36 @@ function execCommandCopy( text : string) {
 }
 
 export default class StringHelper {
-    static msToMinuteSecond( ms : number ) : string {
+    static msToMinuteSecond(ms: number): string {
 
         // const hour = Math.floor(ms / 3600000 );
         const hourRest = ms % 3600000;
 
-        const minute = Math.floor( hourRest / 60000 );
+        const minute = Math.floor(hourRest / 60000);
         const minuteRest = hourRest % 60000;
 
-        const second = Math.floor( minuteRest / 1000 );
+        const second = Math.floor(minuteRest / 1000);
 
-        return `${StringHelper.leadingZeros( minute, 2 )}:${StringHelper.leadingZeros( second, 2 )}`;
+        return `${StringHelper.leadingZeros(minute, 2)}:${StringHelper.leadingZeros(second, 2)}`;
     }
 
-    static leadingZeros( num : number | string, digits : number) : string {
+    static leadingZeros(num: number | string, digits: number): string {
         let zero = '';
-        const n : string = num.toString();
+        const n: string = num.toString();
 
         if (n.length < digits) {
-            for ( let i = 0; i < digits - n.length; i++) {
+            for (let i = 0; i < digits - n.length; i++) {
                 zero += '0';
             }
         }
         return zero + n;
     };
 
-    static addComma (num : number) : string {
+    static addComma(num: number): string {
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
 
-    static replaceAll(str : string, searchStr : string, replaceStr: string) : string {
+    static replaceAll(str: string, searchStr: string, replaceStr: string): string {
 
         return str.split(searchStr).join(replaceStr);
     }
@@ -47,8 +47,8 @@ export default class StringHelper {
 
 class UrlHelper {
 
-    static addParameter(url : string, name : string, value : string ) {
-        if( url.indexOf('?') > -1 ) {
+    static addParameter(url: string, name: string, value: string) {
+        if (url.indexOf('?') > -1) {
             return `${url}&${name}=${value}`;
         }
         else {
@@ -56,16 +56,25 @@ class UrlHelper {
         }
     }
 
-    static getParameterByName(name : string) {
+    static getParameterByName(name: string) {
         name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
         const regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-            results = regex.exec(location.search || location.href );
+            results = regex.exec(location.search || location.href);
         return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     };
 }
 
+function urltoFile(url, filename, mimeType){
+    return (fetch(url)
+        .then(function(res){return res.arrayBuffer();})
+        .then(function(buf){return new File([buf], filename,{type:mimeType});})
+    );
+}
+
+
 export {
     execCommandCopy,
     StringHelper,
-    UrlHelper
+    UrlHelper,
+    urltoFile
 }

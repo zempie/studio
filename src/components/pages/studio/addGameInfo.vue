@@ -83,6 +83,11 @@
                     "
                     :text="$t('addGame.thumbnailImg.text')"
                     limit-size="4"
+                    v-on:@url="
+                        (url) => {
+                            thumbFileUrl = url;
+                        }
+                    "
                 ></content-box-block-image-uploader>
                 <div
                     :class="
@@ -110,6 +115,11 @@
                     "
                     :text="$t('addGame.thumbnailImg.text')"
                     limit-size="10"
+                    v-on:@url="
+                        (url) => {
+                            thumbFile2Url = url;
+                        }
+                    "
                 ></content-box-block-image-uploader-g-i-f>
                 <div class="hintText">
                     {{ $t("addGame.previewImg.rules") }}
@@ -168,7 +178,6 @@
             </content-box-block>
         </content-box>
         <div class="btn-container">
-            <button :loading="waitSave" class="button">임시저장</button>
             <button
                 :loading="waitSave"
                 color="primary"
@@ -192,6 +201,8 @@ import { verifySelectHashtags } from "@/scripts/verifySelectHashtags";
 import { randomString } from "@/common/util";
 import { Notify } from "quasar";
 import { event } from "vue-gtag";
+import store from "@/store/index";
+import { urltoFile } from "@/scripts/util";
 // import { useQuasar } from "quasar";
 @Component({
     components: {
@@ -203,18 +214,20 @@ import { event } from "vue-gtag";
     },
 })
 export default class addGameInfo extends Vue {
-    private title: string = "";
+    private title: string = "" || localStorage.getItem("gameTitle");
     private titleError: string = "";
-    private description: string = "";
+    private description: string = "" || localStorage.getItem("description");
     private descError: string = "";
     private hashtags: string = "";
 
     private thumbFile: File = null;
+    private thumbFileUrl: string = "";
     private thumbnailErr: boolean = false;
     private thumbFile2: File = null;
+    private thumbFile2Url: string = "";
 
     private autoGamePath: boolean = true;
-    private gamePath: string = "";
+    private gamePath: string = "" || localStorage.getItem("gamePath");
     private confirmedGamePath: boolean = false;
     private gamePathError: string = "";
     private waitGamePath: boolean = false;
@@ -229,91 +242,99 @@ export default class addGameInfo extends Vue {
 
     private isClickedSave: boolean = false;
 
-    beforeRouteLeave(to, from, next) {
-        //todo: 브라우저에 잠깐 저장했다가 돌아가면 바로 보여주기
-        if(to.name === 'AddGameFile'){
-
-        }
-        // console.log(to.name)
-        if (this.isClickedSave) {
-            next();
-        } else if (
-            this.title.length > 0 ||
-            this.description.length > 0 ||
-            this.gamePath.length > 0 ||
-            this.hashtagsArr.length > 0 ||
-            this.thumbFile ||
-            this.thumbFile2
-        ) {
-            this.$q
-                .dialog({
-                    class: "modal-dialog",
-                    message:
-                        "<div class='text-center'>지금까지 작성한 내용이 사라집니다. <br>정말 나가시겠습니까 </div>",
-                    ok: {
-                        push: true,
-                        label: "네",
-                    },
-                    cancel: {
-                        push: true,
-                        color: "negative",
-                        label: "아니요",
-                    },
-                    html: true,
-                    persistent: true,
-                })
-                .onOk(() => {
-                    next();
-                })
-                .onCancel(() => {});
+    beforeRouteEnter(to, undefined, next) {
+        console.log(store);
+        if (!store.getters.gameStage) {
+            next("/selectStage");
         } else {
             next();
-            console.log("다 비어있음");
         }
     }
-    mounted() {
-          console.log(this.$route)
-        this.$store.commit("sendGameInfoDone", false);
-        // window.addEventListener("keydown", this.handleRefresh);
-        // window.addEventListener("click", this.handleRefresh);
-        window.onbeforeunload = function() {
-        return "Dude, are you sure you want to refresh? Think of the kittens!";
-}
-    }
-    // destroyed() {
-        
-    //     window.removeEventListener("keydown", this.handleRefresh);
-    // }
-    // handleRefresh(e) {
-    //     console.log(e)
-    //     if (e.code === "F5") {
-    //         e.preventDefault();
 
-    //         this.$q
-    //             .dialog({
-    //                 class: "modal-dialog",
-    //                 message:
-    //                     "<div class='text-center'>지금까지 작성한 내용이 사라집니다. <br>정말 새로고침하시겠습니까?</div>",
-    //                 ok: {
-    //                     push: true,
-    //                     label: "네",
-    //                 },
-    //                 cancel: {
-    //                     push: true,
-    //                     color: "negative",
-    //                     label: "아니요",
-    //                 },
-    //                 html: true,
-    //                 persistent: true,
-    //             })
-    //             .onOk(() => {
-    //               location.reload();
-    //             })
-    //             .onCancel(() => {
-    //                 e.preventDefault();
-    //             });
-    //     }
-    // }
+    beforeRouteLeave(to, from, next) {
+        let hashtag = JSON.stringify(this.hashtagsArr)
+            .substring(1, JSON.stringify(this.hashtagsArr).length - 1)
+            .replaceAll('"', "");
+
+        // 브라우저 저장
+        if (this.title) {
+            localStorage.setItem("gameTitle", this.title);
+        }
+        if (this.description) {
+            localStorage.setItem("description", this.description);
+        }
+        if (!this.autoGamePath) {
+            localStorage.setItem("gamePath", this.gamePath);
+        }
+        if (this.hashtagsArr) {
+            localStorage.setItem("hashtagsArr", hashtag);
+        }
+        if (this.thumbFileUrl) {
+            localStorage.setItem("thumbFileUrl", this.thumbFileUrl);
+            localStorage.setItem("thumbFileName", this.thumbFile.name);
+            localStorage.setItem("thumbFileType", this.thumbFile.type);
+        }
+        if (this.thumbFile2Url) {
+            localStorage.setItem("thumbFile2Url", this.thumbFile2Url);
+            localStorage.setItem("thumbFile2Name", this.thumbFile2.name);
+            localStorage.setItem("thumbFile2Type", this.thumbFile2.type);
+        }
+        next();
+    }
+    resetLocalStorage() {
+        localStorage.removeItem("gameTitle");
+        localStorage.removeItem("description");
+        localStorage.removeItem("gamePath");
+        localStorage.removeItem("hashtagsArr");
+        localStorage.removeItem("thumbFileUrl");
+        localStorage.removeItem("thumbFileName");
+        localStorage.removeItem("thumbFileType");
+        localStorage.removeItem("thumbFile2Url");
+        localStorage.removeItem("thumbFile2Name");
+        localStorage.removeItem("thumbFile2Type");
+    }
+    mounted() {
+        this.$store.commit("sendGameInfoDone", false);
+
+        if (localStorage.getItem("hashtagsArr")) {
+            this.hashtagsArr = localStorage.getItem("hashtagsArr").split(",");
+        }
+        if (localStorage.getItem("gamePath")) {
+            this.autoGamePath =
+                localStorage.getItem("gamePath").length > 0 ? false : true;
+        }
+
+        urltoFile(
+            localStorage.getItem("thumbFileUrl"),
+            localStorage.getItem("thumbFileName"),
+            localStorage.getItem("thumbFileType")
+        ).then((file) => {
+            this.thumbFile = file;
+            console.log(file);
+        });
+
+        urltoFile(
+            localStorage.getItem("thumbFile2Url"),
+            localStorage.getItem("thumbFile2Name"),
+            localStorage.getItem("thumbFile2Type")
+        ).then((file) => {
+            this.thumbFile2 = file;
+        });
+        //새로고침
+        window.onbeforeunload = () => {
+            if (
+                this.title.length > 0 ||
+                this.description.length > 0 ||
+                this.gamePath.length > 0 ||
+                this.hashtagsArr.length > 0 ||
+                this.thumbFile ||
+                this.thumbFile2
+            ) {
+                this.resetLocalStorage();
+                return "지금까지 작성한 내용이 사라집니다. 정말 새로고침하시겠습니까?";
+            }
+        };
+    }
 
     private onChangeHashtags() {
         if (this.hashtags === "") {
@@ -441,14 +462,17 @@ export default class addGameInfo extends Vue {
         // this.$q.loading.show({
         //     message: this.$t("waiting").toString(),
         // });
-        console.log({
+        const gameInfo = {
             name: this.title,
             description: this.description,
             pathname: this.gamePath,
             project_picture: this.thumbFile,
             project_picture2: this.thumbFile2,
             hashtags: this.hashtagsArr.toString(),
-        });
+        };
+        // this.$emit("gameInfo", gameInfo);
+        this.$store.commit('gameInfoObj', gameInfo)
+
         this.$store.commit("sendGameInfoDone", true);
 
         this.$router.push("/addGameFile");

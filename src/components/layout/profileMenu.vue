@@ -28,9 +28,9 @@
             <div class="dropdown-navigation header-settings-dropdown">
                 <div class="dropdown-navigation-header">
                     <div class="user-status">
-                        <router-link
+                        <a
+                            :href="`${$store.getters.zempieUrl}/channel/${user.channel_id}`"
                             class="user-status-avatar"
-                            :to="`/channel/${user.channel_id}`"
                         >
                             <div class="user-avatar small no-outline">
                                 <div class="user-avatar-content">
@@ -48,27 +48,26 @@
                                     <div class="hexagon-border-40-44"></div>
                                 </div>
                             </div>
-                        </router-link>
+                        </a>
 
                         <p class="user-status-title">
                             <span class="bold">Hi {{ user.name }}!</span>
                         </p>
 
                         <p class="user-status-text small">
-                            <router-link :to="`/channel/${user.channel_id}`"
-                                >@{{ user.nickname }}</router-link
+                            <a   :href="`${$store.getters.zempieUrl}/channel/${user.channel_id}`"
+                                >@{{ user.nickname }}</a
                             >
                         </p>
                     </div>
                 </div>
 
                 <p class="dropdown-navigation-category">My Profile</p>
-
-                <router-link
+                <a
                     class="dropdown-navigation-link"
-                    :to="`/channel/${user.channel_id}`"
-                    @click.native="routerClick"
-                    >Profile Info</router-link
+                    :href="`${$store.getters.zempieUrl}/channel/${user.channel_id}`"
+                    @click="routerClick"
+                    >Profile Info</a
                 >
 
                 <!-- 
@@ -78,8 +77,8 @@
                         >Notifications</a
                     > -->
 
-                <a class="dropdown-navigation-link" @click="moveGameDashBoard"
-                    >Game Studio</a
+                <router-link class="dropdown-navigation-link" to="/dashBoard"
+                    >Game Studio</router-link
                 >
 
                 <p class="dropdown-navigation-category">Account</p>
@@ -89,26 +88,26 @@
                         href="hub-account-info.html"
                         >Account Info</a
                     > -->
-                <router-link
+                <a
                     class="dropdown-navigation-link"
-                    :to="`/user/${user.uid}/changePassword`"
-                    @click.native="routerClick"
-                    >Change Password</router-link
+                    :href="`${$store.getters.zempieUrl}/user/${user.uid}/changePassword`"
+                    @click="routerClick"
+                    >Change Password</a
                 >
 
-                <router-link
+                <a
                     class="dropdown-navigation-link"
-                    :to="`/user/${user.uid}/settings`"
-                    @click.native="routerClick"
-                    >General Settings</router-link
+                    :href="`${$store.getters.zempieUrl}/user/${user.uid}/settings`"
+                    @click="routerClick"
+                    >General Settings</a
                 >
 
                 <p class="dropdown-navigation-category">Groups</p>
-                <router-link
+                <a
                     class="dropdown-navigation-link"
-                    :to="`/user/${user.uid}/manageJoinedGroup`"
-                    @click.native="routerClick"
-                    >Manage Groups</router-link
+                    :href="`${$store.getters.zempieUrl}/user/${user.uid}/manageJoinedGroup`"
+                    @click="routerClick"
+                    >Manage Groups</a
                 >
 
                 <p
@@ -148,11 +147,10 @@ export default class ProfileMenu extends Vue {
     async logout() {
         this.$store.state.pathName = "logout";
         await Login.logout();
-        this.$router.push("/guestPage");
+
+          location.href = process.env.VUE_APP_ZEMPIE_URL;
     }
-    moveGameDashBoard() {
-        window.location.href = this.$store.getters.studioUrl + "uploadGame";
-    }
+
     routerClick() {
         (this.$refs.dropdown as HTMLElement).click();
     }

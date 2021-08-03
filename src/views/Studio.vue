@@ -176,8 +176,9 @@ export default class Studio extends Vue {
     private searchText: string = "";
 
     private isLoad: boolean = false;
- private sideBar: Sidebar = new Sidebar();
-    async mounted() {  this.sideBar.init();
+    private sideBar: Sidebar = new Sidebar();
+    async mounted() {
+        this.sideBar.init();
         this.isLoad = false;
 
         const loginState = await this.$store.dispatch("loginState");
