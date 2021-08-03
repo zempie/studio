@@ -434,4 +434,9 @@ export default class navigationWidget extends Vue {
 .navigation-widget-desktop.closed {
     padding-top: 0px !important;
 }
+.hidden{
+    visibility: hidden !important;
+    opacity: 0 !important;
+    display: block !important;
+}
 </style>

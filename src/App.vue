@@ -58,7 +58,7 @@ export default class App extends Vue {
             //     await this.$router.replace("/signup").catch(() => {});
             // }
         } else {
-            await this.$router.replace("/login");
+            // await this.$router.replace("/login");
         }
     }
 

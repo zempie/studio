@@ -154,12 +154,13 @@ class Sidebar {
                     if (navigationWidget) {
                         navigationWidget.classList.toggle(delayedClass);
                         navigationWidget.classList.toggle(hiddenClass);
-                        sidebar.navigation.active = !navigationWidget.classList.contains(hiddenClass);
                     }
-                    else if (navigationWidgetSmall) {
+                    if (navigationWidgetSmall) {
+
                         navigationWidgetSmall.classList.toggle(delayedClass);
                         navigationWidgetSmall.classList.toggle(hiddenClass);
                     }
+                    sidebar.navigation.active = !navigationWidget.classList.contains(hiddenClass);
 
                     updateGridPositions();
                 };

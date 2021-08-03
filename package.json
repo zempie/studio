@@ -14,7 +14,6 @@
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "@quasar/quasar-ui-qmarkdown": "^1.4.0",
-    "@types/lodash": "^4.14.160",
     "chart.js": "^2.9.4",
     "core-js": "^3.6.5",
     "firebase": "^7.14.2",
@@ -34,6 +33,8 @@
     "vuex": "^3.4.0"
   },
   "devDependencies": {
+    "@types/chart.js": "^2.9.34",
+    "@types/lodash": "^4.14.172",
     "@vue/cli-plugin-babel": "~4.4.0",
     "@vue/cli-plugin-router": "~4.4.0",
     "@vue/cli-plugin-typescript": "~4.4.0",
