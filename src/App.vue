@@ -1,6 +1,6 @@
 <template>
     <div id="app" class="no-drag">
-        <navigation-widget></navigation-widget>
+        <navigation-widget :user="$store.getters.user"></navigation-widget>
         <navigator></navigator>
         <div class="content-grid">
             <router-view></router-view>

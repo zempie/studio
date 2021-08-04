@@ -9,6 +9,7 @@ export default {
         gameInfoObj: null,
         gameFileInfoObj: null,
         uploadGameFiles: null,
+        zipOriginFile:null,
     },
     getters: {
         gameStage: (state: any) => {
@@ -29,6 +30,9 @@ export default {
         uploadGameFiles: (state: any) => {
             return state.uploadGameFiles;
         },
+        zipOriginFile: (state: any) => {
+            return state.zipOriginFile;
+        },
     },
     mutations: {
         gameStage: (state: any, payload: any) => {
@@ -48,6 +52,9 @@ export default {
         },
         uploadGameFiles: (state: any, payload: any) => {
             state.uploadGameFiles = payload;
+        },
+        zipOriginFile: (state: any, payload: any) => {
+            state.zipOriginFile = payload;
         },
     },
     actions: {

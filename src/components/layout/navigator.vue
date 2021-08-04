@@ -3,7 +3,7 @@
         <div class="header-actions">
             <div class="header-brand">
                 <div class="logo">
-                    <q-img src="img/zempie_logo.png" @click="goZempie" />
+                    <img src="img/zempie_logo.png" @click="goZempie" style="vertical-align: middle;"/>
                 </div>
 
                 <h1 class="header-brand-text" @click="goZempie">Zempie</h1>
@@ -27,14 +27,6 @@
             </div>
             <nav class="navigation">
                 <ul class="menu-main">
-                    <li class="menu-main-item">
-                        <a
-                            class="menu-main-item-link"
-                            @click="goZempie"
-                            >Home</a
-                        >
-                    </li>
-
                     <li class="menu-main-item">
                         <a
                             :href="`${$store.getters.zempieUrl}community/list`"

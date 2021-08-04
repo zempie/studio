@@ -108,6 +108,7 @@ export default class addGameFile extends Vue {
 
     private autoDeploy: boolean = true;
     private versionDescription: string = "";
+    private startFileError: string = "";
 
     beforeRouteEnter(to, undefined, next) {
         if (!store.getters.gameStage) {
@@ -131,6 +132,8 @@ export default class addGameFile extends Vue {
         this.$q.loading.show({
             message: this.$t("addGame.success.checkFile").toString(),
         });
+
+        this.$store.commit("zipOriginFile", this.uploadGameFile);
 
         const zip = await ZipUtil.zipFileToZip(this.uploadGameFile);
         // console.log( zip );

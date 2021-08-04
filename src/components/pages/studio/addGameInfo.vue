@@ -252,32 +252,36 @@ export default class addGameInfo extends Vue {
     }
 
     beforeRouteLeave(to, from, next) {
-        let hashtag = JSON.stringify(this.hashtagsArr)
-            .substring(1, JSON.stringify(this.hashtagsArr).length - 1)
-            .replaceAll('"', "");
+        if (to.name == "AddGameFile") {
+            let hashtag = JSON.stringify(this.hashtagsArr)
+                .substring(1, JSON.stringify(this.hashtagsArr).length - 1)
+                .replaceAll('"', "");
 
-        // 브라우저 저장
-        if (this.title) {
-            localStorage.setItem("gameTitle", this.title);
-        }
-        if (this.description) {
-            localStorage.setItem("description", this.description);
-        }
-        if (!this.autoGamePath) {
-            localStorage.setItem("gamePath", this.gamePath);
-        }
-        if (this.hashtagsArr) {
-            localStorage.setItem("hashtagsArr", hashtag);
-        }
-        if (this.thumbFileUrl) {
-            localStorage.setItem("thumbFileUrl", this.thumbFileUrl);
-            localStorage.setItem("thumbFileName", this.thumbFile.name);
-            localStorage.setItem("thumbFileType", this.thumbFile.type);
-        }
-        if (this.thumbFile2Url) {
-            localStorage.setItem("thumbFile2Url", this.thumbFile2Url);
-            localStorage.setItem("thumbFile2Name", this.thumbFile2.name);
-            localStorage.setItem("thumbFile2Type", this.thumbFile2.type);
+            // 브라우저 저장
+            if (this.title) {
+                localStorage.setItem("gameTitle", this.title);
+            }
+            if (this.description) {
+                localStorage.setItem("description", this.description);
+            }
+            if (!this.autoGamePath) {
+                localStorage.setItem("gamePath", this.gamePath);
+            }
+            if (this.hashtagsArr) {
+                localStorage.setItem("hashtagsArr", hashtag);
+            }
+            if (this.thumbFileUrl) {
+                localStorage.setItem("thumbFileUrl", this.thumbFileUrl);
+                localStorage.setItem("thumbFileName", this.thumbFile.name);
+                localStorage.setItem("thumbFileType", this.thumbFile.type);
+            }
+            if (this.thumbFile2Url) {
+                localStorage.setItem("thumbFile2Url", this.thumbFile2Url);
+                localStorage.setItem("thumbFile2Name", this.thumbFile2.name);
+                localStorage.setItem("thumbFile2Type", this.thumbFile2.type);
+            }
+        } else {
+            this.resetLocalStorage();
         }
         next();
     }
@@ -471,7 +475,7 @@ export default class addGameInfo extends Vue {
             hashtags: this.hashtagsArr.toString(),
         };
         // this.$emit("gameInfo", gameInfo);
-        this.$store.commit('gameInfoObj', gameInfo)
+        this.$store.commit("gameInfoObj", gameInfo);
 
         this.$store.commit("sendGameInfoDone", true);
 

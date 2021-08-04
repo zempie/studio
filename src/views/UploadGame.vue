@@ -93,6 +93,7 @@
 
                     <div class="sidebar-box-footer">
                         <!-- todo:버튼 활성화 -->
+
                         <p
                             @click="uplaodGame"
                             class="button primary"
@@ -100,6 +101,8 @@
                                 $store.getters.gameStage &&
                                 $store.getters.sendGameFileDone &&
                                 $store.getters.sendGameInfoDone
+                                    ? 'active '
+                                    : 'disabled'
                             "
                         >
                             퍼블리싱
@@ -123,6 +126,11 @@ import SelectAlert from "@/components/common/selectAlert.vue";
 export default class UploadGame extends Vue {
     mounted() {
         console.log(this.$route.meta.parentRouterName);
+        console.log(
+            this.$store.getters.gameStage &&
+            this.$store.getters.sendGameFileDone&&
+            this.$store.getters.sendGameInfoDone
+        );
     }
     clickSideBar(to: string) {
         if (!this.$store.getters.gameStage) {
@@ -134,22 +142,19 @@ export default class UploadGame extends Vue {
 
         console.log("side!");
     }
-   async uplaodGame() {
-       const gameInfo = this.$store.getters.gameInfoObj;
+    async uplaodGame() {
+        const gameInfo = this.$store.getters.gameInfoObj;
         const gameFileInfo = this.$store.getters.gameFileInfoObj;
         // console.log(gameInfo, gameFileInfo)
-        
-         const result = await this.$http.createProject(
-           gameInfo,
-           gameFileInfo,
+
+        const result = await this.$http.createProject(
+            gameInfo,
+            gameFileInfo,
             this.$store.getters.uploadGameFiles
         );
 
-        console.log(result)
-
-
+        console.log(result);
     }
-  
 }
 </script>
 

@@ -98,16 +98,16 @@
                     </a>
                 </li>
 
-                <li class="menu-item" :class="
-                            $route.name === 'SelectStage' ||
-                            $route.meta.parentRouterName === 'UploadGame'
-                                ? 'active'
-                                : ''
-                        ">
-                    <a
-                        class="menu-item-link"
-                        
-                    >
+                <li
+                    class="menu-item"
+                    :class="
+                        $route.name === 'SelectStage' ||
+                        $route.meta.parentRouterName === 'UploadGame'
+                            ? 'active'
+                            : ''
+                    "
+                >
+                    <a class="menu-item-link">
                         <svg class="menu-item-link-icon icon-plus">
                             <use xlink:href="#svg-plus"></use>
                         </svg>
@@ -141,12 +141,14 @@
                 <div class="navigation-widget-info">
                     <a
                         class="user-avatar small no-outline"
-                        href="profile-timeline.html"
+                        :href="`${$store.getters.zempieUrl}/channel/${
+                            user && user.channel_id
+                        }`"
                     >
                         <div class="user-avatar-content">
                             <div
                                 class="hexagon-image-30-32"
-                                data-src="img/avatar/01.jpg"
+                                :data-src="user && user.picture"
                             ></div>
                         </div>
 
@@ -157,132 +159,37 @@
                         <div class="user-avatar-progress-border">
                             <div class="hexagon-border-40-44"></div>
                         </div>
-
-                        <div class="user-avatar-badge">
-                            <div class="user-avatar-badge-border">
-                                <div class="hexagon-22-24"></div>
-                            </div>
-
-                            <div class="user-avatar-badge-content">
-                                <div class="hexagon-dark-16-18"></div>
-                            </div>
-
-                            <p class="user-avatar-badge-text">24</p>
-                        </div>
                     </a>
 
                     <p class="navigation-widget-info-title">
-                        <a href="profile-timeline.html">Marina Valentine</a>
+                        <a
+                            :href="`${$store.getters.zempieUrl}/channel/${user.channel_id}`"
+                            >{{ user && user.name }}</a
+                        >
                     </p>
 
                     <p class="navigation-widget-info-text">Welcome Back!</p>
                 </div>
 
-                <p class="navigation-widget-info-button button small secondary">
+                <p
+                    class="navigation-widget-info-button button small secondary"
+                    @click="logout"
+                >
                     Logout
                 </p>
             </div>
 
-            <p class="navigation-widget-section-title">Sections</p>
-
             <ul class="menu">
                 <li class="menu-item">
-                    <a class="menu-item-link" href="newsfeed.html">
-                        <svg class="menu-item-link-icon icon-newsfeed">
-                            <use xlink:href="#svg-newsfeed"></use>
-                        </svg>
-
-                        Newsfeed
-                    </a>
-                </li>
-
-                <li class="menu-item">
-                    <a class="menu-item-link" href="overview.html">
+                    <a
+                        class="menu-item-link"
+                        :href="`${$store.getters.zempieUrl}community/list`"
+                    >
                         <svg class="menu-item-link-icon icon-overview">
                             <use xlink:href="#svg-overview"></use>
                         </svg>
 
-                        Overview
-                    </a>
-                </li>
-
-                <li class="menu-item">
-                    <a class="menu-item-link" href="groups.html">
-                        <svg class="menu-item-link-icon icon-group">
-                            <use xlink:href="#svg-group"></use>
-                        </svg>
-
-                        Groups
-                    </a>
-                </li>
-
-                <li class="menu-item">
-                    <a class="menu-item-link" href="members.html">
-                        <svg class="menu-item-link-icon icon-members">
-                            <use xlink:href="#svg-members"></use>
-                        </svg>
-
-                        Members
-                    </a>
-                </li>
-
-                <li class="menu-item">
-                    <a class="menu-item-link" href="badges.html">
-                        <svg class="menu-item-link-icon icon-badges">
-                            <use xlink:href="#svg-badges"></use>
-                        </svg>
-
-                        Badges
-                    </a>
-                </li>
-
-                <li class="menu-item">
-                    <a class="menu-item-link" href="quests.html">
-                        <svg class="menu-item-link-icon icon-quests">
-                            <use xlink:href="#svg-quests"></use>
-                        </svg>
-
-                        Quests
-                    </a>
-                </li>
-
-                <li class="menu-item">
-                    <a class="menu-item-link" href="streams.html">
-                        <svg class="menu-item-link-icon icon-streams">
-                            <use xlink:href="#svg-streams"></use>
-                        </svg>
-
-                        Streams
-                    </a>
-                </li>
-
-                <li class="menu-item active">
-                    <a class="menu-item-link" href="events.html">
-                        <svg class="menu-item-link-icon icon-events">
-                            <use xlink:href="#svg-events"></use>
-                        </svg>
-
-                        Events
-                    </a>
-                </li>
-
-                <li class="menu-item">
-                    <a class="menu-item-link" href="forums.html">
-                        <svg class="menu-item-link-icon icon-forums">
-                            <use xlink:href="#svg-forums"></use>
-                        </svg>
-
-                        Forums
-                    </a>
-                </li>
-
-                <li class="menu-item">
-                    <a class="menu-item-link" href="marketplace.html">
-                        <svg class="menu-item-link-icon icon-marketplace">
-                            <use xlink:href="#svg-marketplace"></use>
-                        </svg>
-
-                        Marketplace
+                        Community
                     </a>
                 </li>
             </ul>
@@ -291,110 +198,34 @@
 
             <a
                 class="navigation-widget-section-link"
-                href="hub-profile-info.html"
+                :href="`${$store.getters.zempieUrl}/channel/${user.channel_id}`"
                 >Profile Info</a
             >
 
-            <a
-                class="navigation-widget-section-link"
-                href="hub-profile-social.html"
-                >Social &amp; Stream</a
-            >
-
-            <a
-                class="navigation-widget-section-link"
-                href="hub-profile-notifications.html"
-                >Notifications</a
-            >
-
-            <a
-                class="navigation-widget-section-link"
-                href="hub-profile-messages.html"
-                >Messages</a
-            >
-
-            <a
-                class="navigation-widget-section-link"
-                href="hub-profile-requests.html"
-                >Friend Requests</a
+            <router-link class="navigation-widget-section-link" to="/dashBoard"
+                >Game Studio</router-link
             >
 
             <p class="navigation-widget-section-title">Account</p>
 
             <a
                 class="navigation-widget-section-link"
-                href="hub-account-info.html"
-                >Account Info</a
-            >
-
-            <a
-                class="navigation-widget-section-link"
-                href="hub-account-password.html"
-                >Change Password</a
-            >
-
-            <a
-                class="navigation-widget-section-link"
-                href="hub-account-settings.html"
+                :href="`${$store.getters.zempieUrl}/user/${user.uid}/settings`"
                 >General Settings</a
+            >
+
+            <a
+                class="navigation-widget-section-link"
+                :href="`${$store.getters.zempieUrl}/user/${user.uid}/changePassword`"
+                >Change Password</a
             >
 
             <p class="navigation-widget-section-title">Groups</p>
 
             <a
                 class="navigation-widget-section-link"
-                href="hub-group-management.html"
+                :href="`${$store.getters.zempieUrl}/user/${user.uid}/manageJoinedGroup`"
                 >Manage Groups</a
-            >
-
-            <a
-                class="navigation-widget-section-link"
-                href="hub-group-invitations.html"
-                >Invitations</a
-            >
-
-            <p class="navigation-widget-section-title">My Store</p>
-
-            <a
-                class="navigation-widget-section-link"
-                href="hub-store-account.html"
-                >My Account <span class="highlighted">$250,32</span></a
-            >
-
-            <a
-                class="navigation-widget-section-link"
-                href="hub-store-statement.html"
-                >Sales Statement</a
-            >
-
-            <a
-                class="navigation-widget-section-link"
-                href="hub-store-items.html"
-                >Manage Items</a
-            >
-
-            <a
-                class="navigation-widget-section-link"
-                href="hub-store-downloads.html"
-                >Downloads</a
-            >
-
-            <p class="navigation-widget-section-title">Main Links</p>
-
-            <a class="navigation-widget-section-link" href="#">Home</a>
-
-            <a class="navigation-widget-section-link" href="#">Careers</a>
-
-            <a class="navigation-widget-section-link" href="#">Faqs</a>
-
-            <a class="navigation-widget-section-link" href="#">About Us</a>
-
-            <a class="navigation-widget-section-link" href="#">Our Blog</a>
-
-            <a class="navigation-widget-section-link" href="#">Contact Us</a>
-
-            <a class="navigation-widget-section-link" href="#"
-                >Privacy Policy</a
             >
         </nav>
     </div>
@@ -403,11 +234,22 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import Tooltip from "@/plugins/tooltip";
+
+import Login from "@/scripts/login";
+import { User } from "firebase";
 @Component({
     components: {},
 })
 export default class navigationWidget extends Vue {
+    @Prop() user!: User;
     private tooltip: Tooltip = new Tooltip();
+
+    async logout() {
+        this.$store.state.pathName = "logout";
+        await Login.logout();
+
+        location.href = process.env.VUE_APP_ZEMPIE_URL;
+    }
 
     async mounted() {
         this.tooltip.init();
@@ -434,9 +276,12 @@ export default class navigationWidget extends Vue {
 .navigation-widget-desktop.closed {
     padding-top: 0px !important;
 }
-.hidden{
+.hidden {
     visibility: hidden !important;
     opacity: 0 !important;
     display: block !important;
+}
+.icon-plus {
+    fill: #616a82;
 }
 </style>

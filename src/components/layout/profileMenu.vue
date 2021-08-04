@@ -55,7 +55,8 @@
                         </p>
 
                         <p class="user-status-text small">
-                            <a   :href="`${$store.getters.zempieUrl}/channel/${user.channel_id}`"
+                            <a
+                                :href="`${$store.getters.zempieUrl}/channel/${user.channel_id}`"
                                 >@{{ user.nickname }}</a
                             >
                         </p>
@@ -83,11 +84,12 @@
 
                 <p class="dropdown-navigation-category">Account</p>
 
-                <!-- <a
-                        class="dropdown-navigation-link"
-                        href="hub-account-info.html"
-                        >Account Info</a
-                    > -->
+                <a
+                    class="dropdown-navigation-link"
+                    :href="`${$store.getters.zempieUrl}/user/${user.uid}/settings`"
+                    @click="routerClick"
+                    >General Settings</a
+                >
                 <a
                     class="dropdown-navigation-link"
                     :href="`${$store.getters.zempieUrl}/user/${user.uid}/changePassword`"
@@ -95,12 +97,7 @@
                     >Change Password</a
                 >
 
-                <a
-                    class="dropdown-navigation-link"
-                    :href="`${$store.getters.zempieUrl}/user/${user.uid}/settings`"
-                    @click="routerClick"
-                    >General Settings</a
-                >
+               
 
                 <p class="dropdown-navigation-category">Groups</p>
                 <a
@@ -148,7 +145,7 @@ export default class ProfileMenu extends Vue {
         this.$store.state.pathName = "logout";
         await Login.logout();
 
-          location.href = process.env.VUE_APP_ZEMPIE_URL;
+        location.href = process.env.VUE_APP_ZEMPIE_URL;
     }
 
     routerClick() {
