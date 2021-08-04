@@ -86,6 +86,7 @@
 </template>
 
 <script lang="ts">
+import { resetLocalStorage } from "@/scripts/form";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({
@@ -94,6 +95,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 export default class selectStage extends Vue {
     mounted() {
         this.$store.commit("gameStage", null);
+        resetLocalStorage();
     }
     clickStage(stage: number) {
         

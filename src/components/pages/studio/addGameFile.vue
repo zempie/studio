@@ -92,6 +92,7 @@ import ZipUtil from "@/common/zipUtil";
 import ContentBox from "@/components/layout/contentBox.vue";
 import ContentBoxBlock from "@/components/layout/contentBoxBlock.vue";
 import store from "@/store";
+import { resetLocalStorage } from "@/scripts/form";
 @Component({
     components: { ContentBox, ContentBoxBlock },
 })
@@ -116,6 +117,12 @@ export default class addGameFile extends Vue {
         } else {
             next();
         }
+    }
+    beforeRouteLeave(to, from, next) {
+        if (to.name !== "AddGameInfo") {
+            resetLocalStorage();
+        }
+        next();
     }
 
     mounted() {

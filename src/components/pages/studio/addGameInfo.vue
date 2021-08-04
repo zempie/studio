@@ -203,6 +203,7 @@ import { Notify } from "quasar";
 import { event } from "vue-gtag";
 import store from "@/store/index";
 import { urltoFile } from "@/scripts/util";
+import { resetLocalStorage } from "@/scripts/form";
 // import { useQuasar } from "quasar";
 @Component({
     components: {
@@ -281,22 +282,22 @@ export default class addGameInfo extends Vue {
                 localStorage.setItem("thumbFile2Type", this.thumbFile2.type);
             }
         } else {
-            this.resetLocalStorage();
+            resetLocalStorage();
         }
         next();
     }
-    resetLocalStorage() {
-        localStorage.removeItem("gameTitle");
-        localStorage.removeItem("description");
-        localStorage.removeItem("gamePath");
-        localStorage.removeItem("hashtagsArr");
-        localStorage.removeItem("thumbFileUrl");
-        localStorage.removeItem("thumbFileName");
-        localStorage.removeItem("thumbFileType");
-        localStorage.removeItem("thumbFile2Url");
-        localStorage.removeItem("thumbFile2Name");
-        localStorage.removeItem("thumbFile2Type");
-    }
+    // resetLocalStorage() {
+    //     localStorage.removeItem("gameTitle");
+    //     localStorage.removeItem("description");
+    //     localStorage.removeItem("gamePath");
+    //     localStorage.removeItem("hashtagsArr");
+    //     localStorage.removeItem("thumbFileUrl");
+    //     localStorage.removeItem("thumbFileName");
+    //     localStorage.removeItem("thumbFileType");
+    //     localStorage.removeItem("thumbFile2Url");
+    //     localStorage.removeItem("thumbFile2Name");
+    //     localStorage.removeItem("thumbFile2Type");
+    // }
     mounted() {
         this.$store.commit("sendGameInfoDone", false);
 
@@ -334,7 +335,7 @@ export default class addGameInfo extends Vue {
                 this.thumbFile ||
                 this.thumbFile2
             ) {
-                this.resetLocalStorage();
+                resetLocalStorage();
                 return "지금까지 작성한 내용이 사라집니다. 정말 새로고침하시겠습니까?";
             }
         };
