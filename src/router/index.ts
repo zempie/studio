@@ -5,6 +5,16 @@ import Home from "@/views/Home.vue";
 
 Vue.use(VueRouter)
 
+
+// duplicate error
+const originalPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function push(location) {
+    //@ts-ignore
+    return originalPush.call(this, location).catch(err => {
+        if (err.name !== 'NavigationDuplicated') throw err;
+    });
+};
+
 const routes: Array<RouteConfig> = [
     {
         path: '/',
@@ -36,10 +46,12 @@ const routes: Array<RouteConfig> = [
     //         }
     //     ]
     // },
-    // {
-    //     path: '/studio',
-    //     name: 'Studio',
-    //     component: () => import(/* webpackChunkName: "about" */ "@/views/Studio.vue"),
+    {
+        path: '/studio',
+        name: 'Studio',
+        component: () => import(/* webpackChunkName: "about" */ "@/views/Studio.vue"),
+        redirect: '/DashBoard'
+    },
     //     children: [
     {
         path: '/games',
@@ -147,6 +159,7 @@ const routes: Array<RouteConfig> = [
         path: '/project/:projectId',
         name: 'Project',
         component: () => import(/* webpackChunkName: "about" */ "@/views/GameDashboard.vue"),
+        redirect:'/project/:projectId/dashboard',
         children: [
             {
                 path: '/project/:projectId/dashboard',
@@ -180,7 +193,7 @@ const routes: Array<RouteConfig> = [
     //     // alias: '/project/:projectId',
     //     props: true
     // },
-    
+
     {
         path: '/project/version/:projectId',
         name: 'ProjectVersion',

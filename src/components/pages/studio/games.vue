@@ -2,9 +2,7 @@
     <div>
         <div
             class="section-banner"
-            style="
-                background: url('img/banner/banner-bg.png') no-repeat center;
-            "
+            style="background: url('img/banner/banner-bg.png') no-repeat center"
         >
             <img
                 class="section-banner-icon"
@@ -15,7 +13,7 @@
             <p class="section-banner-title">모든 게임</p>
 
             <p class="section-banner-text">
-                {{ user.name }}님이 올린 모든 게임
+                {{ user && user.name }}님이 올린 모든 게임
             </p>
         </div>
         <div class="add-game-container">
@@ -207,7 +205,7 @@ import { mapGetters } from "vuex";
 import { LoginState } from "@/store/modules/user";
 import { Notify } from "quasar";
 
-import Form from "@/scripts/form";
+import { Form } from "@/scripts/form";
 
 interface ISurvey {
     url: string;

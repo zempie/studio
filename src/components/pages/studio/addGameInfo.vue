@@ -327,6 +327,7 @@ export default class addGameInfo extends Vue {
         });
         //새로고침
         window.onbeforeunload = () => {
+            console.log("this.title", this.title);
             if (
                 this.title.length > 0 ||
                 this.description.length > 0 ||
@@ -339,6 +340,9 @@ export default class addGameInfo extends Vue {
                 return "지금까지 작성한 내용이 사라집니다. 정말 새로고침하시겠습니까?";
             }
         };
+    }
+    destroyed() {
+        window.onbeforeunload = () => undefined;
     }
 
     private onChangeHashtags() {

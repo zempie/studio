@@ -92,8 +92,6 @@
                     </div>
 
                     <div class="sidebar-box-footer">
-                        <!-- todo:버튼 활성화 -->
-
                         <p
                             @click="uplaodGame"
                             class="button primary"
@@ -128,8 +126,8 @@ export default class UploadGame extends Vue {
         console.log(this.$route.meta.parentRouterName);
         console.log(
             this.$store.getters.gameStage &&
-            this.$store.getters.sendGameFileDone&&
-            this.$store.getters.sendGameInfoDone
+                this.$store.getters.sendGameFileDone &&
+                this.$store.getters.sendGameInfoDone
         );
     }
     clickSideBar(to: string) {
@@ -152,8 +150,65 @@ export default class UploadGame extends Vue {
             gameFileInfo,
             this.$store.getters.uploadGameFiles
         );
-
         console.log(result);
+        if (!result || result.error) {
+            if (result.error.code === 40101) {
+                this.$toasted.show(this.$t("forbiddenString").toString(), {
+                    fullWidth: true,
+                    fitToScreen: true,
+                    theme: "outline",
+                    position: "top-center",
+                    className: "toast-error",
+                    duration: 3000,
+                    type: "error",
+                    action: {
+                        text: "X",
+                        onClick: (e, toastObject) => {
+                            toastObject.goAway(0);
+                        },
+                    },
+                });
+            } else {
+                this.$toasted.show(
+                    this.$t("addGame.error.uploadGame").toString(),
+                    {
+                        fullWidth: true,
+                        fitToScreen: true,
+                        theme: "outline",
+                        position: "top-center",
+                        className: "toast-error",
+                        duration: 3000,
+                        type: "error",
+                        action: {
+                            text: "X",
+                            onClick: (e, toastObject) => {
+                                toastObject.goAway(0);
+                            },
+                        },
+                    }
+                );
+            }
+            console.error((result && result.error) || "error");
+        } else {
+            this.$toasted.show("게임업로드가 완료되었습니다. ", {
+                fullWidth: true,
+                fitToScreen: true,
+                theme: "outline",
+                position: "top-center",
+                className: "toast-success",
+                duration: 3000,
+                type: "success",
+                action: {
+                    text: "X",
+                    onClick: (e, toastObject) => {
+                        toastObject.goAway(0);
+                    },
+                },
+            });
+            this.$router
+                .push('/games')
+                .catch(() => {});
+        }
     }
 }
 </script>

@@ -22,6 +22,8 @@ import VueGoogleCharts from 'vue-google-charts'
 
 Vue.use(VueGoogleCharts)
 
+import Toasted from 'vue-toasted'; 
+Vue.use(Toasted)
 
 Vue.config.productionTip = false
 
