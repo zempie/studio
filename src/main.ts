@@ -13,7 +13,7 @@ import i18n from './plugins/i18n';
 import './styles/styles.css'
 
 
-import 'tiny-slider'
+// import 'tiny-slider'
 import '@/scripts/utils/svg-loader'
 import 'simplebar/dist/simplebar.min.css';
 

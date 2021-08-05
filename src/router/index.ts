@@ -202,7 +202,7 @@ const routes: Array<RouteConfig> = [
 
     {
         path: '/project/version/:projectId',
-        name: 'ProjectVersion',
+        name: 'projectVersion',
         component: () => import(/* webpackChunkName: "about" */ "@/components/pages/project/projectVersion.vue"),
         props: true
     },
