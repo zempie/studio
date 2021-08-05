@@ -29,7 +29,7 @@
                 <ul class="menu-main">
                     <li class="menu-main-item">
                         <a
-                            :href="`${$store.getters.zempieUrl}community/list`"
+                            :href="`${$store.getters.zempieUrl}/list`"
                             class="menu-main-item-link"
                             >Community</a
                         >
@@ -132,7 +132,7 @@
                             @click.native="closeDropbox"
                             v-for="group in groupList"
                             class="dropdown-box-list-item"
-                            :href="`${$store.getters.zempieUrl}/community/${group.id}/timeline`"
+                            :href="`${$store.getters.zempieUrl}/${group.id}/timeline`"
                             :key="group.id"
                         >
                             <div class="user-status notification">

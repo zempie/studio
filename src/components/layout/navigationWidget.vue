@@ -183,7 +183,7 @@
                 <li class="menu-item">
                     <a
                         class="menu-item-link"
-                        :href="`${$store.getters.zempieUrl}/community/list`"
+                        :href="`${$store.getters.zempieUrl}/list`"
                     >
                         <svg class="menu-item-link-icon icon-overview">
                             <use xlink:href="#svg-overview"></use>
