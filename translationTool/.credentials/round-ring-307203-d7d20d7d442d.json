@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "round-ring-307203",
+  "private_key_id": "d7d20d7d442dec724a888840e184c059060d5824",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDR/dQZ2pkjdw6J\nDM1YSw+HyieqF5yWxJea5R17uo8hgfaPpC/s9yvIEYWi2bnXYpsCLGrAEZBK1VC6\nvv6lKyWhc/nomSE/OrWXwUBG/GwfHWeEkkflTEM3EHSEzCwHDSUX5jhuAn94yo+N\nrPtqtyp73/OdqIVIUjlxLN4wJdf+ej6OBIfSNoLaqLtOv++3R9Jq7gtOQqbdRjgW\n3e+AtCw4zt7N76TlNE86rWbSX7dkAhBbZ0ujMscU5aGLVZ2+so8lxDhf15ODssrV\nvRn8GaQaY1MMayvjARfBCt2lO+KWPt6XDjmF2E1GdzlXeT64Xd4UprviOPfZWmRl\nr8TdPdLTAgMBAAECggEAD8qMZ6v7oMzJiAmGwPasDU8Tb9lktNBwgifBRtZUVcsQ\nf+Qd7S5NLuIPxZulO7WLkzyZ2SW4+cJULCbuvqb2+87dN95EFMgqcxCyRQ74ZoKZ\n5UCcLXnFrYoMPmxIJ05CwCsCNVZKFbWjLp6X2CzmrKK+ZC28ZXWMIkmjJRsYxLxz\nveq9d5kPM8WwsZkkDa+SbfbMhl+GhSe7OdRiD/rPBDir8/c6+Isvm65x5w8VN8n6\nMmAsQ3T52gOnL8rzouGr1zaXaDkwYc717HYu7byBju9OqnsyI7BlODAn1OdmtDhi\nPp3Eiv8TnzAPR+5m2qsNxQ1fpSE98rrAz+2YBP1bkQKBgQDuY+YxowH+fK80f5+V\nSjPkfjwXeCnilwmx/TTE7UqY8S3Q2ywj3lWupN+/OO2l9XuENuG70azarU7S8xkh\ns7tGvbntzTGx6mPCZhaifwXncvaBbHBLvIHFvnG+0fubDbN3JOWYT90oD+dMqE99\n4VxPcFKs1jvHY6+lRk1i6xm0KwKBgQDhgOSN66883ZLKbQdwHP+zHONGPvzKnGHM\n2qwh/HNx6Zu/QPuOMqaWq6/BmPG3UIseieX0eLhc5lMqLzJ9KN66PX4T/R7hbQRQ\n5OadhCLjsYJhFuNhuS2iN4KXv74TKId3fy3IAiSQo1VS9qe/S5MMZOWJWZ4KSClp\nQex0MzU/+QKBgHJ/Ts+mYE3PqwMHDSnSEux66PfIwi1Pp9tyJwcyhXLB2+SFcETm\nA7c2/zRD7niYWDPffDoOcfwx4zsUgYybW6aVd5jMxkKStklnaRWw9q/8moL9B06J\nArdsSguBpVwKj5j5AsFOEoWsZcZ+zHdEZ2bMJxlWaC3TJki2ZHLPQnAzAoGBAKmd\nF0wgMAip6FVVuLh9N17zpYcarW2APpelCr/tcLAHtFwgdpW4R1EhBeuqLHVjoaBw\nvIQroRBPNdKO+XzmltCinAhQ5T9NjmeCJGvqDYwR4i1A1/qTHF3dPt8BG+ixHWOm\nRzsfUX1xPSZP3FCoeYxi/7tVque062D+cunb8nuRAoGBANaVGC+K97pGbTz1YfrZ\nLNkUewUBJJpy9W/U9jftRGvYXNSPrqsZmiwiRoDsImK3QoN8B2qmyAFh3Tq6iDIn\nZ0ePI/QVqVa6iJ0aCztUDdOvs+DZdeQBJqdYOL0VA33La58Yo1FgW3MFtPkuY2qj\nrWufMbp7j5dhcvZYI2UwSeu4\n-----END PRIVATE KEY-----\n",
+  "client_email": "zempie-dev-981@round-ring-307203.iam.gserviceaccount.com",
+  "client_id": "116283098379560339759",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/zempie-dev-981%40round-ring-307203.iam.gserviceaccount.com"
+}
