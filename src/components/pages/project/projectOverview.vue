@@ -2071,7 +2071,7 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { mapGetters } from "vuex";
 import { GChart } from "vue-google-charts";
 import Hexagon from "@/plugins/hexagon";
-import Slider from "@/plugins/slider";
+// import Slider from "@/plugins/slider";
 import LineChart from "@/components/pages/studio/Chart.vue";
 import Dropdown from "@/plugins/dropdown";
 @Component({
@@ -2081,7 +2081,7 @@ import Dropdown from "@/plugins/dropdown";
 export default class projectOverview extends Vue {
     private dropdown: Dropdown = new Dropdown();
     private hexagon: Hexagon = new Hexagon();
-    private slider: Slider = new Slider();
+    // private slider: Slider = new Slider();
     private projectId: number = parseInt(this.$route.params.projectId);
     private version: any = null;
     loaded = false;
@@ -2110,7 +2110,7 @@ export default class projectOverview extends Vue {
         console.log("mounted", this.version);
 
         this.hexagon.init();
-        this.slider.init();
+        // this.slider.init();
         this.dropdown.init();
         this.loaded = false;
         try {

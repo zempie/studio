@@ -5,7 +5,7 @@ import XM_Tab from "@/scripts/vendor/xm_tab.min.js"
 import XM_Popup from "@/scripts/vendor/xm_popup.min.js"
 import XM_Tooltip from "@/scripts/vendor/xm_tooltip.min.js"
 
-import { tns } from 'tiny-slider/src/tiny-slider';
+// import { tns } from 'tiny-slider/src/tiny-slider';
 
 const existsInDOM = function (selector: any) {
     return document.querySelectorAll(selector).length;
@@ -43,11 +43,11 @@ const plugins = {
             return new XM_Tooltip(options);
         }
     },
-    createSlider: function (options) {
-        if (existsInDOM(options.container)) {
-            return tns(options);
-        }
-    },
+    // createSlider: function (options) {
+    //     if (existsInDOM(options.container)) {
+    //         return tns(options);
+    //     }
+    // },
     createChart: function (ctx, options) {
         return new ChartJS(ctx, options);
     }

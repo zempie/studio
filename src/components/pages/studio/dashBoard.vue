@@ -2085,7 +2085,7 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { mapGetters } from "vuex";
 import { GChart } from "vue-google-charts";
 import Hexagon from "@/plugins/hexagon";
-import Slider from "@/plugins/slider";
+// import Slider from "@/plugins/slider";
 import LineChart from "./Chart.vue";
 import Dropdown from "@/plugins/dropdown";
 
@@ -2097,7 +2097,7 @@ export default class dashBoard extends Vue {
     private user!: any;
     private dropdown: Dropdown = new Dropdown();
     private hexagon: Hexagon = new Hexagon();
-    private slider: Slider = new Slider();
+    // private slider: Slider = new Slider();
     loaded = false;
     chartdata = null;
     chartData = [
@@ -2115,7 +2115,7 @@ export default class dashBoard extends Vue {
     };
     private projects = [];
     async mounted() {
-        this.slider.init();
+        // this.slider.init();
         this.dropdown.init();
         this.loaded = false;
         try {
