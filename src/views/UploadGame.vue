@@ -30,7 +30,7 @@
                                 <p class="sidebar-menu-header-title">
                                     게임 단계 선택
                                 </p>
-
+{{$store.getters.gameStage}}
                                 <select-alert
                                     :isPass="$store.getters.gameStage"
                                 ></select-alert>
