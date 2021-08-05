@@ -141,7 +141,7 @@
                 <div class="navigation-widget-info">
                     <a
                         class="user-avatar small no-outline"
-                        :href="`${$store.getters.zempieUrl}/channel/${
+                        :href="`${$store.getters.zempieUrl}channel/${
                             user && user.channel_id
                         }`"
                     >
@@ -163,7 +163,7 @@
 
                     <p class="navigation-widget-info-title">
                         <a
-                            :href="`${$store.getters.zempieUrl}/channel/${user && user.channel_id}`"
+                            :href="`${$store.getters.zempieUrl}channel/${user && user.channel_id}`"
                             >{{ user && user.name }}</a
                         >
                     </p>
@@ -183,7 +183,7 @@
                 <li class="menu-item">
                     <a
                         class="menu-item-link"
-                        :href="`${$store.getters.zempieUrl}/list`"
+                        :href="`${$store.getters.zempieUrl}community/list`"
                     >
                         <svg class="menu-item-link-icon icon-overview">
                             <use xlink:href="#svg-overview"></use>
@@ -198,7 +198,7 @@
 
             <a
                 class="navigation-widget-section-link"
-                :href="`${$store.getters.zempieUrl}/channel/${user && user.channel_id}`"
+                :href="`${$store.getters.zempieUrl}channel/${user && user.channel_id}`"
                 >Profile Info</a
             >
 
@@ -210,13 +210,13 @@
 
             <a
                 class="navigation-widget-section-link"
-                :href="`${$store.getters.zempieUrl}/user/${user && user.uid}/settings`"
+                :href="`${$store.getters.zempieUrl}user/${user && user.uid}/settings`"
                 >General Settings</a
             >
 
             <a
                 class="navigation-widget-section-link"
-                :href="`${$store.getters.zempieUrl}/user/${user &&user.uid}/changePassword`"
+                :href="`${$store.getters.zempieUrl}user/${user &&user.uid}/changePassword`"
                 >Change Password</a
             >
 
@@ -224,7 +224,7 @@
 
             <a
                 class="navigation-widget-section-link"
-                :href="`${$store.getters.zempieUrl}/user/${user &&user.uid}/manageJoinedGroup`"
+                :href="`${$store.getters.zempieUrl}user/${user &&user.uid}/manageJoinedGroup`"
                 >Manage Groups</a
             >
         </nav>

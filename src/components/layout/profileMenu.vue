@@ -29,7 +29,7 @@
                 <div class="dropdown-navigation-header">
                     <div class="user-status">
                         <a
-                            :href="`${$store.getters.zempieUrl}/channel/${user.channel_id}`"
+                            :href="`${$store.getters.zempieUrl}channel/${user.channel_id}`"
                             class="user-status-avatar"
                         >
                             <div class="user-avatar small no-outline">
@@ -56,7 +56,7 @@
 
                         <p class="user-status-text small">
                             <a
-                                :href="`${$store.getters.zempieUrl}/channel/${user.channel_id}`"
+                                :href="`${$store.getters.zempieUrl}channel/${user.channel_id}`"
                                 >@{{ user.nickname }}</a
                             >
                         </p>
@@ -66,7 +66,7 @@
                 <p class="dropdown-navigation-category">My Profile</p>
                 <a
                     class="dropdown-navigation-link"
-                    :href="`${$store.getters.zempieUrl}/channel/${user.channel_id}`"
+                    :href="`${$store.getters.zempieUrl}channel/${user.channel_id}`"
                     @click="routerClick"
                     >Profile Info</a
                 >
@@ -86,13 +86,13 @@
 
                 <a
                     class="dropdown-navigation-link"
-                    :href="`${$store.getters.zempieUrl}/user/${user.uid}/settings`"
+                    :href="`${$store.getters.zempieUrl}user/${user.uid}/settings`"
                     @click="routerClick"
                     >General Settings</a
                 >
                 <a
                     class="dropdown-navigation-link"
-                    :href="`${$store.getters.zempieUrl}/user/${user.uid}/changePassword`"
+                    :href="`${$store.getters.zempieUrl}user/${user.uid}/changePassword`"
                     @click="routerClick"
                     >Change Password</a
                 >
@@ -102,7 +102,7 @@
                 <p class="dropdown-navigation-category">Groups</p>
                 <a
                     class="dropdown-navigation-link"
-                    :href="`${$store.getters.zempieUrl}/user/${user.uid}/manageJoinedGroup`"
+                    :href="`${$store.getters.zempieUrl}user/${user.uid}/manageJoinedGroup`"
                     @click="routerClick"
                     >Manage Groups</a
                 >
