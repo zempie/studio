@@ -30,7 +30,7 @@
                                 <p class="sidebar-menu-header-title">
                                     게임 단계 선택
                                 </p>
-{{$store.getters.gameStage}}
+
                                 <select-alert
                                     :isPass="$store.getters.gameStage"
                                 ></select-alert>
@@ -205,9 +205,7 @@ export default class UploadGame extends Vue {
                     },
                 },
             });
-            this.$router
-                .push('/games')
-                .catch(() => {});
+            this.$router.push("/games").catch(() => {});
         }
     }
 }
