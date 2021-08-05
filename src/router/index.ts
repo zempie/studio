@@ -106,6 +106,12 @@ const routes: Array<RouteConfig> = [
                 component: () => import(/* webpackChunkName: "about" */ "@/components/pages/studio/addGameInfo.vue"),
                 meta: { parentRouterName: 'UploadGame' }
             },
+            {
+                path: '/addGameLog',
+                name: 'AddGameLog',
+                component: () => import(/* webpackChunkName: "about" */ "@/components/pages/studio/addGameLog.vue"),
+                meta: { parentRouterName: 'UploadGame' }
+            },
         ]
     },
     {

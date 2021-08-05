@@ -1,5 +1,5 @@
 <template>
-    <div style="width:80%">
+    <div style="width: 80%">
         <div class="notification-box-list">
             <div class="notification-box" @click="clickStage(0)">
                 <div class="user-status request">
@@ -40,11 +40,7 @@
                 </div>
             </div>
 
-            <div
-                class="notification-box"
-            
-                @click="clickStage(2)"
-            >
+            <div class="notification-box" @click="clickStage(2)">
                 <div class="user-status request">
                     <div
                         class="user-status-avatar user-avatar small no-outline"
@@ -98,12 +94,15 @@ export default class selectStage extends Vue {
         resetLocalStorage();
     }
     clickStage(stage: number) {
-        
         this.$store.commit("gameStage", stage);
         this.$store.commit("sendGameInfoDone", false);
         this.$store.commit("sendGameFileDone", false);
-        console.log("getters", this.$store.getters.gameStage);
-        this.$router.push("/addGameInfo")
+        if (stage === 0) {
+            this.$router.push("/addGameLog");
+        } else if (stage === 2) {
+            console.log("getters", this.$store.getters.gameStage);
+            this.$router.push("/addGameInfo");
+        }
     }
 }
 </script>
@@ -111,7 +110,7 @@ export default class selectStage extends Vue {
 <style lang="scss" scoped>
 .state-box {
     display: flex;
-    width:100%;
+    width: 100%;
     .stage-list {
         cursor: pointer;
         height: 112px;
